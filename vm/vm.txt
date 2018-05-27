@@ -1,0 +1,23 @@
+Parse flags and bots
+	Check if it's a flag
+
+	If not, then probably it's a bot
+
+	If not, error
+
+Read bots and check them
+
+Initialize
+	Initialize things
+
+	Put bots
+
+Play
+
+
+...
+
+Rules:
+1: Never use t_info, use t_data
+2: Always obey rule 1
+3: And rule 2
