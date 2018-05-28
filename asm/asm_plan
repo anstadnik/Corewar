@@ -1,0 +1,36 @@
+1. Read the file.
+	1.1. All possible checkings: whitespaces are skipped, the number of possible commands is strictly
+	 	 determined as well as the structure of a .cor file.
+	1.2. Validation stage.
+# lseek?
+2. Parse the file.
+	2.0. Remember commands' indexes, indexes of labels (used bytes before + 1), then read again. We might do it together with validation.
+	2.1. Transform everything into binary using 0,1 from ASCII. (Probably we'll write a new mode for itoa_base).
+	2.2. Create a static buffer where we will write all ours bytecode. Once it full, we will simply send it to dprintf
+
+	(We always pay attention to the first label if there are more).
+	(t_list for saving labels' names and their coordinates).
+	(big list of command structures)
+	{
+		char	*command;
+		char	*label;
+		t_arg	*arg1;
+		t_arg	*arg2;
+		t_arg	*arg3;
+		size_t	index;
+	}
+	t_arg
+	{	
+		char arg; // T_REG | T_DIR | T_IND
+		char label_flag; // 1 | 0
+		char *value;
+	}
+3. Close the file.
+4. Chunga-changa veselo zhivem.
+
+issues
+
+1. FFF8, zork. Why the heck label's adress turns out to be so big(uint16_t - 8)
+(MEM_SIZE * 16 - ((command index relatively to zero) - (label index relatively to zero))) % MEM_SIZE * 16
+
+0a in end of file (no eto ne tochno)
