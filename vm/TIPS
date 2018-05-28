@@ -3,3 +3,5 @@
 3. Register 1 have player number as value
 4. When fork, new carry have attributes of old carry
 5. Carry or bot dies if does not make lives 2 "cycles for die" in a row
+6. Carries works like stack: last appeared works first (checked for carries of 1 player)
+7. Game ends when all carries and players are dead
