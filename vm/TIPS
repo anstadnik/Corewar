@@ -1,0 +1,6 @@
+1. All carries have unique 16 registers
+2. Registers 2-16 have a 0 value
+3. Register 1 have player number as value
+4. When fork, new carry have attributes of old carry
+5. Carry dies if does not make lives 2 "cycles for die" in a row
+6. Bot dies when all his carries are dead
