@@ -22,3 +22,7 @@ Corewar flags:
 	16 - displays info about process movements {
 		ADV "number of octets skiped" ("old hex adress" -> "new hex adress") old hex address functions code
 	}
+3. corewar -b flag outputs memory using write (but i'm not sure)
+4. corewar --stealth changes information in output to 0 and MAXINT
+5. corewar -d 'n' outputs corewar arena after 'n' cycles and stops corewar
+5. corewar -s 'n' outputs corewar arena after every 'n' cycles
