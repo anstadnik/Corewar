@@ -1,6 +1,7 @@
 Parse parameters
 	Check if it's a flag
 		If so, change smth in flags structure
+			(after flag there has to be an argument (sometimes)
 
 	If not, then probably it's a bot
 		Try opening this file and read 0 bytes from it
