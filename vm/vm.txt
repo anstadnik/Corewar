@@ -1,9 +1,13 @@
-Parse flags and bots
+Parse parameters
 	Check if it's a flag
+		If so, change smth in flags structure
 
 	If not, then probably it's a bot
+		Try opening such file
+			On success, put it's fd into the array
+				If array is full, ERROR
 
-	If not, error
+		If cannot open, ERROR
 
 Read bots and check them
 
@@ -17,7 +21,14 @@ Play
 
 ...
 
+Structures:
+
+Flags
+
+
 Rules:
 1: Never use t_info, use t_data
 2: Always obey rule 1
 3: And rule 2
+
+vim:foldmethod=indent
