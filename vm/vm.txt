@@ -17,7 +17,17 @@ Initialize
 		Go through an array of fds
 			For every fd read code from it into the buffer
 				Check the code
-					WRITE SOMETHING HERE PLEASE
+
+					COR_MAX_LEN = 4 + PROG_NAME_LENGTH + 4 + 4 + COMMENT_LENGTH + 4 + CHAMP_MAX_SIZE
+					
+					Make arrays with COR_MAX_LEN bytes and use read(fd, arr, COR_MAX_LEN + 1). If read returns more then COR_MAX_LEN, it's error.
+					Check if first 4 bytes are "corewar magic number", if not - it's error
+					Check next PROG_NAME_LENGTH bytes. There must be name. If there isn't - error
+					Next 4 bytes must be NULL
+					There must be size of executable code. CODE_SIZE = size of executable code
+					COMMENT_LENGTH bytes must have comment inside
+					4 bytes for NULL
+					read next CODE_SIZE bytes. If array ends three - error
 
 					On error ERROR
 

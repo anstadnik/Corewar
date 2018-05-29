@@ -17,7 +17,7 @@ Corewar flags:
 	0 - standart corewar output
 	1 - displays info when player get's some lives
 	2 - displays cycles number
-	4 - 
+	4 - displays what operations processes done
 	8 - displays info when process (carry) dies
 	16 - displays info about process movements {
 		ADV "number of octets skiped" ("old hex adress" -> "new hex adress") old hex address functions code
