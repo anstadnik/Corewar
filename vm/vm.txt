@@ -42,7 +42,91 @@ Play (repeat)
 			For every carriage determine operation, parameters
 				If it's counter is bigger than zero, decrement it
 				Else execute them
-					WRITE SOMETHING HERE PLEASE
+					What function's do?
+					[
+						live:
+						{
+							Gives a life to carriage and to player, which number is in functions argument.
+							NUMBERS OF PLAYERS: 1. ffffff, 2. fffffe, 3. fffffd, 4.fffffc
+						}
+						ld:
+						{
+							Writes data from 1st arg to REGISTER (2nd arg).
+							If 1st arg is T_DIR, just copies it to 2nd arg, else if 1st arg is T_IND, data copies from 4 bytes, starting from adress PC + (1st arg % IDX_MOD).
+							This function changes carry. If it wrote 0 to 2nd arg, carry becomes 1, in other cases carry becomes 0.
+						}
+						st
+						{
+							Writes data from 1st arg (T_REG) to 2nd arg (T_REG or T_IND). If 2nd arg is T_REG, just copies data from 1st arg to 2nd
+							 else if 2nd arg is T_IND, data copies to 4 bytes, starting from adress PC + (1st arg % IDX_MOD)
+						}
+						add
+						{
+							Writes (1st arg + 2nd arg) to 3rd arg. All args have type T_REG.
+							This function changes carry. If it wrote 0 to 3rd arg, carry becomes 1, in other cases carry becomes 0.
+						}
+						sub
+						{
+							Writes (1st arg - 2nd arg) to 3rd arg. All args have type T_REG.
+							This function changes carry. If it wrote 0 to 3rd arg, carry becomes 1, in other cases carry becomes 0.
+						}
+						and
+						{
+							Writes (1st arg & 2nd arg) to 3rd arg. All args have type T_REG.
+							This function changes carry. If it wrote 0 to 3rd arg, carry becomes 1, in other cases carry becomes 0.
+						}
+						or
+						{
+							Writes (1st arg | 2nd arg) to 3rd arg. All args have type T_REG.
+							This function changes carry. If it wrote 0 to 3rd arg, carry becomes 1, in other cases carry becomes 0.
+						}
+						xor
+						{
+							Writes (1st arg ^ 2nd arg) to 3rd arg. All args have type T_REG.
+							This function changes carry. If it wrote 0 to 3rd arg, carry becomes 1, in other cases carry becomes 0.
+						}
+						zjmp
+						{
+							Changes position of this carriage to (1st arg % IDX_MOD) if (carry == 0)
+						}
+						ldi
+						{
+							If 1st arg is NOT T_IND: writes data from 4 bytes, starting from address ((1st arg + 2nd arg) % IDX_MOD + PC) to 3rd arg (T_REG)
+							Else if 1st arg is T_IND : writes data from 4 bytes, starting from address (((4 bytes starting from (1st arg % IDX_MOD + PC)) + 2nd arg) % IDX_MOD + PC)
+						}
+						sti
+						{
+							Writes 1st arg (T_REG) to 4 bytes, starting with adress:
+							If 2nd arg is NOT T_IND: ((2nd arg + 3rd arg) % IDX_MOD + PC)
+							Else if 2nd arg is T_IND: (((4 bytes starting from (2nd arg % IDX_MOD)) + 3rd arg) % IDX_MOD + PC)
+						}
+						fork
+						{
+							Make a copy of this carry with all it's parameters except PC. Copy will have new PC: (T_IND % IDX_MOD + old PC)
+						}
+						lld
+						{
+							Writes data from 1st arg to REGISTER (2nd arg).
+							If 1st arg is T_DIR, just copies it to 2nd arg, else if 1st arg is T_IND, data copies from 2 bytes, starting from adress (1st arg + PC).
+							This function changes carry. If it wrote 0 to 2nd arg, carry becomes 1, in other cases carry becomes 0.
+						}
+						lldi
+						{
+							If 1st arg is NOT T_IND: writes data from 4 bytes, starting from address ((1st arg + 2nd arg) + PC) to 3rd arg (T_REG)
+							Else if 1st arg is T_IND : writes data from 4 bytes, starting from address (((4 bytes starting from (1st arg % IDX_MOD + PC)) + 2nd arg) + PC)
+							This function changes carry. If it wrote 0 to 3rd arg, carry becomes 1, in other cases carry becomes 0.
+						}
+						lfork
+						{
+							Make a copy of this carry with all it's parameters except PC. Copy will have new PC: (T_IND + old PC)
+						}
+						aff
+						{
+							If corewar executed with '-a' option:
+							 prints (1st arg % 256) as ascii symbol on stdout
+							Else do nothing
+						}
+					]
 
 	If there is output flag, call the output function, pass there a flag and a structure
 		In that function call the appropriate ouput function(ncurses, output, sfml)
