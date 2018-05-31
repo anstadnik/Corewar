@@ -36,11 +36,12 @@ Initialize
 
 Pray
 
-Play
+Play (repeat)
 	Carriages action
 		Go through carriages stack(queue(whatever))
 			For every carriage determine operation, parameters
-				Execute them
+				If it's counter is bigger than zero, decrement it
+				Else execute them
 					WRITE SOMETHING HERE PLEASE
 
 	If there is output flag, call the output function, pass there a flag and a structure
