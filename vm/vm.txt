@@ -27,7 +27,7 @@ Initialize
 					There must be size of executable code. CODE_SIZE = size of executable code
 					COMMENT_LENGTH bytes must have comment inside
 					4 bytes for NULL
-					read next CODE_SIZE bytes. If array ends three - error
+					read next CODE_SIZE bytes. If array ends there - error
 
 					On error ERROR
 
