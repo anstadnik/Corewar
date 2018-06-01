@@ -11,6 +11,7 @@
 	(We always pay attention to the first label if there are more).
 	(t_list for saving labels' names and their coordinates).
 	(big list of command structures)
+	('a label can have no instruction following it or to be placed on a line before the instruction it responds to.') - needs some testing.
 	{
 		char	*command;
 		char	*label;
