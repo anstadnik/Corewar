@@ -133,7 +133,7 @@ Play (repeat)
 
 	If Cycle > Cycle_to_die
 		Check players
-			If player hasn't said "live" for 2 cycles - mark him as dead
+			If player is alive, and hasn't said "live" for 2 cycles - mark him as dead, and assign his place in the winners' list
 			
 			If there r no players alive, end
 
