@@ -1,46 +1,46 @@
-.PHONY: clean fclean re r
-CC = gcc
-CFLAGS = -Wall -Wextra -Werror -Wconversion#remove last one
-ODIR = objs/
-SDIR = srcs/
-IDIR = includes/
-LDIR = ../libft/
-NAME = corewar
-LIB = $(LDIR)libft.a
-FILES = main.c
-OBJS = $(FILES:.c=.o)
+.PHONY: all check clean fclean re d kappa rekappa
+
+NAME=test
+
+CC=gcc -Wall -Wextra -Werror
+
+INCLUDES=-I./includes -I./libft
+
+SRC=corewar.c check_cor.c get_parameters.c
+
+SRCS=$(addprefix ./srcs/, $(SRC))
+
+OBJ=$(SRCS:.c=.o)
+
+LIBFT=./libft/libft.a
 
 all: $(NAME)
-	
-$(NAME): $(LIB) $(addprefix $(ODIR), $(OBJS))
-	@echo "\x1b[34m\nCompiling $@\x1b[0m"
-	@$(CC) $(CFLAGS) -I $(IDIR) -I $(LDIR)includes -o $@ $^
 
-$(LIB):
-	@echo "\x1b[35m\nCompiling $(notdir $@)\x1b[0m"
-	@$(MAKE) -C $(dir $@) $(notdir $@)
-	@echo "\x1b[35m\n$(notdir $@) compiled\x1b[0m"
+$(NAME): $(OBJ) $(LIBFT)
+	@$(CC) $(INCLUDES) -o $@ $^
+	@echo "lem-in compiled"
 
-$(addprefix $(ODIR), %.o): $(addprefix $(SDIR), %.c)
-	@printf "."
-	@$(CC) $(CFLAGS) -I $(IDIR) -I $(LDIR)includes -c -o $@ $<
+d: fclean
+	$(CC) $(INCLUDES) -g -o $(NAME) $(SRCS) ./libft/*.c
 
-r: $(NAME)
-	./$(NAME)
-	#parameters
+check: 
+	@true
 
-clean: clean_objs
-	@$(MAKE) -C $(LDIR) clean
+$(LIBFT): check
+	@$(MAKE) -C ./libft
+	@echo "libft compiled"
 
-clean_objs:
-	@echo "\x1b[31mRemoving the object files of $(NAME)\x1b[0m"
-	@rm -f $(addprefix $(ODIR), $(OBJS))
+%.o: %.c
+	@$(CC) $(INCLUDES) -c -o $@ $<
 
-fclean: clean_objs
-	@$(MAKE) -C $(LDIR) fclean
-	@echo "\x1b[31mRemoving the $(NAME)\x1b[0m"
-	@rm -rf $(NAME)
+clean:
+	@rm -f $(OBJ)
+	@$(MAKE) -C ./libft clean
+	@echo "cleaned"
 
-re:
-	@$(MAKE) fclean
-	@$(MAKE)
+fclean: clean
+	@rm -f $(NAME)
+	@$(MAKE) -C ./libft fclean
+	@echo "fcleaned"
+
+re: fclean all
