@@ -27,21 +27,27 @@ int		get_num(int fd)
 	return (uni.magic);
 }
 
-void	cpy_to_map(t_info *inf, int size, char *str, int player)
+void	print_info(int start, char *str, int size)
 {
 	int		i;
-	int		cpy_start;
 
 	i = 0;
-	cpy_start = (MEM_SIZE / inf->players) * player;
-	ft_memcpy(inf->map + cpy_start, str, size);
-	printf("%d\n", cpy_start);
+	printf("%d\n", start);
 	while (i < size)
 	{
 		printf("%3.2hhx", str[i]);
 		i++;
 	}
 	printf("\n");
+}
+
+void	cpy_to_map(t_info *inf, int size, char *str, int player)
+{
+	int		cpy_start;
+
+	cpy_start = (MEM_SIZE / inf->players) * player;
+	ft_memcpy(inf->map + cpy_start, str, size);
+//	print_info(cpy_start, str, size);
 }
 
 void	check_file(int fd, t_header *head, t_info *inf, int player)

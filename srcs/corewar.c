@@ -27,6 +27,7 @@ void	initialize(t_info *inf)
 	inf->start = NULL;
 	inf->end = NULL;
 	inf->players = 0;
+	inf->cycles_to_die = CYCLE_TO_DIE;
 	ft_bzero(inf->map, MEM_SIZE);
 	while (i < 6)
 	{
@@ -49,6 +50,43 @@ void	printmap(unsigned char *map)
 	}
 }
 
+t_carriage	init_carriage(int player, int max)
+{
+	t_carriage	tmp;
+	int			j;
+
+	j = 1;
+	tmp.carry = 0;
+	tmp.pc = (MEM_SIZE / max) * player;
+	tmp.cycles_to_start = 0;
+	while (j < REG_NUMBER)
+	{
+		tmp.reg[j] = 0;
+		j++;
+	}
+	tmp.reg[0] = PLAYER_CODE - player;
+	return (tmp);
+}
+
+void	init_map(t_info *inf)
+{
+	t_carriage	tmp;
+	t_list		*head;
+	int			i;
+
+	i = 0;
+	inf->carriage_number = inf->players;
+	while (i < inf->players)
+	{
+		tmp = init_carriage(i, inf->players);
+		head = ft_lstnew(&tmp, sizeof(tmp));
+		ft_lstadd(&inf->end, head);
+		if (inf->start == NULL)
+			inf->start = inf->end;
+		i++;
+	}
+}
+
 int		main(int argc, char **argv)
 {
 	t_info	inf;
@@ -58,5 +96,7 @@ int		main(int argc, char **argv)
 	initialize(&inf);
 	get_parameters(argc - 1, argv + 1, &inf);
 	read_players(&inf);
-//	printmap(inf.map);
+	printmap(inf.map);
+	init_map(&inf);
+	ft_lstdel(&(inf.end), ft_lstdelcontent);
 }

@@ -51,6 +51,13 @@ typedef	char		t_arg_type;
 
 # define FILE_MAX_LENGTH		(NAME_LEN + COMMENT_LEN + 16 + CHAMP_MAX_SIZE)
 
+# define OUTPUT_NONE 0
+# define OUTPUT_TEXT 1
+# define OUTPUT_BIN 2
+# define OUTPUT_NCUR 3
+
+# define PLAYER_CODE 0xffffff
+
 typedef enum		e_args
 {
 	FLAG_A,
@@ -80,6 +87,8 @@ typedef struct		s_info
 	t_list				*end;
 	t_header			head[MAX_PLAYERS];
 	ssize_t				args[7];
+	int					cycles_to_die;
+	int					output_mode;
 	int					fd[MAX_PLAYERS];
 	int					players;
 	int					carriage_number;
