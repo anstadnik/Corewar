@@ -32,6 +32,8 @@ int		check_parameter(char *str)
 
 void	get_player(char *str, t_info *inf)
 {
+	if (ft_strequ(str, "--stealth"))
+		errmsg("Invalid parameter");
 	inf->players++;
 	if (inf->players > MAX_PLAYERS)
 		errmsg("Too many players");
@@ -64,8 +66,20 @@ void	get_output(char *str, int *ind, ssize_t *ret, int mode)
 			(*ret)++;
 		}
 	}
-	else if (ft_strequ(str, "--stealth")
-		errmsg("Invalid parameter");
+}
+
+void	excludes(ssize_t *args)
+{
+	int		text_out;
+	int		bin_out;
+	int		ncur_out;
+
+	text_out = (args[FLAG_V] > -1 || args[FLAG_D] > -1 || args[FLAG_S] > -1) ? 1 : 0;
+	bin_out = args[FLAG_B] > -1 ? 1 : 0;
+	ncur_out = args[FLAG_N] > -1 ? 1 : 0;
+	if ((text_out && bin_out) || (bin_out && ncur_out) ||
+		(text_out && ncur_out))
+		errmsg("You can have only one output mode");
 }
 
 void	get_parameters(int ac, char **av, t_info *inf)
@@ -89,6 +103,7 @@ void	get_parameters(int ac, char **av, t_info *inf)
 		printf("%ld\n", inf->args[i]);
 		i++;
 	}
+	excludes(inf->args);
 	if (inf->players < 1)
 		errmsg("To few players");
 }
