@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <fcntl.h>
 #include "corewar.h"
 
 int		errmsg(char *str)
@@ -20,14 +19,29 @@ int		errmsg(char *str)
 	exit (0);
 }
 
+void	initialize(t_info *inf)
+{
+	int		i;
+
+	i = 0;
+	inf->start = NULL;
+	inf->end = NULL;
+	inf->players = 0;
+	ft_bzero(inf->map, MEM_SIZE);
+	while (i < 6)
+	{
+		inf->args[i] = -1;
+		i++;
+	}
+}
+
 int		main(int argc, char **argv)
 {
-	int		fd;
 	t_info	inf;
 
 	if (argc < 2 || argc > MAX_ARGS_NUMBER)
 		return (errmsg("Too many or too few arguments"));
-	fd = open(argv[1], O_RDONLY);
-	inf.players = 1;
-	check_file(fd, &inf.head[0], &inf, 0);
+	initialize(&inf);
+	get_parameters(argc - 1, argv + 1, &inf);
+	read_players(&inf);
 }

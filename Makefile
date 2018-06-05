@@ -6,7 +6,7 @@ CC=gcc -Wall -Wextra -Werror
 
 INCLUDES=-I./includes -I./libft
 
-SRC=corewar.c check_cor.c
+SRC=corewar.c check_cor.c get_parameters.c
 
 SRCS=$(addprefix ./srcs/, $(SRC))
 

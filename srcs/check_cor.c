@@ -43,13 +43,13 @@ void	cpy_to_map(t_info *inf, int size, char *str, int player)
 	}
 }
 
-int		check_file(int fd, t_header *head, t_info *inf, int player)
+void	check_file(int fd, t_header *head, t_info *inf, int player)
 {
 	char	buff[4];
 	char	str[CHAMP_MAX_SIZE];
 
 	if (read(fd, buff, 0) < 0)
-		errmsg("It is not .cor file");
+		errmsg("Cannot open file");
 	if (get_num(fd) != COREWAR_EXEC_MAGIC)
 		errmsg("Wrong file");
 	head->prog_name[NAME_LEN] = 0;
@@ -69,5 +69,17 @@ int		check_file(int fd, t_header *head, t_info *inf, int player)
 		(head->prog_size % 2 != 0 && read(fd, buff, 4) > 1))
 		errmsg("Wrong file");
 	cpy_to_map(inf, head->prog_size, str, player);
-	return (1);
+	close(fd);
+}
+
+void	read_players(t_info *inf)
+{
+	int		i;
+
+	i = 0;
+	while (i < inf->players)
+	{
+		check_file(inf->fd[i], &(inf->head[i]), inf, i);
+		i++;
+	}
 }

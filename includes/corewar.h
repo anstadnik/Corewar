@@ -15,6 +15,7 @@
 
 # include "libft.h"
 # include <stdio.h>
+# include <fcntl.h>
 
 # define IND_SIZE				2
 # define REG_SIZE				4
@@ -77,8 +78,8 @@ typedef struct		s_info
 {
 	t_list				*start;
 	t_list				*end;
-	struct s_header		head[MAX_PLAYERS];
-	ssize_t				args[6];
+	t_header			head[MAX_PLAYERS];
+	ssize_t				args[7];
 	int					fd[MAX_PLAYERS];
 	int					players;
 	unsigned char		map[MEM_SIZE];
@@ -93,7 +94,9 @@ typedef struct		s_carriage
 	int				cycles_to_start;
 }					t_carriage;
 
-int					check_file(int fd, t_header *head, t_info *inf, int player);
+void				get_parameters(int ac, char **av, t_info *inf);
+
+void				read_players(t_info *inf);
 
 int					errmsg(char *str);
 
