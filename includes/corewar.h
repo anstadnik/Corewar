@@ -82,6 +82,7 @@ typedef struct		s_info
 	ssize_t				args[7];
 	int					fd[MAX_PLAYERS];
 	int					players;
+	int					carriage_number;
 	unsigned char		map[MEM_SIZE];
 }					t_info;
 

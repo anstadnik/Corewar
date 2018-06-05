@@ -35,6 +35,20 @@ void	initialize(t_info *inf)
 	}
 }
 
+void	printmap(unsigned char *map)
+{
+	int		i;
+
+	i = 1;
+	while (i <= MEM_SIZE)
+	{
+		printf("%3.2hhx", map[i - 1]);
+		if (i % 64 == 0)
+			printf("\n");
+		i++;
+	}
+}
+
 int		main(int argc, char **argv)
 {
 	t_info	inf;
@@ -44,4 +58,5 @@ int		main(int argc, char **argv)
 	initialize(&inf);
 	get_parameters(argc - 1, argv + 1, &inf);
 	read_players(&inf);
+//	printmap(inf.map);
 }

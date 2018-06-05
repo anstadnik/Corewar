@@ -97,13 +97,7 @@ void	get_parameters(int ac, char **av, t_info *inf)
 			get_output(av[i + 1], &i, &(inf->args[ret]), ret);
 		i++;
 	}
-	i = 0;
-	while (i < 6)
-	{
-		printf("%ld\n", inf->args[i]);
-		i++;
-	}
-	excludes(inf->args);
 	if (inf->players < 1)
 		errmsg("To few players");
+	excludes(inf->args);
 }

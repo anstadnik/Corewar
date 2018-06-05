@@ -35,12 +35,13 @@ void	cpy_to_map(t_info *inf, int size, char *str, int player)
 	i = 0;
 	cpy_start = (MEM_SIZE / inf->players) * player;
 	ft_memcpy(inf->map + cpy_start, str, size);
+	printf("%d\n", cpy_start);
 	while (i < size)
 	{
-		printf("%.2hhx", str[i]);
+		printf("%3.2hhx", str[i]);
 		i++;
-		printf(" ");
 	}
+	printf("\n");
 }
 
 void	check_file(int fd, t_header *head, t_info *inf, int player)
