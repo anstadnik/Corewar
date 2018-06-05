@@ -13,12 +13,12 @@
 	(big list of command structures)
 	('a label can have no instruction following it or to be placed on a line before the instruction it responds to.') - needs some testing.
 	{
-		char	*command;
+		char	*command; //or a number?
 		char	*label;
 		t_arg	*arg1;
 		t_arg	*arg2;
 		t_arg	*arg3;
-		size_t	index;
+		size_t	index; //order number
 	}
 	t_arg
 	{	
@@ -27,7 +27,7 @@
 		char *value;
 	}
 3. Close the file.
-4. Chunga-changa veselo zhivem.
+#4. Chunga-changa veselo zhivem.
 
 issues
 
@@ -35,3 +35,23 @@ issues
 (MEM_SIZE * 16 - ((command index relatively to zero) - (label index relatively to zero))) % MEM_SIZE * 16
 
 0a in end of file (no eto ne tochno)
+
+--//--
+
+enum? define? dunno. 
+
+exit_exit(str, int x(stroka), int y(stolbik), str)
+{
+	ft_printf("{red}%s{eoc}\n", str);
+	exit(1);
+}
+
+pushback_list, list_to_str, push_to_header(for name and comment)
+push_back_to_big_list_of_commands(**head, new_link)
+
+tochno ne hex (c) Andrew.
+
+Possible bonuses:
+1) colors
+2) outputing exact rows where error has occurred.
+3) more fancy compiling of a champion. Some catchy phrases full of pathos.
