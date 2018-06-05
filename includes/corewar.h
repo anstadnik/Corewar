@@ -13,6 +13,9 @@
 #ifndef COREWAR_H
 # define COREWAR_H
 
+# include "libft.h"
+# include <stdio.h>
+
 # define IND_SIZE				2
 # define REG_SIZE				4
 # define DIR_SIZE				4
@@ -47,8 +50,6 @@ typedef	char		t_arg_type;
 
 # define FILE_MAX_LENGTH		(NAME_LEN + COMMENT_LEN + 16 + CHAMP_MAX_SIZE)
 
-# include "libft.h"
-
 typedef enum		e_args
 {
 	FLAG_A,
@@ -67,19 +68,20 @@ typedef union		u_magic
 
 typedef struct		s_header
 {
-	char				prog_name[NAME_LEN + 1];
 	unsigned int		prog_size;
+	char				prog_name[NAME_LEN + 1];
 	char				comment[COMMENT_LEN + 1];
 }					t_header;
 
 typedef struct		s_info
 {
-	ssize_t				args[6];
-	struct s_header		head[MAX_PLAYERS];
-	int					fd[MAX_PLAYERS];
-	unsigned char		map[MEM_SIZE];
 	t_list				*start;
 	t_list				*end;
+	struct s_header		head[MAX_PLAYERS];
+	ssize_t				args[6];
+	int					fd[MAX_PLAYERS];
+	int					players;
+	unsigned char		map[MEM_SIZE];
 }					t_info;
 
 typedef struct		s_carriage
@@ -91,7 +93,7 @@ typedef struct		s_carriage
 	int				cycles_to_start;
 }					t_carriage;
 
-int					check_file(int fd, t_header *head);
+int					check_file(int fd, t_header *head, t_info *inf, int player);
 
 int					errmsg(char *str);
 

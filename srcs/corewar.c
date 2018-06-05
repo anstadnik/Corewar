@@ -28,5 +28,6 @@ int		main(int argc, char **argv)
 	if (argc < 2 || argc > MAX_ARGS_NUMBER)
 		return (errmsg("Too many or too few arguments"));
 	fd = open(argv[1], O_RDONLY);
-	check_file(fd, &inf.head[0]);
+	inf.players = 1;
+	check_file(fd, &inf.head[0], &inf, 0);
 }

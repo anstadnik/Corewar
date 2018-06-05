@@ -12,14 +12,11 @@
 
 #include "corewar.h"
 
-int		open_file(int fd)
+int		get_num(int fd)
 {
 	t_magic	uni;
 	int		i;
-	char	c;
 
-	if (read(fd, &i, 0) < 0)
-		errmsg("It is not .cor file");
 	i = 0;
 	while (i < 4)
 	{
@@ -27,25 +24,50 @@ int		open_file(int fd)
 			errmsg("Wrong file");
 		i++;
 	}
-	if (uni.magic != COREWAR_EXEC_MAGIC)
-		errmsg("Wrong file");
-	return (1);
+	return (uni.magic);
 }
 
-int		check_file(int fd, t_header *head)
+void	cpy_to_map(t_info *inf, int size, char *str, int player)
 {
-	char	str[4];
+	int		i;
+	int		cpy_start;
 
-	open_file(fd);
+	i = 0;
+	cpy_start = (MEM_SIZE / inf->players) * player;
+	ft_memcpy(inf->map + cpy_start, str, size);
+	while (i < size)
+	{
+		printf("%.2hhx", str[i]);
+		i++;
+		printf(" ");
+	}
+}
+
+int		check_file(int fd, t_header *head, t_info *inf, int player)
+{
+	char	buff[4];
+	char	str[CHAMP_MAX_SIZE];
+
+	if (read(fd, buff, 0) < 0)
+		errmsg("It is not .cor file");
+	if (get_num(fd) != COREWAR_EXEC_MAGIC)
+		errmsg("Wrong file");
 	head->prog_name[NAME_LEN] = 0;
 	if (read(fd, head->prog_name, NAME_LEN) < NAME_LEN)
 		errmsg("Wrong file");
-	if (read(fd, str, 4) < 4 || ft_memcmp(str, "\0\0\0\0", 4))
+	if (read(fd, buff, 4) < 4 || ft_memcmp(buff, "\0\0\0\0", 4))
 		errmsg("Wrong file");
-	if (read(fd, head->prog_name, NAME_LEN) < NAME_LEN)
+	head->prog_size = get_num(fd);
+	head->comment[COMMENT_LEN] = 0;
+	if (read(fd, head->comment, COMMENT_LEN) < COMMENT_LEN)
+		errmsg("Wrong file");
+	if (read(fd, buff, 4) < 4 || ft_memcmp(buff, "\0\0\0\0", 4))
 		errmsg("Wrong file");	
-	if (read(fd, &head->prog_size, 4) < 4)
+	if (read(fd, str, head->prog_size) < head->prog_size)
 		errmsg("Wrong file");
-	ft_printf("%d\n", head->prog_size);
+	if ((head->prog_size % 2 == 0 && read(fd, buff, 4) > 0) ||
+		(head->prog_size % 2 != 0 && read(fd, buff, 4) > 1))
+		errmsg("Wrong file");
+	cpy_to_map(inf, head->prog_size, str, player);
 	return (1);
 }
