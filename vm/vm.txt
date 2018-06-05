@@ -32,6 +32,9 @@ Initialize
 					On error ERROR
 
 				If all's ok, write it on arena(we can calculate the position of the bot)
+
+------DONE!^
+
 					Initialize a carriage for a bot(put it into stack or queue or whatever)
 
 Pray
