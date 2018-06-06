@@ -6,7 +6,7 @@
 /*   By: lburlach <lburlach@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 15:41:35 by lburlach          #+#    #+#             */
-/*   Updated: 2018/06/06 16:08:30 by lburlach         ###   ########.fr       */
+/*   Updated: 2018/06/06 19:09:47 by lburlach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int		main(int ac, char **av)
 {
 	header_t	magic_structure;
-	int fd;
+	int			fd;
 
 	if (ac == 1)
 		usage();
