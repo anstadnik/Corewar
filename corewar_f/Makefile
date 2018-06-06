@@ -7,7 +7,7 @@ IDIR = includes/
 LDIR = ../libft/
 NAME = corewar
 LIB = $(LDIR)libft.a
-FILES = main.c
+FILES = check_cor.c corewar.c get_parameters.c main_cycle.c debug_func.c
 OBJS = $(FILES:.c=.o)
 
 all: $(NAME)

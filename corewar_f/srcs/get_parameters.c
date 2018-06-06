@@ -68,18 +68,19 @@ void	get_output(char *str, int *ind, ssize_t *ret, int mode)
 	}
 }
 
-void	excludes(ssize_t *args)
+void	excludes(t_info *inf, ssize_t *args)
 {
 	int		text_out;
 	int		bin_out;
 	int		ncur_out;
 
 	text_out = (args[FLAG_V] > -1 || args[FLAG_D] > -1 || args[FLAG_S] > -1) ? 1 : 0;
-	bin_out = args[FLAG_B] > -1 ? 1 : 0;
-	ncur_out = args[FLAG_N] > -1 ? 1 : 0;
+	bin_out = args[FLAG_B] > -1 ? 2 : 0;
+	ncur_out = args[FLAG_N] > -1 ? 3 : 0;
 	if ((text_out && bin_out) || (bin_out && ncur_out) ||
 		(text_out && ncur_out))
 		errmsg("You can have only one output mode");
+	inf->output_mode = text_out + bin_out + ncur_out;
 }
 
 void	get_parameters(int ac, char **av, t_info *inf)
@@ -99,5 +100,5 @@ void	get_parameters(int ac, char **av, t_info *inf)
 	}
 	if (inf->players < 1)
 		errmsg("To few players");
-	excludes(inf->args);
+	excludes(inf, inf->args);
 }
