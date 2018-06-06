@@ -1,28 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lburlach <lburlach@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/06/06 15:41:35 by lburlach          #+#    #+#             */
-/*   Updated: 2018/06/06 16:08:30 by lburlach         ###   ########.fr       */
+/*   Created: 2018/06/06 15:56:00 by lburlach          #+#    #+#             */
+/*   Updated: 2018/06/06 16:03:27 by lburlach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-int		main(int ac, char **av)
+void	error_asm(char *err, size_t y, size_t x, char *code)
 {
-	header_t	magic_structure;
-	int fd;
 
-	if (ac == 1)
-		usage();
-	else if (ac > 2)
-		error_ac(av[ac - 1]);
-	fd = open(av[ac - 1], O_RDONLY);
-	//error if fd == -1 ?
-	parse_name_and_comment(fd, &magic_structure);
-	return (0);
+}
+
+void	usage(void)
+{
+	ft_printf("Usage: ./asm [-a] <sourcefile.s>\n"
+					  "    -a : Instead of creating a .cor file, outputs a stripped and annotated version of the code to the standard output\n");
+	exit(1);
+}
+
+void	error_ac(char *s)
+{
+	ft_printf("Cant read source file %s\n", s);
+	exit (1);
 }
