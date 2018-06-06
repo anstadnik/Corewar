@@ -1,21 +1,14 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   parsing_name_and_comment.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lburlach <lburlach@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/06/06 15:41:35 by lburlach          #+#    #+#             */
-/*   Updated: 2018/06/06 15:41:38 by lburlach         ###   ########.fr       */
+/*   Created: 2018/06/06 15:44:00 by lburlach          #+#    #+#             */
+/*   Updated: 2018/06/06 15:44:36 by lburlach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "asm.h"
+#include "libft.h"
 #include "op.h"
-
-int	main(void)
-{
-	header_t	magic_structure;
-
-	return (0);
-}
