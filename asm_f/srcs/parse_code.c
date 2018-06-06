@@ -6,7 +6,7 @@
 /*   By: byermak <byermak@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 17:06:00 by byermak           #+#    #+#             */
-/*   Updated: 2018/06/06 20:25:40 by byermak          ###   ########.fr       */
+/*   Updated: 2018/06/06 20:51:11 by byermak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void		skip_empty(int fd, char **str)
 
 static char	*parse_label(char *str)
 {
-
+	return 0;
 }
 
 void		parse_code(int fd, t_command **code)
