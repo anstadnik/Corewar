@@ -1,28 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   parsing_name_and_comment.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lburlach <lburlach@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/06/06 15:41:35 by lburlach          #+#    #+#             */
-/*   Updated: 2018/06/06 16:08:30 by lburlach         ###   ########.fr       */
+/*   Created: 2018/06/06 15:44:00 by lburlach          #+#    #+#             */
+/*   Updated: 2018/06/06 16:09:37 by lburlach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-int		main(int ac, char **av)
+void	parse_name_and_comment(int fd, header_t *magic_structure)
 {
-	header_t	magic_structure;
-	int fd;
+	char *line;
+	int i;
 
-	if (ac == 1)
-		usage();
-	else if (ac > 2)
-		error_ac(av[ac - 1]);
-	fd = open(av[ac - 1], O_RDONLY);
-	//error if fd == -1 ?
-	parse_name_and_comment(fd, &magic_structure);
-	return (0);
+	i = 0;
+	while (get_next_line(fd, &line) && i < 2)
+	{
+		ft_printf("%s\n", line);
+		ft_strdel(&line);
+		i++;
+	}
 }
