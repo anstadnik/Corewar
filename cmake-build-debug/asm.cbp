@@ -1,0 +1,418 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="asm"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/Users/byermak/COREWAR/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/byermak/COREWAR/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/byermak/COREWAR/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/byermak/COREWAR/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/byermak/COREWAR/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="asm_dev">
+				<Option output="/Users/byermak/COREWAR/cmake-build-debug/asm_dev" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/byermak/COREWAR/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Users/byermak/COREWAR/libft/includes"/>
+					<Add directory="/Users/byermak/COREWAR/asm_f/includes"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/byermak/COREWAR/cmake-build-debug/Makefile&quot;  VERBOSE=1 asm_dev"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/byermak/COREWAR/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/byermak/COREWAR/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/byermak/COREWAR/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="asm_dev/fast">
+				<Option output="/Users/byermak/COREWAR/cmake-build-debug/asm_dev" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/byermak/COREWAR/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Users/byermak/COREWAR/libft/includes"/>
+					<Add directory="/Users/byermak/COREWAR/asm_f/includes"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/byermak/COREWAR/cmake-build-debug/Makefile&quot;  VERBOSE=1 asm_dev/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/byermak/COREWAR/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/byermak/COREWAR/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/byermak/COREWAR/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/Users/byermak/COREWAR/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/byermak/COREWAR/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/byermak/COREWAR/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/byermak/COREWAR/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/byermak/COREWAR/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/Users/byermak/COREWAR/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/byermak/COREWAR/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/byermak/COREWAR/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/byermak/COREWAR/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/byermak/COREWAR/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="libft">
+				<Option output="/Users/byermak/COREWAR/cmake-build-debug/liblibft.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/byermak/COREWAR/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Users/byermak/COREWAR/libft/includes"/>
+					<Add directory="/Users/byermak/COREWAR/asm_f/includes"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/byermak/COREWAR/cmake-build-debug/Makefile&quot;  VERBOSE=1 libft"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/byermak/COREWAR/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/byermak/COREWAR/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/byermak/COREWAR/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="libft/fast">
+				<Option output="/Users/byermak/COREWAR/cmake-build-debug/liblibft.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/byermak/COREWAR/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Users/byermak/COREWAR/libft/includes"/>
+					<Add directory="/Users/byermak/COREWAR/asm_f/includes"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/byermak/COREWAR/cmake-build-debug/Makefile&quot;  VERBOSE=1 libft/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/byermak/COREWAR/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/byermak/COREWAR/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/byermak/COREWAR/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/Users/byermak/COREWAR/asm_f/includes/asm.h">
+			<Option target="asm_dev"/>
+		</Unit>
+		<Unit filename="/Users/byermak/COREWAR/asm_f/includes/op.h">
+			<Option target="asm_dev"/>
+		</Unit>
+		<Unit filename="/Users/byermak/COREWAR/asm_f/srcs/exit.c">
+			<Option target="asm_dev"/>
+		</Unit>
+		<Unit filename="/Users/byermak/COREWAR/asm_f/srcs/main.c">
+			<Option target="asm_dev"/>
+		</Unit>
+		<Unit filename="/Users/byermak/COREWAR/asm_f/srcs/parse_code.c">
+			<Option target="asm_dev"/>
+		</Unit>
+		<Unit filename="/Users/byermak/COREWAR/asm_f/srcs/parsing_name_and_comment.c">
+			<Option target="asm_dev"/>
+		</Unit>
+		<Unit filename="/Users/byermak/COREWAR/libft/gnl/srcs/get_next_line.c">
+			<Option target="libft"/>
+		</Unit>
+		<Unit filename="/Users/byermak/COREWAR/libft/is/srcs/ft_isalnum.c">
+			<Option target="libft"/>
+		</Unit>
+		<Unit filename="/Users/byermak/COREWAR/libft/is/srcs/ft_isalpha.c">
+			<Option target="libft"/>
+		</Unit>
+		<Unit filename="/Users/byermak/COREWAR/libft/is/srcs/ft_isascii.c">
+			<Option target="libft"/>
+		</Unit>
+		<Unit filename="/Users/byermak/COREWAR/libft/is/srcs/ft_isdigit.c">
+			<Option target="libft"/>
+		</Unit>
+		<Unit filename="/Users/byermak/COREWAR/libft/is/srcs/ft_isinteger.c">
+			<Option target="libft"/>
+		</Unit>
+		<Unit filename="/Users/byermak/COREWAR/libft/is/srcs/ft_isprint.c">
+			<Option target="libft"/>
+		</Unit>
+		<Unit filename="/Users/byermak/COREWAR/libft/is/srcs/ft_isspace.c">
+			<Option target="libft"/>
+		</Unit>
+		<Unit filename="/Users/byermak/COREWAR/libft/is/srcs/ft_iswhitespace.c">
+			<Option target="libft"/>
+		</Unit>
+		<Unit filename="/Users/byermak/COREWAR/libft/lst/srcs/ft_lstadd.c">
+			<Option target="libft"/>
+		</Unit>
+		<Unit filename="/Users/byermak/COREWAR/libft/lst/srcs/ft_lstaddb.c">
+			<Option target="libft"/>
+		</Unit>
+		<Unit filename="/Users/byermak/COREWAR/libft/lst/srcs/ft_lstdel.c">
+			<Option target="libft"/>
+		</Unit>
+		<Unit filename="/Users/byermak/COREWAR/libft/lst/srcs/ft_lstdelnode.c">
+			<Option target="libft"/>
+		</Unit>
+		<Unit filename="/Users/byermak/COREWAR/libft/lst/srcs/ft_lstdelone.c">
+			<Option target="libft"/>
+		</Unit>
+		<Unit filename="/Users/byermak/COREWAR/libft/lst/srcs/ft_lstiter.c">
+			<Option target="libft"/>
+		</Unit>
+		<Unit filename="/Users/byermak/COREWAR/libft/lst/srcs/ft_lstmap.c">
+			<Option target="libft"/>
+		</Unit>
+		<Unit filename="/Users/byermak/COREWAR/libft/lst/srcs/ft_lstnew.c">
+			<Option target="libft"/>
+		</Unit>
+		<Unit filename="/Users/byermak/COREWAR/libft/lst/srcs/ft_lstpushb.c">
+			<Option target="libft"/>
+		</Unit>
+		<Unit filename="/Users/byermak/COREWAR/libft/lst/srcs/ft_lstpushf.c">
+			<Option target="libft"/>
+		</Unit>
+		<Unit filename="/Users/byermak/COREWAR/libft/lst/srcs/ft_lsttostr.c">
+			<Option target="libft"/>
+		</Unit>
+		<Unit filename="/Users/byermak/COREWAR/libft/math/srcs/ft_abs.c">
+			<Option target="libft"/>
+		</Unit>
+		<Unit filename="/Users/byermak/COREWAR/libft/math/srcs/ft_pow.c">
+			<Option target="libft"/>
+		</Unit>
+		<Unit filename="/Users/byermak/COREWAR/libft/mem/srcs/ft_bzero.c">
+			<Option target="libft"/>
+		</Unit>
+		<Unit filename="/Users/byermak/COREWAR/libft/mem/srcs/ft_memalloc.c">
+			<Option target="libft"/>
+		</Unit>
+		<Unit filename="/Users/byermak/COREWAR/libft/mem/srcs/ft_memccpy.c">
+			<Option target="libft"/>
+		</Unit>
+		<Unit filename="/Users/byermak/COREWAR/libft/mem/srcs/ft_memchr.c">
+			<Option target="libft"/>
+		</Unit>
+		<Unit filename="/Users/byermak/COREWAR/libft/mem/srcs/ft_memcmp.c">
+			<Option target="libft"/>
+		</Unit>
+		<Unit filename="/Users/byermak/COREWAR/libft/mem/srcs/ft_memcpy.c">
+			<Option target="libft"/>
+		</Unit>
+		<Unit filename="/Users/byermak/COREWAR/libft/mem/srcs/ft_memdel.c">
+			<Option target="libft"/>
+		</Unit>
+		<Unit filename="/Users/byermak/COREWAR/libft/mem/srcs/ft_memdup.c">
+			<Option target="libft"/>
+		</Unit>
+		<Unit filename="/Users/byermak/COREWAR/libft/mem/srcs/ft_memmove.c">
+			<Option target="libft"/>
+		</Unit>
+		<Unit filename="/Users/byermak/COREWAR/libft/mem/srcs/ft_memset.c">
+			<Option target="libft"/>
+		</Unit>
+		<Unit filename="/Users/byermak/COREWAR/libft/mem/srcs/ft_realloc.c">
+			<Option target="libft"/>
+		</Unit>
+		<Unit filename="/Users/byermak/COREWAR/libft/printf/srcs/ft_printf.c">
+			<Option target="libft"/>
+		</Unit>
+		<Unit filename="/Users/byermak/COREWAR/libft/printf/srcs/printf_caesar.c">
+			<Option target="libft"/>
+		</Unit>
+		<Unit filename="/Users/byermak/COREWAR/libft/printf/srcs/printf_char.c">
+			<Option target="libft"/>
+		</Unit>
+		<Unit filename="/Users/byermak/COREWAR/libft/printf/srcs/printf_fill_list.c">
+			<Option target="libft"/>
+		</Unit>
+		<Unit filename="/Users/byermak/COREWAR/libft/printf/srcs/printf_flags_hand.c">
+			<Option target="libft"/>
+		</Unit>
+		<Unit filename="/Users/byermak/COREWAR/libft/printf/srcs/printf_funcs.c">
+			<Option target="libft"/>
+		</Unit>
+		<Unit filename="/Users/byermak/COREWAR/libft/printf/srcs/printf_get_params.c">
+			<Option target="libft"/>
+		</Unit>
+		<Unit filename="/Users/byermak/COREWAR/libft/printf/srcs/printf_int.c">
+			<Option target="libft"/>
+		</Unit>
+		<Unit filename="/Users/byermak/COREWAR/libft/printf/srcs/printf_make_str.c">
+			<Option target="libft"/>
+		</Unit>
+		<Unit filename="/Users/byermak/COREWAR/libft/printf/srcs/printf_memory.c">
+			<Option target="libft"/>
+		</Unit>
+		<Unit filename="/Users/byermak/COREWAR/libft/printf/srcs/printf_parse.c">
+			<Option target="libft"/>
+		</Unit>
+		<Unit filename="/Users/byermak/COREWAR/libft/printf/srcs/printf_parse2.c">
+			<Option target="libft"/>
+		</Unit>
+		<Unit filename="/Users/byermak/COREWAR/libft/printf/srcs/printf_process_conv.c">
+			<Option target="libft"/>
+		</Unit>
+		<Unit filename="/Users/byermak/COREWAR/libft/printf/srcs/printf_ptr.c">
+			<Option target="libft"/>
+		</Unit>
+		<Unit filename="/Users/byermak/COREWAR/libft/printf/srcs/printf_row_str.c">
+			<Option target="libft"/>
+		</Unit>
+		<Unit filename="/Users/byermak/COREWAR/libft/printf/srcs/printf_str.c">
+			<Option target="libft"/>
+		</Unit>
+		<Unit filename="/Users/byermak/COREWAR/libft/printf/srcs/printf_time.c">
+			<Option target="libft"/>
+		</Unit>
+		<Unit filename="/Users/byermak/COREWAR/libft/put/srcs/ft_putchar.c">
+			<Option target="libft"/>
+		</Unit>
+		<Unit filename="/Users/byermak/COREWAR/libft/put/srcs/ft_putchar_fd.c">
+			<Option target="libft"/>
+		</Unit>
+		<Unit filename="/Users/byermak/COREWAR/libft/put/srcs/ft_putendl.c">
+			<Option target="libft"/>
+		</Unit>
+		<Unit filename="/Users/byermak/COREWAR/libft/put/srcs/ft_putendl_fd.c">
+			<Option target="libft"/>
+		</Unit>
+		<Unit filename="/Users/byermak/COREWAR/libft/put/srcs/ft_putnbr.c">
+			<Option target="libft"/>
+		</Unit>
+		<Unit filename="/Users/byermak/COREWAR/libft/put/srcs/ft_putnbr_fd.c">
+			<Option target="libft"/>
+		</Unit>
+		<Unit filename="/Users/byermak/COREWAR/libft/put/srcs/ft_putstr.c">
+			<Option target="libft"/>
+		</Unit>
+		<Unit filename="/Users/byermak/COREWAR/libft/put/srcs/ft_putstr_fd.c">
+			<Option target="libft"/>
+		</Unit>
+		<Unit filename="/Users/byermak/COREWAR/libft/str/srcs/ft_atoi.c">
+			<Option target="libft"/>
+		</Unit>
+		<Unit filename="/Users/byermak/COREWAR/libft/str/srcs/ft_itoa.c">
+			<Option target="libft"/>
+		</Unit>
+		<Unit filename="/Users/byermak/COREWAR/libft/str/srcs/ft_strcat.c">
+			<Option target="libft"/>
+		</Unit>
+		<Unit filename="/Users/byermak/COREWAR/libft/str/srcs/ft_strchr.c">
+			<Option target="libft"/>
+		</Unit>
+		<Unit filename="/Users/byermak/COREWAR/libft/str/srcs/ft_strclr.c">
+			<Option target="libft"/>
+		</Unit>
+		<Unit filename="/Users/byermak/COREWAR/libft/str/srcs/ft_strcmp.c">
+			<Option target="libft"/>
+		</Unit>
+		<Unit filename="/Users/byermak/COREWAR/libft/str/srcs/ft_strcpy.c">
+			<Option target="libft"/>
+		</Unit>
+		<Unit filename="/Users/byermak/COREWAR/libft/str/srcs/ft_strdel.c">
+			<Option target="libft"/>
+		</Unit>
+		<Unit filename="/Users/byermak/COREWAR/libft/str/srcs/ft_strdup.c">
+			<Option target="libft"/>
+		</Unit>
+		<Unit filename="/Users/byermak/COREWAR/libft/str/srcs/ft_strequ.c">
+			<Option target="libft"/>
+		</Unit>
+		<Unit filename="/Users/byermak/COREWAR/libft/str/srcs/ft_striter.c">
+			<Option target="libft"/>
+		</Unit>
+		<Unit filename="/Users/byermak/COREWAR/libft/str/srcs/ft_striteri.c">
+			<Option target="libft"/>
+		</Unit>
+		<Unit filename="/Users/byermak/COREWAR/libft/str/srcs/ft_strjoin.c">
+			<Option target="libft"/>
+		</Unit>
+		<Unit filename="/Users/byermak/COREWAR/libft/str/srcs/ft_strlcat.c">
+			<Option target="libft"/>
+		</Unit>
+		<Unit filename="/Users/byermak/COREWAR/libft/str/srcs/ft_strlen.c">
+			<Option target="libft"/>
+		</Unit>
+		<Unit filename="/Users/byermak/COREWAR/libft/str/srcs/ft_strmap.c">
+			<Option target="libft"/>
+		</Unit>
+		<Unit filename="/Users/byermak/COREWAR/libft/str/srcs/ft_strmapi.c">
+			<Option target="libft"/>
+		</Unit>
+		<Unit filename="/Users/byermak/COREWAR/libft/str/srcs/ft_strncat.c">
+			<Option target="libft"/>
+		</Unit>
+		<Unit filename="/Users/byermak/COREWAR/libft/str/srcs/ft_strncmp.c">
+			<Option target="libft"/>
+		</Unit>
+		<Unit filename="/Users/byermak/COREWAR/libft/str/srcs/ft_strncpy.c">
+			<Option target="libft"/>
+		</Unit>
+		<Unit filename="/Users/byermak/COREWAR/libft/str/srcs/ft_strnequ.c">
+			<Option target="libft"/>
+		</Unit>
+		<Unit filename="/Users/byermak/COREWAR/libft/str/srcs/ft_strnew.c">
+			<Option target="libft"/>
+		</Unit>
+		<Unit filename="/Users/byermak/COREWAR/libft/str/srcs/ft_strnstr.c">
+			<Option target="libft"/>
+		</Unit>
+		<Unit filename="/Users/byermak/COREWAR/libft/str/srcs/ft_strrchr.c">
+			<Option target="libft"/>
+		</Unit>
+		<Unit filename="/Users/byermak/COREWAR/libft/str/srcs/ft_strsplit.c">
+			<Option target="libft"/>
+		</Unit>
+		<Unit filename="/Users/byermak/COREWAR/libft/str/srcs/ft_strsrch.c">
+			<Option target="libft"/>
+		</Unit>
+		<Unit filename="/Users/byermak/COREWAR/libft/str/srcs/ft_strstr.c">
+			<Option target="libft"/>
+		</Unit>
+		<Unit filename="/Users/byermak/COREWAR/libft/str/srcs/ft_strsub.c">
+			<Option target="libft"/>
+		</Unit>
+		<Unit filename="/Users/byermak/COREWAR/libft/str/srcs/ft_strtrim.c">
+			<Option target="libft"/>
+		</Unit>
+		<Unit filename="/Users/byermak/COREWAR/libft/str/srcs/ft_tolower.c">
+			<Option target="libft"/>
+		</Unit>
+		<Unit filename="/Users/byermak/COREWAR/libft/str/srcs/ft_toupper.c">
+			<Option target="libft"/>
+		</Unit>
+		<Unit filename="/Users/byermak/COREWAR/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

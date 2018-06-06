@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lburlach <lburlach@student.unit.ua>        +#+  +:+       +#+        */
+/*   By: byermak <byermak@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 15:41:35 by lburlach          #+#    #+#             */
-/*   Updated: 2018/06/06 16:08:30 by lburlach         ###   ########.fr       */
+/*   Updated: 2018/06/06 19:16:34 by byermak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 int		main(int ac, char **av)
 {
 	header_t	magic_structure;
+	t_command	*code;
 	int fd;
 
 	if (ac == 1)
@@ -24,5 +25,8 @@ int		main(int ac, char **av)
 	fd = open(av[ac - 1], O_RDONLY);
 	//error if fd == -1 ?
 	parse_name_and_comment(fd, &magic_structure);
+	code = NULL;
+	parse_code(fd, &code);
+	close(fd);
 	return (0);
 }

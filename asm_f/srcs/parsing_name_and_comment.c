@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_name_and_comment.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lburlach <lburlach@student.unit.ua>        +#+  +:+       +#+        */
+/*   By: byermak <byermak@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 15:44:00 by lburlach          #+#    #+#             */
-/*   Updated: 2018/06/06 16:09:37 by lburlach         ###   ########.fr       */
+/*   Updated: 2018/06/06 19:46:33 by byermak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
