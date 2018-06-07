@@ -6,7 +6,7 @@
 /*   By: bcherkas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 13:51:01 by bcherkas          #+#    #+#             */
-/*   Updated: 2018/06/07 18:14:29 by bcherkas         ###   ########.fr       */
+/*   Updated: 2018/06/07 18:50:12 by astadnik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@
 
 # define REG_NUMBER				16
 
-# define CYCLE_TO_DIE			1536
+# define CYCLE_TO_DIE			1536// Hm, shouldn't we change this time to time?
 # define CYCLE_DELTA			50
 # define NBR_LIVE				21
 # define MAX_CHECKS				10
@@ -90,8 +90,10 @@ typedef struct		s_info
 	ssize_t				args[7];
 	int					cycles_to_die;
 	int					output_mode;
-	int					fd[MAX_PLAYERS];
-	int					players;
+	// Changed, cause I'll use it also for counting lifes(weird, I know)
+	// We can discuss it and revert if u mind
+	int					players[MAX_PLAYERS];
+	int					players_amount;
 	int					carriage_number;
 	unsigned char		map[MEM_SIZE];
 }					t_info;
@@ -104,6 +106,9 @@ typedef struct		s_carriage
 	int				pc;
 	int				cycles_left;
 	int				map_start;
+	int				lives;// Make it 0 where this stuff is initialized
+	// If it's 0 - no "live" for 1 CYCLE_TO_DIE
+	// If it's -1 - ... for 2 CYCLE_TO_DIE (REMOVE!!!)
 }					t_carriage;
 
 typedef struct		s_op

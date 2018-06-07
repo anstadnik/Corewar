@@ -6,7 +6,7 @@
 /*   By: bcherkas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 18:11:13 by bcherkas          #+#    #+#             */
-/*   Updated: 2018/06/07 17:57:00 by astadnik         ###   ########.fr       */
+/*   Updated: 2018/06/07 18:39:40 by astadnik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	cpy_to_map(t_info *inf, size_t size, char *str, int player)
 {
 	int		cpy_start;
 
-	cpy_start = (MEM_SIZE / inf->players) * player;
+	cpy_start = (MEM_SIZE / inf->players_amount) * player;
 	ft_memcpy(inf->map + cpy_start, str, size);
 //	print_info(cpy_start, str, size);
 }
@@ -88,7 +88,7 @@ void	read_players(t_info *inf)
 	int		i;
 
 	i = 0;
-	while (i < inf->players)
+	while (i < inf->players_amount)
 	{
 		check_file(inf->fd[i], &(inf->head[i]), inf, i);
 		i++;
