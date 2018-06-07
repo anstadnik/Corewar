@@ -1,5 +1,4 @@
 .PHONY: clean fclean re r
-CC = gcc
 CFLAGS = -Wall -Wextra -Werror -Wconversion#remove last one
 ODIR = objs/
 SDIR = srcs/
@@ -13,13 +12,17 @@ OBJS = $(FILES:.c=.o)
 
 ifeq ($(shell uname), Linux)
 	ESCAPE := \033
+	CC = clang
 else
 	ESCAPE := \x1b
+	CC = gcc
 endif
 
 all: $(NAME)
 	
-$(NAME): $(LIB) $(addprefix $(ODIR), $(OBJS))
+# WTF
+# Change that shit! (If u can)
+$(NAME): $(addprefix $(ODIR), $(OBJS)) $(LIB)
 	@echo "$(ESCAPE)[34m\nCompiling $@$(ESCAPE)[0m"
 	@$(CC) $(CFLAGS) -I $(IDIR) -I $(LDIR)includes -o $@ $^
 
@@ -49,5 +52,5 @@ fclean: clean_objs
 	@rm -rf $(NAME)
 
 re:
-	@$(MAKE) fclean
-	@$(MAKE)
+	@$(MAKE) --no-print-directory fclean
+	@$(MAKE) --no-print-directory 
