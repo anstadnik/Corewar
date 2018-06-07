@@ -70,6 +70,8 @@ void	init_map(t_info *inf)
 		ft_lstadd(&inf->stack, head);
 		i++;
 	}
+	new_carriage(&(inf->stack), NULL);
+}
 }
 
 int		main(int argc, char **argv)
@@ -82,8 +84,8 @@ int		main(int argc, char **argv)
 	get_parameters(argc - 1, argv + 1, &inf);
 	read_players(&inf);
 	init_map(&inf);
-	main_cycle(&inf, inf.map);
 //	printmap(inf.map);
+	main_cycle(&inf, inf.map);
 	//print_stack(t_list *tmp);
 	ft_lstdel(&(inf.stack), free);
 }

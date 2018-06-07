@@ -22,26 +22,26 @@ void	cor_aff(unsigned char *map, t_carriage *carry);
  ** 7. size of label
  */
 /*
-   t_op    op_tab[MAX_FUNCTIONS] =
-   {
-   {cor_live, 1, 0x01, 0, 0, 10, 4},
-   {cor_ld, 2, 0x02, 1, 0, 5, 4},
-   {cor_st, 2, 0x03, 0, 1, 5, 4},
-   {cor_add, 1, 0x04, 1, 1, 10, 4},
-   {cor_sub, 1, 0x05, 1, 1, 10, 4},
-   {cor_and, 1, 0x06, 1, 1, 6, 4},
-   {cor_or, 1, 0x07, 1, 1, 6, 4},
-   {cor_xor, 1, 0x08, 1, 1, 6, 4},
-   {cor_zjmp, 1, 0x09, 0, 0, 20, 2},
-   {cor_ldi, 1, 0x0a, 0, 1, 25, 2},
-   {cor_sti, 1, 0x0b, 0, 1, 25, 2},
-   {cor_fork, 1, 0x0c, 0, 0, 800, 2},
-   {cor_lld, 1, 0x0d, 1, 1, 10, 4},
-   {cor_ldi, 1, 0x0e, 1, 1, 50, 2},
-   {cor_lldi, 1, 0x0f, 0, 0, 1000, 2},
-   {cor_aff, 1, 0x10, 0, 1, 2, 4}
-   };
-   */
+t_op    op_tab[MAX_FUNCTIONS] =
+{
+	{cor_live, 1, 0x01, 0, 0, 10, 4},
+	{cor_ld, 2, 0x02, 1, 0, 5, 4},
+	{cor_st, 2, 0x03, 0, 1, 5, 4},
+	{cor_add, 1, 0x04, 1, 1, 10, 4},
+	{cor_sub, 1, 0x05, 1, 1, 10, 4},
+	{cor_and, 1, 0x06, 1, 1, 6, 4},
+	{cor_or, 1, 0x07, 1, 1, 6, 4},
+	{cor_xor, 1, 0x08, 1, 1, 6, 4},
+	{cor_zjmp, 1, 0x09, 0, 0, 20, 2},
+	{cor_ldi, 1, 0x0a, 0, 1, 25, 2},
+	{cor_sti, 1, 0x0b, 0, 1, 25, 2},
+	{cor_fork, 1, 0x0c, 0, 0, 800, 2},
+	{cor_lld, 1, 0x0d, 1, 1, 10, 4},
+	{cor_ldi, 1, 0x0e, 1, 1, 50, 2},
+	{cor_lldi, 1, 0x0f, 0, 0, 1000, 2},
+	{cor_aff, 1, 0x10, 0, 1, 2, 4}
+};
+*/
 
 t_op    op_tab[MAX_FUNC] =
 {
@@ -56,7 +56,7 @@ t_op    op_tab[MAX_FUNC] =
 	{NULL, 1, 0, 0, 0, 0, 0},
 	{NULL, 1, 0, 0, 0, 0, 0},
 	{NULL, 1, 0, 0, 0, 0, 0},
-	{NULL, 1, 0, 0, 0, 0, 0},
+	{cor_fork, 1, 0x0c, 0, 0, 800, 2},
 	{NULL, 1, 0, 0, 0, 0, 0},
 	{NULL, 1, 0, 0, 0, 0, 0},
 	{NULL, 1, 0, 0, 0, 0, 0},
