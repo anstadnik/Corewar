@@ -6,7 +6,7 @@
 /*   By: bcherkas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 18:11:13 by bcherkas          #+#    #+#             */
-/*   Updated: 2018/06/07 18:39:40 by astadnik         ###   ########.fr       */
+/*   Updated: 2018/06/07 19:30:58 by bcherkas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ void	read_players(t_info *inf)
 	i = 0;
 	while (i < inf->players_amount)
 	{
-		check_file(inf->fd[i], &(inf->head[i]), inf, i);
+		check_file(inf->players[i], &(inf->head[i]), inf, i);
 		i++;
 	}
 }

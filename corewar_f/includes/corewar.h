@@ -6,7 +6,7 @@
 /*   By: bcherkas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 13:51:01 by bcherkas          #+#    #+#             */
-/*   Updated: 2018/06/07 18:50:12 by astadnik         ###   ########.fr       */
+/*   Updated: 2018/06/07 19:35:03 by bcherkas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,6 +130,7 @@ void				main_cycle(t_info *inf, unsigned char *map);
 void				new_carriage(t_list **add_pointer, t_list *lst);
 
 void				cor_fork(unsigned char *map, t_carriage *carry);
+void				cor_lfork(unsigned char *map, t_carriage *carry);
 
 int					errmsg(char *str);
 

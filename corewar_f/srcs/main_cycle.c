@@ -6,7 +6,7 @@
 /*   By: bcherkas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 18:51:41 by bcherkas          #+#    #+#             */
-/*   Updated: 2018/06/07 19:20:37 by bcherkas         ###   ########.fr       */
+/*   Updated: 2018/06/07 19:42:30 by bcherkas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ t_op    op_tab[MAX_FUNCTIONS] =
 	{cor_sti, 1, 0x0b, 0, 1, 25, 2},
 	{cor_fork, 1, 0x0c, 0, 0, 800, 2},
 	{cor_lld, 1, 0x0d, 1, 1, 10, 4},
-	{cor_ldi, 1, 0x0e, 1, 1, 50, 2},
-	{cor_lldi, 1, 0x0f, 0, 0, 1000, 2},
+	{cor_lldi, 1, 0x0e, 1, 1, 50, 2},
+	{cor_lfork, 1, 0x0f, 0, 0, 1000, 2},
 	{cor_aff, 1, 0x10, 0, 1, 2, 4}
 };
 */
@@ -59,7 +59,7 @@ t_op    op_tab[MAX_FUNC] =
 	{cor_fork, 1, 0x0c, 0, 0, 800, 2},
 	{NULL, 1, 0, 0, 0, 0, 0},
 	{NULL, 1, 0, 0, 0, 0, 0},
-	{NULL, 1, 0, 0, 0, 0, 0},
+	{cor_lfork, 1, 0x0f, 0, 0, 1000, 2},
 	{cor_aff, 1, 0x10, 0, 1, 2, 4}
 };
 
@@ -82,21 +82,22 @@ void	wrapper(unsigned char *map, t_carriage *carry)
 
 	func_num = map[carry->pc];
 	if (carry->cycles_left > 1)
-	{
 		carry->cycles_left--;
-	}
 	if (carry->cycles_left == 0 && func_num <= MAX_FUNC && func_num > 0)
 	{
 		carry->func = op_tab[func_num - 1].func;
 		carry->cycles_left = op_tab[func_num - 1].cycles;
 	}
 	else if (carry->cycles_left == 0 && (func_num > MAX_FUNC || func_num < 1))
-	{
 		carry->pc = (carry->pc + 1) % MEM_SIZE;
-	}
-	else if (carry->cycles_left == 1)
+	else if (carry->cycles_left == 1 && func_num < MAX_FUNC)
 	{
 		carry->func(map, carry);
+		carry->cycles_left--;
+	}
+	else if (carry->cycles_left == 1 && func_num == MAX_FUNC)
+	{
+		carry->pc += 3;
 		carry->cycles_left--;
 	}
 }
@@ -149,9 +150,8 @@ void	main_cycle(t_info *inf, unsigned char *map)
 		}
 		ft_printf("ITER: %d\n", iterations);
 		iterations++;
-		if (iterations == CYCLE_TO_DIE)
+		if (iterations + 1 % CYCLE_TO_DIE == 0)
 		{
-			iterations = 0;//Change cycle_to_die and stuff
 			if (check_lives(inf))
 			{
 				ft_printf("EXIT\n");
