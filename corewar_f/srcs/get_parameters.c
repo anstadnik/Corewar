@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_cor.c                                        :+:      :+:    :+:   */
+/*   get_parameters.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bcherkas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 18:11:13 by bcherkas          #+#    #+#             */
-/*   Updated: 2018/06/04 19:37:31 by bcherkas         ###   ########.fr       */
+/*   Updated: 2018/06/07 18:40:56 by astadnik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,11 @@ void	get_player(char *str, t_info *inf)
 {
 	if (ft_strequ(str, "--stealth"))
 		errmsg("Invalid parameter");
-	inf->players++;
-	if (inf->players > MAX_PLAYERS)
+	inf->players_amount++;
+	if (inf->players_amount > MAX_PLAYERS)
 		errmsg("Too many players");
-	inf->fd[inf->players - 1] = open(str, O_RDONLY);
-	if (inf->fd[inf->players - 1] < 0)
+	inf->players[inf->players_amount - 1] = open(str, O_RDONLY);
+	if (inf->players[inf->players_amount - 1] < 0)
 		errmsg("No such file or you dont have enough rights");
 }
 
@@ -98,7 +98,7 @@ void	get_parameters(int ac, char **av, t_info *inf)
 			get_output(av[i + 1], &i, &(inf->args[ret]), ret);
 		i++;
 	}
-	if (inf->players < 1)
+	if (inf->players_amount < 1)
 		errmsg("To few players");
 	excludes(inf, inf->args);
 }

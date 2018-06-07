@@ -6,7 +6,7 @@
 /*   By: bcherkas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 13:59:51 by bcherkas          #+#    #+#             */
-/*   Updated: 2018/06/07 18:04:31 by astadnik         ###   ########.fr       */
+/*   Updated: 2018/06/07 18:40:04 by astadnik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	initialize(t_info *inf)
 
 	i = 0;
 	inf->stack = NULL;
-	inf->players = 0;
+	inf->players_amount = 0;
 	inf->cycles_to_die = CYCLE_TO_DIE;
 	ft_bzero(inf->map, MEM_SIZE);
 	while (i < 6)
@@ -62,10 +62,10 @@ void	init_map(t_info *inf)
 	int			i;
 
 	i = 0;
-	inf->carriage_number = inf->players;
-	while (i < inf->players)
+	inf->carriage_number = inf->players_amount;
+	while (i < inf->players_amount)
 	{
-		tmp = init_carriage(i, inf->players);
+		tmp = init_carriage(i, inf->players_amount);
 		head = ft_lstnew(&tmp, sizeof(tmp));
 		ft_lstadd(&inf->stack, head);
 		i++;
