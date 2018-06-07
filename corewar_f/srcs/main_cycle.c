@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   wrap_func.c                                        :+:      :+:    :+:   */
+/*   main_cycle.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bcherkas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 18:51:41 by bcherkas          #+#    #+#             */
-/*   Updated: 2018/06/07 17:20:23 by bcherkas         ###   ########.fr       */
+/*   Updated: 2018/06/07 18:17:26 by bcherkas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void	cor_aff(unsigned char *map, t_carriage *carry)
 	ft_printf("AFF: %hhx\n", carry->reg[point]);
 	ft_printf("POSITION: %u\n", carry->pc);
 	carry->pc = (carry->pc + 3) % MEM_SIZE;
-	ft_printf("%d\n", carry->cycles_start);
+	ft_printf("%d\n", carry->cycles_left);
 }
 
 void	wrapper(unsigned char *map, t_carriage *carry)
@@ -81,23 +81,23 @@ void	wrapper(unsigned char *map, t_carriage *carry)
 	int		func_num;
 
 	func_num = map[carry->pc];
-	if (carry->cycles_start > 1)
+	if (carry->cycles_left > 1)
 	{
-		carry->cycles_start--;
+		carry->cycles_left--;
 	}
-	if (carry->cycles_start == 0 && func_num <= MAX_FUNC && func_num > 0)
+	if (carry->cycles_left == 0 && func_num <= MAX_FUNC && func_num > 0)
 	{
 		carry->func = op_tab[func_num - 1].func;
-		carry->cycles_start = op_tab[func_num - 1].cycles;
+		carry->cycles_left = op_tab[func_num - 1].cycles;
 	}
-	else if (carry->cycles_start == 0 && (func_num > MAX_FUNC || func_num < 1))
+	else if (carry->cycles_left == 0 && (func_num > MAX_FUNC || func_num < 1))
 	{
 		carry->pc = (carry->pc + 1) % MEM_SIZE;
 	}
-	else if (carry->cycles_start == 1)
+	else if (carry->cycles_left == 1)
 	{
 		carry->func(map, carry);
-		carry->cycles_start--;
+		carry->cycles_left--;
 	}
 }
 

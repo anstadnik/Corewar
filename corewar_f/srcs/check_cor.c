@@ -6,7 +6,7 @@
 /*   By: bcherkas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 18:11:13 by bcherkas          #+#    #+#             */
-/*   Updated: 2018/06/06 18:33:23 by bcherkas         ###   ########.fr       */
+/*   Updated: 2018/06/07 17:57:00 by astadnik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,10 @@ void	cpy_to_map(t_info *inf, size_t size, char *str, int player)
 //	print_info(cpy_start, str, size);
 }
 
+/*
+ * Add beautiful output
+ */
+
 void	check_file(int fd, t_header *head, t_info *inf, int player)
 {
 	char	buff[4];
@@ -73,7 +77,7 @@ void	check_file(int fd, t_header *head, t_info *inf, int player)
 	if (read(fd, str, head->prog_size) < head->prog_size)
 		errmsg("Wrong file");
 	if ((head->prog_size % 2 == 0 && read(fd, buff, 4) > 0) ||
-		(head->prog_size % 2 != 0 && read(fd, buff, 4) > 1))
+		(head->prog_size % 2 != 0 && read(fd, buff, 4) > 1))// Check this
 		errmsg("Wrong file");
 	cpy_to_map(inf, head->prog_size, str, player);
 	close(fd);

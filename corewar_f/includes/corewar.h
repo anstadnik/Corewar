@@ -6,7 +6,7 @@
 /*   By: bcherkas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 13:51:01 by bcherkas          #+#    #+#             */
-/*   Updated: 2018/06/07 17:21:07 by bcherkas         ###   ########.fr       */
+/*   Updated: 2018/06/07 18:14:29 by bcherkas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ typedef struct		s_carriage
 	void			(*func)();
 	int				carry;
 	int				pc;
-	int				cycles_start;
+	int				cycles_left;
 	int				map_start;
 }					t_carriage;
 
