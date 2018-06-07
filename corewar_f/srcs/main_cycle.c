@@ -6,7 +6,7 @@
 /*   By: bcherkas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 18:51:41 by bcherkas          #+#    #+#             */
-/*   Updated: 2018/06/07 18:17:26 by bcherkas         ###   ########.fr       */
+/*   Updated: 2018/06/07 19:12:15 by bcherkas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,9 @@ void	main_cycle(t_info *inf, unsigned char *map)
 			wrapper(map, (t_carriage *)lst->content);
 			lst = lst->next;
 		}
+		ft_printf("ITER: %d\n", iterations);
 		iterations++;
+		if (iterations > 4100)
+			return ;
 	}
 }

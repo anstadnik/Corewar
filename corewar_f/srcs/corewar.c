@@ -6,7 +6,7 @@
 /*   By: bcherkas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 13:59:51 by bcherkas          #+#    #+#             */
-/*   Updated: 2018/06/07 18:15:15 by bcherkas         ###   ########.fr       */
+/*   Updated: 2018/06/07 18:30:41 by bcherkas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,6 @@ void	init_map(t_info *inf)
 		i++;
 	}
 	new_carriage(&(inf->stack), NULL);
-}
 }
 
 int		main(int argc, char **argv)
