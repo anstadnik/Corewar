@@ -6,13 +6,13 @@
 /*   By: bcherkas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 18:11:13 by bcherkas          #+#    #+#             */
-/*   Updated: 2018/06/04 19:37:31 by bcherkas         ###   ########.fr       */
+/*   Updated: 2018/06/06 18:33:23 by bcherkas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-int		get_num(int fd)
+size_t	get_num(int fd)
 {
 	t_magic	uni;
 	int		i;
@@ -27,21 +27,27 @@ int		get_num(int fd)
 	return (uni.magic);
 }
 
-void	cpy_to_map(t_info *inf, int size, char *str, int player)
+void	print_info(int start, char *str, int size)
 {
 	int		i;
-	int		cpy_start;
 
 	i = 0;
-	cpy_start = (MEM_SIZE / inf->players) * player;
-	ft_memcpy(inf->map + cpy_start, str, size);
-	printf("%d\n", cpy_start);
+	printf("%d\n", start);
 	while (i < size)
 	{
 		printf("%3.2hhx", str[i]);
 		i++;
 	}
 	printf("\n");
+}
+
+void	cpy_to_map(t_info *inf, size_t size, char *str, int player)
+{
+	int		cpy_start;
+
+	cpy_start = (MEM_SIZE / inf->players) * player;
+	ft_memcpy(inf->map + cpy_start, str, size);
+//	print_info(cpy_start, str, size);
 }
 
 void	check_file(int fd, t_header *head, t_info *inf, int player)
@@ -58,7 +64,7 @@ void	check_file(int fd, t_header *head, t_info *inf, int player)
 		errmsg("Wrong file");
 	if (read(fd, buff, 4) < 4 || ft_memcmp(buff, "\0\0\0\0", 4))
 		errmsg("Wrong file");
-	head->prog_size = get_num(fd);
+	head->prog_size = (unsigned)get_num(fd);
 	head->comment[COMMENT_LEN] = 0;
 	if (read(fd, head->comment, COMMENT_LEN) < COMMENT_LEN)
 		errmsg("Wrong file");
