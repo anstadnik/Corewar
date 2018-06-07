@@ -6,7 +6,7 @@
 /*   By: bcherkas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 13:59:51 by bcherkas          #+#    #+#             */
-/*   Updated: 2018/06/06 20:55:22 by bcherkas         ###   ########.fr       */
+/*   Updated: 2018/06/07 17:41:59 by bcherkas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ void	init_map(t_info *inf)
 		ft_lstadd(&inf->stack, head);
 		i++;
 	}
+	new_carriage(&(inf->stack), NULL);
 }
 
 int		main(int argc, char **argv)
@@ -82,8 +83,8 @@ int		main(int argc, char **argv)
 	get_parameters(argc - 1, argv + 1, &inf);
 	read_players(&inf);
 	init_map(&inf);
-	main_cycle(&inf, inf.map);
 //	printmap(inf.map);
+	main_cycle(&inf, inf.map);
 	//print_stack(t_list *tmp);
 	ft_lstdel(&(inf.stack), free);
 }

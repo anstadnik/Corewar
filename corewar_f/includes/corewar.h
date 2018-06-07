@@ -6,7 +6,7 @@
 /*   By: bcherkas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 13:51:01 by bcherkas          #+#    #+#             */
-/*   Updated: 2018/06/06 20:54:51 by bcherkas         ###   ########.fr       */
+/*   Updated: 2018/06/07 17:21:07 by bcherkas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,6 +122,9 @@ void				get_parameters(int ac, char **av, t_info *inf);
 void				read_players(t_info *inf);
 
 void				main_cycle(t_info *inf, unsigned char *map);
+void				new_carriage(t_list **add_pointer, t_list *lst);
+
+void				cor_fork(unsigned char *map, t_carriage *carry);
 
 int					errmsg(char *str);
 
