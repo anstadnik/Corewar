@@ -6,7 +6,7 @@
 /*   By: bcherkas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 18:51:41 by bcherkas          #+#    #+#             */
-/*   Updated: 2018/06/07 19:42:30 by bcherkas         ###   ########.fr       */
+/*   Updated: 2018/06/08 16:07:17 by bcherkas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,48 +45,35 @@ t_op    op_tab[MAX_FUNCTIONS] =
 
 t_op    op_tab[MAX_FUNC] =
 {
-	{NULL, 1, 0, 0, 0, 0, 0},
-	{NULL, 1, 0, 0, 0, 0, 0},
-	{NULL, 1, 0, 0, 0, 0, 0},
-	{NULL, 1, 0, 0, 0, 0, 0},
-	{NULL, 1, 0, 0, 0, 0, 0},
-	{NULL, 1, 0, 0, 0, 0, 0},
-	{NULL, 1, 0, 0, 0, 0, 0},
-	{NULL, 1, 0, 0, 0, 0, 0},
-	{NULL, 1, 0, 0, 0, 0, 0},
-	{NULL, 1, 0, 0, 0, 0, 0},
-	{NULL, 1, 0, 0, 0, 0, 0},
+	{NULL, 1, 0x01, 0, 0, -1, 0},
+	{NULL, 1, 0x02, 0, 0, -1, 0},
+	{NULL, 1, 0x03, 0, 0, -1, 0},
+	{cor_add, 1, 0x04, 1, 1, 10, 4},
+	{cor_sub, 1, 0x05, 1, 1, 10, 4},
+	{NULL, 1, 0x06, 0, 0, -1, 0},
+	{NULL, 1, 0x07, 0, 0, -1, 0},
+	{NULL, 1, 0x08, 0, 0, -1, 0},
+	{cor_zjmp, 1, 0x09, 0, 0, 20, 2},
+	{NULL, 1, 0x0a, 0, 0, -1, 0},
+	{NULL, 1, 0x0b, 0, 0, -1, 0},
 	{cor_fork, 1, 0x0c, 0, 0, 800, 2},
-	{NULL, 1, 0, 0, 0, 0, 0},
-	{NULL, 1, 0, 0, 0, 0, 0},
+	{NULL, 1, 0x0d, 0, 0, -1, 0},
+	{NULL, 1, 0x0e, 0, 0, -1, 0},
 	{cor_lfork, 1, 0x0f, 0, 0, 1000, 2},
 	{cor_aff, 1, 0x10, 0, 1, 2, 4}
 };
 
-void	cor_aff(unsigned char *map, t_carriage *carry)
-{
-	int		point;
-
-	point = map[carry->pc + 2];
-	if (point < 1 || point > 16)
-		errmsg("Bastard\n");
-	ft_printf("AFF: %hhx\n", carry->reg[point]);
-	ft_printf("POSITION: %u\n", carry->pc);
-	carry->pc = (carry->pc + 3) % MEM_SIZE;
-	ft_printf("%d\n", carry->cycles_left);
-}
-
-void	wrapper(unsigned char *map, t_carriage *carry)
+void	wrapper(unsigned char *map, t_carriage *carry, ssize_t *args)
 {
 	int		func_num;
 
 	func_num = map[carry->pc];
 	if (carry->cycles_left > 1)
 		carry->cycles_left--;
-	if (carry->cycles_left == 0 && func_num <= MAX_FUNC && func_num > 0)
+	else if (carry->cycles_left == 0 && func_num <= MAX_FUNC && func_num > 0)
 	{
 		carry->func = op_tab[func_num - 1].func;
-		carry->cycles_left = op_tab[func_num - 1].cycles;
+		carry->cycles_left = op_tab[func_num - 1].cycles + 1;
 	}
 	else if (carry->cycles_left == 0 && (func_num > MAX_FUNC || func_num < 1))
 		carry->pc = (carry->pc + 1) % MEM_SIZE;
@@ -97,7 +84,9 @@ void	wrapper(unsigned char *map, t_carriage *carry)
 	}
 	else if (carry->cycles_left == 1 && func_num == MAX_FUNC)
 	{
-		carry->pc += 3;
+		if (args[FLAG_A] > 0)
+			cor_aff(map, carry);
+		carry->pc = (carry->pc + 3) % MEM_SIZE;
 		carry->cycles_left--;
 	}
 }
@@ -145,19 +134,16 @@ void	main_cycle(t_info *inf, unsigned char *map)
 		lst = inf->stack;
 		while (lst)
 		{
-			wrapper(map, (t_carriage *)lst->content);
+			wrapper(map, (t_carriage *)lst->content, inf->args);
 			lst = lst->next;
 		}
-		ft_printf("ITER: %d\n", iterations);
 		iterations++;
 		if (iterations + 1 % CYCLE_TO_DIE == 0)
-		{
 			if (check_lives(inf))
-			{
-				ft_printf("EXIT\n");
-				exit(0);//cleaning
-			}
-		}
+				return ;
+			// return to prev function to make -b output and print result
 		// Output function
+		if (inf->output_mode == 1)
+			output_text(inf, iterations);
 	}
 }

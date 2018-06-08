@@ -1,8 +1,7 @@
 .name "zork"
 .comment "just a basic living prog"
 
-fork: lfork %1
-lfork %-1
-aff r1
-fork %-15
-fork %-256
+fork: aff r1
+add r2,r3,r2
+zjmp	%2
+zjmp	%-5
