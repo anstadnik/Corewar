@@ -36,6 +36,6 @@ fclean: clean
 	@echo "$(ESCAPE)[31mRemoving the $(NAME1) and $(NAME2)$(ESCAPE)[0m"
 	@rm -f $(notdir $(NAME1)) $(notdir $(NAME2))
 
-re: 
+re:
 	@$(MAKE) --no-print-directory fclean
-	@$(MAKE) --no-print-directory 
+	@$(MAKE) --no-print-directory

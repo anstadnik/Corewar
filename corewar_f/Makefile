@@ -1,4 +1,4 @@
-.PHONY: clean fclean re r
+.PHONY: clean fclean re r g
 CFLAGS = -Wall -Wextra -Werror -Wconversion#remove last one
 ODIR = objs/
 SDIR = srcs/
@@ -20,12 +20,17 @@ else
 endif
 
 all: $(NAME)
-	
+
 # WTF
 # Change that shit! (If u can)
 $(NAME): $(addprefix $(ODIR), $(OBJS)) $(LIB)
 	@echo "$(ESCAPE)[34m\nCompiling $@$(ESCAPE)[0m"
 	@$(CC) $(CFLAGS) -I $(IDIR) -I $(LDIR)includes -o $@ $^
+
+g:
+	@echo "$(ESCAPE)[34m\nCompiling debug $(NAME)$(ESCAPE)[0m"
+	@$(MAKE) --no-print-directory -C $(LDIR) g
+	@$(CC) $(CFLAGS) -g -I $(IDIR) -I $(LDIR)includes -o $(NAME) $(addprefix $(SDIR), $(FILES)) $(LDIR)dlibft.a
 
 $(LIB):
 	@echo "$(ESCAPE)[35m\nCompiling $(notdir $@)$(ESCAPE)[0m"
@@ -54,4 +59,4 @@ fclean: clean_objs
 
 re:
 	@$(MAKE) --no-print-directory fclean
-	@$(MAKE) --no-print-directory 
+	@$(MAKE) --no-print-directory
