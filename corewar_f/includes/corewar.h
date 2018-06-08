@@ -6,7 +6,7 @@
 /*   By: bcherkas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 13:51:01 by bcherkas          #+#    #+#             */
-/*   Updated: 2018/06/08 13:17:03 by bcherkas         ###   ########.fr       */
+/*   Updated: 2018/06/08 14:17:59 by bcherkas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,6 +130,8 @@ void				main_cycle(t_info *inf, unsigned char *map);
 void				new_carriage(t_list **add_pointer, t_list *lst);
 int					get_int(unsigned char *map, int pc);
 short int			get_short(unsigned char *map, int pc);
+int					get_ind(unsigned char *map, int pc);
+int					get_dir(unsigned char *map, int pc, int len);
 
 void				cor_fork(unsigned char *map, t_carriage *carry);
 void				cor_lfork(unsigned char *map, t_carriage *carry);
