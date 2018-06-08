@@ -6,7 +6,7 @@
 /*   By: bcherkas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 13:59:51 by bcherkas          #+#    #+#             */
-/*   Updated: 2018/06/07 19:18:39 by bcherkas         ###   ########.fr       */
+/*   Updated: 2018/06/08 19:34:28 by bcherkas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ t_carriage	init_carriage(int player, int max)
 		tmp.reg[j] = 0;
 		j++;
 	}
-	tmp.reg[0] = (unsigned)(PLAYER_CODE - player);
+	tmp.reg[0] = (PLAYER_CODE - player);
 	return (tmp);
 }
 
@@ -69,6 +69,7 @@ void	init_map(t_info *inf)
 	while (i < inf->players_amount)
 	{
 		tmp = init_carriage(i, inf->players_amount);
+		tmp.player = &(inf->players[i]);
 		head = ft_lstnew(&tmp, sizeof(tmp));
 		ft_lstadd(&inf->stack, head);
 		i++;
@@ -86,8 +87,7 @@ int		main(int argc, char **argv)
 	get_parameters(argc - 1, argv + 1, &inf);
 	read_players(&inf);
 	init_map(&inf);
-//	printmap(inf.map);
+	//print_stack(inf.stack);
 	main_cycle(&inf, inf.map);
-	//print_stack(t_list *tmp);
 	ft_lstdel(&(inf.stack), free);
 }

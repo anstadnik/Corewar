@@ -6,7 +6,7 @@
 /*   By: bcherkas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 18:11:13 by bcherkas          #+#    #+#             */
-/*   Updated: 2018/06/08 13:36:07 by bcherkas         ###   ########.fr       */
+/*   Updated: 2018/06/08 19:06:01 by bcherkas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ int		check_parameter(char *str)
 	else if (ft_strequ(str, "-n"))
 		return (FLAG_N);
 	else if (ft_strequ(str, "-a"))
+		return (FLAG_A);
+	else if (ft_strequ(str, "-A"))
 		return (FLAG_A);
 	else
 		return (-1);
@@ -94,6 +96,8 @@ void	get_parameters(int ac, char **av, t_info *inf)
 		ret = check_parameter(av[i]);
 		if (ret < 0)
 			get_player(av[i], inf);
+		else if (ret == FLAG_A && ft_strequ(av[i], "-A"))
+			inf->args[FLAG_A] = 2;
 		else
 			get_output(av[i + 1], &i, &(inf->args[ret]), ret);
 		i++;

@@ -6,18 +6,23 @@
 /*   By: bcherkas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/08 15:11:22 by bcherkas          #+#    #+#             */
-/*   Updated: 2018/06/08 15:34:29 by bcherkas         ###   ########.fr       */
+/*   Updated: 2018/06/08 19:31:55 by bcherkas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "corewar.h"
 
-void	cor_aff(unsigned char *map, t_carriage *carry)
+void	cor_aff(unsigned char *map, t_carriage *carry, ssize_t flag)
 {
 	int		point;
-
+	
 	point = get_reg(map, carry->pc + 2);
-	ft_printf("%c\n", point % 256);
+	if (flag == 1)
+		ft_printf("%c\n", map[point] % 256);
+	else if (flag == 2)
+		ft_printf("%#8.6x\n", map[point]);
+	carry->pc = (carry->pc + 3) % MEM_SIZE;
+	carry->cycles_left--;
 }
 
 void	cor_zjmp(unsigned char *map, t_carriage *carry)

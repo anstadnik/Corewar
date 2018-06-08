@@ -6,28 +6,11 @@
 /*   By: bcherkas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/07 16:55:34 by bcherkas          #+#    #+#             */
-/*   Updated: 2018/06/08 15:16:12 by bcherkas         ###   ########.fr       */
+/*   Updated: 2018/06/08 18:27:04 by bcherkas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
-
-void	new_carriage(t_list **add_pointer, t_list *lst)
-{
-	static t_list	**start;
-
-	if (lst)
-	{
-		ft_lstadd(start, lst);
-		return ;
-	}
-	if (add_pointer)
-	{
-		start = add_pointer;
-		return ;
-	}
-	ft_lstdel(start, free);
-}
 
 void	cor_fork(unsigned char *map, t_carriage *carry)
 {

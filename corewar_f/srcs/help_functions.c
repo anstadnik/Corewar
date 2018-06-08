@@ -1,43 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   debug_func.c                                       :+:      :+:    :+:   */
+/*   help_functions.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bcherkas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/06/06 18:48:09 by bcherkas          #+#    #+#             */
-/*   Updated: 2018/06/08 19:37:57 by bcherkas         ###   ########.fr       */
+/*   Created: 2018/06/08 18:26:29 by bcherkas          #+#    #+#             */
+/*   Updated: 2018/06/08 18:36:26 by bcherkas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-void	printmap(unsigned char *map)
+void	new_carriage(t_list **add_pointer, t_list *lst)
 {
-	int		i;
+	static t_list	**start;
 
-	i = 1;
-	while (i <= MEM_SIZE)
+	if (lst)
 	{
-		if (map[i - 1])
-			printf("\x1b[32m");
-		printf("%3.2hhx", map[i - 1]);
-			printf("\x1b[0m");
-		if (i % 64 == 0)
-			printf("\n");
-		i++;
+		ft_lstadd(start, lst);
+		return ;
 	}
-}
-
-void	print_stack(t_list *tmp)
-{
-	int		i;
-
-	i = 0;
-	while (tmp)
+	if (add_pointer)
 	{
-		ft_printf("%d\n", i);
-		tmp = tmp->next;
-		i++;
+		start = add_pointer;
+		return ;
 	}
+	ft_lstdel(start, free);
 }

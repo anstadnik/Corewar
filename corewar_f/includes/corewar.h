@@ -6,7 +6,7 @@
 /*   By: bcherkas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 13:51:01 by bcherkas          #+#    #+#             */
-/*   Updated: 2018/06/08 15:58:06 by bcherkas         ###   ########.fr       */
+/*   Updated: 2018/06/08 19:31:41 by bcherkas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ typedef	char		t_arg_type;
 
 # define MAX_FUNC	 			16
 
-# define PLAYER_CODE 			0xffffff
+# define PLAYER_CODE 			(-1)
 
 typedef enum		e_args
 {
@@ -100,8 +100,9 @@ typedef struct		s_info
 
 typedef struct		s_carriage
 {
-	unsigned		reg[REG_NUMBER];
+	int				reg[REG_NUMBER];
 	void			(*func)();
+	int				*player;
 	int				carry;
 	int				pc;
 	int				cycles_left;
@@ -114,12 +115,8 @@ typedef struct		s_carriage
 typedef struct		s_op
 {
 	void			(*func)();
-	int				args_num;
 	int				code;
-	int				carry;
-	int				codage;
 	int				cycles;
-	int				label_size;
 }					t_op;
 
 void				get_parameters(int ac, char **av, t_info *inf);
@@ -139,13 +136,16 @@ int					get_ind(unsigned char *map, int pc);
 
 void				cor_add(unsigned char *map, t_carriage *carry);
 void				cor_sub(unsigned char *map, t_carriage *carry);
+void				cor_and(unsigned char *map, t_carriage *carry);
+void				cor_or(unsigned char *map, t_carriage *carry);
+void				cor_xor(unsigned char *map, t_carriage *carry);
 //
 void				cor_zjmp(unsigned char *map, t_carriage *carry);
 //
 void				cor_fork(unsigned char *map, t_carriage *carry);
 //
 void				cor_lfork(unsigned char *map, t_carriage *carry);
-void				cor_aff(unsigned char *map, t_carriage *carry);
+void				cor_aff(unsigned char *map, t_carriage *carry, ssize_t a);
 
 void				output_text(t_info *inf, int iterations);
 
