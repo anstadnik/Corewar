@@ -19,7 +19,7 @@ else
 endif
 
 all: $(NAME)
-	
+
 # WTF
 # Change that shit! (If u can)
 $(NAME): $(addprefix $(ODIR), $(OBJS)) $(LIB)
@@ -53,4 +53,4 @@ fclean: clean_objs
 
 re:
 	@$(MAKE) --no-print-directory fclean
-	@$(MAKE) --no-print-directory 
+	@$(MAKE) --no-print-directory
