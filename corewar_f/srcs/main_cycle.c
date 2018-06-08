@@ -6,7 +6,7 @@
 /*   By: bcherkas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 18:51:41 by bcherkas          #+#    #+#             */
-/*   Updated: 2018/06/08 12:50:31 by bcherkas         ###   ########.fr       */
+/*   Updated: 2018/06/08 13:02:51 by bcherkas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,16 +149,13 @@ void	main_cycle(t_info *inf, unsigned char *map)
 			wrapper(map, (t_carriage *)lst->content, inf->args);
 			lst = lst->next;
 		}
-		ft_printf("ITER: %d\n", iterations);
 		iterations++;
 		if (iterations + 1 % CYCLE_TO_DIE == 0)
-		{
 			if (check_lives(inf))
-			{
-				ft_printf("EXIT\n");
-				exit(0);//cleaning
-			}
-		}
+				return ;
+			// return to prev function to make -b output and print result
 		// Output function
+		if (inf->output_mode == 1)
+			output_text(inf, iterations);
 	}
 }
