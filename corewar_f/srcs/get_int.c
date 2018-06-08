@@ -6,7 +6,7 @@
 /*   By: bcherkas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/08 12:08:16 by bcherkas          #+#    #+#             */
-/*   Updated: 2018/06/08 14:10:53 by bcherkas         ###   ########.fr       */
+/*   Updated: 2018/06/08 15:23:05 by bcherkas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int			get_ind(unsigned char *map, int pc)
 	int		ret;
 	short	pc2;
 
-	pc2 = get_short(map, pc);
+	pc2 = (MEM_SIZE + get_short(map, pc)) % MEM_SIZE;
 	ret = get_int(map, pc2);
 	return (ret);
 }
@@ -63,5 +63,18 @@ int			get_dir(unsigned char *map, int pc, int len)
 	}
 	else
 		ret = get_int(map, pc);
+	return (ret);
+}
+
+int			get_reg(unsigned char *map, int pc)
+{
+	int		ret;
+
+	ret = map[pc];
+	if (ret < 1 || ret > 16)
+	{
+		new_carriage(NULL, NULL);
+		errmsg("Wrong REG argument");
+	}
 	return (ret);
 }

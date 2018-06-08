@@ -6,7 +6,7 @@
 /*   By: bcherkas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 18:51:41 by bcherkas          #+#    #+#             */
-/*   Updated: 2018/06/08 13:02:51 by bcherkas         ###   ########.fr       */
+/*   Updated: 2018/06/08 15:37:01 by bcherkas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,35 +45,23 @@ t_op    op_tab[MAX_FUNCTIONS] =
 
 t_op    op_tab[MAX_FUNC] =
 {
-	{NULL, 1, 0, 0, 0, -1, 0},
-	{NULL, 1, 0, 0, 0, -1, 0},
-	{NULL, 1, 0, 0, 0, -1, 0},
-	{NULL, 1, 0, 0, 0, -1, 0},
-	{NULL, 1, 0, 0, 0, -1, 0},
-	{NULL, 1, 0, 0, 0, -1, 0},
-	{NULL, 1, 0, 0, 0, -1, 0},
-	{NULL, 1, 0, 0, 0, -1, 0},
-	{NULL, 1, 0, 0, 0, -1, 0},
-	{NULL, 1, 0, 0, 0, -1, 0},
-	{NULL, 1, 0, 0, 0, -1, 0},
+	{NULL, 1, 0x01, 0, 0, -1, 0},
+	{NULL, 1, 0x02, 0, 0, -1, 0},
+	{NULL, 1, 0x03, 0, 0, -1, 0},
+	{NULL, 1, 0x04, 0, 0, -1, 0},
+	{NULL, 1, 0x05, 0, 0, -1, 0},
+	{NULL, 1, 0x06, 0, 0, -1, 0},
+	{NULL, 1, 0x07, 0, 0, -1, 0},
+	{NULL, 1, 0x08, 0, 0, -1, 0},
+	{cor_zjmp, 1, 0x09, 0, 0, 20, 2},
+	{NULL, 1, 0x0a, 0, 0, -1, 0},
+	{NULL, 1, 0x0b, 0, 0, -1, 0},
 	{cor_fork, 1, 0x0c, 0, 0, 800, 2},
-	{NULL, 1, 0, 0, 0, -1, 0},
-	{NULL, 1, 0, 0, 0, -1, 0},
+	{NULL, 1, 0x0d, 0, 0, -1, 0},
+	{NULL, 1, 0x0e, 0, 0, -1, 0},
 	{cor_lfork, 1, 0x0f, 0, 0, 1000, 2},
 	{cor_aff, 1, 0x10, 0, 1, 2, 4}
 };
-
-void	cor_aff(unsigned char *map, t_carriage *carry)
-{
-	int		point;
-
-	point = map[carry->pc + 2];
-	if (point < 1 || point > 16)
-		errmsg("Bastard\n");
-	ft_printf("AFF: %hhx\n", carry->reg[point]);
-	ft_printf("POSITION: %u\n", carry->pc);
-	ft_printf("%d\n", carry->cycles_left);
-}
 
 void	wrapper(unsigned char *map, t_carriage *carry, ssize_t *args)
 {

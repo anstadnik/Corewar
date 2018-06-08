@@ -6,7 +6,7 @@
 /*   By: bcherkas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/07 16:55:34 by bcherkas          #+#    #+#             */
-/*   Updated: 2018/06/08 13:44:00 by bcherkas         ###   ########.fr       */
+/*   Updated: 2018/06/08 15:16:12 by bcherkas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	new_carriage(t_list **add_pointer, t_list *lst)
 		start = add_pointer;
 		return ;
 	}
+	ft_lstdel(start, free);
 }
 
 void	cor_fork(unsigned char *map, t_carriage *carry)
