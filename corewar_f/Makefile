@@ -7,7 +7,7 @@ LDIR = ../libft/
 NAME = corewar
 LIB = $(LDIR)libft.a
 FUNCS = fork_func.c
-FILES = check_cor.c corewar.c get_parameters.c main_cycle.c debug_func.c $(FUNCS)
+FILES = check_cor.c corewar.c get_parameters.c main_cycle.c debug_func.c get_int.c $(FUNCS)
 OBJS = $(FILES:.c=.o)
 
 ifeq ($(shell uname), Linux)

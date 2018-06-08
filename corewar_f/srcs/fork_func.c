@@ -6,7 +6,7 @@
 /*   By: bcherkas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/07 16:55:34 by bcherkas          #+#    #+#             */
-/*   Updated: 2018/06/07 19:34:49 by bcherkas         ###   ########.fr       */
+/*   Updated: 2018/06/08 12:49:39 by bcherkas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,10 @@ void	cor_fork(unsigned char *map, t_carriage *carry)
 
 	lst = ft_lstnew(carry, sizeof(t_carriage));
 	new = (t_carriage *)lst->content;
-	pc = (short)(((short)map[carry->pc + 1]) << 8) + (short)map[carry->pc + 2]; 
-	new->pc = (MEM_SIZE + new->pc + (pc % IDX_MOD)) % MEM_SIZE;
+	pc = get_short(map, carry->pc) % IDX_MOD;
+	new->pc = (MEM_SIZE + new->pc + pc) % MEM_SIZE;
 	new->cycles_left = 0;
 	new_carriage(NULL, lst);
-	ft_printf("%hd + %hd = %hd\n", pc, carry->pc, new->pc);
 	carry->pc = (carry->pc + 3) % MEM_SIZE;
 }
 
@@ -52,10 +51,9 @@ void	cor_lfork(unsigned char *map, t_carriage *carry)
 
 	lst = ft_lstnew(carry, sizeof(t_carriage));
 	new = (t_carriage *)lst->content;
-	pc = (short)(((short)map[carry->pc + 1]) << 8) + (short)map[carry->pc + 2]; 
+	pc = get_short(map, carry->pc);
 	new->pc = (MEM_SIZE + new->pc + pc) % MEM_SIZE;
 	new->cycles_left = 0;
 	new_carriage(NULL, lst);
-	ft_printf("%hd + %hd = %hd\n", pc, carry->pc, new->pc);
 	carry->pc = (carry->pc + 3) % MEM_SIZE;
 }
