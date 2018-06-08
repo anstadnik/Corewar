@@ -6,7 +6,7 @@
 /*   By: bcherkas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 13:59:51 by bcherkas          #+#    #+#             */
-/*   Updated: 2018/06/08 19:34:28 by bcherkas         ###   ########.fr       */
+/*   Updated: 2018/06/08 23:56:38 by astadnik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	init_map(t_info *inf)
 	while (i < inf->players_amount)
 	{
 		tmp = init_carriage(i, inf->players_amount);
-		tmp.player = &(inf->players[i]);
+		tmp.players = inf->players;
 		head = ft_lstnew(&tmp, sizeof(tmp));
 		ft_lstadd(&inf->stack, head);
 		i++;
