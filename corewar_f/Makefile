@@ -1,4 +1,4 @@
-.PHONY: clean fclean re r
+.PHONY: clean fclean re r g
 CFLAGS = -Wall -Wextra -Werror -Wconversion#remove last one
 ODIR = objs/
 SDIR = srcs/
@@ -8,6 +8,7 @@ NAME = corewar
 LIB = $(LDIR)libft.a
 FUNCS = fork_func.c cor_func.c math_func.c
 FILES = check_cor.c corewar.c get_parameters.c main_cycle.c debug_func.c get_int.c output_text.c $(FUNCS)
+# FILES = main.c
 OBJS = $(FILES:.c=.o)
 
 ifeq ($(shell uname), Linux)
@@ -25,6 +26,11 @@ all: $(NAME)
 $(NAME): $(addprefix $(ODIR), $(OBJS)) $(LIB)
 	@echo "$(ESCAPE)[34m\nCompiling $@$(ESCAPE)[0m"
 	@$(CC) $(CFLAGS) -I $(IDIR) -I $(LDIR)includes -o $@ $^
+
+g:
+	@echo "$(ESCAPE)[34m\nCompiling debug $(NAME)$(ESCAPE)[0m"
+	@$(MAKE) --no-print-directory -C $(LDIR) g
+	@$(CC) $(CFLAGS) -g -I $(IDIR) -I $(LDIR)includes -o $(NAME) $(addprefix $(SDIR), $(FILES)) $(LDIR)dlibft.a
 
 $(LIB):
 	@echo "$(ESCAPE)[35m\nCompiling $(notdir $@)$(ESCAPE)[0m"

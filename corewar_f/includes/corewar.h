@@ -6,7 +6,7 @@
 /*   By: bcherkas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 13:51:01 by bcherkas          #+#    #+#             */
-/*   Updated: 2018/06/08 15:58:06 by bcherkas         ###   ########.fr       */
+/*   Updated: 2018/06/08 17:34:32 by astadnik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,7 @@ typedef struct		s_carriage
 	int				pc;
 	int				cycles_left;
 	int				map_start;
+	int				*players;
 	int				lives;// Make it 0 where this stuff is initialized
 	// If it's 0 - no "live" for 1 CYCLE_TO_DIE
 	// If it's -1 - ... for 2 CYCLE_TO_DIE (REMOVE!!!)
