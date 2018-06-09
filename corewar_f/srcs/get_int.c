@@ -78,5 +78,5 @@ int			get_reg(unsigned char *map, int pc)
 		new_carriage(NULL, NULL);
 		errmsg("Wrong REG argument");
 	}
-	return (ret);
+	return (ret - 1);
 }

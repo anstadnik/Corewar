@@ -22,6 +22,7 @@ void	cor_st(unsigned char *map, t_carriage *carry)
 		carry->reg[args[1]] = carry->reg[args[0]];
 	if (codage[1] == 2)
 		// TODO check if it writes 1 byte or all 4
+		// There must be memcpy to write 4 bytes, if i dont mistake
 		map[(carry->pc + args[1] % IDX_MOD) % MEM_SIZE] =
 			(unsigned char)carry->reg[args[0]];
 	else

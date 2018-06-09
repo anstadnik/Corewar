@@ -12,7 +12,7 @@
 
 #include "corewar.h"
 
-void	new_carriage(t_list **add_pointer, t_list *lst)
+void		new_carriage(t_list **add_pointer, t_list *lst)
 {
 	static t_list	**start;
 
@@ -27,4 +27,28 @@ void	new_carriage(t_list **add_pointer, t_list *lst)
 		return ;
 	}
 	ft_lstdel(start, free);
+}
+
+int			get_args_flag(int *args, int flag)
+{
+	static int	*args_arr;
+
+	if (args == NULL)
+		return (args_arr[flag]);
+	args_arr = args;
+	return (0);
+}
+
+t_header	*get_player_info(t_header *arr, int player)
+{
+	static t_header	*players_arr;
+
+	if (arr == NULL)
+	{
+		players_arr = arr;
+		return (NULL);
+	}
+	if (player > 3 || player < 0)
+		return (NULL);
+	return (&(players_arr[player]));
 }

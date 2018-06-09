@@ -66,7 +66,7 @@ void	wrapper(unsigned char *map, t_carriage *carry, ssize_t *args)
 	int		func_num;
 
 	func_num = map[carry->pc];
-	ft_printf("%d\n", carry->pc);
+//	ft_printf("%d\n", carry->pc);
 	if (carry->cycles_left > 1)
 		carry->cycles_left--;
 	else if (carry->cycles_left == 0 && (func_num > MAX_FUNC || func_num < 1))
@@ -140,7 +140,7 @@ void	main_cycle(t_info *inf, unsigned char *map)
 		// Change CYCLE_TO_DIE
 			// return to prev function to make -b output and print result
 		// Output function
-		if (inf->output_mode == 1)
+		if (inf->output_mode == 1 || inf->output_mode == 2)
 			output_text(inf, iterations);
 	}
 }

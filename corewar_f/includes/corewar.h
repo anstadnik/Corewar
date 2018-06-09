@@ -126,7 +126,10 @@ void				get_parameters(int ac, char **av, t_info *inf);
 void				read_players(t_info *inf);
 
 void				main_cycle(t_info *inf, unsigned char *map);
+
 void				new_carriage(t_list **add_pointer, t_list *lst);
+int					get_args_flag(int *args, int flag);
+t_header			*get_player_info(t_header *arr, int player);
 
 int					get_int(unsigned char *map, int pc);
 short int			get_short(unsigned char *map, int pc);
@@ -149,7 +152,7 @@ void				cor_zjmp(unsigned char *map, t_carriage *carry);
 void				cor_fork(unsigned char *map, t_carriage *carry);
 //
 void				cor_lfork(unsigned char *map, t_carriage *carry);
-void				cor_aff(unsigned char *map, t_carriage *carry, ssize_t a);
+void				cor_aff(unsigned char *map, t_carriage *carry);
 //
 void				cor_live(unsigned char *map, t_carriage *carry);
 //

@@ -17,19 +17,20 @@ void	get_codage(unsigned char code, int *codage)
 	int		i;
 
 	i = 0;
-	ft_printf("%b\n", code);
-	codage[0] = (int)((code >> 4) & 3);
-	codage[1] = (int)((code >> 2) & 3);
-	codage[2] = (int)(code & 3);
-	ft_printf("KEK: %d %d %d\n", codage[0], codage[1], codage[2]);
+	codage[0] = (int)((code >> 6) & 3);
+	codage[1] = (int)((code >> 4) & 3);
+	codage[2] = (int)((code >> 2) & 3);
+//	ft_printf("KEK: %d %d %d\n", codage[0], codage[1], codage[2]);
 	while (i < 3)
 	{
 		if (codage[i] == T_REG)
 			codage[i] = 1;
-		if (codage[i] == T_IND)
+		else if (codage[i] == T_IND)
 			codage[i] = 2;
-		if (codage[i] == T_DIR)
+		else if (codage[i] == T_DIR)
 			codage[i] = 4;
+		else
+			codage[i] = 0;
 		i++;
 	}
 }
@@ -49,9 +50,11 @@ void	get_args(unsigned char *map, int start, int *args, int *codage)
 			args[i] = get_ind(map, start);
 		else if (codage[i] == 4)
 			args[i] = get_dir(map, start, 4);
+		else
+			args[i] = 0;
 		start += codage[i];
+//		ft_printf("ARG %d = %d\n", i, args[i]);
 		i++;
-		ft_printf("ARG %d = %d\n", i, args[i]);
 	}
 }
 
@@ -66,7 +69,6 @@ void	cor_and(unsigned char *map, t_carriage *carry)
 	if (codage[1] == 1)
 		args[1] = carry->reg[args[1]];
 	carry->reg[args[2]] = args[0] & args[1];
-	ft_printf("AA\n");
 	carry->carry = carry->reg[args[2]] == 0 ? 1 : 0;
 	carry->pc = (carry->pc + 2 + codage[0] + codage[1] + codage[2]) % MEM_SIZE;
 }

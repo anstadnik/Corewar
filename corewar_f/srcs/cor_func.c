@@ -32,9 +32,9 @@ void	cor_zjmp(unsigned char *map, t_carriage *carry)
 	if (carry->carry == 0)
 		return ;
 	i = get_dir(map, carry->pc + 1, 2) % IDX_MOD;
-	ft_printf("OLD: %d\n", carry->pc);
+//	ft_printf("OLD: %d\n", carry->pc);
 	carry->pc = (MEM_SIZE + carry->pc + i) % MEM_SIZE;
-	ft_printf("NEW: %d\n", carry->pc);
+//	ft_printf("NEW: %d\n", carry->pc);
 }
 
 void	cor_live(unsigned char *map, t_carriage *carry)

@@ -50,16 +50,47 @@ static void	output_sd(t_info *inf, unsigned char *map)
 	}
 }
 
+void		output_binary(t_info *inf)
+{
+	unsigned char	map[MEM_SIZE];
+	int				i;
+
+	if (inf->args[FLAG_B] == 1)
+	{
+		write(1, inf->map, MEM_SIZE);
+		write(1, "\n", 1);
+		return ;
+	}
+	i = 0;
+	while (i < MEM_SIZE)
+	{
+		if (inf->map[i])
+			map[i] = 0xFF;
+		else
+			map[i] = 0;
+		i++;
+	}
+	write(1, map, MEM_SIZE);
+	write(1, "\n", 1);
+}
+
 void		output_text(t_info *inf, int iterations)
 {
 	char		*str;
 
 	str = NULL;
+	if (inf->args[FLAG_B] > 0)
+		output_binary(inf);
 	if (inf->args[FLAG_S] > 0 && iterations % inf->args[FLAG_S] == 0)
 	{
 		output_sd(inf, inf->map);
 		if (get_next_line(0, &str) > 0)
 			free(str);
+		if (str == NULL)
+		{
+			ft_lstdel(&inf->stack, free);
+			exit(0);
+		}
 	}
 	if (inf->args[FLAG_D] > 0 && iterations % inf->args[FLAG_D] == 0)
 	{
