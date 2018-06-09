@@ -6,27 +6,33 @@
 /*   By: lburlach <lburlach@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 15:56:00 by lburlach          #+#    #+#             */
-/*   Updated: 2018/06/06 20:44:28 by lburlach         ###   ########.fr       */
+/*   Updated: 2018/06/09 19:25:14 by lburlach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
 const static char 	*g_str[] = {
-		"There's no '.name' field",
-		"There's no '.comment' field",
 		"Wrong instruction",
-		"Can't read the file"
+		"Can't read the file",
+		"The whole name/comment should be encapsulated with \"\"",
+		"There should be a whitespace between name command and name itself",
+		"You have to close the opening \"",
+		"Champ's name should be less than 128 symbols",
+		"There should be a whitespace between comment command and comment itself",
+		"There can't be a newline between instruction and its name"
 };
 
-void	error_asm(int err_num, size_t x, char *code)
+void	error_asm(int err_num, size_t x, char **code)
 {
-	if (x == 0)
-		ft_printf("{red}%s at %d row:{eoc}\n\t{light red}%s{eoc}\n",
-				g_str[err_num - 1], g_count, code);
+	if (!code || !(*code))
+		ft_printf("{red}%s at [%.3d, %.3d]{eoc}\n",
+				  g_str[err_num - 1], g_count + 1, x + 1);
 	else
-		ft_printf("{red}%s at [%.3d, %.3d]:{eoc}\n\t{light red}%s{eoc}\n",
-				g_str[err_num - 1], g_count, x, code);
+		ft_printf("{red}%s at [%.3d, %.3d]:{eoc}\n{light red}%s{eoc}\n",
+				  g_str[err_num - 1], g_count + 1, x + 1, *code);
+
+	ft_strdel(code);
 	exit(1);
 }
 
