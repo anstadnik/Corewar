@@ -6,7 +6,7 @@
 /*   By: bcherkas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 18:51:41 by bcherkas          #+#    #+#             */
-/*   Updated: 2018/06/09 11:52:16 by astadnik         ###   ########.fr       */
+/*   Updated: 2018/06/09 17:45:37 by astadnik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,19 +44,19 @@ t_op    op_tab[MAX_FUNCTIONS] =
 t_op    op_tab[MAX_FUNC] =
 {
 	{cor_live, 0x01, 10},
-	{NULL, 0x02, -1},
-	{NULL, 0x03, -1},
+	{cor_ld, 0x02, 5},
+	{cor_st, 0x03, 5},
 	{cor_add, 0x04, 10},
 	{cor_sub, 0x05, 10},
 	{cor_and, 0x06, 6},
 	{cor_or, 0x07, 6},
 	{cor_xor, 0x08, 6},
 	{cor_zjmp, 0x09, 20},
-	{NULL, 0x0a, -1},
-	{NULL, 0x0b, -1},
+	{cor_ldi, 0x0a, 25},
+	{cor_sti, 0x0b, 25},
 	{cor_fork, 0x0c, 800},
-	{NULL, 0x0d, -1},
-	{NULL, 0x0e, -1},
+	{cor_lld, 0x0d, 10},
+	{cor_lldi, 0x0e, 50},
 	{cor_lfork, 0x0f, 1000},
 	{cor_aff, 0x10, 2}
 };
