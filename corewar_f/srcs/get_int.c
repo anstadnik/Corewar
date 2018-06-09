@@ -6,7 +6,7 @@
 /*   By: bcherkas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/08 12:08:16 by bcherkas          #+#    #+#             */
-/*   Updated: 2018/06/08 15:23:05 by bcherkas         ###   ########.fr       */
+/*   Updated: 2018/06/09 16:31:24 by astadnik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,8 @@ int			get_dir(unsigned char *map, int pc, int len)
 
 int			get_reg(unsigned char *map, int pc)
 {
+	// Maybe it'd be more useful to return pointer to it?
+	// Anyhow it's too late. Maybe we'll change it if we will rewrite project
 	int		ret;
 
 	ret = map[pc];
