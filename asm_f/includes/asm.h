@@ -6,7 +6,7 @@
 /*   By: byermak <byermak@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 15:30:00 by lburlach          #+#    #+#             */
-/*   Updated: 2018/06/07 18:15:38 by byermak          ###   ########.fr       */
+/*   Updated: 2018/06/09 18:59:33 by byermak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,22 @@
 # include "libft.h"
 # include "op.h"
 # include <fcntl.h>
+# include <limits.h>
 
-# define T_REG_CODE 1
-# define T_DIR_CODE 2
-# define T_IND_CODE 3
+# define ERR_NO_CODE -1					//"No code in file"
+# define ERR_INVALID_COMMAND -2			//"Invalid command"
+# define ERR_NO_COMMAND_ARGS -3			//"No command arguments"
+# define ERR_MALLOC -4					//"Malloc error"
+# define ERR_INVALID_ARG -5				//"Invalid chars in arg"
+# define ERR_INVALID_T_REG -6			//"Invalid number of register(chars)"
+# define ERR_INVALID_T_DIR -7			//"Invalid number in T_DIR"
+# define ERR_INVALID_T_IND -8			//"Invalid number in T_IND"
+# define ERR_INVALID_NUMBER_OF_REG -9	//"Invalid number(<1 || >REG_NUMBER)"
+# define ERR_UNKNOWN_CHAR_AFTER_FIRST_ARG -10
+# define ERR_UNKNOWN_CHAR_AFTER_SECOND_ARG -11
+# define ERR_ENDLINE -12				//"Error in end of line(separator)"
 
-#define ERR_NO_CODE -1 //"No code in file"
-#define ERR_INVALID_COMMAND -2 //"Invalid command"
-#define ERR_NO_COMMAND_ARGS -3 //"No command arguments"
-#define ERR_MALLOC -4 //"Malloc error"
-#define ERR_FIRST_ARG -5 //"something with first argument"
-#define ERR_SECOND_ARG -6 //"something with second argument"
-#define ERR_THIRD_ARG -7 //"something with third argument"
+
 
 static const char	*g_comands[] = {
 	"live",
@@ -49,15 +53,18 @@ static const char	*g_comands[] = {
 
 typedef	struct	s_arg
 {
-	char arg; // T_REG_CODE | T_DIR_CODE | T_IND_CODE
-	char label_flag; // 1 | 0
-	char *value;
+	char	arg_type; // REG_CODE | DIR_CODE | IND_CODE
+	char	label_flag; // 1 | 0
+	char	*label;
+	int		value;
 }				t_arg;
 
 typedef struct	s_code
 {
 	char			*command; //or a number?
 	int				comand_num;
+	size_t 			line;
+	char			codage;
 	char			*label;
 	t_arg			*arg1;
 	t_arg			*arg2;
