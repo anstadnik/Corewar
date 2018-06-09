@@ -87,7 +87,7 @@ typedef struct		s_info
 {
 	t_list				*stack;
 	t_header			head[MAX_PLAYERS];
-	ssize_t				args[7];
+	int					args[7];
 	int					cycles_to_die;
 	int					output_mode;
 	// Changed, cause I'll use it also for counting lifes(weird, I know)

@@ -44,7 +44,7 @@ void	get_player(char *str, t_info *inf)
 		errmsg("No such file or you dont have enough rights");
 }
 
-void	get_output(char *str, int *ind, ssize_t *ret, int mode)
+void	get_output(char *str, int *ind, int *ret, int mode)
 {
 	if (mode == FLAG_D || mode == FLAG_S || mode == FLAG_V)
 	{
@@ -70,7 +70,7 @@ void	get_output(char *str, int *ind, ssize_t *ret, int mode)
 	}
 }
 
-void	excludes(t_info *inf, ssize_t *args)
+void	excludes(t_info *inf, int *args)
 {
 	int		text_out;
 	int		bin_out;

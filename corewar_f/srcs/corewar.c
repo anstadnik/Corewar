@@ -76,6 +76,9 @@ void	init_map(t_info *inf)
 		i++;
 	}
 	new_carriage(&(inf->stack), NULL);
+	get_args_flag(inf->args, 0);
+	get_player_info(inf->head, 0);
+
 }
 
 int		main(int argc, char **argv)

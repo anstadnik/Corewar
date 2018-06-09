@@ -74,11 +74,22 @@ void		output_binary(t_info *inf)
 	write(1, "\n", 1);
 }
 
+void		output_v(t_info *inf, int cycles)
+{
+	int		flag;
+
+	flag = inf->args[FLAG_V];
+	if ((flag & 2) == 2)
+		ft_printf("CYCLE %d\n", cycles);
+}
+
 void		output_text(t_info *inf, int iterations)
 {
 	char		*str;
 
 	str = NULL;
+	if (inf->args[FLAG_V] > 0)
+		output_v(inf, iterations);
 	if (inf->args[FLAG_B] > 0)
 		output_binary(inf);
 	if (inf->args[FLAG_S] > 0 && iterations % inf->args[FLAG_S] == 0)

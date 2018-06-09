@@ -61,7 +61,7 @@ t_op    op_tab[MAX_FUNC] =
 	{cor_aff, 0x10, 2}
 };
 
-void	wrapper(unsigned char *map, t_carriage *carry, ssize_t *args)
+void	wrapper(unsigned char *map, t_carriage *carry)
 {
 	int		func_num;
 
@@ -76,13 +76,11 @@ void	wrapper(unsigned char *map, t_carriage *carry, ssize_t *args)
 		carry->func = op_tab[func_num - 1].func;
 		carry->cycles_left = op_tab[func_num - 1].cycles + 1;// D:
 	}
-	else if (carry->cycles_left == 1 && func_num < MAX_FUNC)
+	else if (carry->cycles_left == 1 && func_num <= MAX_FUNC)
 	{
 		carry->func(map, carry);
 		carry->cycles_left--;
 	}
-	else if (carry->cycles_left == 1 && func_num == MAX_FUNC)
-		cor_aff(map, carry, args[FLAG_A]);
 }
 
 int		check_lives(t_info *inf)
@@ -129,7 +127,7 @@ void	main_cycle(t_info *inf, unsigned char *map)
 		lst = inf->stack;
 		while (lst)
 		{
-			wrapper(map, (t_carriage *)lst->content, inf->args);
+			wrapper(map, (t_carriage *)lst->content);
 			lst = lst->next;
 		}
 		iterations++;
