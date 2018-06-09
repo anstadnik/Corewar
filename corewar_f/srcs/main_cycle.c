@@ -6,14 +6,14 @@
 /*   By: bcherkas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 18:51:41 by bcherkas          #+#    #+#             */
-/*   Updated: 2018/06/08 19:46:30 by bcherkas         ###   ########.fr       */
+/*   Updated: 2018/06/09 11:52:16 by astadnik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "corewar.h"
 
 /*
- ** op_tab: 
+ ** op_tab:
  ** 1. function pointer,           2. number of args,
  ** 3. code of function,          4. can change carry or no,
  ** 5. have codage octet or no,   6.number of cycles it need,
@@ -43,7 +43,7 @@ t_op    op_tab[MAX_FUNCTIONS] =
 
 t_op    op_tab[MAX_FUNC] =
 {
-	{NULL, 0x01, -1},
+	{cor_live, 0x01, 10},
 	{NULL, 0x02, -1},
 	{NULL, 0x03, -1},
 	{cor_add, 0x04, 10},
@@ -74,7 +74,7 @@ void	wrapper(unsigned char *map, t_carriage *carry, ssize_t *args)
 	else if (carry->cycles_left == 0 && func_num <= MAX_FUNC && func_num > 0)
 	{
 		carry->func = op_tab[func_num - 1].func;
-		carry->cycles_left = op_tab[func_num - 1].cycles + 1;
+		carry->cycles_left = op_tab[func_num - 1].cycles + 1;// D:
 	}
 	else if (carry->cycles_left == 1 && func_num < MAX_FUNC)
 	{
@@ -113,7 +113,8 @@ int		check_lives(t_info *inf)
 		//which we gotta check in live function
 		alives += inf->players[i] == 0;
 	}
-	return (alives == 0);
+	return (alives == 0 && inf->stack);
+	// There r alive players and carriages
 }
 
 void	main_cycle(t_info *inf, unsigned char *map)
@@ -132,9 +133,11 @@ void	main_cycle(t_info *inf, unsigned char *map)
 			lst = lst->next;
 		}
 		iterations++;
+		// inf->cycle_to_die instead of CYCLE_TO_DIE
 		if (iterations + 1 % CYCLE_TO_DIE == 0)
 			if (check_lives(inf))
 				return ;
+		// Change CYCLE_TO_DIE
 			// return to prev function to make -b output and print result
 		// Output function
 		if (inf->output_mode == 1)

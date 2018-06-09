@@ -6,7 +6,7 @@
 /*   By: bcherkas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 13:51:01 by bcherkas          #+#    #+#             */
-/*   Updated: 2018/06/08 20:20:54 by bcherkas         ###   ########.fr       */
+/*   Updated: 2018/06/09 11:59:23 by astadnik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,8 @@ typedef struct		s_carriage
 	int				cycles_left;
 	int				map_start;
 	int				*players;
+	int				players_amount;// I need to know it to not say life to smbd
+	// who doesn't exist
 	int				lives;// Make it 0 where this stuff is initialized
 	// If it's 0 - no "live" for 1 CYCLE_TO_DIE
 	// If it's -1 - ... for 2 CYCLE_TO_DIE (REMOVE!!!)
@@ -131,6 +133,8 @@ short int			get_short(unsigned char *map, int pc);
 int					get_reg(unsigned char *map, int pc);
 int					get_dir(unsigned char *map, int pc, int len);
 int					get_ind(unsigned char *map, int pc);
+void				get_args(unsigned char *map, int start, int *args,
+		int *codage);
 
 //
 
@@ -146,6 +150,8 @@ void				cor_fork(unsigned char *map, t_carriage *carry);
 //
 void				cor_lfork(unsigned char *map, t_carriage *carry);
 void				cor_aff(unsigned char *map, t_carriage *carry, ssize_t a);
+//
+void				cor_live(unsigned char *map, t_carriage *carry);
 
 void				output_text(t_info *inf, int iterations);
 

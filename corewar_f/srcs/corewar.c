@@ -6,7 +6,7 @@
 /*   By: bcherkas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 13:59:51 by bcherkas          #+#    #+#             */
-/*   Updated: 2018/06/08 23:56:38 by astadnik         ###   ########.fr       */
+/*   Updated: 2018/06/09 11:48:18 by astadnik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ t_carriage	init_carriage(int player, int max)
 
 	j = 1;
 	tmp.carry = 0;
-	tmp.pc = (MEM_SIZE / max) * player;
+	tmp.pc = (MEM_SIZE / max) * player;// Shouldn't it be affected by amount of players?
 	tmp.map_start = tmp.pc;
 	tmp.cycles_left = 0;
 	while (j < REG_NUMBER)
@@ -70,6 +70,7 @@ void	init_map(t_info *inf)
 	{
 		tmp = init_carriage(i, inf->players_amount);
 		tmp.players = inf->players;
+		tmp.players_amount = inf->players_amount;
 		head = ft_lstnew(&tmp, sizeof(tmp));
 		ft_lstadd(&inf->stack, head);
 		i++;

@@ -6,7 +6,7 @@
 /*   By: bcherkas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/08 15:11:22 by bcherkas          #+#    #+#             */
-/*   Updated: 2018/06/08 19:31:55 by bcherkas         ###   ########.fr       */
+/*   Updated: 2018/06/09 11:50:18 by astadnik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,14 @@ void	cor_zjmp(unsigned char *map, t_carriage *carry)
 	ft_printf("OLD: %d\n", carry->pc);
 	carry->pc = (MEM_SIZE + carry->pc + i) % MEM_SIZE;
 	ft_printf("NEW: %d\n", carry->pc);
+}
+
+void	cor_live(unsigned char *map, t_carriage *carry)
+{
+	int	player_number;
+
+	carry->lives++;
+	player_number = get_dir(map, carry->pc+1, 4);
+	if (player_number >= 0 && player_number < carry->players_amount)
+		carry->players[player_number]++;
 }
