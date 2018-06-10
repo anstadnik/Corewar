@@ -6,7 +6,7 @@
 /*   By: byermak <byermak@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 17:06:00 by byermak           #+#    #+#             */
-/*   Updated: 2018/06/10 18:05:54 by byermak          ###   ########.fr       */
+/*   Updated: 2018/06/10 19:33:16 by byermak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,67 @@ static int	check_command(char *command)
 		if (ft_strequ(command, g_op_tab[i++].command))
 			return (i);
 	return (0);
+}
+
+static int	check_third_arg(t_code *new)
+{
+	int		i;
+
+	i = new->comand_num - 1;
+	if (!new->arg3 && g_op_tab[i].args_num > 2)
+		return (ERR_INVALID_NUMBER_OF_ARGS);
+	if ((new->arg3->arg_type & g_op_tab[i].args[2]) != new->arg3->arg_type)
+	{
+		if (new->arg3->arg_type == T_REG)
+			return (ERR_INVALID_2_PAR_T_REG);
+		else if (new->arg3->arg_type == T_DIR)
+			return (ERR_INVALID_2_PAR_T_DIR);
+		return (ERR_INVALID_2_PAR_T_IND);
+	}
+	if (new->arg3->arg_type == T_DIR && g_op_tab[i].label_size == 2)
+		if (new->arg3->value > USHRT_MAX)
+			return (ERR_INVALID_T_DIR);
+	return (1);
+}
+
+static int	check_second_arg(t_code *new)
+{
+	int		i;
+
+	i = new->comand_num - 1;
+	if (!new->arg2 && g_op_tab[i].args_num > 1)
+		return (ERR_INVALID_NUMBER_OF_ARGS);
+	if ((new->arg2->arg_type & g_op_tab[i].args[1]) != new->arg2->arg_type)
+	{
+		if (new->arg2->arg_type == T_REG)
+			return (ERR_INVALID_1_PAR_T_REG);
+		else if (new->arg2->arg_type == T_DIR)
+			return (ERR_INVALID_1_PAR_T_DIR);
+		return (ERR_INVALID_1_PAR_T_IND);
+	}
+	if (new->arg2->arg_type == T_DIR && g_op_tab[i].label_size == 2)
+		if (new->arg2->value > USHRT_MAX)
+			return (ERR_INVALID_T_DIR);
+	return (1);
+}
+
+static int	check_first_arg(t_code *new)
+{
+	int		i;
+
+	i = new->comand_num - 1;
+	if ((new->arg1->arg_type & g_op_tab[i].args[0]) != new->arg1->arg_type)
+	{
+		if (new->arg1->arg_type == T_REG)
+			return (ERR_INVALID_0_PAR_T_REG);
+		else if (new->arg1->arg_type == T_DIR)
+			return (ERR_INVALID_0_PAR_T_DIR);
+		return (ERR_INVALID_0_PAR_T_IND);
+	}
+	if (new->arg1->arg_type == T_DIR && g_op_tab[i].label_size == 2)
+		if (new->arg1->value > USHRT_MAX)
+			return (ERR_INVALID_T_DIR);
+	return (1);
 }
 
 static t_arg	*new_arg(char arg_code, char label_flag, int value, char *label)
@@ -274,18 +335,18 @@ static int	parse_args(char	*str, t_code *new)
 	if ((i = skip_spaces(str)) == -1)
 		return (ERR_NO_COMMAND_ARGS);
 	i = word(str, i);
-	if ((ret = (parse_arg(ft_strsub(str, g_x, i - g_x), &(new->arg1)))) != 1)
+	if ((ret = (parse_arg(ft_strsub(str, g_x, i - g_x), &(new->arg1)))) != 1 ||
+		(ret = check_first_arg(new)) != 1)
 		return (ret);
-	g_x = (size_t)i;
-	if ((skip_spaces(str)) != -1)
+	if ((g_x = (size_t)i) && (skip_spaces(str)) != -1)
 	{
-		if ((ret = parse_second_arg(str, &(new->arg2))) != 1)
+		if ((ret = parse_second_arg(str, &(new->arg2))) != 1 ||
+			(ret = check_second_arg(new)) != 1)
 			return (ret);
 		if ((skip_spaces(str)) != -1)
-		{
-			if ((ret = parse_third_arg(str, &(new->arg3))) != 1)
-				return (ret);
-		}
+			if ((ret = parse_third_arg(str, &(new->arg3))) != 1 ||
+				(ret = check_third_arg(new)) != 1)
+			return (ret);
 		if ((skip_spaces(str)) != -1)
 			return (ERR_ENDLINE);
 	}
@@ -294,7 +355,6 @@ static int	parse_args(char	*str, t_code *new)
 
 static void	print_args(t_code *new)
 {
-	ft_printf("____________________________________\n");
 	ft_printf("t:[%i] f:[%i] l:[%s] v:[%i]\n", new->arg1->arg_type, new->arg1->label_flag, new->arg1->label, new->arg1->value);
 	if (new->arg2)
 		ft_printf("t:[%i] f:[%i] l:[%s] v:[%i]\n", new->arg2->arg_type, new->arg2->label_flag, new->arg2->label, new->arg2->value);
@@ -302,6 +362,21 @@ static void	print_args(t_code *new)
 		ft_printf("t:[%i] f:[%i] l:[%s] v:[%i]\n", new->arg3->arg_type, new->arg3->label_flag, new->arg3->label, new->arg3->value);
 
 	ft_printf("////////////////////////////////////\n\n");
+}
+
+static void	print_comands()
+{
+	t_code	*tmp;
+
+	tmp = g_code;
+	while (tmp)
+	{
+		ft_printf("____________________________________\n");
+		ft_printf("name: %s[%i]\n", tmp->command, tmp->comand_num);
+		ft_printf("label: %s\n\n", tmp->label);
+		print_args(tmp);
+		tmp = tmp->next;
+	}
 }
 
 static void	del_command(t_code **new)
@@ -331,22 +406,19 @@ static void	del_command(t_code **new)
 	*new = NULL;
 }
 
-static int	check_args(t_code *new)
+static void	push_back(t_code *new)
 {
-	int		i;
+	t_code *tmp;
 
-	i = new->comand_num - 1;
-	if (new->arg1->arg_type & g_op_tab[i].args[0] != new->arg1->arg_type)
+	if (!g_code)
 	{
-		if (new->arg1->arg_type == T_REG)
-			return (ERR_INVALID_0_PAR_T_REG);
-		else if (new->arg1->arg_type == T_DIR)
-			return (ERR_INVALID_0_PAR_T_DIR);
-		return (ERR_INVALID_0_PAR_T_IND);
+		g_code = new;
+		return ;
 	}
-	if (new->arg1->arg_type == T_DIR && new->arg1->)
-
-
+	tmp = g_code;
+	while (tmp->next)
+		tmp = tmp->next;
+	tmp->next = new;
 }
 
 static int	new_command(char **comm, char **label, t_code **new, char *str)
@@ -362,16 +434,12 @@ static int	new_command(char **comm, char **label, t_code **new, char *str)
 	(*new)->label = *label;
 	(*new)->next = NULL;
 	g_x += ft_strlen(*comm);
-	if ((command_num = parse_args(str, *new)) != 1 ||
-		(command_num = check_args(*new)) != 1)
+	if ((command_num = parse_args(str, *new)) != 1)
 	{
 		del_command(new);
 		return (command_num);
 	}
-	print_args(*new);
-
-////	check args
-////	push_back_new_command(new);
+	push_back(*new);
 	return (1);
 }
 
@@ -418,4 +486,5 @@ void		parse_code(int fd/*, t_code **code*/)
 //		ft_strdel(&label);
 		skip_empty(fd, &str);
 	}
+	print_comands();
 }

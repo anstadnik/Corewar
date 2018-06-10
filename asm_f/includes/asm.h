@@ -6,7 +6,7 @@
 /*   By: byermak <byermak@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 15:30:00 by lburlach          #+#    #+#             */
-/*   Updated: 2018/06/10 18:01:37 by byermak          ###   ########.fr       */
+/*   Updated: 2018/06/10 19:19:15 by byermak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,7 @@
 # define ERR_UNKNOWN_CHAR_AFTER_FIRST_ARG (-10)
 # define ERR_UNKNOWN_CHAR_AFTER_SECOND_ARG (-11)
 # define ERR_ENDLINE (-12)					//"Error in end of line(separator)"
-
-# define ERR_INVALID_0_PAR_T_REG (-13)
+# define ERR_INVALID_0_PAR_T_REG (-13)	//"Invalid parameter 0 type register for instruction live"
 # define ERR_INVALID_0_PAR_T_DIR (-14)
 # define ERR_INVALID_0_PAR_T_IND (-15)
 # define ERR_INVALID_1_PAR_T_REG (-16)
@@ -40,6 +39,7 @@
 # define ERR_INVALID_2_PAR_T_REG (-19)
 # define ERR_INVALID_2_PAR_T_DIR (-20)
 # define ERR_INVALID_2_PAR_T_IND (-21)
+# define ERR_INVALID_NUMBER_OF_ARGS (-22) //"Too few args"
 
 
 typedef	struct	s_arg
@@ -55,7 +55,6 @@ typedef struct	s_code
 {
 	char			*command; //or a number?
 	int				comand_num;
-
 	char			codage;
 	char			*label;
 	t_arg			*arg1;
@@ -75,7 +74,7 @@ typedef struct	s_op
 }				t_op;
 
 static const t_op	g_op_tab[16] = {
-	{"live",	1, {T_DIR, 0, 0, 4}},
+	{"live",	1, {T_DIR, 0, 0}, 4},
 	{"ld", 		2, {T_DIR | T_IND, T_REG, 0}, 4},
 	{"st",		2, {T_REG, T_IND | T_REG, 0}, 4},
 	{"add",		3, {T_REG, T_REG, T_REG}, 4},
@@ -86,7 +85,7 @@ static const t_op	g_op_tab[16] = {
 	{"zjmp",	1, {T_DIR, 0, 0}, 2},
 	{"ldi",		3, {T_REG | T_DIR | T_IND, T_DIR | T_REG, T_REG}, 2},
 	{"sti",		3, {T_REG, T_REG | T_DIR | T_IND, T_DIR | T_REG}, 2},
-	{"fork",	1, {T_DIR, 0, 0, 2}},
+	{"fork",	1, {T_DIR, 0, 0}, 2},
 	{"lld",		2, {T_DIR | T_IND, T_REG, 0}, 4},
 	{"lldi",	3, {T_REG | T_DIR | T_IND, T_DIR | T_REG, T_REG}, 2},
 	{"lfork",	1, {T_DIR, 0, 0}, 2},
