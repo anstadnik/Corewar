@@ -6,7 +6,7 @@
 /*   By: byermak <byermak@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 17:06:00 by byermak           #+#    #+#             */
-/*   Updated: 2018/06/09 19:18:45 by byermak          ###   ########.fr       */
+/*   Updated: 2018/06/10 18:05:54 by byermak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static int	skip_spaces(char *str)
 		++g_x;
 	if (!str[g_x] || str[g_x] == COMMENT_CHAR)
 		return (-1);
-	return g_x;
+	return (int)g_x;
 }
 
 static void	skip_empty(int fd, char **str)
@@ -93,7 +93,7 @@ static char	*parse_label(char *str)
 	while ((str + i) != tmp)
 		if (!check_label_words(str[i++]))
 			return (NULL);
-	label = check_label(ft_strsub(str, g_x, tmp - (str + g_x)));
+	label = check_label(ft_strsub(str, (int)g_x, tmp - (str + g_x)));
 	g_x += ft_strlen(label) + 1;
 	return (label);
 }
@@ -105,23 +105,30 @@ static int	new_command_error(char **command, char **label, int error)
 	return (error);
 }
 
-static char	check_command(char *command)
+static int	check_command(char *command)
 {
-	char	i;
+	int	i;
 
+	i = 0;
 	while (i < 16)
-		if (ft_strequ(command, g_comands[i++]))
+		if (ft_strequ(command, g_op_tab[i++].command))
 			return (i);
 	return (0);
 }
 
-static t_arg	*new_arg(char arg_type, char label_flag, int value, char *label)
+static t_arg	*new_arg(char arg_code, char label_flag, int value, char *label)
 {
 	t_arg	*new;
 
 	if (!(new = (t_arg *)malloc(sizeof(t_arg))))
 		return (NULL);
-	new->arg_type = arg_type;
+	new->arg_code = arg_code;
+	if (arg_code == REG_CODE)
+		new->arg_type = T_REG;
+	else if (arg_code == DIR_CODE)
+		new->arg_type = T_DIR;
+	else
+		new->arg_type = T_IND;
 	new->label_flag = label_flag;
 	new->value = value;
 	new->label = label;
@@ -144,6 +151,7 @@ static int	parse_t_reg(char **str, t_arg **arg)
 	ft_strdel(str);
 	if (value < 1 || value > REG_NUMBER)
 		return (ERR_INVALID_NUMBER_OF_REG);
+
 	if (!(*arg = new_arg(REG_CODE, 0, value, NULL)))
 		return (ERR_MALLOC);
 	return (1);
@@ -153,9 +161,11 @@ static int	parse_t_dir(char **str, t_arg **arg)
 {
 	int		value;
 	char	label_flag;
+	char	*label;
 
+	label = NULL;
 	value = ft_atoi(*str + 1);
-	label_flag = (*(*str + 1) == LABEL_CHAR) ? 1 : 0;
+	label_flag = (*(*str + 1) == LABEL_CHAR) ? (char)1 : (char)0;
 	if (!label_flag && count(value) < ft_strlen(*str + 1))
 	{
 		ft_strdel(str);
@@ -164,8 +174,10 @@ static int	parse_t_dir(char **str, t_arg **arg)
 	if (!label_flag)
 		ft_strdel(str);
 	else
-		ft_strncpy(*str, *str + 2, ft_strlen(*str));
-	if (!(*arg = new_arg(DIR_CODE, label_flag, value, *str)))
+		label = ft_strdup(*str + 2);
+
+	ft_strdel(str);
+	if (!(*arg = new_arg(DIR_CODE, label_flag, value, label)))
 		return (ERR_MALLOC);
 	return (1);
 }
@@ -174,9 +186,11 @@ static int	parse_t_ind(char **str, t_arg **arg)
 {
 	int		value;
 	char	label_flag;
+	char	*label;
 
 	value = ft_atoi(*str);
-	label_flag = (*(*str) == LABEL_CHAR) ? 1 : 0;
+	label = NULL;
+	label_flag = (*(*str + 1) == LABEL_CHAR) ? (char)1 : (char)0;
 	if ((!label_flag && count(value) < ft_strlen(*str)) || value > USHRT_MAX)
 	{
 		ft_strdel(str);
@@ -185,8 +199,9 @@ static int	parse_t_ind(char **str, t_arg **arg)
 	if (!label_flag)
 		ft_strdel(str);
 	else
-		ft_strncpy(*str, *str + 1, ft_strlen(*str));
-	if (!(*arg = new_arg(IND_CODE, label_flag, value, *str)))
+		label = ft_strdup(*str + 1);
+	ft_strdel(str);
+	if (!(*arg = new_arg(IND_CODE, label_flag, value, label)))
 		return (ERR_MALLOC);
 	return (1);
 }
@@ -227,7 +242,7 @@ static int	parse_third_arg(char *str, t_arg **arg)
 	i = word(str, i);
 	if ((ret = (parse_arg(ft_strsub(str, g_x, i - g_x), arg))) != 1)
 		return (ret);
-	g_x = i;
+	g_x = (size_t)i;
 	return (1);
 }
 
@@ -244,7 +259,7 @@ static int	parse_second_arg(char *str, t_arg **arg)
 	i = word(str, i);
 	if ((ret = (parse_arg(ft_strsub(str, g_x, i - g_x), arg))) != 1)
 		return (ret);
-	g_x = i;
+	g_x = (size_t)i;
 	return (1);
 }
 
@@ -253,6 +268,7 @@ static int	parse_args(char	*str, t_code *new)
 	int		i;
 	int		ret;
 
+	new->arg1 = NULL;
 	new->arg2 = NULL;
 	new->arg3 = NULL;
 	if ((i = skip_spaces(str)) == -1)
@@ -260,7 +276,7 @@ static int	parse_args(char	*str, t_code *new)
 	i = word(str, i);
 	if ((ret = (parse_arg(ft_strsub(str, g_x, i - g_x), &(new->arg1)))) != 1)
 		return (ret);
-	g_x = i;
+	g_x = (size_t)i;
 	if ((skip_spaces(str)) != -1)
 	{
 		if ((ret = parse_second_arg(str, &(new->arg2))) != 1)
@@ -288,6 +304,51 @@ static void	print_args(t_code *new)
 	ft_printf("////////////////////////////////////\n\n");
 }
 
+static void	del_command(t_code **new)
+{
+	if ((*new)->label)
+		ft_strdel(&(*new)->label);
+	ft_strdel(&(*new)->command);
+	if ((*new)->arg1)
+	{
+		if ((*new)->arg1->label)
+			ft_strdel(&(*new)->arg1->label);
+		free((*new)->arg1);
+	}
+	if ((*new)->arg2)
+	{
+		if ((*new)->arg2->label)
+			ft_strdel(&(*new)->arg2->label);
+		free((*new)->arg2);
+	}
+	if ((*new)->arg3)
+	{
+		if ((*new)->arg1->label)
+			ft_strdel(&(*new)->arg3->label);
+		free((*new)->arg3);
+	}
+	free(*new);
+	*new = NULL;
+}
+
+static int	check_args(t_code *new)
+{
+	int		i;
+
+	i = new->comand_num - 1;
+	if (new->arg1->arg_type & g_op_tab[i].args[0] != new->arg1->arg_type)
+	{
+		if (new->arg1->arg_type == T_REG)
+			return (ERR_INVALID_0_PAR_T_REG);
+		else if (new->arg1->arg_type == T_DIR)
+			return (ERR_INVALID_0_PAR_T_DIR);
+		return (ERR_INVALID_0_PAR_T_IND);
+	}
+	if (new->arg1->arg_type == T_DIR && new->arg1->)
+
+
+}
+
 static int	new_command(char **comm, char **label, t_code **new, char *str)
 {
 	int	command_num;
@@ -297,15 +358,15 @@ static int	new_command(char **comm, char **label, t_code **new, char *str)
 	if (!(*new = (t_code *)malloc(sizeof(t_code))))
 		return (new_command_error(comm, label, ERR_MALLOC));
 	(*new)->command = *comm;
-	(*new)->line = g_count;
 	(*new)->comand_num = command_num;
 	(*new)->label = *label;
 	(*new)->next = NULL;
 	g_x += ft_strlen(*comm);
-	if ((command_num = parse_args(str, *new)) != 1)
+	if ((command_num = parse_args(str, *new)) != 1 ||
+		(command_num = check_args(*new)) != 1)
 	{
-		free(new);
-		new_command_error(comm, label, command_num);
+		del_command(new);
+		return (command_num);
 	}
 	print_args(*new);
 
@@ -314,10 +375,10 @@ static int	new_command(char **comm, char **label, t_code **new, char *str)
 	return (1);
 }
 
-static void	parse_command(char **str/*, t_code **code*/, char **label, int fd)
+static void	parse_command(char **str, char **label, int fd)
 {
-	int			i;
-	char		*command;
+	int		i;
+	char	*command;
 	t_code	*new;
 
 	if ((skip_spaces(*str)) == -1)
@@ -325,25 +386,16 @@ static void	parse_command(char **str/*, t_code **code*/, char **label, int fd)
 		ft_strdel(str);
 		skip_empty(fd, str);
 	}
-	i = g_x;
+	i = (int)g_x;
 	while ((*str)[i] && (*str)[i] != ' ' && (*str)[i] != '\t')
 		++i;
-	command = ft_strsub(*str, g_x, i - g_x);
+	command = ft_strsub(*str, (int)g_x, i - g_x);
 	if ((i = new_command(&command, label, &new, *str)) != 1)
 	{
 		ft_strdel(str);
 ////	free code and close fd
 ////	error(i);
 	}
-//	parse_command_args(str, new);
-//	g_x += i - g_x;
-//	if ((skip_spaces(*str)) == -1)
-//	{
-//		ft_strdel(str);
-//		ft_strdel(command);
-//		error(ERR_NO_COMMAND_ARGS);
-//	}
-//	ft_printf("[%s]  [%s]\n", command, *str + g_x);
 }
 
 void		parse_code(int fd/*, t_code **code*/)
@@ -354,10 +406,12 @@ void		parse_code(int fd/*, t_code **code*/)
 	skip_empty(fd, &str);
 //	if (!str)
 //		error(ERR_NO_CODE);
+//	ft_printf("%hx\n", -8);
+//	ft_printf("%hi\n", 0b1000000000000000);
 	while (str && *str)
 	{
 		label = parse_label(str);
-		parse_command(&str, /*code, */&label, fd);
+		parse_command(&str, &label, fd);
 //		ft_printf("{%i}[%s] -> %s\n", g_x, str + g_x, label);
 		////parser
 		ft_strdel(&str);
