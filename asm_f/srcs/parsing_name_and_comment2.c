@@ -11,6 +11,8 @@
 /* ************************************************************************** */
 
 #include "asm.h"
+//TODO:
+#include <stdio.h>
 
 static size_t g_row;
 
@@ -126,15 +128,16 @@ char 	*retrieve_comment(int fd)
 	t_list	*head;
 
 	head = NULL;
+	out = NULL;
 	skip_whitespaces(fd, &line);
 	check_the_name(&line);
 	detect_the_beginning(&line);
 	fetch_the_name(&line, fd, g_row, &head);
-	out = ft_lsttostr(head);
-	ft_printf("length = %d\n", ft_strlen(out));
+	str_from_lsts(head, &out);
+	printf("length = %ld\n", ft_strlen(out));
 	if (ft_strlen(out) > COMMENT_LENGTH)
 		error_asm(LONG_CHAMP_NAME, 0, NULL);
-	ft_printf("out = %s\n", out);
+	printf("out = %s\n", out);
 	return (out);
 
 }

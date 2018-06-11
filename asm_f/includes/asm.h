@@ -25,6 +25,8 @@ void	error_asm(int err_num, size_t x, char **code);
 void	fetch_the_name(char **line, int fd, size_t row, t_list **head);
 char	*retrieve_comment(int fd);
 void	skip_whitespaces(int fd, char **line);
+ssize_t	str_from_lsts(t_list *tmp, char **line);
+
 
 size_t	g_count;
 
