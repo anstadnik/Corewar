@@ -6,7 +6,7 @@
 /*   By: bcherkas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/08 12:57:08 by bcherkas          #+#    #+#             */
-/*   Updated: 2018/06/08 13:33:52 by bcherkas         ###   ########.fr       */
+/*   Updated: 2018/06/12 20:58:45 by bcherkas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,15 @@ static void	output_sd(t_info *inf, unsigned char *map)
 	}
 }
 
+void		output_v(t_info *inf, int cycles)
+{
+	int		flag;
+
+	flag = inf->args[FLAG_V];
+	if ((flag & 2) == 2)
+		ft_printf("It is now cycle %d\n", cycles);
+}
+
 void		output_binary(t_info *inf)
 {
 	unsigned char	map[MEM_SIZE];
@@ -74,25 +83,16 @@ void		output_binary(t_info *inf)
 	write(1, "\n", 1);
 }
 
-void		output_v(t_info *inf, int cycles)
-{
-	int		flag;
-
-	flag = inf->args[FLAG_V];
-	if ((flag & 2) == 2)
-		ft_printf("CYCLE %d\n", cycles);
-}
-
-void		output_text(t_info *inf, int iterations)
+void		output_text(t_info *inf, int cycles)
 {
 	char		*str;
 
 	str = NULL;
 	if (inf->args[FLAG_V] > 0)
-		output_v(inf, iterations);
+		output_v(inf, cycles);
 	if (inf->args[FLAG_B] > 0)
 		output_binary(inf);
-	if (inf->args[FLAG_S] > 0 && iterations % inf->args[FLAG_S] == 0)
+	if (inf->args[FLAG_S] > 0 && cycles + 1 % inf->args[FLAG_S] == 0)
 	{
 		output_sd(inf, inf->map);
 		if (get_next_line(0, &str) > 0)
@@ -103,7 +103,7 @@ void		output_text(t_info *inf, int iterations)
 			exit(0);
 		}
 	}
-	if (inf->args[FLAG_D] > 0 && iterations % inf->args[FLAG_D] == 0)
+	if (inf->args[FLAG_D] > 0 && (cycles + 1) % inf->args[FLAG_D] == 0)
 	{
 		output_sd(inf, inf->map);
 		ft_lstdel(&(inf->stack), free);

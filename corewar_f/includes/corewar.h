@@ -6,7 +6,7 @@
 /*   By: bcherkas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 13:51:01 by bcherkas          #+#    #+#             */
-/*   Updated: 2018/06/09 17:46:57 by astadnik         ###   ########.fr       */
+/*   Updated: 2018/06/12 20:44:41 by bcherkas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@
 typedef	char		t_arg_type;
 
 # define T_REG					1
-# define T_DIR					2
-# define T_IND					4
+# define T_IND					2
+# define T_DIR					4
 # define T_LAB					8
 
 # define NAME_LEN				(128)
@@ -117,15 +117,18 @@ typedef struct		s_carriage
 typedef struct		s_op
 {
 	void			(*func)();
-	int				code;
 	int				cycles;
+	int				codage[3];
+	int				cod_oct;
+	int				lab;
 }					t_op;
 
 void				get_parameters(int ac, char **av, t_info *inf);
 
 void				read_players(t_info *inf);
 
-void				main_cycle(t_info *inf, unsigned char *map);
+void				main_cycle(t_info *inf);
+void				check_lives(t_info *inf);
 
 void				new_carriage(t_list **add_pointer, t_list *lst);
 int					get_args_flag(int *args, int flag);
@@ -136,34 +139,48 @@ short int			get_short(unsigned char *map, int pc);
 int					get_reg(unsigned char *map, int pc);
 int					get_dir(unsigned char *map, int pc, int len);
 int					get_ind(unsigned char *map, int pc);
-void				get_args(unsigned char *map, int start, int *args,
-		int *codage);
 
+int					*get_args(unsigned char *map, int st, int *args,
+						int label_s);
+int					*get_codage(unsigned char code);
 //
 
-void				cor_add(unsigned char *map, t_carriage *carry);
-void				cor_sub(unsigned char *map, t_carriage *carry);
-void				cor_and(unsigned char *map, t_carriage *carry);
-void				cor_or(unsigned char *map, t_carriage *carry);
-void				cor_xor(unsigned char *map, t_carriage *carry);
+void				cor_add(unsigned char *map, t_carriage *carry,
+						int *codage, int *args);
+void				cor_sub(unsigned char *map, t_carriage *carry,
+						int *codage, int *args);
+void				cor_and(unsigned char *map, t_carriage *carry,
+						int *codage, int *args);
+void				cor_or(unsigned char *map, t_carriage *carry,
+						int *codage, int *args);
+void				cor_xor(unsigned char *map, t_carriage *carry,
+						int *codage, int *args);
 //
 void				cor_zjmp(unsigned char *map, t_carriage *carry);
 //
 void				cor_fork(unsigned char *map, t_carriage *carry);
 //
 void				cor_lfork(unsigned char *map, t_carriage *carry);
-void				cor_aff(unsigned char *map, t_carriage *carry);
+void				cor_aff(unsigned char *map, t_carriage *carry,
+						int *codage, int *args);
 //
 void				cor_live(unsigned char *map, t_carriage *carry);
 //
-void				cor_st(unsigned char *map, t_carriage *carry);
-void				cor_sti(unsigned char *map, t_carriage *carry);
-void				cor_ld(unsigned char *map, t_carriage *carry);
-void				cor_ldi(unsigned char *map, t_carriage *carry);
-void				cor_lld(unsigned char *map, t_carriage *carry);
-void				cor_lldi(unsigned char *map, t_carriage *carry);
+void				cor_st(unsigned char *map, t_carriage *carry,
+						int *codage, int *args);
+void				cor_sti(unsigned char *map, t_carriage *carry,
+						int *codage, int *args);
+void				cor_ld(unsigned char *map, t_carriage *carry,
+						int *codage, int *args);
+void				cor_ldi(unsigned char *map, t_carriage *carry,
+						int *codage, int *args);
+void				cor_lld(unsigned char *map, t_carriage *carry,
+						int *codage, int *args);
+void				cor_lldi(unsigned char *map, t_carriage *carry,
+						int *codage, int *args);
 
 void				output_text(t_info *inf, int iterations);
+void				print_v_16(unsigned char *map, int start, int end);
 
 int					errmsg(char *str);
 

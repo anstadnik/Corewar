@@ -6,18 +6,14 @@
 /*   By: astadnik <astadnik@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/09 17:16:57 by astadnik          #+#    #+#             */
-/*   Updated: 2018/06/09 17:44:35 by astadnik         ###   ########.fr       */
+/*   Updated: 2018/06/12 20:53:27 by bcherkas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-void	cor_st(unsigned char *map, t_carriage *carry)
+void	cor_st(unsigned char *map, t_carriage *carry, int *codage, int *args)
 {
-	int	codage[3];
-	int	args[3];
-
-	get_args(map, carry->pc + 1, args, codage);
 	if (codage[1] == 1)
 		carry->reg[args[1]] = carry->reg[args[0]];
 	if (codage[1] == 2)
@@ -29,30 +25,16 @@ void	cor_st(unsigned char *map, t_carriage *carry)
 		errmsg("Wrong codage");
 }
 
-void	cor_sti(unsigned char *map, t_carriage *carry)
+void	cor_sti(unsigned char *map, t_carriage *carry, int *codage, int *args)
 {
-	int	codage[3];
-	int	args[3];
-	int	val1;
-	int	val2;
+	t_magic	mgc;
+	int		start;
 
-	get_args(map, carry->pc + 1, args, codage);
-	val1 = 0;
-	val2 = 0;// Silence errors, change later
-	if (codage[1] == 1)
-		val1 = carry->reg[args[1]];
-	else if (codage[1] == 2)
-		val1 = get_ind(map, carry->pc + args[1] % IDX_MOD);
-	else if (codage[1] == 4)
-		val1 = args[1];
-	else
-		errmsg("Wrong codage");
-	if (codage[2] == 1)
-		val2 = carry->reg[args[2]];
-	else if (codage[2] == 4)
-		val2 = args[2];
-	else
-		errmsg("Wrong codage");
-	map[(carry->pc + (val1 + val2) % IDX_MOD) % MEM_SIZE] =
-		(unsigned char)carry->reg[args[0]];
+	if (codage[1] == T_REG)
+		args[1] = carry->reg[args[1]];
+	if (codage[2] == T_REG)
+		args[2] = carry->reg[args[2]];
+	mgc.magic = (unsigned int)carry->reg[args[0]];
+	start = (carry->pc + (args[1] + args[2]) % IDX_MOD) % MEM_SIZE;
+	ft_memcpy(mgc.arr, map + start, 4);
 }

@@ -6,7 +6,7 @@
 /*   By: bcherkas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/08 12:08:16 by bcherkas          #+#    #+#             */
-/*   Updated: 2018/06/09 16:31:24 by astadnik         ###   ########.fr       */
+/*   Updated: 2018/06/12 20:20:30 by bcherkas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ int			get_int(unsigned char *map, int pc)
 	ret = 0;
 	while (iter < 4)
 	{
-		i = map[(pc + i) % MEM_SIZE];
-		ret += i << (8 * 3 - i);
+		i = map[(pc + iter) % MEM_SIZE];
+		ret += i << (8 * 3 - iter);
 		iter++;
 	}
 	return (ret);
@@ -68,15 +68,10 @@ int			get_dir(unsigned char *map, int pc, int len)
 
 int			get_reg(unsigned char *map, int pc)
 {
-	// Maybe it'd be more useful to return pointer to it?
-	// Anyhow it's too late. Maybe we'll change it if we will rewrite project
 	int		ret;
 
 	ret = map[pc];
 	if (ret < 1 || ret > 16)
-	{
-		new_carriage(NULL, NULL);
-		errmsg("Wrong REG argument");
-	}
+		return (-1);
 	return (ret - 1);
 }

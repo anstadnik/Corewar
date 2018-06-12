@@ -6,19 +6,16 @@
 /*   By: astadnik <astadnik@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/09 11:54:36 by astadnik          #+#    #+#             */
-/*   Updated: 2018/06/09 16:45:37 by astadnik         ###   ########.fr       */
+/*   Updated: 2018/06/12 19:15:13 by bcherkas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-void	cor_ld(unsigned char *map, t_carriage *carry)
+void	cor_ld(unsigned char *map, t_carriage *carry, int *codage, int *args)
 {
-	int	codage[3];
-	int	args[3];
 	int	val;
 
-	get_args(map, carry->pc + 1, args, codage);
 	if (codage[0] == 4)
 		val = args[0];
 	if (codage[0] == 2)
@@ -28,14 +25,11 @@ void	cor_ld(unsigned char *map, t_carriage *carry)
 	carry->carry = val ? 0 : 1;
 }
 
-void	cor_ldi(unsigned char *map, t_carriage *carry)
+void	cor_ldi(unsigned char *map, t_carriage *carry, int *codage, int *args)
 {
-	int	codage[3];
-	int	args[3];
 	int	val1;
 	int	val2;
 
-	get_args(map, carry->pc + 1, args, codage);
 	val1 = 0;
 	val2 = 0;// Silence errors, change later
 	if (codage[0] == 1)
@@ -55,13 +49,10 @@ void	cor_ldi(unsigned char *map, t_carriage *carry)
 	carry->reg[args[2]] = get_ind(map, (val1 + val2) % IDX_MOD + carry->pc);
 }
 
-void	cor_lld(unsigned char *map, t_carriage *carry)
+void	cor_lld(unsigned char *map, t_carriage *carry, int *codage, int *args)
 {
-	int	codage[3];
-	int	args[3];
 	int	val;
 
-	get_args(map, carry->pc + 1, args, codage);
 	if (codage[0] == 4)
 		val = args[0];
 	if (codage[0] == 2)
@@ -72,14 +63,11 @@ void	cor_lld(unsigned char *map, t_carriage *carry)
 }
 
 // Check if I should remove both IDX_MODES, or only one
-void	cor_lldi(unsigned char *map, t_carriage *carry)
+void	cor_lldi(unsigned char *map, t_carriage *carry, int *codage, int *args)
 {
-	int	codage[3];
-	int	args[3];
 	int	val1;
 	int	val2;
 
-	get_args(map, carry->pc + 1, args, codage);
 	val1 = 0;
 	val2 = 0;// Silence errors, change later
 	if (codage[0] == 1)

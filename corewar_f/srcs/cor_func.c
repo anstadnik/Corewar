@@ -6,25 +6,24 @@
 /*   By: bcherkas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/08 15:11:22 by bcherkas          #+#    #+#             */
-/*   Updated: 2018/06/09 11:50:18 by astadnik         ###   ########.fr       */
+/*   Updated: 2018/06/12 19:39:59 by bcherkas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "corewar.h"
 
-void	cor_aff(unsigned char *map, t_carriage *carry)
+void	cor_aff(unsigned char *map, t_carriage *carry, int *codage, int *args)
 {
-	int		point;
 	int		flag;
 	
+	if (map && codage)
+		;
 	flag = get_args_flag(NULL, FLAG_A);
-	point = get_reg(map, carry->pc + 2);
 	if (flag == 1)
-		ft_printf("%c\n", map[point] % 256);
+		ft_printf("%c\n", args[0] % 256);
 	else if (flag == 2)
-		ft_printf("%#8.6x\n", map[point]);
+		ft_printf("%#8.6x\n", args[0]);
 	carry->pc = (carry->pc + 3) % MEM_SIZE;
-	carry->cycles_left--;
 }
 
 void	cor_zjmp(unsigned char *map, t_carriage *carry)
@@ -34,9 +33,7 @@ void	cor_zjmp(unsigned char *map, t_carriage *carry)
 	if (carry->carry == 0)
 		return ;
 	i = get_dir(map, carry->pc + 1, 2) % IDX_MOD;
-//	ft_printf("OLD: %d\n", carry->pc);
 	carry->pc = (MEM_SIZE + carry->pc + i) % MEM_SIZE;
-//	ft_printf("NEW: %d\n", carry->pc);
 }
 
 void	cor_live(unsigned char *map, t_carriage *carry)
@@ -57,4 +54,5 @@ void	cor_live(unsigned char *map, t_carriage *carry)
 		if ((flag & 1) == 1)
 			ft_printf("Player \"%s\" with number %d is alive!\n", player->prog_name, player_number);
 	}
+	carry->pc = (carry->pc + 5) % MEM_SIZE;
 }

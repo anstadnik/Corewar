@@ -6,7 +6,7 @@
 /*   By: bcherkas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 18:11:13 by bcherkas          #+#    #+#             */
-/*   Updated: 2018/06/07 19:30:58 by bcherkas         ###   ########.fr       */
+/*   Updated: 2018/06/12 19:44:41 by bcherkas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,7 @@ void	cpy_to_map(t_info *inf, size_t size, char *str, int player)
 
 	cpy_start = (MEM_SIZE / inf->players_amount) * player;
 	ft_memcpy(inf->map + cpy_start, str, size);
-//	print_info(cpy_start, str, size);
 }
-
-/*
- * Add beautiful output
- */
 
 void	check_file(int fd, t_header *head, t_info *inf, int player)
 {

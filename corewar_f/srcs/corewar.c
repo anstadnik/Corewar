@@ -6,10 +6,7 @@
 /*   By: bcherkas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 13:59:51 by bcherkas          #+#    #+#             */
-/*   Updated: 2018/06/09 11:48:18 by astadnik         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
+/*   Updated: 2018/06/12 17:29:22 by bcherkas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +75,7 @@ void	init_map(t_info *inf)
 	new_carriage(&(inf->stack), NULL);
 	get_args_flag(inf->args, 0);
 	get_player_info(inf->head, 0);
-
+	ft_bzero(inf->players, sizeof(inf->players));
 }
 
 int		main(int argc, char **argv)
@@ -92,6 +89,6 @@ int		main(int argc, char **argv)
 	read_players(&inf);
 	init_map(&inf);
 	//print_stack(inf.stack);
-	main_cycle(&inf, inf.map);
+	main_cycle(&inf);
 	ft_lstdel(&(inf.stack), free);
 }

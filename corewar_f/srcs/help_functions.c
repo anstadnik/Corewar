@@ -6,7 +6,7 @@
 /*   By: bcherkas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/08 18:26:29 by bcherkas          #+#    #+#             */
-/*   Updated: 2018/06/08 18:36:26 by bcherkas         ###   ########.fr       */
+/*   Updated: 2018/06/12 20:41:22 by bcherkas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,4 +51,22 @@ t_header	*get_player_info(t_header *arr, int player)
 	if (player > 3 || player < 0)
 		return (NULL);
 	return (&(players_arr[player]));
+}
+
+void		print_v_16(unsigned char *map, int start, int end)
+{
+	if (start && end)
+		ft_printf("ADV %d (%#6.4x -> %#6.4x)", end - start + 1, start, end + 1);
+	else if (start == 0 && end)
+		ft_printf("ADV %d (0x0000 -> %#6.4x)", end - start + 1, end + 1);
+	else if (end == 0 && start)
+		ft_printf("ADV %d (%#6.4x -> 0x0000)", end - start + 1, start);
+	if (end < start)
+		end = MEM_SIZE + end;
+	while (start < end)
+	{
+		ft_printf("%3.2hhx", map[start % MEM_SIZE]);
+		start++;
+	}
+	ft_printf("%3.2hhx\n", map[start % MEM_SIZE]);
 }
