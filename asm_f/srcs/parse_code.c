@@ -6,11 +6,38 @@
 /*   By: byermak <byermak@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 17:06:00 by byermak           #+#    #+#             */
-/*   Updated: 2018/06/10 19:33:16 by byermak          ###   ########.fr       */
+/*   Updated: 2018/06/12 18:14:14 by byermak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
+
+static void	print_args(t_code *new)
+{
+	ft_printf("t:[%i] f:[%i] l:[%s] v:[%i] length:[%i]\n", new->arg1->arg_type, new->arg1->label_flag, new->arg1->label, new->arg1->value, new->arg1->length);
+	if (new->arg2)
+		ft_printf("t:[%i] f:[%i] l:[%s] v:[%i] length:[%i]\n", new->arg2->arg_type, new->arg2->label_flag, new->arg2->label, new->arg2->value, new->arg2->length);
+	if (new->arg3)
+		ft_printf("t:[%i] f:[%i] l:[%s] v:[%i] length:[%i]\n", new->arg3->arg_type, new->arg3->label_flag, new->arg3->label, new->arg3->value, new->arg3->length);
+	ft_printf("////////////////////////////////////\n\n");
+}
+
+static void	print_comands()
+{
+	t_code	*tmp;
+
+	tmp = g_code;
+	while (tmp)
+	{
+		ft_printf("____________________________________\n");
+		ft_printf("name: %s[%i]\n", tmp->command, tmp->opcode);
+		ft_printf("index: %i\n", tmp->index);
+		ft_printf("label: %s\n", tmp->label);
+		ft_printf("codage: %x\n\n", tmp->codage);
+		print_args(tmp);
+		tmp = tmp->next;
+	}
+}
 
 static unsigned long	count(int n)
 {
@@ -116,67 +143,6 @@ static int	check_command(char *command)
 	return (0);
 }
 
-static int	check_third_arg(t_code *new)
-{
-	int		i;
-
-	i = new->comand_num - 1;
-	if (!new->arg3 && g_op_tab[i].args_num > 2)
-		return (ERR_INVALID_NUMBER_OF_ARGS);
-	if ((new->arg3->arg_type & g_op_tab[i].args[2]) != new->arg3->arg_type)
-	{
-		if (new->arg3->arg_type == T_REG)
-			return (ERR_INVALID_2_PAR_T_REG);
-		else if (new->arg3->arg_type == T_DIR)
-			return (ERR_INVALID_2_PAR_T_DIR);
-		return (ERR_INVALID_2_PAR_T_IND);
-	}
-	if (new->arg3->arg_type == T_DIR && g_op_tab[i].label_size == 2)
-		if (new->arg3->value > USHRT_MAX)
-			return (ERR_INVALID_T_DIR);
-	return (1);
-}
-
-static int	check_second_arg(t_code *new)
-{
-	int		i;
-
-	i = new->comand_num - 1;
-	if (!new->arg2 && g_op_tab[i].args_num > 1)
-		return (ERR_INVALID_NUMBER_OF_ARGS);
-	if ((new->arg2->arg_type & g_op_tab[i].args[1]) != new->arg2->arg_type)
-	{
-		if (new->arg2->arg_type == T_REG)
-			return (ERR_INVALID_1_PAR_T_REG);
-		else if (new->arg2->arg_type == T_DIR)
-			return (ERR_INVALID_1_PAR_T_DIR);
-		return (ERR_INVALID_1_PAR_T_IND);
-	}
-	if (new->arg2->arg_type == T_DIR && g_op_tab[i].label_size == 2)
-		if (new->arg2->value > USHRT_MAX)
-			return (ERR_INVALID_T_DIR);
-	return (1);
-}
-
-static int	check_first_arg(t_code *new)
-{
-	int		i;
-
-	i = new->comand_num - 1;
-	if ((new->arg1->arg_type & g_op_tab[i].args[0]) != new->arg1->arg_type)
-	{
-		if (new->arg1->arg_type == T_REG)
-			return (ERR_INVALID_0_PAR_T_REG);
-		else if (new->arg1->arg_type == T_DIR)
-			return (ERR_INVALID_0_PAR_T_DIR);
-		return (ERR_INVALID_0_PAR_T_IND);
-	}
-	if (new->arg1->arg_type == T_DIR && g_op_tab[i].label_size == 2)
-		if (new->arg1->value > USHRT_MAX)
-			return (ERR_INVALID_T_DIR);
-	return (1);
-}
-
 static t_arg	*new_arg(char arg_code, char label_flag, int value, char *label)
 {
 	t_arg	*new;
@@ -215,6 +181,7 @@ static int	parse_t_reg(char **str, t_arg **arg)
 
 	if (!(*arg = new_arg(REG_CODE, 0, value, NULL)))
 		return (ERR_MALLOC);
+	(*arg)->length = 1;
 	return (1);
 }
 
@@ -251,7 +218,7 @@ static int	parse_t_ind(char **str, t_arg **arg)
 
 	value = ft_atoi(*str);
 	label = NULL;
-	label_flag = (*(*str + 1) == LABEL_CHAR) ? (char)1 : (char)0;
+	label_flag = (**str == LABEL_CHAR) ? (char)1 : (char)0;
 	if ((!label_flag && count(value) < ft_strlen(*str)) || value > USHRT_MAX)
 	{
 		ft_strdel(str);
@@ -264,6 +231,7 @@ static int	parse_t_ind(char **str, t_arg **arg)
 	ft_strdel(str);
 	if (!(*arg = new_arg(IND_CODE, label_flag, value, label)))
 		return (ERR_MALLOC);
+	(*arg)->length = 2;
 	return (1);
 }
 
@@ -324,6 +292,73 @@ static int	parse_second_arg(char *str, t_arg **arg)
 	return (1);
 }
 
+static int	check_third_arg(t_code *new)
+{
+	int		i;
+
+	i = new->opcode - 1;
+	if (!new->arg3 && g_op_tab[i].args_num > 2)
+		return (ERR_INVALID_NUMBER_OF_ARGS);
+	if ((new->arg3->arg_type & g_op_tab[i].args[2]) != new->arg3->arg_type)
+	{
+		if (new->arg3->arg_type == T_REG)
+			return (ERR_INVALID_2_PAR_T_REG);
+		else if (new->arg3->arg_type == T_DIR)
+			return (ERR_INVALID_2_PAR_T_DIR);
+		return (ERR_INVALID_2_PAR_T_IND);
+	}
+	if (new->arg3->arg_type == T_DIR)
+		new->arg3->length = g_op_tab[i].label_size;
+	if (new->arg3->arg_type == T_DIR && new->arg3->length == 2)
+		if (new->arg3->value > USHRT_MAX)
+			return (ERR_INVALID_T_DIR);
+	return (1);
+}
+
+static int	check_second_arg(t_code *new)
+{
+	int		i;
+
+	i = new->opcode - 1;
+	if (!new->arg2 && g_op_tab[i].args_num > 1)
+		return (ERR_INVALID_NUMBER_OF_ARGS);
+	if ((new->arg2->arg_type & g_op_tab[i].args[1]) != new->arg2->arg_type)
+	{
+		if (new->arg2->arg_type == T_REG)
+			return (ERR_INVALID_1_PAR_T_REG);
+		else if (new->arg2->arg_type == T_DIR)
+			return (ERR_INVALID_1_PAR_T_DIR);
+		return (ERR_INVALID_1_PAR_T_IND);
+	}
+	if (new->arg2->arg_type == T_DIR)
+		new->arg2->length = g_op_tab[i].label_size;
+	if (new->arg2->arg_type == T_DIR && new->arg2->length == 2)
+		if (new->arg2->value > USHRT_MAX)
+			return (ERR_INVALID_T_DIR);
+	return (1);
+}
+
+static int	check_first_arg(t_code *new)
+{
+	int		i;
+
+	i = new->opcode - 1;
+	if ((new->arg1->arg_type & g_op_tab[i].args[0]) != new->arg1->arg_type)
+	{
+		if (new->arg1->arg_type == T_REG)
+			return (ERR_INVALID_0_PAR_T_REG);
+		else if (new->arg1->arg_type == T_DIR)
+			return (ERR_INVALID_0_PAR_T_DIR);
+		return (ERR_INVALID_0_PAR_T_IND);
+	}
+	if (new->arg1->arg_type == T_DIR)
+		new->arg1->length = g_op_tab[i].label_size;
+	if (new->arg1->arg_type == T_DIR && new->arg1->length == 2)
+		if (new->arg1->value > USHRT_MAX)
+			return (ERR_INVALID_T_DIR);
+	return (1);
+}
+
 static int	parse_args(char	*str, t_code *new)
 {
 	int		i;
@@ -351,32 +386,6 @@ static int	parse_args(char	*str, t_code *new)
 			return (ERR_ENDLINE);
 	}
 	return (1);
-}
-
-static void	print_args(t_code *new)
-{
-	ft_printf("t:[%i] f:[%i] l:[%s] v:[%i]\n", new->arg1->arg_type, new->arg1->label_flag, new->arg1->label, new->arg1->value);
-	if (new->arg2)
-		ft_printf("t:[%i] f:[%i] l:[%s] v:[%i]\n", new->arg2->arg_type, new->arg2->label_flag, new->arg2->label, new->arg2->value);
-	if (new->arg3)
-		ft_printf("t:[%i] f:[%i] l:[%s] v:[%i]\n", new->arg3->arg_type, new->arg3->label_flag, new->arg3->label, new->arg3->value);
-
-	ft_printf("////////////////////////////////////\n\n");
-}
-
-static void	print_comands()
-{
-	t_code	*tmp;
-
-	tmp = g_code;
-	while (tmp)
-	{
-		ft_printf("____________________________________\n");
-		ft_printf("name: %s[%i]\n", tmp->command, tmp->comand_num);
-		ft_printf("label: %s\n\n", tmp->label);
-		print_args(tmp);
-		tmp = tmp->next;
-	}
 }
 
 static void	del_command(t_code **new)
@@ -408,17 +417,33 @@ static void	del_command(t_code **new)
 
 static void	push_back(t_code *new)
 {
-	t_code *tmp;
+	t_code	*tmp;
 
 	if (!g_code)
 	{
 		g_code = new;
+		g_code->index = 0;
 		return ;
 	}
 	tmp = g_code;
 	while (tmp->next)
 		tmp = tmp->next;
+	new->index = tmp->index + 1 + ((tmp->codage) ? 1 : 0) + tmp->arg1->length +
+		((tmp->arg2) ? tmp->arg2->length : 0) +
+		((tmp->arg3) ? tmp->arg3->length : 0);
 	tmp->next = new;
+}
+
+static char count_codage(t_code *new)
+{
+	char	codage;
+
+	codage = 0;
+	if (g_op_tab[new->opcode - 1].codage_flag)
+		codage = (new->arg1->arg_type << 6) |
+			((new->arg2) ? new->arg2->arg_code : 0) << 4 |
+			((new->arg3) ? new->arg3->arg_code : 0) << 2;
+	return (codage);
 }
 
 static int	new_command(char **comm, char **label, t_code **new, char *str)
@@ -430,7 +455,7 @@ static int	new_command(char **comm, char **label, t_code **new, char *str)
 	if (!(*new = (t_code *)malloc(sizeof(t_code))))
 		return (new_command_error(comm, label, ERR_MALLOC));
 	(*new)->command = *comm;
-	(*new)->comand_num = command_num;
+	(*new)->opcode = command_num;
 	(*new)->label = *label;
 	(*new)->next = NULL;
 	g_x += ft_strlen(*comm);
@@ -439,6 +464,7 @@ static int	new_command(char **comm, char **label, t_code **new, char *str)
 		del_command(new);
 		return (command_num);
 	}
+	(*new)->codage = count_codage(*new);
 	push_back(*new);
 	return (1);
 }
@@ -466,25 +492,74 @@ static void	parse_command(char **str, char **label, int fd)
 	}
 }
 
-void		parse_code(int fd/*, t_code **code*/)
+static int	label_error(char *label)
+{
+	////Wrong label error
+	return (ERR_WRONG_LABEL);
+}
+
+static int	find_label(char *label)
+{
+	t_code	*tmp;
+
+	tmp = g_code;
+	while (tmp)
+	{
+		if (ft_strequ(label, tmp->label))
+			return (tmp->index);
+		tmp = tmp->next;
+	}
+	return (-1);
+}
+
+static int	check_labels(t_code *tmp)
+{
+	int		label_index;
+
+	tmp = g_code;
+	while (tmp)
+	{
+		if (tmp->arg1->label_flag)
+		{
+			if ((label_index = find_label(tmp->arg1->label)) == -1)
+				return (label_error(tmp->arg1->label));
+			tmp->arg1->value = (unsigned char)label_index - tmp->index;
+		}
+		if (tmp->arg2 && tmp->arg2->label_flag)
+		{
+			if ((label_index = find_label(tmp->arg2->label)) == -1)
+				return (label_error(tmp->arg2->label));
+			tmp->arg2->value = (unsigned char)label_index - tmp->index;
+		}
+		if (tmp->arg3 && tmp->arg3->label_flag)
+		{
+			if ((label_index = find_label(tmp->arg3->label)) == -1)
+				return (label_error(tmp->arg3->label));
+			tmp->arg3->value = (unsigned char)label_index - tmp->index;
+		}
+		tmp = tmp->next;
+	}
+}
+
+void		parse_code(int fd)
 {
 	char	*str;
 	char	*label;
+	t_code	*tmp;
+	int		ret;
 
 	skip_empty(fd, &str);
 //	if (!str)
 //		error(ERR_NO_CODE);
-//	ft_printf("%hx\n", -8);
-//	ft_printf("%hi\n", 0b1000000000000000);
 	while (str && *str)
 	{
 		label = parse_label(str);
 		parse_command(&str, &label, fd);
-//		ft_printf("{%i}[%s] -> %s\n", g_x, str + g_x, label);
-		////parser
 		ft_strdel(&str);
-//		ft_strdel(&label);
 		skip_empty(fd, &str);
 	}
+	if ((ret = check_labels(tmp)))
+		;//error(ret)
+////	check labels
 	print_comands();
 }
