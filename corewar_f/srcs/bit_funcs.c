@@ -46,8 +46,11 @@ int		*get_args(unsigned char *map, int st, int *codage, int label_s)
 	i = 0;
 	while (i < 3)
 	{
-		if (codage[i] == T_REG && (args[i] = get_reg(map, st)) < 0)
-			return (NULL);
+		if (codage[i] == T_REG)
+		{
+			if ((args[i] = get_reg(map, st)) < 0)
+				return (NULL);
+		}
 		else if (codage[i] == T_IND)
 			args[i] = get_ind(map, st);
 		else if (codage[i] == T_DIR)

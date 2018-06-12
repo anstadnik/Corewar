@@ -78,7 +78,7 @@ void	function_trigger(t_carriage *carry, unsigned char *map, int func_num)
 		{
 			carry->pc = (carry->pc + 2) % MEM_SIZE;
 			if ((get_args_flag(NULL, FLAG_V) & 16) == 16)
-				print_v_16(map, old_pc, carry->pc - 1);
+				print_v_16(map, old_pc, carry->pc);
 			return ;
 		}
 		carry->func(map, carry, codage, args);
@@ -86,7 +86,7 @@ void	function_trigger(t_carriage *carry, unsigned char *map, int func_num)
 	else
 		carry->func(map, carry);
 	if ((get_args_flag(NULL, FLAG_V) & 16) == 16 && map[old_pc] != 8)
-		print_v_16(map, old_pc, carry->pc - 1);
+		print_v_16(map, old_pc, carry->pc);
 	carry->cycles_left--;
 }
 

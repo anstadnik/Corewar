@@ -14,15 +14,18 @@
 
 void	cor_st(unsigned char *map, t_carriage *carry, int *codage, int *args)
 {
-	if (codage[1] == 1)
+	t_magic	mgc;
+	int		start;
+
+	if (codage[1] == T_REG)
 		carry->reg[args[1]] = carry->reg[args[0]];
-	if (codage[1] == 2)
-		// TODO check if it writes 1 byte or all 4
-		// There must be memcpy to write 4 bytes, if i dont mistake
-		map[(carry->pc + args[1] % IDX_MOD) % MEM_SIZE] =
-			(unsigned char)carry->reg[args[0]];
 	else
-		errmsg("Wrong codage");
+	{
+		mgc.magic = (unsigned int)carry->reg[args[0]];
+		start = args[1] % IDX_MOD;
+		ft_memcpy(mgc.arr, map + start, 4);
+	}
+	carry->pc = (carry->pc + 2 + codage[0] + codage[1] + codage[2]) % IDX_MOD;
 }
 
 void	cor_sti(unsigned char *map, t_carriage *carry, int *codage, int *args)
@@ -34,7 +37,9 @@ void	cor_sti(unsigned char *map, t_carriage *carry, int *codage, int *args)
 		args[1] = carry->reg[args[1]];
 	if (codage[2] == T_REG)
 		args[2] = carry->reg[args[2]];
-	mgc.magic = (unsigned int)carry->reg[args[0]];
+	mgc.magic = (unsigned)carry->reg[args[0]];
+	swap_union_mgc(&mgc);
 	start = (carry->pc + (args[1] + args[2]) % IDX_MOD) % MEM_SIZE;
-	ft_memcpy(mgc.arr, map + start, 4);
+	ft_memcpy(map + start, mgc.arr, 4);
+	carry->pc = (carry->pc + 2 + codage[0] + codage[1] + codage[2]) % IDX_MOD;
 }

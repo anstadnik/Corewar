@@ -38,6 +38,8 @@
 # define NBR_LIVE				21
 # define MAX_CHECKS				10
 
+# define ABS(x) ((x) < 0 ? -(x) : (x))
+
 typedef	char		t_arg_type;
 
 # define T_REG					1
@@ -181,6 +183,7 @@ void				cor_lldi(unsigned char *map, t_carriage *carry,
 
 void				output_text(t_info *inf, int iterations);
 void				print_v_16(unsigned char *map, int start, int end);
+void				swap_union_mgc(t_magic *mgc);
 
 int					errmsg(char *str);
 

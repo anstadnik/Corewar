@@ -43,7 +43,7 @@ t_carriage	init_carriage(int player, int max)
 
 	j = 1;
 	tmp.carry = 0;
-	tmp.pc = (MEM_SIZE / max) * player;// Shouldn't it be affected by amount of players?
+	tmp.pc = (MEM_SIZE / max) * player;// Shouldn't it be affected by amount of players? -> Yes, and it's already affected+_+
 	tmp.map_start = tmp.pc;
 	tmp.cycles_left = 0;
 	while (j < REG_NUMBER)

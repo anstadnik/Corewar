@@ -55,18 +55,34 @@ t_header	*get_player_info(t_header *arr, int player)
 
 void		print_v_16(unsigned char *map, int start, int end)
 {
+	if (start == end)
+		return ;
 	if (start && end)
-		ft_printf("ADV %d (%#6.4x -> %#6.4x)", end - start + 1, start, end + 1);
+		ft_printf("ADV %d (%#6.4x -> %#6.4x)", ABS(end - start), start, end);
 	else if (start == 0 && end)
-		ft_printf("ADV %d (0x0000 -> %#6.4x)", end - start + 1, end + 1);
+		ft_printf("ADV %d (0x0000 -> %#6.4x)", ABS(end - start), end);
 	else if (end == 0 && start)
-		ft_printf("ADV %d (%#6.4x -> 0x0000)", end - start + 1, start);
+		ft_printf("ADV %d (%#6.4x -> 0x0000)", ABS(end - start), start);
 	if (end < start)
 		end = MEM_SIZE + end;
+	if (map)
+		;
 	while (start < end)
 	{
-		ft_printf("%3.2hhx", map[start % MEM_SIZE]);
+		ft_printf("%3.2hx", map[start % MEM_SIZE]);
 		start++;
 	}
-	ft_printf("%3.2hhx\n", map[start % MEM_SIZE]);
+	write(1, "\n", 1);
+}
+
+void		swap_union_mgc(t_magic *kek)
+{
+	char	c;
+
+	c = kek->arr[0];
+	kek->arr[0] = kek->arr[3];
+	kek->arr[3] = c;
+	c = kek->arr[1];
+	kek->arr[1] = kek->arr[2];
+	kek->arr[2] = c;
 }
