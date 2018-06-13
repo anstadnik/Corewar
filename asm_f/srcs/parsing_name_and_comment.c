@@ -6,7 +6,7 @@
 /*   By: byermak <byermak@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 15:44:00 by lburlach          #+#    #+#             */
-/*   Updated: 2018/06/13 19:38:29 by byermak          ###   ########.fr       */
+/*   Updated: 2018/06/13 19:39:10 by byermak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,7 @@ static char	*retrieve_name(int fd)
 	if (ft_strlen(out) > PROG_NAME_LENGTH)
 		error_asm(LONG_CHAMP_NAME, 0, NULL);
 	printf("out = %s\n--//--\n", out);
+	ft_lstdel(&head, free);
 	return (out);
 }
 
