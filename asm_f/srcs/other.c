@@ -1,31 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   str_from_lsts.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lburlach <lburlach@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/06/06 15:41:35 by lburlach          #+#    #+#             */
-/*   Updated: 2018/06/06 19:09:47 by lburlach         ###   ########.fr       */
+/*   Created: 2018/03/14 13:58:07 by lburlach          #+#    #+#             */
+/*   Updated: 2018/03/14 14:00:25 by lburlach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-int		main(int ac, char **av)
+ssize_t	str_from_lsts(t_list *tmp, char **line)
 {
-	header_t	magic_structure;
-	int			fd;
+	t_list			*beg;
+	size_t			i;
+	size_t			c;
 
-	if (ac == 1)
-		usage();
-	else if (ac > 2)
-		error_ac(av[ac - 1]);
-	fd = open(av[ac - 1], O_RDONLY);
-	//error if fd == -1 ?
-	parse_name_and_comment(fd, &magic_structure);
-	g_code = NULL;
-	parse_code(fd);
-	close(fd);
-	return (0);
+	c = 0;
+	beg = tmp;
+	while (beg)
+	{
+		c += beg->content_size;
+		beg = beg->next;
+	}
+	(*line) = ft_memalloc(c + 1);
+	if (*line == NULL)
+		return (-1);
+	i = 0;
+	while (tmp)
+	{
+		ft_memcpy(&(*line)[i], tmp->content, tmp->content_size);
+		i += (tmp->content_size);
+		tmp = tmp->next;
+	}
+	return (c);
 }

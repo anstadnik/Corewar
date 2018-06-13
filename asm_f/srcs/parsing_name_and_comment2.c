@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing_name_and_comment.c                         :+:      :+:    :+:   */
+/*   parsing_name_and_comment2.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lburlach <lburlach@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/06/06 15:44:00 by lburlach          #+#    #+#             */
-/*   Updated: 2018/06/09 19:53:05 by lburlach         ###   ########.fr       */
+/*   Created: 2018/06/09 16:54:00 by lburlach          #+#    #+#             */
+/*   Updated: 2018/06/09 20:16:02 by lburlach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,58 @@
 //TODO:
 #include <stdio.h>
 
-
 static size_t g_row;
+
+static	int search_the_end(char **line, size_t *row, t_list **head, size_t len)
+{
+	size_t tmp;
+
+	tmp = *row;
+	while (tmp < len)
+	{
+		if ((*line)[tmp] == '"')
+		{
+			ft_lstpushb(head, (*line + *row), tmp - *row);
+			*row += tmp - *row + 1;
+			return (1);
+		}
+		tmp++;
+	}
+	ft_lstpushb(head, (*line + *row), tmp - *row);
+	ft_lstpushb(head, "\n", 1);
+	*row += tmp;
+	return (0);
+}
+
+void	fetch_the_name(char **line, int fd, size_t row, t_list **head)
+{
+	size_t 	len;
+	size_t 	count;
+	int 	ret;
+
+	count = 0;
+	while (++count)
+	{
+		if (count > 1)
+			row = 0;
+		len = ft_strlen(*line);
+		if (search_the_end(line, &row, head, len))
+			break;
+		ft_strdel(line);
+		ret = get_next_line(fd, line);
+		if (ret == 0)
+			error_asm(UNSUF_INFO, row, line);
+		g_count++;
+	}
+	count = row;
+	while (count < len)
+	{
+		if ((*line)[count] != ' ' && (*line)[count] != '\t')
+			error_asm(WRONG_INSTR, count, line);
+		count++;
+	}
+	ft_strdel(line);
+}
 
 static void	detect_the_beginning(char **line)
 {
@@ -57,13 +107,13 @@ static void	check_the_name(char **line)
 			i++;
 			continue ;
 		}
-		else if ((*line)[i] == '.' && ft_strnstr((*line) + i, NAME_CMD_STRING,
-											ft_strlen(NAME_CMD_STRING)))
+		else if ((*line)[i] == '.' && ft_strnstr((*line) + i, COMMENT_CMD_STRING,
+												 ft_strlen(COMMENT_CMD_STRING)))
 		{
-			len = ft_strlen(NAME_CMD_STRING);
+			len = ft_strlen(COMMENT_CMD_STRING);
 			if ((*line)[i + len] != ' ' && (*line)[i + len] != '\t')
-				error_asm(WHIT_AF_TAB, i + len, line);
-			g_row = i + ft_strlen(NAME_CMD_STRING);
+				error_asm(WHIT_AF_TAB_C, i + len, line);
+			g_row = i + ft_strlen(COMMENT_CMD_STRING);
 			return ;
 		}
 		else
@@ -71,28 +121,7 @@ static void	check_the_name(char **line)
 	}
 }
 
-void	skip_whitespaces(int fd, char **line)
-{
-	size_t len;
-	size_t count;
-
-	while (get_next_line(fd, line))
-	{
-		count = 0;
-		len = ft_strlen(*line);
-		while (count < len)
-		{
-			if ((*line)[count] == ' ' || (*line)[count] == '\t')
-				count++;
-			else
-				return;
-		}
-		g_count++;
-		ft_strdel(line);
-	}
-}
-
-static char	*retrieve_name(int fd)
+char 	*retrieve_comment(int fd)
 {
 	char	*line;
 	char	*out;
@@ -106,19 +135,9 @@ static char	*retrieve_name(int fd)
 	fetch_the_name(&line, fd, g_row, &head);
 	str_from_lsts(head, &out);
 	printf("length = %ld\n", ft_strlen(out));
-	if (ft_strlen(out) > PROG_NAME_LENGTH)
+	if (ft_strlen(out) > COMMENT_LENGTH)
 		error_asm(LONG_CHAMP_NAME, 0, NULL);
-	printf("out = %s\n--//--\n", out);
+	printf("out = %s\n", out);
 	return (out);
-}
 
-void		parse_name_and_comment(int fd, header_t *magic_structure)
-{
-	ft_bzero(magic_structure->prog_name, PROG_NAME_LENGTH + 1);
-	ft_bzero(magic_structure->comment, COMMENT_LENGTH + 1);
-	ft_strcpy(magic_structure->prog_name, retrieve_name(fd));
-	ft_strcpy(magic_structure->comment, retrieve_comment(fd));
-	printf("\n\n\n");
-	printf("prog_name = %s\n", magic_structure->prog_name);
-	printf("comment = %s\n", magic_structure->comment);
 }
