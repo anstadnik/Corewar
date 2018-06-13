@@ -3,6 +3,10 @@ file(REMOVE_RECURSE
   "CMakeFiles/asm_dev.dir/asm_f/srcs/parsing_name_and_comment.c.o"
   "CMakeFiles/asm_dev.dir/asm_f/srcs/exit.c.o"
   "CMakeFiles/asm_dev.dir/asm_f/srcs/parse_code.c.o"
+  "CMakeFiles/asm_dev.dir/asm_f/srcs/parsing_name_and_comment2.c.o"
+  "CMakeFiles/asm_dev.dir/asm_f/srcs/other.c.o"
+  "CMakeFiles/asm_dev.dir/asm_f/srcs/bytecode.c.o"
+  "CMakeFiles/asm_dev.dir/asm_f/srcs/things_to_bytecode.c.o"
   "asm_dev.pdb"
   "asm_dev"
 )

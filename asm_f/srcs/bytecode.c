@@ -6,7 +6,7 @@
 /*   By: byermak <byermak@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/13 15:27:00 by byermak           #+#    #+#             */
-/*   Updated: 2018/06/13 18:53:43 by byermak          ###   ########.fr       */
+/*   Updated: 2018/06/13 19:10:19 by byermak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,39 +26,7 @@ static unsigned int	get_prog_size(void)
 	return (size);
 }
 
-static void			to_buff(char *buff, char c)
-{
-	static size_t i;
-
-	buff[i++] = c;
-}
-
-void				int_to_bytecode(char *buff, unsigned int num)
-{
-	to_buff(buff, (num >> 24));
-	to_buff(buff, (num << 8) >> 24);
-	to_buff(buff, (num << 16) >> 24);
-	to_buff(buff, (num << 24) >> 24);
-}
-
-void				short_to_bytecode(char *buff, unsigned short int num)
-{
-	to_buff(buff, (num >> 8));
-	to_buff(buff, (num << 8) >> 8);
-}
-
-void				str_to_bytecode(char *buff, char *str, int len)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-		to_buff(buff, str[i++]);
-	while (i++ < len)
-		to_buff(buff, 0);
-}
-
-void				arg_to_bytecode(char *buff, t_arg *arg)
+static void			arg_to_bytecode(char *buff, t_arg *arg)
 {
 	if (arg->length == 1)
 		to_buff(buff, (unsigned char)arg->value);
@@ -68,7 +36,7 @@ void				arg_to_bytecode(char *buff, t_arg *arg)
 		int_to_bytecode(buff, (unsigned int)arg->value);
 }
 
-void				command_to_bytecode(char *buff, t_code *command)
+static void			command_to_bytecode(char *buff, t_code *command)
 {
 	to_buff(buff, (char)command->opcode);
 	if (command->codage)
@@ -102,4 +70,5 @@ void				to_bytecode(t_header *magic, int fd)
 		tmp = tmp->next;
 	}
 	write(fd, &str, len);
+	del_code();
 }

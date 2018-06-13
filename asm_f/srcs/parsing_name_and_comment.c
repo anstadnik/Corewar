@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_name_and_comment.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lburlach <lburlach@student.unit.ua>        +#+  +:+       +#+        */
+/*   By: byermak <byermak@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 15:44:00 by lburlach          #+#    #+#             */
-/*   Updated: 2018/06/09 19:53:05 by lburlach         ###   ########.fr       */
+/*   Updated: 2018/06/13 19:38:29 by byermak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,10 +114,14 @@ static char	*retrieve_name(int fd)
 
 void		parse_name_and_comment(int fd, t_header *magic_structure)
 {
+	char	*tmp;
+
 	ft_bzero(magic_structure->prog_name, PROG_NAME_LENGTH + 1);
 	ft_bzero(magic_structure->comment, COMMENT_LENGTH + 1);
-	ft_strcpy(magic_structure->prog_name, retrieve_name(fd));
-	ft_strcpy(magic_structure->comment, retrieve_comment(fd));
+	ft_strcpy(magic_structure->prog_name, tmp = retrieve_name(fd));
+	ft_strdel(&tmp);
+	ft_strcpy(magic_structure->comment, tmp = retrieve_comment(fd));
+	ft_strdel(&tmp);
 	printf("\n\n\n");
 	printf("prog_name = %s\n", magic_structure->prog_name);
 	printf("comment = %s\n", magic_structure->comment);

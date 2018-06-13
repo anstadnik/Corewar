@@ -6,7 +6,7 @@
 /*   By: byermak <byermak@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 15:30:00 by lburlach          #+#    #+#             */
-/*   Updated: 2018/06/13 17:05:56 by byermak          ###   ########.fr       */
+/*   Updated: 2018/06/13 19:11:24 by byermak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,6 +119,11 @@ void	fetch_the_name(char **line, int fd, size_t row, t_list **head);
 char	*retrieve_comment(int fd);
 void	skip_whitespaces(int fd, char **line);
 ssize_t	str_from_lsts(t_list *tmp, char **line);
+void	del_code(void);
 void	to_bytecode(t_header *magic, int fd);
+void	to_buff(char *buff, char c);
+void	int_to_bytecode(char *buff, unsigned int num);
+void	short_to_bytecode(char *buff, unsigned short int num);
+void	str_to_bytecode(char *buff, char *str, int len);
 
 #endif

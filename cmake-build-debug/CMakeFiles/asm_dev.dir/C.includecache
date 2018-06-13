@@ -64,6 +64,10 @@ stdlib.h
 
 ../libft/str/includes/ft_str.h
 
+/Users/byermak/COREWAR/asm_f/srcs/bytecode.c
+asm.h
+/Users/byermak/COREWAR/asm_f/srcs/asm.h
+
 /Users/byermak/COREWAR/asm_f/srcs/exit.c
 asm.h
 /Users/byermak/COREWAR/asm_f/srcs/asm.h
@@ -72,11 +76,27 @@ asm.h
 asm.h
 /Users/byermak/COREWAR/asm_f/srcs/asm.h
 
+/Users/byermak/COREWAR/asm_f/srcs/other.c
+asm.h
+/Users/byermak/COREWAR/asm_f/srcs/asm.h
+
 /Users/byermak/COREWAR/asm_f/srcs/parse_code.c
 asm.h
 /Users/byermak/COREWAR/asm_f/srcs/asm.h
 
 /Users/byermak/COREWAR/asm_f/srcs/parsing_name_and_comment.c
+asm.h
+/Users/byermak/COREWAR/asm_f/srcs/asm.h
+stdio.h
+-
+
+/Users/byermak/COREWAR/asm_f/srcs/parsing_name_and_comment2.c
+asm.h
+/Users/byermak/COREWAR/asm_f/srcs/asm.h
+stdio.h
+-
+
+/Users/byermak/COREWAR/asm_f/srcs/things_to_bytecode.c
 asm.h
 /Users/byermak/COREWAR/asm_f/srcs/asm.h
 

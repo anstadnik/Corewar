@@ -136,6 +136,33 @@ libft/fast:
 	$(MAKE) -f CMakeFiles/libft.dir/build.make CMakeFiles/libft.dir/build
 .PHONY : libft/fast
 
+asm_f/srcs/bytecode.o: asm_f/srcs/bytecode.c.o
+
+.PHONY : asm_f/srcs/bytecode.o
+
+# target to build an object file
+asm_f/srcs/bytecode.c.o:
+	$(MAKE) -f CMakeFiles/asm_dev.dir/build.make CMakeFiles/asm_dev.dir/asm_f/srcs/bytecode.c.o
+.PHONY : asm_f/srcs/bytecode.c.o
+
+asm_f/srcs/bytecode.i: asm_f/srcs/bytecode.c.i
+
+.PHONY : asm_f/srcs/bytecode.i
+
+# target to preprocess a source file
+asm_f/srcs/bytecode.c.i:
+	$(MAKE) -f CMakeFiles/asm_dev.dir/build.make CMakeFiles/asm_dev.dir/asm_f/srcs/bytecode.c.i
+.PHONY : asm_f/srcs/bytecode.c.i
+
+asm_f/srcs/bytecode.s: asm_f/srcs/bytecode.c.s
+
+.PHONY : asm_f/srcs/bytecode.s
+
+# target to generate assembly for a file
+asm_f/srcs/bytecode.c.s:
+	$(MAKE) -f CMakeFiles/asm_dev.dir/build.make CMakeFiles/asm_dev.dir/asm_f/srcs/bytecode.c.s
+.PHONY : asm_f/srcs/bytecode.c.s
+
 asm_f/srcs/exit.o: asm_f/srcs/exit.c.o
 
 .PHONY : asm_f/srcs/exit.o
@@ -190,6 +217,33 @@ asm_f/srcs/main.c.s:
 	$(MAKE) -f CMakeFiles/asm_dev.dir/build.make CMakeFiles/asm_dev.dir/asm_f/srcs/main.c.s
 .PHONY : asm_f/srcs/main.c.s
 
+asm_f/srcs/other.o: asm_f/srcs/other.c.o
+
+.PHONY : asm_f/srcs/other.o
+
+# target to build an object file
+asm_f/srcs/other.c.o:
+	$(MAKE) -f CMakeFiles/asm_dev.dir/build.make CMakeFiles/asm_dev.dir/asm_f/srcs/other.c.o
+.PHONY : asm_f/srcs/other.c.o
+
+asm_f/srcs/other.i: asm_f/srcs/other.c.i
+
+.PHONY : asm_f/srcs/other.i
+
+# target to preprocess a source file
+asm_f/srcs/other.c.i:
+	$(MAKE) -f CMakeFiles/asm_dev.dir/build.make CMakeFiles/asm_dev.dir/asm_f/srcs/other.c.i
+.PHONY : asm_f/srcs/other.c.i
+
+asm_f/srcs/other.s: asm_f/srcs/other.c.s
+
+.PHONY : asm_f/srcs/other.s
+
+# target to generate assembly for a file
+asm_f/srcs/other.c.s:
+	$(MAKE) -f CMakeFiles/asm_dev.dir/build.make CMakeFiles/asm_dev.dir/asm_f/srcs/other.c.s
+.PHONY : asm_f/srcs/other.c.s
+
 asm_f/srcs/parse_code.o: asm_f/srcs/parse_code.c.o
 
 .PHONY : asm_f/srcs/parse_code.o
@@ -243,6 +297,60 @@ asm_f/srcs/parsing_name_and_comment.s: asm_f/srcs/parsing_name_and_comment.c.s
 asm_f/srcs/parsing_name_and_comment.c.s:
 	$(MAKE) -f CMakeFiles/asm_dev.dir/build.make CMakeFiles/asm_dev.dir/asm_f/srcs/parsing_name_and_comment.c.s
 .PHONY : asm_f/srcs/parsing_name_and_comment.c.s
+
+asm_f/srcs/parsing_name_and_comment2.o: asm_f/srcs/parsing_name_and_comment2.c.o
+
+.PHONY : asm_f/srcs/parsing_name_and_comment2.o
+
+# target to build an object file
+asm_f/srcs/parsing_name_and_comment2.c.o:
+	$(MAKE) -f CMakeFiles/asm_dev.dir/build.make CMakeFiles/asm_dev.dir/asm_f/srcs/parsing_name_and_comment2.c.o
+.PHONY : asm_f/srcs/parsing_name_and_comment2.c.o
+
+asm_f/srcs/parsing_name_and_comment2.i: asm_f/srcs/parsing_name_and_comment2.c.i
+
+.PHONY : asm_f/srcs/parsing_name_and_comment2.i
+
+# target to preprocess a source file
+asm_f/srcs/parsing_name_and_comment2.c.i:
+	$(MAKE) -f CMakeFiles/asm_dev.dir/build.make CMakeFiles/asm_dev.dir/asm_f/srcs/parsing_name_and_comment2.c.i
+.PHONY : asm_f/srcs/parsing_name_and_comment2.c.i
+
+asm_f/srcs/parsing_name_and_comment2.s: asm_f/srcs/parsing_name_and_comment2.c.s
+
+.PHONY : asm_f/srcs/parsing_name_and_comment2.s
+
+# target to generate assembly for a file
+asm_f/srcs/parsing_name_and_comment2.c.s:
+	$(MAKE) -f CMakeFiles/asm_dev.dir/build.make CMakeFiles/asm_dev.dir/asm_f/srcs/parsing_name_and_comment2.c.s
+.PHONY : asm_f/srcs/parsing_name_and_comment2.c.s
+
+asm_f/srcs/things_to_bytecode.o: asm_f/srcs/things_to_bytecode.c.o
+
+.PHONY : asm_f/srcs/things_to_bytecode.o
+
+# target to build an object file
+asm_f/srcs/things_to_bytecode.c.o:
+	$(MAKE) -f CMakeFiles/asm_dev.dir/build.make CMakeFiles/asm_dev.dir/asm_f/srcs/things_to_bytecode.c.o
+.PHONY : asm_f/srcs/things_to_bytecode.c.o
+
+asm_f/srcs/things_to_bytecode.i: asm_f/srcs/things_to_bytecode.c.i
+
+.PHONY : asm_f/srcs/things_to_bytecode.i
+
+# target to preprocess a source file
+asm_f/srcs/things_to_bytecode.c.i:
+	$(MAKE) -f CMakeFiles/asm_dev.dir/build.make CMakeFiles/asm_dev.dir/asm_f/srcs/things_to_bytecode.c.i
+.PHONY : asm_f/srcs/things_to_bytecode.c.i
+
+asm_f/srcs/things_to_bytecode.s: asm_f/srcs/things_to_bytecode.c.s
+
+.PHONY : asm_f/srcs/things_to_bytecode.s
+
+# target to generate assembly for a file
+asm_f/srcs/things_to_bytecode.c.s:
+	$(MAKE) -f CMakeFiles/asm_dev.dir/build.make CMakeFiles/asm_dev.dir/asm_f/srcs/things_to_bytecode.c.s
+.PHONY : asm_f/srcs/things_to_bytecode.c.s
 
 libft/gnl/srcs/get_next_line.o: libft/gnl/srcs/get_next_line.c.o
 
@@ -2657,18 +2765,30 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... libft"
+	@echo "... asm_f/srcs/bytecode.o"
+	@echo "... asm_f/srcs/bytecode.i"
+	@echo "... asm_f/srcs/bytecode.s"
 	@echo "... asm_f/srcs/exit.o"
 	@echo "... asm_f/srcs/exit.i"
 	@echo "... asm_f/srcs/exit.s"
 	@echo "... asm_f/srcs/main.o"
 	@echo "... asm_f/srcs/main.i"
 	@echo "... asm_f/srcs/main.s"
+	@echo "... asm_f/srcs/other.o"
+	@echo "... asm_f/srcs/other.i"
+	@echo "... asm_f/srcs/other.s"
 	@echo "... asm_f/srcs/parse_code.o"
 	@echo "... asm_f/srcs/parse_code.i"
 	@echo "... asm_f/srcs/parse_code.s"
 	@echo "... asm_f/srcs/parsing_name_and_comment.o"
 	@echo "... asm_f/srcs/parsing_name_and_comment.i"
 	@echo "... asm_f/srcs/parsing_name_and_comment.s"
+	@echo "... asm_f/srcs/parsing_name_and_comment2.o"
+	@echo "... asm_f/srcs/parsing_name_and_comment2.i"
+	@echo "... asm_f/srcs/parsing_name_and_comment2.s"
+	@echo "... asm_f/srcs/things_to_bytecode.o"
+	@echo "... asm_f/srcs/things_to_bytecode.i"
+	@echo "... asm_f/srcs/things_to_bytecode.s"
 	@echo "... libft/gnl/srcs/get_next_line.o"
 	@echo "... libft/gnl/srcs/get_next_line.i"
 	@echo "... libft/gnl/srcs/get_next_line.s"

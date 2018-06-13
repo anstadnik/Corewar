@@ -132,16 +132,28 @@
 		<Unit filename="/Users/byermak/COREWAR/asm_f/includes/op.h">
 			<Option target="asm_dev"/>
 		</Unit>
+		<Unit filename="/Users/byermak/COREWAR/asm_f/srcs/bytecode.c">
+			<Option target="asm_dev"/>
+		</Unit>
 		<Unit filename="/Users/byermak/COREWAR/asm_f/srcs/exit.c">
 			<Option target="asm_dev"/>
 		</Unit>
 		<Unit filename="/Users/byermak/COREWAR/asm_f/srcs/main.c">
 			<Option target="asm_dev"/>
 		</Unit>
+		<Unit filename="/Users/byermak/COREWAR/asm_f/srcs/other.c">
+			<Option target="asm_dev"/>
+		</Unit>
 		<Unit filename="/Users/byermak/COREWAR/asm_f/srcs/parse_code.c">
 			<Option target="asm_dev"/>
 		</Unit>
 		<Unit filename="/Users/byermak/COREWAR/asm_f/srcs/parsing_name_and_comment.c">
+			<Option target="asm_dev"/>
+		</Unit>
+		<Unit filename="/Users/byermak/COREWAR/asm_f/srcs/parsing_name_and_comment2.c">
+			<Option target="asm_dev"/>
+		</Unit>
+		<Unit filename="/Users/byermak/COREWAR/asm_f/srcs/things_to_bytecode.c">
 			<Option target="asm_dev"/>
 		</Unit>
 		<Unit filename="/Users/byermak/COREWAR/libft/gnl/srcs/get_next_line.c">

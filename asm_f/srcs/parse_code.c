@@ -6,13 +6,13 @@
 /*   By: byermak <byermak@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 17:06:00 by byermak           #+#    #+#             */
-/*   Updated: 2018/06/13 14:07:34 by byermak          ###   ########.fr       */
+/*   Updated: 2018/06/13 19:22:32 by byermak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-static void	print_args(t_code *new)
+static void				print_args(t_code *new)
 {
 	ft_printf("t:[%i] f:[%i] l:[%s] v:[%i] length:[%i]\n", new->arg1->arg_type, new->arg1->label_flag, new->arg1->label, new->arg1->value, new->arg1->length);
 	if (new->arg2)
@@ -22,7 +22,7 @@ static void	print_args(t_code *new)
 	ft_printf("////////////////////////////////////\n\n");
 }
 
-static void	print_comands()
+static void				print_comands()
 {
 	t_code	*tmp;
 
@@ -52,7 +52,7 @@ static unsigned long	count(int n)
 	return (rez);
 }
 
-static int	skip_spaces(char *str)
+static int				skip_spaces(char *str)
 {
 	while (str[g_x] && (str[g_x] == ' ' || str[g_x] == '\t'))
 		++g_x;
@@ -61,7 +61,7 @@ static int	skip_spaces(char *str)
 	return (int)g_x;
 }
 
-static void	skip_empty(int fd, char **str)
+static void				skip_empty(int fd, char **str)
 {
 	int	ret;
 
@@ -78,7 +78,7 @@ static void	skip_empty(int fd, char **str)
 	}
 }
 
-static int	check_label_words(char c)
+static int				check_label_words(char c)
 {
 	int		i;
 	char	*label_chars;
@@ -91,7 +91,7 @@ static int	check_label_words(char c)
 	return (0);
 }
 
-static char	*check_label(char *label)
+static char				*check_label(char *label)
 {
 	t_code	*tmp;
 
@@ -108,7 +108,7 @@ static char	*check_label(char *label)
 	return (label);
 }
 
-static char	*parse_label(char *str)
+static char				*parse_label(char *str)
 {
 	char	*tmp;
 	char	*label;
@@ -126,14 +126,14 @@ static char	*parse_label(char *str)
 	return (label);
 }
 
-static int	new_command_error(char **command, char **label, int error)
+static int				new_command_error(char **command, char **label, int error)
 {
 	ft_strdel(command);
 	ft_strdel(label);
 	return (error);
 }
 
-static int	check_command(char *command)
+static int				check_command(char *command)
 {
 	int	i;
 
@@ -144,7 +144,7 @@ static int	check_command(char *command)
 	return (0);
 }
 
-static t_arg	*new_arg(char arg_code, char label_flag, int value, char *label)
+static t_arg			*new_arg(char arg_code, char label_flag, int value, char *label)
 {
 	t_arg	*new;
 
@@ -163,7 +163,7 @@ static t_arg	*new_arg(char arg_code, char label_flag, int value, char *label)
 	return (new);
 }
 
-static int	parse_t_reg(char **str, t_arg **arg)
+static int				parse_t_reg(char **str, t_arg **arg)
 {
 	int	value;
 	int i;
@@ -185,7 +185,7 @@ static int	parse_t_reg(char **str, t_arg **arg)
 	return (1);
 }
 
-static int	parse_t_dir(char **str, t_arg **arg)
+static int				parse_t_dir(char **str, t_arg **arg)
 {
 	int		value;
 	char	label_flag;
@@ -209,7 +209,7 @@ static int	parse_t_dir(char **str, t_arg **arg)
 	return (1);
 }
 
-static int	parse_t_ind(char **str, t_arg **arg)
+static int				parse_t_ind(char **str, t_arg **arg)
 {
 	int		value;
 	char	label_flag;
@@ -234,7 +234,7 @@ static int	parse_t_ind(char **str, t_arg **arg)
 	return (1);
 }
 
-static int	parse_arg(char *str, t_arg **arg)
+static int				parse_arg(char *str, t_arg **arg)
 {
 	if (*str == 'r')
 		return (parse_t_reg(&str, arg));
@@ -249,7 +249,7 @@ static int	parse_arg(char *str, t_arg **arg)
 	}
 }
 
-static int	word(char *str, int i)
+static int				word(char *str, int i)
 {
 	while (str[i] && str[i] != ' ' && str[i] != '\t' &&
 		str[i] != SEPARATOR_CHAR)
@@ -257,7 +257,7 @@ static int	word(char *str, int i)
 	return (i);
 }
 
-static int	parse_third_arg(char *str, t_arg **arg)
+static int				parse_third_arg(char *str, t_arg **arg)
 {
 	int i;
 	int ret;
@@ -274,7 +274,7 @@ static int	parse_third_arg(char *str, t_arg **arg)
 	return (1);
 }
 
-static int	parse_second_arg(char *str, t_arg **arg)
+static int				parse_second_arg(char *str, t_arg **arg)
 {
 	int i;
 	int ret;
@@ -291,7 +291,7 @@ static int	parse_second_arg(char *str, t_arg **arg)
 	return (1);
 }
 
-static int	check_third_arg(t_code *new)
+static int				check_third_arg(t_code *new)
 {
 	int		i;
 
@@ -314,7 +314,7 @@ static int	check_third_arg(t_code *new)
 	return (1);
 }
 
-static int	check_second_arg(t_code *new)
+static int				check_second_arg(t_code *new)
 {
 	int		i;
 
@@ -337,7 +337,7 @@ static int	check_second_arg(t_code *new)
 	return (1);
 }
 
-static int	check_first_arg(t_code *new)
+static int				check_first_arg(t_code *new)
 {
 	int		i;
 
@@ -358,7 +358,7 @@ static int	check_first_arg(t_code *new)
 	return (1);
 }
 
-static int	parse_args(char *str, t_code *new)
+static int				parse_args(char *str, t_code *new)
 {
 	int		i;
 	int		ret;
@@ -387,7 +387,7 @@ static int	parse_args(char *str, t_code *new)
 	return (1);
 }
 
-static void	del_command(t_code **new)
+static void				del_command(t_code **new)
 {
 	if ((*new)->label)
 		ft_strdel(&(*new)->label);
@@ -414,7 +414,19 @@ static void	del_command(t_code **new)
 	*new = NULL;
 }
 
-static void	push_back(t_code *new)
+void					del_code(void)
+{
+	t_code	*tmp;
+
+	while (g_code)
+	{
+		tmp = g_code->next;
+		del_command(&g_code);
+		g_code = tmp;
+	}
+}
+
+static void				push_back(t_code *new)
 {
 	t_code	*tmp;
 
@@ -433,7 +445,7 @@ static void	push_back(t_code *new)
 	tmp->next = new;
 }
 
-static char	count_codage(t_code *new)
+static char				count_codage(t_code *new)
 {
 	char	codage;
 
@@ -445,7 +457,7 @@ static char	count_codage(t_code *new)
 	return (codage);
 }
 
-static int	new_command(char **comm, char **label, t_code **new, char *str)
+static int				new_command(char **comm, char **label, t_code **new, char *str)
 {
 	int	command_num;
 
@@ -468,7 +480,7 @@ static int	new_command(char **comm, char **label, t_code **new, char *str)
 	return (1);
 }
 
-static void	parse_command(char **str, char **label, int fd)
+static void				parse_command(char **str, char **label, int fd)
 {
 	int		i;
 	char	*command;
@@ -491,13 +503,13 @@ static void	parse_command(char **str, char **label, int fd)
 	}
 }
 
-static int	label_error(char *label)
+static int				label_error(char *label)
 {
 	////Wrong label error
 	return (ERR_WRONG_LABEL);
 }
 
-static int	find_label(char *label)
+static int				find_label(char *label)
 {
 	t_code	*tmp;
 
@@ -511,7 +523,7 @@ static int	find_label(char *label)
 	return (-1);
 }
 
-static int	check_labels(t_code *tmp, int label_index)
+static int				check_labels(t_code *tmp, int label_index)
 {
 	tmp = g_code;
 	while (tmp)
@@ -539,7 +551,7 @@ static int	check_labels(t_code *tmp, int label_index)
 	return (1);
 }
 
-void		parse_code(int fd)
+void					parse_code(int fd)
 {
 	char	*str;
 	char	*label;
