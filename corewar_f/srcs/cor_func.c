@@ -6,7 +6,7 @@
 /*   By: bcherkas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/08 15:11:22 by bcherkas          #+#    #+#             */
-/*   Updated: 2018/06/12 19:39:59 by bcherkas         ###   ########.fr       */
+/*   Updated: 2018/06/13 18:04:51 by bcherkas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,8 @@ void	cor_live(unsigned char *map, t_carriage *carry)
 		player = get_player_info(NULL, player_number);
 		carry->players[player_number]++;
 		if ((flag & 1) == 1)
-			ft_printf("Player \"%s\" with number %d is alive!\n", player->prog_name, player_number);
+			ft_printf("Player \"%s\" with number %d is alive!\n",
+					player->prog_name, player_number + 1);
 	}
 	carry->pc = (carry->pc + 5) % MEM_SIZE;
 }

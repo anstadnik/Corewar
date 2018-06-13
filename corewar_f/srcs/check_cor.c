@@ -6,13 +6,13 @@
 /*   By: bcherkas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 18:11:13 by bcherkas          #+#    #+#             */
-/*   Updated: 2018/06/12 19:44:41 by bcherkas         ###   ########.fr       */
+/*   Updated: 2018/06/13 17:26:32 by bcherkas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-size_t	get_num(int fd)
+int		get_num(int fd)
 {
 	t_magic	uni;
 	int		i;

@@ -6,7 +6,7 @@
 /*   By: bcherkas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 13:59:51 by bcherkas          #+#    #+#             */
-/*   Updated: 2018/06/12 17:29:22 by bcherkas         ###   ########.fr       */
+/*   Updated: 2018/06/13 19:42:26 by bcherkas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ t_carriage	init_carriage(int player, int max)
 
 	j = 1;
 	tmp.carry = 0;
-	tmp.pc = (MEM_SIZE / max) * player;// Shouldn't it be affected by amount of players? -> Yes, and it's already affected+_+
+	tmp.pc = (MEM_SIZE / max) * player;
 	tmp.map_start = tmp.pc;
 	tmp.cycles_left = 0;
 	while (j < REG_NUMBER)
@@ -52,6 +52,7 @@ t_carriage	init_carriage(int player, int max)
 		j++;
 	}
 	tmp.reg[0] = (PLAYER_CODE - player);
+	tmp.number = player + 1;
 	return (tmp);
 }
 
@@ -88,7 +89,11 @@ int		main(int argc, char **argv)
 	get_parameters(argc - 1, argv + 1, &inf);
 	read_players(&inf);
 	init_map(&inf);
-	//print_stack(inf.stack);
+	introduce(&inf);
+	if (inf.args[FLAG_D] == 0)
+		output_text(&inf, 0);
 	main_cycle(&inf);
-	ft_lstdel(&(inf.stack), free);
+	if (inf.stack)
+		ft_lstdel(&(inf.stack), free);
+	winner(&inf);
 }

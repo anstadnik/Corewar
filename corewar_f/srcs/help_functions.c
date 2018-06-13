@@ -6,7 +6,7 @@
 /*   By: bcherkas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/08 18:26:29 by bcherkas          #+#    #+#             */
-/*   Updated: 2018/06/12 20:41:22 by bcherkas         ###   ########.fr       */
+/*   Updated: 2018/06/13 19:21:30 by bcherkas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,14 @@
 void		new_carriage(t_list **add_pointer, t_list *lst)
 {
 	static t_list	**start;
+	t_carriage		*tmp;
+	t_carriage		*tmp2;
 
 	if (lst)
 	{
+		tmp = (t_carriage *)(*start)->content;
+		tmp2 = (t_carriage *)lst->content;
+		tmp2->number = tmp->number + 1;
 		ft_lstadd(start, lst);
 		return ;
 	}
@@ -43,7 +48,7 @@ t_header	*get_player_info(t_header *arr, int player)
 {
 	static t_header	*players_arr;
 
-	if (arr == NULL)
+	if (arr != NULL)
 	{
 		players_arr = arr;
 		return (NULL);
@@ -72,12 +77,12 @@ void		print_v_16(unsigned char *map, int start, int end)
 		ft_printf("%3.2hx", map[start % MEM_SIZE]);
 		start++;
 	}
-	write(1, "\n", 1);
+	write(1, " \n", 2);
 }
 
 void		swap_union_mgc(t_magic *kek)
 {
-	char	c;
+	unsigned char	c;
 
 	c = kek->arr[0];
 	kek->arr[0] = kek->arr[3];

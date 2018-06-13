@@ -6,7 +6,7 @@
 /*   By: bcherkas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 18:11:13 by bcherkas          #+#    #+#             */
-/*   Updated: 2018/06/08 19:06:01 by bcherkas         ###   ########.fr       */
+/*   Updated: 2018/06/13 13:58:40 by bcherkas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	get_output(char *str, int *ind, int *ret, int mode)
 		if (*ret > -1)
 			errmsg("Duplicated parameters");
 		*ret = ft_atoi(str);
-		if ((*ret < 0 && mode == FLAG_V) || (*ret < 1 && mode != FLAG_V))
+		if (*ret < 0)
 			errmsg("Invalid parameter");
 	}
 	else if (mode == FLAG_B || mode == FLAG_N || mode == FLAG_A)
@@ -105,4 +105,5 @@ void	get_parameters(int ac, char **av, t_info *inf)
 	if (inf->players_amount < 1)
 		errmsg("To few players");
 	excludes(inf, inf->args);
+	inf->args[FLAG_S] = inf->args[FLAG_S] == 0 ? -1 : inf->args[FLAG_S];
 }

@@ -6,7 +6,7 @@
 /*   By: bcherkas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 13:51:01 by bcherkas          #+#    #+#             */
-/*   Updated: 2018/06/12 20:44:41 by bcherkas         ###   ########.fr       */
+/*   Updated: 2018/06/13 19:42:28 by bcherkas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,8 @@ typedef enum		e_args
 
 typedef union		u_magic
 {
-	char			arr[4];
-	unsigned		magic;
+	unsigned char	arr[4];
+	int				magic;
 }					t_magic;
 
 typedef struct		s_header
@@ -89,11 +89,10 @@ typedef struct		s_info
 {
 	t_list				*stack;
 	t_header			head[MAX_PLAYERS];
+	t_header			*last_dead;
 	int					args[7];
 	int					cycles_to_die;
 	int					output_mode;
-	// Changed, cause I'll use it also for counting lifes(weird, I know)
-	// We can discuss it and revert if u mind
 	int					players[MAX_PLAYERS];
 	int					players_amount;
 	int					carriage_number;
@@ -109,11 +108,9 @@ typedef struct		s_carriage
 	int				cycles_left;
 	int				map_start;
 	int				*players;
-	int				players_amount;// I need to know it to not say life to smbd
-	// who doesn't exist
-	int				lives;// Make it 0 where this stuff is initialized
-	// If it's 0 - no "live" for 1 CYCLE_TO_DIE
-	// If it's -1 - ... for 2 CYCLE_TO_DIE (REMOVE!!!)
+	int				players_amount;
+	int				lives;
+	int				number;
 }					t_carriage;
 
 typedef struct		s_op
@@ -130,7 +127,7 @@ void				get_parameters(int ac, char **av, t_info *inf);
 void				read_players(t_info *inf);
 
 void				main_cycle(t_info *inf);
-void				check_lives(t_info *inf);
+void				cycle_to_die_func(t_info *inf);
 
 void				new_carriage(t_list **add_pointer, t_list *lst);
 int					get_args_flag(int *args, int flag);
@@ -181,13 +178,13 @@ void				cor_lld(unsigned char *map, t_carriage *carry,
 void				cor_lldi(unsigned char *map, t_carriage *carry,
 						int *codage, int *args);
 
-void				output_text(t_info *inf, int iterations);
 void				print_v_16(unsigned char *map, int start, int end);
 void				swap_union_mgc(t_magic *mgc);
 
 int					errmsg(char *str);
 
-void				printmap(unsigned char *map);
-void				print_stack(t_list *tmp);
+void				output_text(t_info *inf, int iterations);
+void				introduce(t_info *inf);
+void				winner(t_info *inf);
 
 #endif

@@ -6,11 +6,11 @@
 /*   By: bcherkas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 18:51:41 by bcherkas          #+#    #+#             */
-/*   Updated: 2018/06/12 20:54:13 by bcherkas         ###   ########.fr       */
+/*   Updated: 2018/06/13 19:36:32 by bcherkas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "corewar.h"
+#include "corewar.h"
 
 /*
 ** g_op_tab:
@@ -68,6 +68,7 @@ void	function_trigger(t_carriage *carry, unsigned char *map, int func_num)
 	int				old_pc;
 	int				*codage;
 	int				*args;
+	const int		save = get_args_flag(NULL, FLAG_V);
 
 	codage = NULL;
 	args = NULL;
@@ -77,7 +78,7 @@ void	function_trigger(t_carriage *carry, unsigned char *map, int func_num)
 		if (check_args(&codage, &args, map, carry))
 		{
 			carry->pc = (carry->pc + 2) % MEM_SIZE;
-			if ((get_args_flag(NULL, FLAG_V) & 16) == 16)
+			if (save > -1 && (save & 16) == 16)
 				print_v_16(map, old_pc, carry->pc);
 			return ;
 		}
@@ -85,7 +86,7 @@ void	function_trigger(t_carriage *carry, unsigned char *map, int func_num)
 	}
 	else
 		carry->func(map, carry);
-	if ((get_args_flag(NULL, FLAG_V) & 16) == 16 && map[old_pc] != 8)
+	if (save > -1 && (save & 16) == 16 && map[old_pc] != 9)
 		print_v_16(map, old_pc, carry->pc);
 	carry->cycles_left--;
 }
@@ -102,7 +103,7 @@ void	wrapper(unsigned char *map, t_carriage *carry)
 	else if (carry->cycles_left == 0 && func_num <= MAX_FUNC && func_num > 0)
 	{
 		carry->func = g_op_tab[func_num - 1].func;
-		carry->cycles_left = g_op_tab[func_num - 1].cycles;
+		carry->cycles_left = g_op_tab[func_num - 1].cycles - 1;
 	}
 	else if (carry->cycles_left == 1 && func_num <= MAX_FUNC && func_num > 0)
 		function_trigger(carry, map, func_num - 1);
@@ -110,24 +111,29 @@ void	wrapper(unsigned char *map, t_carriage *carry)
 
 void	main_cycle(t_info *inf)
 {
-	t_list	*lst;
-	int		iterations;
+	const int	save = (inf->args[FLAG_V] & 16) == 16 ? 1 : 0;
+	t_list		*lst;
+	int			iterations;
 
-	iterations = 0;
+	iterations = 1;
+	if (inf->args[FLAG_D] == 0)
+		output_text(inf, 0);
 	while (42)
 	{
+		if (save)
+			ft_printf("It is now cycle %d\n", iterations);
 		lst = inf->stack;
-		if (lst == NULL || inf->cycles_to_die <= 0)
+		if (lst == NULL)
 			return ;
 		while (lst)
 		{
 			wrapper(inf->map, (t_carriage *)lst->content);
 			lst = lst->next;
 		}
+		if (iterations % inf->cycles_to_die == 0)
+			cycle_to_die_func(inf);
 		if (inf->output_mode == 1 || inf->output_mode == 2)
 			output_text(inf, iterations);
-		if (iterations + 1 % CYCLE_TO_DIE == 0)
-			check_lives(inf);
 		iterations++;
 	}
 }

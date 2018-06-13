@@ -6,7 +6,7 @@
 /*   By: bcherkas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/08 12:08:16 by bcherkas          #+#    #+#             */
-/*   Updated: 2018/06/12 20:20:30 by bcherkas         ###   ########.fr       */
+/*   Updated: 2018/06/13 17:18:14 by bcherkas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,15 @@
 int			get_int(unsigned char *map, int pc)
 {
 	int		i;
-	int		iter;
-	int		ret;
+	t_magic	mgc;
 
-	iter = 0;
-	ret = 0;
-	while (iter < 4)
+	i = 0;
+	while (i < 4)
 	{
-		i = map[(pc + iter) % MEM_SIZE];
-		ret += i << (8 * 3 - iter);
-		iter++;
+		mgc.arr[i] = map[(pc + i) % MEM_SIZE];
+		i++;
 	}
-	return (ret);
+	return (mgc.magic);
 }
 
 short int	get_short(unsigned char *map, int pc)
