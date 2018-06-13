@@ -560,6 +560,5 @@ void		parse_code(int fd)
 	}
 	if ((ret = check_labels(tmp)))
 		;//error(ret)
-////	check labels
 	print_comands();
 }
