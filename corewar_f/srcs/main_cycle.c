@@ -6,7 +6,7 @@
 /*   By: bcherkas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 18:51:41 by bcherkas          #+#    #+#             */
-/*   Updated: 2018/06/13 19:36:32 by bcherkas         ###   ########.fr       */
+/*   Updated: 2018/06/13 20:05:37 by bcherkas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,15 +109,27 @@ void	wrapper(unsigned char *map, t_carriage *carry)
 		function_trigger(carry, map, func_num - 1);
 }
 
+void	help_me(t_info *inf, int iterations, int *cycles)
+{
+	if (*cycles == inf->cycles_to_die)
+	{
+		cycle_to_die_func(inf);
+		*cycles = 0;
+	}
+	if (inf->output_mode == 1 || inf->output_mode == 2)
+		output_text(inf, iterations);
+	(*cycles)++;
+}
+
 void	main_cycle(t_info *inf)
 {
 	const int	save = (inf->args[FLAG_V] & 16) == 16 ? 1 : 0;
 	t_list		*lst;
 	int			iterations;
+	int			cycles;
 
+	cycles = 1;
 	iterations = 1;
-	if (inf->args[FLAG_D] == 0)
-		output_text(inf, 0);
 	while (42)
 	{
 		if (save)
@@ -130,10 +142,7 @@ void	main_cycle(t_info *inf)
 			wrapper(inf->map, (t_carriage *)lst->content);
 			lst = lst->next;
 		}
-		if (iterations % inf->cycles_to_die == 0)
-			cycle_to_die_func(inf);
-		if (inf->output_mode == 1 || inf->output_mode == 2)
-			output_text(inf, iterations);
+		help_me(inf, iterations, &cycles);
 		iterations++;
 	}
 }
