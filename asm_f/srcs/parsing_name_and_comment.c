@@ -112,7 +112,7 @@ static char	*retrieve_name(int fd)
 	return (out);
 }
 
-void		parse_name_and_comment(int fd, header_t *magic_structure)
+void		parse_name_and_comment(int fd, t_header *magic_structure)
 {
 	ft_bzero(magic_structure->prog_name, PROG_NAME_LENGTH + 1);
 	ft_bzero(magic_structure->comment, COMMENT_LENGTH + 1);

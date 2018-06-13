@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   asm.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lburlach <lburlach@student.unit.ua>        +#+  +:+       +#+        */
+/*   By: byermak <byermak@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 15:30:00 by lburlach          #+#    #+#             */
-/*   Updated: 2018/06/12 18:05:26 by byermak          ###   ########.fr       */
+/*   Updated: 2018/06/13 17:05:56 by byermak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,39 +18,39 @@
 # include <fcntl.h>
 # include <limits.h>
 
-# define ERR_NO_CODE (-1)					//"No code in file"
-# define ERR_INVALID_COMMAND (-2)			//"Invalid command"
-# define ERR_NO_COMMAND_ARGS (-3)			//"No command arguments"
-# define ERR_MALLOC (-4)					//"Malloc error"
-# define ERR_INVALID_ARG (-5)				//"Invalid chars in arg"
-# define ERR_INVALID_T_REG (-6)				//"Invalid number of register(chars)"
-# define ERR_INVALID_T_DIR (-7)				//"Invalid number in T_DIR"
-# define ERR_INVALID_T_IND (-8)				//"Invalid number in T_IND"
-# define ERR_INVALID_NUMBER_OF_REG (-9)		//"Invalid number(<1 || >REG_NUMBER)"
-# define ERR_UNKNOWN_CHAR_AFTER_FIRST_ARG (-10)
-# define ERR_UNKNOWN_CHAR_AFTER_SECOND_ARG (-11)
-# define ERR_ENDLINE (-12)					//"Error in end of line(separator)"
-# define ERR_INVALID_0_PAR_T_REG (-13)	//"Invalid parameter 0 type register for instruction live"
-# define ERR_INVALID_0_PAR_T_DIR (-14)
-# define ERR_INVALID_0_PAR_T_IND (-15)
-# define ERR_INVALID_1_PAR_T_REG (-16)
-# define ERR_INVALID_1_PAR_T_DIR (-17)
-# define ERR_INVALID_1_PAR_T_IND (-18)
-# define ERR_INVALID_2_PAR_T_REG (-19)
-# define ERR_INVALID_2_PAR_T_DIR (-20)
-# define ERR_INVALID_2_PAR_T_IND (-21)
-# define ERR_INVALID_NUMBER_OF_ARGS (-22) //"Too few args"
-# define ERR_WRONG_LABEL (-23)
+# define ERR_NO_CODE						(-1)//"No code in file"
+# define ERR_INVALID_COMMAND				(-2)//"Invalid command"
+# define ERR_NO_COMMAND_ARGS				(-3)//"No command arguments"
+# define ERR_MALLOC							(-4)//"Malloc error"
+# define ERR_INVALID_ARG					(-5)//"Invalid chars in arg"
+# define ERR_INVALID_T_REG					(-6)//"Invalid number of register(chars)"
+# define ERR_INVALID_T_DIR					(-7)//"Invalid number in T_DIR"
+# define ERR_INVALID_T_IND					(-8)//"Invalid number in T_IND"
+# define ERR_INVALID_NUMBER_OF_REG			(-9)//"Invalid number(<1 || >REG_NUMBER)"
+# define ERR_UNKNOWN_CHAR_AFTER_FIRST_ARG	(-10)
+# define ERR_UNKNOWN_CHAR_AFTER_SECOND_ARG	(-11)
+# define ERR_ENDLINE						(-12)//"Error in end of line(separator)"
+# define ERR_INVALID_0_PAR_T_REG			(-13)//"Invalid parameter 0 type register for instruction live"
+# define ERR_INVALID_0_PAR_T_DIR			(-14)
+# define ERR_INVALID_0_PAR_T_IND			(-15)
+# define ERR_INVALID_1_PAR_T_REG			(-16)
+# define ERR_INVALID_1_PAR_T_DIR			(-17)
+# define ERR_INVALID_1_PAR_T_IND			(-18)
+# define ERR_INVALID_2_PAR_T_REG			(-19)
+# define ERR_INVALID_2_PAR_T_DIR			(-20)
+# define ERR_INVALID_2_PAR_T_IND			(-21)
+# define ERR_INVALID_NUMBER_OF_ARGS			(-22)//"Too few args"
+# define ERR_WRONG_LABEL					(-23)
 
 
 typedef	struct	s_arg
 {
-	char	arg_type;// T_REG | T_DIR | T_IND
-	char	arg_code;// REG_CODE | DIR_CODE | IND_CODE
-	char	label_flag; // 1 | 0
-	char	*label;
-	char	length;
-	int		value;
+	char			arg_type;// T_REG | T_DIR | T_IND
+	char			arg_code;// REG_CODE | DIR_CODE | IND_CODE
+	char			label_flag; // 1 | 0
+	char			*label;
+	unsigned char	length;
+	int				value;
 }				t_arg;
 
 typedef struct	s_code
@@ -110,7 +110,7 @@ enum	g_err {
 
 };
 
-void	parse_name_and_comment(int fd, header_t *magic_structure);
+void	parse_name_and_comment(int fd, t_header *magic_structure);
 void	parse_code(int fd);
 void	usage(void);
 void	error_ac(char *s);
@@ -119,5 +119,6 @@ void	fetch_the_name(char **line, int fd, size_t row, t_list **head);
 char	*retrieve_comment(int fd);
 void	skip_whitespaces(int fd, char **line);
 ssize_t	str_from_lsts(t_list *tmp, char **line);
+void	to_bytecode(t_header *magic, int fd);
 
 #endif

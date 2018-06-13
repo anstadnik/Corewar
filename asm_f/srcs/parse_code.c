@@ -6,7 +6,7 @@
 /*   By: byermak <byermak@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 17:06:00 by byermak           #+#    #+#             */
-/*   Updated: 2018/06/12 18:14:14 by byermak          ###   ########.fr       */
+/*   Updated: 2018/06/13 14:07:34 by byermak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,9 @@ static void	skip_empty(int fd, char **str)
 
 	g_x = 0;
 	ret = get_next_line(fd, str);
+	++g_count;
 	while (ret == 1 && (ft_strlen(*str) == 0 || **str == COMMENT_CHAR ||
-			(skip_spaces(*str) == -1)))
+		(skip_spaces(*str) == -1)))
 	{
 		g_x = 0;
 		ft_strdel(str);
@@ -178,7 +179,6 @@ static int	parse_t_reg(char **str, t_arg **arg)
 	ft_strdel(str);
 	if (value < 1 || value > REG_NUMBER)
 		return (ERR_INVALID_NUMBER_OF_REG);
-
 	if (!(*arg = new_arg(REG_CODE, 0, value, NULL)))
 		return (ERR_MALLOC);
 	(*arg)->length = 1;
@@ -203,7 +203,6 @@ static int	parse_t_dir(char **str, t_arg **arg)
 		ft_strdel(str);
 	else
 		label = ft_strdup(*str + 2);
-
 	ft_strdel(str);
 	if (!(*arg = new_arg(DIR_CODE, label_flag, value, label)))
 		return (ERR_MALLOC);
@@ -253,7 +252,7 @@ static int	parse_arg(char *str, t_arg **arg)
 static int	word(char *str, int i)
 {
 	while (str[i] && str[i] != ' ' && str[i] != '\t' &&
-		   str[i] != SEPARATOR_CHAR)
+		str[i] != SEPARATOR_CHAR)
 		++i;
 	return (i);
 }
@@ -359,7 +358,7 @@ static int	check_first_arg(t_code *new)
 	return (1);
 }
 
-static int	parse_args(char	*str, t_code *new)
+static int	parse_args(char *str, t_code *new)
 {
 	int		i;
 	int		ret;
@@ -381,7 +380,7 @@ static int	parse_args(char	*str, t_code *new)
 		if ((skip_spaces(str)) != -1)
 			if ((ret = parse_third_arg(str, &(new->arg3))) != 1 ||
 				(ret = check_third_arg(new)) != 1)
-			return (ret);
+				return (ret);
 		if ((skip_spaces(str)) != -1)
 			return (ERR_ENDLINE);
 	}
@@ -434,7 +433,7 @@ static void	push_back(t_code *new)
 	tmp->next = new;
 }
 
-static char count_codage(t_code *new)
+static char	count_codage(t_code *new)
 {
 	char	codage;
 
@@ -512,10 +511,8 @@ static int	find_label(char *label)
 	return (-1);
 }
 
-static int	check_labels(t_code *tmp)
+static int	check_labels(t_code *tmp, int label_index)
 {
-	int		label_index;
-
 	tmp = g_code;
 	while (tmp)
 	{
@@ -539,6 +536,7 @@ static int	check_labels(t_code *tmp)
 		}
 		tmp = tmp->next;
 	}
+	return (1);
 }
 
 void		parse_code(int fd)
@@ -555,10 +553,11 @@ void		parse_code(int fd)
 	{
 		label = parse_label(str);
 		parse_command(&str, &label, fd);
+//		ft_printf("[%i]: %s\n", g_count + 1, str);
 		ft_strdel(&str);
 		skip_empty(fd, &str);
 	}
-	if ((ret = check_labels(tmp)))
+	if ((ret = check_labels(tmp, ret)) != 1)
 		;//error(ret)
-	print_comands();
+//	print_comands();
 }
