@@ -6,7 +6,7 @@
 /*   By: bcherkas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 18:51:41 by bcherkas          #+#    #+#             */
-/*   Updated: 2018/06/13 20:05:37 by bcherkas         ###   ########.fr       */
+/*   Updated: 2018/06/14 16:04:21 by bcherkas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,14 +38,12 @@ static const t_op	g_op_tab[MAX_FUNC] =
 	{cor_aff, 2, {T_REG, 0, 0}, 1, 4}
 };
 
-int		check_args(int **cod, int **ags, unsigned char *map, t_carriage *car)
+int		check_args(int **cod, int **args, unsigned char *map, t_carriage *car)
 {
-	int		i;
-	int		*codage;
-	int		*args;
-	int		func_num;
+	int			i;
+	int			*codage;
+	const int	func_num = map[car->pc] -1;
 
-	func_num = map[car->pc] - 1;
 	i = 0;
 	if (!(codage = get_codage(map[car->pc + 1])))
 		return (1);
@@ -55,24 +53,20 @@ int		check_args(int **cod, int **ags, unsigned char *map, t_carriage *car)
 			return (1);
 		i++;
 	}
-	args = get_args(map, car->pc + 2, codage, g_op_tab[func_num].lab);
-	if (args == NULL)
-		return (1);
-	*ags = args;
+	*args = get_args(map, car->pc + 2, codage, g_op_tab[func_num].lab);
 	*cod = codage;
 	return (0);
 }
 
 void	function_trigger(t_carriage *carry, unsigned char *map, int func_num)
 {
-	int				old_pc;
+	const int		old_pc = carry->pc;
+	const int		save = get_args_flag(NULL, FLAG_V);
 	int				*codage;
 	int				*args;
-	const int		save = get_args_flag(NULL, FLAG_V);
 
 	codage = NULL;
 	args = NULL;
-	old_pc = carry->pc;
 	if (g_op_tab[func_num].cod_oct > 0)
 	{
 		if (check_args(&codage, &args, map, carry))
@@ -123,16 +117,17 @@ void	help_me(t_info *inf, int iterations, int *cycles)
 
 void	main_cycle(t_info *inf)
 {
-	const int	save = (inf->args[FLAG_V] & 16) == 16 ? 1 : 0;
+	int			save;
 	t_list		*lst;
 	int			iterations;
 	int			cycles;
 
+	save = inf->args[FLAG_V] > 0 && (inf->args[FLAG_V] & 2) == 2 ? 1 : 0;
 	cycles = 1;
 	iterations = 1;
 	while (42)
 	{
-		if (save)
+		if (save > 0)
 			ft_printf("It is now cycle %d\n", iterations);
 		lst = inf->stack;
 		if (lst == NULL)

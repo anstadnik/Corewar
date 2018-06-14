@@ -6,7 +6,7 @@
 /*   By: bcherkas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 13:51:01 by bcherkas          #+#    #+#             */
-/*   Updated: 2018/06/13 19:42:28 by bcherkas         ###   ########.fr       */
+/*   Updated: 2018/06/14 15:18:48 by bcherkas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,7 +134,7 @@ int					get_args_flag(int *args, int flag);
 t_header			*get_player_info(t_header *arr, int player);
 
 int					get_int(unsigned char *map, int pc);
-short int			get_short(unsigned char *map, int pc);
+int					get_short(unsigned char *map, int pc);
 int					get_reg(unsigned char *map, int pc);
 int					get_dir(unsigned char *map, int pc, int len);
 int					get_ind(unsigned char *map, int pc);

@@ -6,7 +6,7 @@
 /*   By: bcherkas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/08 12:57:08 by bcherkas          #+#    #+#             */
-/*   Updated: 2018/06/13 18:47:04 by bcherkas         ###   ########.fr       */
+/*   Updated: 2018/06/14 16:15:05 by bcherkas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static void	output_sd(t_info *inf, unsigned char *map, int mode)
 		printline(map, i);
 		i++;
 	}
-	if (mode == 1)
+	if (mode)
 	{
 		if (get_next_line(0, &str) > 0)
 			free(str);
@@ -87,7 +87,7 @@ void		output_text(t_info *inf, int cycles)
 	}
 	if ((inf->args[FLAG_D] > -1 && cycles == inf->args[FLAG_D]) || !cycles)
 	{
-		output_sd(inf, inf->map, 2);
+		output_sd(inf, inf->map, 0);
 		ft_lstdel(&(inf->stack), free);
 		exit(0);
 	}

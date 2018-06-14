@@ -6,7 +6,7 @@
 /*   By: astadnik <astadnik@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/09 11:54:36 by astadnik          #+#    #+#             */
-/*   Updated: 2018/06/12 19:15:13 by bcherkas         ###   ########.fr       */
+/*   Updated: 2018/06/14 17:40:59 by bcherkas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,75 +14,71 @@
 
 void	cor_ld(unsigned char *map, t_carriage *carry, int *codage, int *args)
 {
-	int	val;
-
-	if (codage[0] == 4)
-		val = args[0];
-	if (codage[0] == 2)
-		val = get_ind(map, carry->pc + args[0] % IDX_MOD);
-	if (args[1] < REG_NUMBER)// TODO Is it a correct behavior?
-		carry->reg[args[1]] = val;
-	carry->carry = val ? 0 : 1;
+	if (args && map)
+	{
+		if (codage[0] == T_IND)
+			args[0] %= IDX_MOD;
+		carry->reg[args[1]] = args[0];
+		carry->carry = carry->reg[args[1]] ? 0 : 1;
+	}
+	carry->pc = (carry->pc + codage[0] + codage[1] + 2) % MEM_SIZE;
 }
 
 void	cor_ldi(unsigned char *map, t_carriage *carry, int *codage, int *args)
 {
-	int	val1;
-	int	val2;
+	int		pc2;
 
-	val1 = 0;
-	val2 = 0;// Silence errors, change later
-	if (codage[0] == 1)
-		val1 = carry->reg[args[0]];
-	else if (codage[0] == 2)
-		val1 = get_ind(map, carry->pc + args[0] % IDX_MOD);
-	else if (codage[0] == 4)
-		val1 = args[0];
-	else
-		errmsg("Wrong codage");
-	if (codage[1] == 1)
-		val2 = carry->reg[args[1]];
-	else if (codage[1] == 4)
-		val2 = args[1];
-	else
-		errmsg("Wrong codage");
-	carry->reg[args[2]] = get_ind(map, (val1 + val2) % IDX_MOD + carry->pc);
+	pc2 = 0;
+	if (args)
+	{
+		if (codage[0] == T_REG)
+			args[0] = carry->reg[args[0]];
+		else if (codage[0] == T_IND)
+			args[0] %= IDX_MOD;
+		if (codage[1] == T_REG)
+			args[1] = carry->reg[args[1]];
+		pc2 = get_dir(map, (carry->pc + args[0] + args[1]) % IDX_MOD, 4);
+		carry->reg[args[2]] = pc2;
+		carry->carry = carry->reg[args[2]] ? 0 : 1;
+	}
+	carry->pc = (carry->pc + codage[0] + codage[1] + codage[2] + 2) % MEM_SIZE;
 }
 
 void	cor_lld(unsigned char *map, t_carriage *carry, int *codage, int *args)
 {
-	int	val;
+	int		tmp;
 
-	if (codage[0] == 4)
-		val = args[0];
-	if (codage[0] == 2)
-		val = get_ind(map, carry->pc + args[0]);
-	if (args[1] < REG_NUMBER)// TODO Is it a correct behavior?
-		carry->reg[args[1]] = val;
-	carry->carry = val ? 0 : 1;
+	tmp = 0;
+	if (args)
+	{
+		if (codage[0] == T_IND)
+		{
+			tmp = get_short(map, carry->pc + 2);
+			args[0] = get_short(map, carry->pc + tmp);
+		}
+		carry->reg[args[1]] = args[0];
+		carry->carry = carry->reg[args[1]] ? 0 : 1;
+	}
+	carry->pc = (carry->pc + codage[0] + codage[1] + 2) % MEM_SIZE;
 }
 
-// Check if I should remove both IDX_MODES, or only one
 void	cor_lldi(unsigned char *map, t_carriage *carry, int *codage, int *args)
 {
-	int	val1;
-	int	val2;
+	int		pc2;
 
-	val1 = 0;
-	val2 = 0;// Silence errors, change later
-	if (codage[0] == 1)
-		val1 = carry->reg[args[0]];
-	else if (codage[0] == 2)
-		val1 = get_ind(map, carry->pc + args[0]);
-	else if (codage[0] == 4)
-		val1 = args[0];
-	else
-		errmsg("Wrong codage");
-	if (codage[1] == 1)
-		val2 = carry->reg[args[1]];
-	else if (codage[1] == 4)
-		val2 = args[1];
-	else
-		errmsg("Wrong codage");
-	carry->reg[args[2]] = get_ind(map, (val1 + val2) + carry->pc);
+	pc2 = 0;
+	if (args)
+	{
+		if (codage[0] == T_REG)
+			args[0] = carry->reg[args[0]];
+		else if (codage[0] == T_IND)
+			args[0] %= IDX_MOD;
+		if (codage[1] == T_REG)
+			args[1] = carry->reg[args[1]];
+		pc2 = get_dir(map, (carry->pc + args[0] + args[1]), 4);
+		carry->reg[args[2]] = pc2;
+		carry->carry = carry->reg[args[2]] ? 0 : 1;
+	}
+	carry->pc = (carry->pc + codage[0] + codage[1] + codage[2] + 2) % MEM_SIZE;
+
 }
