@@ -6,7 +6,7 @@
 /*   By: bcherkas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/08 18:33:20 by bcherkas          #+#    #+#             */
-/*   Updated: 2018/06/14 15:25:23 by bcherkas         ###   ########.fr       */
+/*   Updated: 2018/06/15 16:33:04 by bcherkas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,32 +38,32 @@ int		*get_codage(unsigned char code)
 	return (codage);
 }
 
-int		*get_args(unsigned char *map, int st, int *codage, int label_s)
+int		*get_args(unsigned char *map, int st, int *cod, int label_s)
 {
 	static int	args[3];
 	int			i;
+	int			*ret;
 
 	i = 0;
+	ret = args;
 	while (i < 3)
 	{
-		if (codage[i] == T_REG)
-		{
+		if (cod[i] == T_REG)
 			if ((args[i] = get_reg(map, st)) < 0)
-				return (NULL);
-		}
-		else if (codage[i] == T_IND)
+				ret = NULL;
+		if (cod[i] == T_IND)
 			args[i] = get_ind(map, st);
-		else if (codage[i] == T_DIR)
+		else if (cod[i] == T_DIR)
 		{
-			args[i] = label_s > 2 ? get_dir(map, st, 4) : get_dir(map, st, 2);
-			codage[i] = label_s;
+			args[i] = get_dir(map, st, label_s);
+			cod[i] = label_s;
 		}
-		else
+		else if (cod[i] != T_DIR && cod[i] != T_IND && cod[i] != T_REG)
 			args[i] = 0;
-		st += codage[i];
+		st += cod[i];
 		i++;
 	}
-	return (args);
+	return (ret);
 }
 
 void	cor_and(unsigned char *map, t_carriage *carry, int *codage, int *args)

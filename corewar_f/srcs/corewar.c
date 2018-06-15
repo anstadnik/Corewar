@@ -6,7 +6,7 @@
 /*   By: bcherkas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 13:59:51 by bcherkas          #+#    #+#             */
-/*   Updated: 2018/06/13 19:42:26 by bcherkas         ###   ########.fr       */
+/*   Updated: 2018/06/14 19:28:46 by bcherkas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ t_carriage	init_carriage(int player, int max)
 	}
 	tmp.reg[0] = (PLAYER_CODE - player);
 	tmp.number = player + 1;
+	tmp.cycles_without_live = 0;
 	return (tmp);
 }
 
@@ -93,7 +94,4 @@ int		main(int argc, char **argv)
 	if (inf.args[FLAG_D] == 0)
 		output_text(&inf, 0);
 	main_cycle(&inf);
-	if (inf.stack)
-		ft_lstdel(&(inf.stack), free);
-	winner(&inf);
 }

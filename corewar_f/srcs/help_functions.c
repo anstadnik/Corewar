@@ -6,7 +6,7 @@
 /*   By: bcherkas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/08 18:26:29 by bcherkas          #+#    #+#             */
-/*   Updated: 2018/06/13 19:21:30 by bcherkas         ###   ########.fr       */
+/*   Updated: 2018/06/15 17:07:26 by bcherkas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void		new_carriage(t_list **add_pointer, t_list *lst)
 		tmp = (t_carriage *)(*start)->content;
 		tmp2 = (t_carriage *)lst->content;
 		tmp2->number = tmp->number + 1;
+		tmp2->cycles_left = 0;
 		ft_lstadd(start, lst);
 		return ;
 	}
@@ -31,7 +32,6 @@ void		new_carriage(t_list **add_pointer, t_list *lst)
 		start = add_pointer;
 		return ;
 	}
-	ft_lstdel(start, free);
 }
 
 int			get_args_flag(int *args, int flag)

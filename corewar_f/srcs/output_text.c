@@ -6,7 +6,7 @@
 /*   By: bcherkas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/08 12:57:08 by bcherkas          #+#    #+#             */
-/*   Updated: 2018/06/14 16:15:05 by bcherkas         ###   ########.fr       */
+/*   Updated: 2018/06/14 19:36:52 by bcherkas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	printline(unsigned char *map, int line)
 	i = 0;
 	while (i < 64)
 	{
-		ft_printf("%3.2hhx", map[line * 64 + i]);
+		ft_printf("%.2hhx ", map[line * 64 + i]);
 		i++;
 	}
 	ft_printf("\n");

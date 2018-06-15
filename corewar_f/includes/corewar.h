@@ -6,7 +6,7 @@
 /*   By: bcherkas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 13:51:01 by bcherkas          #+#    #+#             */
-/*   Updated: 2018/06/14 15:18:48 by bcherkas         ###   ########.fr       */
+/*   Updated: 2018/06/15 17:35:31 by bcherkas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,7 @@ typedef struct		s_carriage
 	int				players_amount;
 	int				lives;
 	int				number;
+	int				cycles_without_live;
 }					t_carriage;
 
 typedef struct		s_op
@@ -121,17 +122,6 @@ typedef struct		s_op
 	int				cod_oct;
 	int				lab;
 }					t_op;
-
-void				get_parameters(int ac, char **av, t_info *inf);
-
-void				read_players(t_info *inf);
-
-void				main_cycle(t_info *inf);
-void				cycle_to_die_func(t_info *inf);
-
-void				new_carriage(t_list **add_pointer, t_list *lst);
-int					get_args_flag(int *args, int flag);
-t_header			*get_player_info(t_header *arr, int player);
 
 int					get_int(unsigned char *map, int pc);
 int					get_short(unsigned char *map, int pc);
@@ -178,10 +168,24 @@ void				cor_lld(unsigned char *map, t_carriage *carry,
 void				cor_lldi(unsigned char *map, t_carriage *carry,
 						int *codage, int *args);
 
+void				get_parameters(int ac, char **av, t_info *inf);
+
+void				read_players(t_info *inf);
+
+void				main_cycle(t_info *inf);
+void				cycle_to_die_func(t_info *inf, int iterations);
+int					get_max_lives(t_info *inf);
+
+void				new_carriage(t_list **add_pointer, t_list *lst);
+int					get_args_flag(int *args, int flag);
+t_header			*get_player_info(t_header *arr, int player);
+
 void				print_v_16(unsigned char *map, int start, int end);
 void				swap_union_mgc(t_magic *mgc);
 
 int					errmsg(char *str);
+void				*ft_memcpy_cor(void *str1, size_t start, const void *str2,
+						size_t n);
 
 void				output_text(t_info *inf, int iterations);
 void				introduce(t_info *inf);

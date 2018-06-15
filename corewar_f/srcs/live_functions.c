@@ -6,44 +6,71 @@
 /*   By: bcherkas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/12 17:10:29 by bcherkas          #+#    #+#             */
-/*   Updated: 2018/06/13 19:24:29 by bcherkas         ###   ########.fr       */
+/*   Updated: 2018/06/15 15:58:40 by bcherkas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
+void	dead_end(t_info *inf, int iterations)
+{
+	const int	flag_v = get_args_flag(NULL, FLAG_V);
+	t_list		*lst;
+	t_list		*tmp;
+	t_carriage	*car;
+
+	lst = inf->stack;
+	if (flag_v > 0 && (flag_v & 2) == 2)
+		ft_printf("It is now cycle %d\n", iterations + 1);	
+	while (lst)
+	{
+		tmp = lst;
+		car = (t_carriage *)tmp->content;
+		lst = lst->next;
+		if (flag_v > 0 && (flag_v & 8) == 8)
+			ft_printf("Process %d hasn't lived for %d cycles (CTD %d)\n",
+				car->number, car->cycles_without_live, inf->cycles_to_die);
+		free(car);
+		free(tmp);
+	}
+	inf->stack = NULL;
+	winner(inf);
+	exit(0);
+}
+
 void	check_carriage_lives(t_info *inf)
 {
-	const int	save = get_args_flag(NULL, FLAG_V);
+	const int	flag_v = get_args_flag(NULL, FLAG_V);
 	t_list		*ptr;
 	t_list		*tmp;
-	t_carriage	*carriage;
+	t_carriage	*car;
 
 	ptr = inf->stack;
 	while (ptr)
 	{
 		tmp = ptr;
-		carriage = (t_carriage *)ptr->content;
-		carriage->lives = carriage->lives > 0 ? 0 : -1;
+		car = (t_carriage *)ptr->content;
+		car->lives = car->lives > 0 ? 0 : -1;
 		ptr = ptr->next;
-		if (carriage->lives == -1)
+		if (car->lives == -1)
 		{
 			ft_lstdelnode(&inf->stack, tmp);
-			if (save > 0 && (save & 8) == 8)
-				ft_printf("Process %d dead\n", carriage->number);
+			if (flag_v > 0 && (flag_v & 8) == 8)
+				ft_printf("Process %d hasn't lived for %d cycles (CTD %d)\n",
+				car->number, car->cycles_without_live - 1, inf->cycles_to_die);
 		}
 	}
+	if (inf->stack == NULL)
+		winner(inf);
 }
 
-int		*check_players_lives(t_info *inf)
+void	check_players_lives(t_info *inf)
 {
 	int			i;
-	static int	lives[4];
 
 	i = inf->players_amount;
 	while (i >= 0)
 	{
-		lives[i] = inf->players[i];
 		if (inf->players[i] > 0)
 			inf->players[i] = 0;
 		else if (inf->players[i] == 0)
@@ -53,21 +80,12 @@ int		*check_players_lives(t_info *inf)
 		}
 		i--;
 	}
-	return (lives);
 }
 
-void	cycle_to_die_check(int *lives, t_info *inf)
+void	cycle_to_die_check(t_info *inf, int check_lives)
 {
-	int			i;
 	static int	checks;
-	int			check_lives;
 
-	i = inf->players_amount;
-	while (i >= 0)
-	{
-		check_lives = lives[i] > check_lives ? lives[i] : check_lives;
-		i--;
-	}
 	if (check_lives >= NBR_LIVE)
 	{
 		checks = 0;
@@ -75,25 +93,27 @@ void	cycle_to_die_check(int *lives, t_info *inf)
 	}
 	else
 		checks++;
-	if (checks == MAX_CHECKS)
+	if (checks >= MAX_CHECKS)
 	{
 		inf->cycles_to_die -= CYCLE_DELTA;
 		checks = 0;
 	}
 }
 
-void	cycle_to_die_func(t_info *inf)
+void	cycle_to_die_func(t_info *inf, int iterations)
 {
+	const int	flag_v = get_args_flag(NULL, FLAG_V);
 	int			save;
-	int			*lives;
 	int			i;
+	int			check_lives;
 
 	save = inf->cycles_to_die;
+	check_lives = get_max_lives(inf);
 	check_carriage_lives(inf);
-	lives = check_players_lives(inf);
-	cycle_to_die_check(lives, inf);
+	check_players_lives(inf);
+	cycle_to_die_check(inf, check_lives);
 	i = inf->players_amount;
-	if ((inf->args[FLAG_V] & 2) == 2 && save != inf->cycles_to_die)
+	if (flag_v > 0 && (flag_v & 2) == 2 && save != inf->cycles_to_die)
 		ft_printf("Cycle to die is now %d\n", inf->cycles_to_die);
 	if (inf->cycles_to_die <= 0)
 	{
@@ -103,6 +123,6 @@ void	cycle_to_die_func(t_info *inf)
 				inf->last_dead = &(inf->head[i]);
 			i--;
 		}
-		ft_lstdel(&(inf->stack), free);
+		dead_end(inf, iterations);
 	}
 }

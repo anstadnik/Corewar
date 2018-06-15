@@ -6,7 +6,7 @@
 /*   By: astadnik <astadnik@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/09 17:16:57 by astadnik          #+#    #+#             */
-/*   Updated: 2018/06/14 17:37:35 by bcherkas         ###   ########.fr       */
+/*   Updated: 2018/06/15 18:16:05 by bcherkas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	cor_st(unsigned char *map, t_carriage *carry, int *codage, int *args)
 {
 	t_magic	mgc;
-	int		start;
+	size_t	start;
 
 	if (args)
 	{
@@ -23,34 +23,37 @@ void	cor_st(unsigned char *map, t_carriage *carry, int *codage, int *args)
 			carry->reg[args[1]] = carry->reg[args[0]];
 		else
 		{
+			args[1] = get_short(map, carry->pc + 3);
 			mgc.magic = carry->reg[args[0]];
 			swap_union_mgc(&mgc);
-			start = args[1] % IDX_MOD;
-			ft_memcpy(mgc.arr, map + start, 4);
+			start = (size_t)((MEM_SIZE + (carry->pc + args[1] % IDX_MOD))
+					% MEM_SIZE);
+			ft_memcpy_cor(map, start, mgc.arr, 4);
 		}
 	}
-	carry->pc = (carry->pc + 2 + codage[0] + codage[1] + codage[2]) % MEM_SIZE;
+	carry->pc = (carry->pc + 2 + codage[0] + codage[1]) % MEM_SIZE;
 }
 
 void	cor_sti(unsigned char *map, t_carriage *carry, int *codage, int *args)
 {
 	t_magic	mgc;
-	int		start;
+	size_t	start;
 
 	if (args)
 	{
 		if (codage[1] == T_REG)
 			args[1] = carry->reg[args[1]];
+		else if (codage[1] == T_IND)
+			args[1] %= IDX_MOD;
 		if (codage[2] == T_REG)
 			args[2] = carry->reg[args[2]];
-		else if (codage[2] == T_IND)
-			args[2] %= IDX_MOD;
-		if (codage[3] == T_REG)
-			args[3] = carry->reg[args[2]];
 		mgc.magic = carry->reg[args[0]];
 		swap_union_mgc(&mgc);
-		start = (carry->pc + (args[1] + args[2]) % IDX_MOD) % MEM_SIZE;
-		ft_memcpy(map + start, mgc.arr, 4);
+		start = (size_t)((MEM_SIZE + (carry->pc + (args[1] + args[2]) % IDX_MOD))
+			% MEM_SIZE);
+		ft_memcpy_cor(map, start, mgc.arr, 4);
 	}
+	else
+		codage[0] = 1;
 	carry->pc = (carry->pc + 2 + codage[0] + codage[1] + codage[2]) % MEM_SIZE;
 }

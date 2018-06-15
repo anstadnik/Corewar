@@ -1,0 +1,7 @@
+#!/bin/bash
+
+vm_test/asm vm_test/ex.s
+./corewar -v 27 vm_test/ex.cor -d $1 > asd
+~/test/corewar/corewar -v 27 vm_test/ex.cor -d $1 > ~/test/corewar/asd
+diff ~/test/corewar/asd ~/proj/corewar/corewar_f/asd > kkk
+vim kkk

@@ -6,7 +6,7 @@
 /*   By: bcherkas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 18:11:13 by bcherkas          #+#    #+#             */
-/*   Updated: 2018/06/13 13:58:40 by bcherkas         ###   ########.fr       */
+/*   Updated: 2018/06/15 15:57:36 by bcherkas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,7 @@ void	get_output(char *str, int *ind, int *ret, int mode)
 		if (*ret > -1)
 			errmsg("Duplicated parameters");
 		*ret = ft_atoi(str);
-		if (*ret < 0)
-			errmsg("Invalid parameter");
+		*ret = *ret < 0 ? -1 : *ret;
 	}
 	else if (mode == FLAG_B || mode == FLAG_N || mode == FLAG_A)
 	{

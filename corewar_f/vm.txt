@@ -151,3 +151,22 @@ Rules:
 3: And rule 2
 
 vim:fdm=indent ts=2 sw=2
+
+WHAT FUNCTIONS ARE DONE?
+
+live		DONE
+ld			DONE
+st			DONE
+add			DONE
+sub			DONE
+and			DONE
+or			DONE
+xor			DONE
+zjmp		DONE
+ldi			DONE
+sti			DONE
+fork		DONE
+lld			DONE
+lldi		DONE
+lfork		DONE
+aff			DONE

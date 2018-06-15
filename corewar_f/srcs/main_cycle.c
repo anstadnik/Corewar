@@ -6,7 +6,7 @@
 /*   By: bcherkas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 18:51:41 by bcherkas          #+#    #+#             */
-/*   Updated: 2018/06/14 16:04:21 by bcherkas         ###   ########.fr       */
+/*   Updated: 2018/06/15 15:49:26 by bcherkas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ void	function_trigger(t_carriage *carry, unsigned char *map, int func_num)
 
 	codage = NULL;
 	args = NULL;
+	carry->cycles_left = 0;
 	if (g_op_tab[func_num].cod_oct > 0)
 	{
 		if (check_args(&codage, &args, map, carry))
@@ -82,7 +83,6 @@ void	function_trigger(t_carriage *carry, unsigned char *map, int func_num)
 		carry->func(map, carry);
 	if (save > -1 && (save & 16) == 16 && map[old_pc] != 9)
 		print_v_16(map, old_pc, carry->pc);
-	carry->cycles_left--;
 }
 
 void	wrapper(unsigned char *map, t_carriage *carry)
@@ -101,13 +101,14 @@ void	wrapper(unsigned char *map, t_carriage *carry)
 	}
 	else if (carry->cycles_left == 1 && func_num <= MAX_FUNC && func_num > 0)
 		function_trigger(carry, map, func_num - 1);
+	carry->cycles_without_live++;
 }
 
 void	help_me(t_info *inf, int iterations, int *cycles)
 {
 	if (*cycles == inf->cycles_to_die)
 	{
-		cycle_to_die_func(inf);
+		cycle_to_die_func(inf, iterations);
 		*cycles = 0;
 	}
 	if (inf->output_mode == 1 || inf->output_mode == 2)
@@ -127,11 +128,9 @@ void	main_cycle(t_info *inf)
 	iterations = 1;
 	while (42)
 	{
+		lst = inf->stack;
 		if (save > 0)
 			ft_printf("It is now cycle %d\n", iterations);
-		lst = inf->stack;
-		if (lst == NULL)
-			return ;
 		while (lst)
 		{
 			wrapper(inf->map, (t_carriage *)lst->content);

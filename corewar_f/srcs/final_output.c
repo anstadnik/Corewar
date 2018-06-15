@@ -6,7 +6,7 @@
 /*   By: bcherkas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/13 15:57:01 by bcherkas          #+#    #+#             */
-/*   Updated: 2018/06/13 16:24:19 by bcherkas         ###   ########.fr       */
+/*   Updated: 2018/06/15 17:40:17 by bcherkas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,37 @@ void	winner(t_info *inf)
 	}
 	ft_printf("Contestant %d, \"%s\", has won !\n", i + 1,
 			inf->last_dead->prog_name);
+	exit(0);
+}
+
+int		get_max_lives(t_info *inf)
+{
+	t_list		*lst;
+	t_carriage	*car;
+	int			lives;
+
+	lives = 0;
+	lst = inf->stack;
+	while (lst)
+	{
+		car = (t_carriage *)lst->content;
+		lives = lives > car->lives ? lives : car->lives;
+		lst = lst->next;
+	}
+	return (lives);
+}
+
+void	*ft_memcpy_cor(void *str1, size_t start, const void *str2, size_t n)
+{
+	size_t	i;
+	size_t	j;
+
+	i = 0;
+	while (i < n)
+	{
+		j = (start + i) % MEM_SIZE;
+		((char *)str1)[j] = ((char *)str2)[i];
+		i++;
+	}
+	return (str1);
 }
