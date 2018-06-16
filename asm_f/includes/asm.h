@@ -6,7 +6,7 @@
 /*   By: byermak <byermak@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 15:30:00 by lburlach          #+#    #+#             */
-/*   Updated: 2018/06/13 19:11:24 by byermak          ###   ########.fr       */
+/*   Updated: 2018/06/16 15:19:00 by byermak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ typedef	struct	s_arg
 {
 	char			arg_type;// T_REG | T_DIR | T_IND
 	char			arg_code;// REG_CODE | DIR_CODE | IND_CODE
-	char			label_flag; // 1 | 0
+	char			label_flag;
 	char			*label;
 	unsigned char	length;
 	int				value;
@@ -55,14 +55,14 @@ typedef	struct	s_arg
 
 typedef struct	s_code
 {
-	char			*command; //or a number?
+	char			*command;
 	int				opcode;
 	char			codage;
 	char			*label;
 	t_arg			*arg1;
 	t_arg			*arg2;
 	t_arg			*arg3;
-	unsigned char	index; //order number
+	unsigned char	index;
 	struct s_code	*next;
 
 }				t_code;
@@ -111,7 +111,6 @@ enum	g_err {
 };
 
 void	parse_name_and_comment(int fd, t_header *magic_structure);
-void	parse_code(int fd);
 void	usage(void);
 void	error_ac(char *s);
 void	error_asm(int err_num, size_t x, char **code);
@@ -119,11 +118,29 @@ void	fetch_the_name(char **line, int fd, size_t row, t_list **head);
 char	*retrieve_comment(int fd);
 void	skip_whitespaces(int fd, char **line);
 ssize_t	str_from_lsts(t_list *tmp, char **line);
+
+void	parse_code(int fd);
+void	del_command(t_code **new);
 void	del_code(void);
 void	to_bytecode(t_header *magic, int fd);
 void	to_buff(char *buff, char c);
 void	int_to_bytecode(char *buff, unsigned int num);
 void	short_to_bytecode(char *buff, unsigned short int num);
 void	str_to_bytecode(char *buff, char *str, int len);
+int		label_error(char *label);
+char	*parse_label(char *str);
+int		check_labels(t_code *tmp, int label_index);
+int		new_command_error(char **command, char **label, int error);
+int		label_error(char *label);
+int		skip_spaces(char *str);
+void	skip_empty(int fd, char **str);
+int		word(char *str, int i);
+int		parse_arg(char *str, t_arg **arg);
+int		parse_args(char *str, t_code *new);
+t_arg	*new_arg(char arg_code, char label_flag, int value, char *label);
+int		check_first_arg(t_code *new);
+int		check_second_arg(t_code *new);
+int		check_third_arg(t_code *new);
+int		check_command(char *command);
 
 #endif

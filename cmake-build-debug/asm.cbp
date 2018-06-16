@@ -135,7 +135,13 @@
 		<Unit filename="/Users/byermak/COREWAR/asm_f/srcs/bytecode.c">
 			<Option target="asm_dev"/>
 		</Unit>
+		<Unit filename="/Users/byermak/COREWAR/asm_f/srcs/del.c">
+			<Option target="asm_dev"/>
+		</Unit>
 		<Unit filename="/Users/byermak/COREWAR/asm_f/srcs/exit.c">
+			<Option target="asm_dev"/>
+		</Unit>
+		<Unit filename="/Users/byermak/COREWAR/asm_f/srcs/label.c">
 			<Option target="asm_dev"/>
 		</Unit>
 		<Unit filename="/Users/byermak/COREWAR/asm_f/srcs/main.c">
@@ -144,7 +150,22 @@
 		<Unit filename="/Users/byermak/COREWAR/asm_f/srcs/other.c">
 			<Option target="asm_dev"/>
 		</Unit>
+		<Unit filename="/Users/byermak/COREWAR/asm_f/srcs/parse_arg.c">
+			<Option target="asm_dev"/>
+		</Unit>
+		<Unit filename="/Users/byermak/COREWAR/asm_f/srcs/parse_args.c">
+			<Option target="asm_dev"/>
+		</Unit>
 		<Unit filename="/Users/byermak/COREWAR/asm_f/srcs/parse_code.c">
+			<Option target="asm_dev"/>
+		</Unit>
+		<Unit filename="/Users/byermak/COREWAR/asm_f/srcs/parser_checks.c">
+			<Option target="asm_dev"/>
+		</Unit>
+		<Unit filename="/Users/byermak/COREWAR/asm_f/srcs/parser_error.c">
+			<Option target="asm_dev"/>
+		</Unit>
+		<Unit filename="/Users/byermak/COREWAR/asm_f/srcs/parser_other.c">
 			<Option target="asm_dev"/>
 		</Unit>
 		<Unit filename="/Users/byermak/COREWAR/asm_f/srcs/parsing_name_and_comment.c">

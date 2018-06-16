@@ -7,6 +7,13 @@ file(REMOVE_RECURSE
   "CMakeFiles/asm_dev.dir/asm_f/srcs/other.c.o"
   "CMakeFiles/asm_dev.dir/asm_f/srcs/bytecode.c.o"
   "CMakeFiles/asm_dev.dir/asm_f/srcs/things_to_bytecode.c.o"
+  "CMakeFiles/asm_dev.dir/asm_f/srcs/del.c.o"
+  "CMakeFiles/asm_dev.dir/asm_f/srcs/label.c.o"
+  "CMakeFiles/asm_dev.dir/asm_f/srcs/parser_error.c.o"
+  "CMakeFiles/asm_dev.dir/asm_f/srcs/parser_other.c.o"
+  "CMakeFiles/asm_dev.dir/asm_f/srcs/parse_arg.c.o"
+  "CMakeFiles/asm_dev.dir/asm_f/srcs/parse_args.c.o"
+  "CMakeFiles/asm_dev.dir/asm_f/srcs/parser_checks.c.o"
   "asm_dev.pdb"
   "asm_dev"
 )

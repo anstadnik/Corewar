@@ -163,6 +163,33 @@ asm_f/srcs/bytecode.c.s:
 	$(MAKE) -f CMakeFiles/asm_dev.dir/build.make CMakeFiles/asm_dev.dir/asm_f/srcs/bytecode.c.s
 .PHONY : asm_f/srcs/bytecode.c.s
 
+asm_f/srcs/del.o: asm_f/srcs/del.c.o
+
+.PHONY : asm_f/srcs/del.o
+
+# target to build an object file
+asm_f/srcs/del.c.o:
+	$(MAKE) -f CMakeFiles/asm_dev.dir/build.make CMakeFiles/asm_dev.dir/asm_f/srcs/del.c.o
+.PHONY : asm_f/srcs/del.c.o
+
+asm_f/srcs/del.i: asm_f/srcs/del.c.i
+
+.PHONY : asm_f/srcs/del.i
+
+# target to preprocess a source file
+asm_f/srcs/del.c.i:
+	$(MAKE) -f CMakeFiles/asm_dev.dir/build.make CMakeFiles/asm_dev.dir/asm_f/srcs/del.c.i
+.PHONY : asm_f/srcs/del.c.i
+
+asm_f/srcs/del.s: asm_f/srcs/del.c.s
+
+.PHONY : asm_f/srcs/del.s
+
+# target to generate assembly for a file
+asm_f/srcs/del.c.s:
+	$(MAKE) -f CMakeFiles/asm_dev.dir/build.make CMakeFiles/asm_dev.dir/asm_f/srcs/del.c.s
+.PHONY : asm_f/srcs/del.c.s
+
 asm_f/srcs/exit.o: asm_f/srcs/exit.c.o
 
 .PHONY : asm_f/srcs/exit.o
@@ -189,6 +216,33 @@ asm_f/srcs/exit.s: asm_f/srcs/exit.c.s
 asm_f/srcs/exit.c.s:
 	$(MAKE) -f CMakeFiles/asm_dev.dir/build.make CMakeFiles/asm_dev.dir/asm_f/srcs/exit.c.s
 .PHONY : asm_f/srcs/exit.c.s
+
+asm_f/srcs/label.o: asm_f/srcs/label.c.o
+
+.PHONY : asm_f/srcs/label.o
+
+# target to build an object file
+asm_f/srcs/label.c.o:
+	$(MAKE) -f CMakeFiles/asm_dev.dir/build.make CMakeFiles/asm_dev.dir/asm_f/srcs/label.c.o
+.PHONY : asm_f/srcs/label.c.o
+
+asm_f/srcs/label.i: asm_f/srcs/label.c.i
+
+.PHONY : asm_f/srcs/label.i
+
+# target to preprocess a source file
+asm_f/srcs/label.c.i:
+	$(MAKE) -f CMakeFiles/asm_dev.dir/build.make CMakeFiles/asm_dev.dir/asm_f/srcs/label.c.i
+.PHONY : asm_f/srcs/label.c.i
+
+asm_f/srcs/label.s: asm_f/srcs/label.c.s
+
+.PHONY : asm_f/srcs/label.s
+
+# target to generate assembly for a file
+asm_f/srcs/label.c.s:
+	$(MAKE) -f CMakeFiles/asm_dev.dir/build.make CMakeFiles/asm_dev.dir/asm_f/srcs/label.c.s
+.PHONY : asm_f/srcs/label.c.s
 
 asm_f/srcs/main.o: asm_f/srcs/main.c.o
 
@@ -244,6 +298,60 @@ asm_f/srcs/other.c.s:
 	$(MAKE) -f CMakeFiles/asm_dev.dir/build.make CMakeFiles/asm_dev.dir/asm_f/srcs/other.c.s
 .PHONY : asm_f/srcs/other.c.s
 
+asm_f/srcs/parse_arg.o: asm_f/srcs/parse_arg.c.o
+
+.PHONY : asm_f/srcs/parse_arg.o
+
+# target to build an object file
+asm_f/srcs/parse_arg.c.o:
+	$(MAKE) -f CMakeFiles/asm_dev.dir/build.make CMakeFiles/asm_dev.dir/asm_f/srcs/parse_arg.c.o
+.PHONY : asm_f/srcs/parse_arg.c.o
+
+asm_f/srcs/parse_arg.i: asm_f/srcs/parse_arg.c.i
+
+.PHONY : asm_f/srcs/parse_arg.i
+
+# target to preprocess a source file
+asm_f/srcs/parse_arg.c.i:
+	$(MAKE) -f CMakeFiles/asm_dev.dir/build.make CMakeFiles/asm_dev.dir/asm_f/srcs/parse_arg.c.i
+.PHONY : asm_f/srcs/parse_arg.c.i
+
+asm_f/srcs/parse_arg.s: asm_f/srcs/parse_arg.c.s
+
+.PHONY : asm_f/srcs/parse_arg.s
+
+# target to generate assembly for a file
+asm_f/srcs/parse_arg.c.s:
+	$(MAKE) -f CMakeFiles/asm_dev.dir/build.make CMakeFiles/asm_dev.dir/asm_f/srcs/parse_arg.c.s
+.PHONY : asm_f/srcs/parse_arg.c.s
+
+asm_f/srcs/parse_args.o: asm_f/srcs/parse_args.c.o
+
+.PHONY : asm_f/srcs/parse_args.o
+
+# target to build an object file
+asm_f/srcs/parse_args.c.o:
+	$(MAKE) -f CMakeFiles/asm_dev.dir/build.make CMakeFiles/asm_dev.dir/asm_f/srcs/parse_args.c.o
+.PHONY : asm_f/srcs/parse_args.c.o
+
+asm_f/srcs/parse_args.i: asm_f/srcs/parse_args.c.i
+
+.PHONY : asm_f/srcs/parse_args.i
+
+# target to preprocess a source file
+asm_f/srcs/parse_args.c.i:
+	$(MAKE) -f CMakeFiles/asm_dev.dir/build.make CMakeFiles/asm_dev.dir/asm_f/srcs/parse_args.c.i
+.PHONY : asm_f/srcs/parse_args.c.i
+
+asm_f/srcs/parse_args.s: asm_f/srcs/parse_args.c.s
+
+.PHONY : asm_f/srcs/parse_args.s
+
+# target to generate assembly for a file
+asm_f/srcs/parse_args.c.s:
+	$(MAKE) -f CMakeFiles/asm_dev.dir/build.make CMakeFiles/asm_dev.dir/asm_f/srcs/parse_args.c.s
+.PHONY : asm_f/srcs/parse_args.c.s
+
 asm_f/srcs/parse_code.o: asm_f/srcs/parse_code.c.o
 
 .PHONY : asm_f/srcs/parse_code.o
@@ -270,6 +378,87 @@ asm_f/srcs/parse_code.s: asm_f/srcs/parse_code.c.s
 asm_f/srcs/parse_code.c.s:
 	$(MAKE) -f CMakeFiles/asm_dev.dir/build.make CMakeFiles/asm_dev.dir/asm_f/srcs/parse_code.c.s
 .PHONY : asm_f/srcs/parse_code.c.s
+
+asm_f/srcs/parser_checks.o: asm_f/srcs/parser_checks.c.o
+
+.PHONY : asm_f/srcs/parser_checks.o
+
+# target to build an object file
+asm_f/srcs/parser_checks.c.o:
+	$(MAKE) -f CMakeFiles/asm_dev.dir/build.make CMakeFiles/asm_dev.dir/asm_f/srcs/parser_checks.c.o
+.PHONY : asm_f/srcs/parser_checks.c.o
+
+asm_f/srcs/parser_checks.i: asm_f/srcs/parser_checks.c.i
+
+.PHONY : asm_f/srcs/parser_checks.i
+
+# target to preprocess a source file
+asm_f/srcs/parser_checks.c.i:
+	$(MAKE) -f CMakeFiles/asm_dev.dir/build.make CMakeFiles/asm_dev.dir/asm_f/srcs/parser_checks.c.i
+.PHONY : asm_f/srcs/parser_checks.c.i
+
+asm_f/srcs/parser_checks.s: asm_f/srcs/parser_checks.c.s
+
+.PHONY : asm_f/srcs/parser_checks.s
+
+# target to generate assembly for a file
+asm_f/srcs/parser_checks.c.s:
+	$(MAKE) -f CMakeFiles/asm_dev.dir/build.make CMakeFiles/asm_dev.dir/asm_f/srcs/parser_checks.c.s
+.PHONY : asm_f/srcs/parser_checks.c.s
+
+asm_f/srcs/parser_error.o: asm_f/srcs/parser_error.c.o
+
+.PHONY : asm_f/srcs/parser_error.o
+
+# target to build an object file
+asm_f/srcs/parser_error.c.o:
+	$(MAKE) -f CMakeFiles/asm_dev.dir/build.make CMakeFiles/asm_dev.dir/asm_f/srcs/parser_error.c.o
+.PHONY : asm_f/srcs/parser_error.c.o
+
+asm_f/srcs/parser_error.i: asm_f/srcs/parser_error.c.i
+
+.PHONY : asm_f/srcs/parser_error.i
+
+# target to preprocess a source file
+asm_f/srcs/parser_error.c.i:
+	$(MAKE) -f CMakeFiles/asm_dev.dir/build.make CMakeFiles/asm_dev.dir/asm_f/srcs/parser_error.c.i
+.PHONY : asm_f/srcs/parser_error.c.i
+
+asm_f/srcs/parser_error.s: asm_f/srcs/parser_error.c.s
+
+.PHONY : asm_f/srcs/parser_error.s
+
+# target to generate assembly for a file
+asm_f/srcs/parser_error.c.s:
+	$(MAKE) -f CMakeFiles/asm_dev.dir/build.make CMakeFiles/asm_dev.dir/asm_f/srcs/parser_error.c.s
+.PHONY : asm_f/srcs/parser_error.c.s
+
+asm_f/srcs/parser_other.o: asm_f/srcs/parser_other.c.o
+
+.PHONY : asm_f/srcs/parser_other.o
+
+# target to build an object file
+asm_f/srcs/parser_other.c.o:
+	$(MAKE) -f CMakeFiles/asm_dev.dir/build.make CMakeFiles/asm_dev.dir/asm_f/srcs/parser_other.c.o
+.PHONY : asm_f/srcs/parser_other.c.o
+
+asm_f/srcs/parser_other.i: asm_f/srcs/parser_other.c.i
+
+.PHONY : asm_f/srcs/parser_other.i
+
+# target to preprocess a source file
+asm_f/srcs/parser_other.c.i:
+	$(MAKE) -f CMakeFiles/asm_dev.dir/build.make CMakeFiles/asm_dev.dir/asm_f/srcs/parser_other.c.i
+.PHONY : asm_f/srcs/parser_other.c.i
+
+asm_f/srcs/parser_other.s: asm_f/srcs/parser_other.c.s
+
+.PHONY : asm_f/srcs/parser_other.s
+
+# target to generate assembly for a file
+asm_f/srcs/parser_other.c.s:
+	$(MAKE) -f CMakeFiles/asm_dev.dir/build.make CMakeFiles/asm_dev.dir/asm_f/srcs/parser_other.c.s
+.PHONY : asm_f/srcs/parser_other.c.s
 
 asm_f/srcs/parsing_name_and_comment.o: asm_f/srcs/parsing_name_and_comment.c.o
 
@@ -2768,18 +2957,39 @@ help:
 	@echo "... asm_f/srcs/bytecode.o"
 	@echo "... asm_f/srcs/bytecode.i"
 	@echo "... asm_f/srcs/bytecode.s"
+	@echo "... asm_f/srcs/del.o"
+	@echo "... asm_f/srcs/del.i"
+	@echo "... asm_f/srcs/del.s"
 	@echo "... asm_f/srcs/exit.o"
 	@echo "... asm_f/srcs/exit.i"
 	@echo "... asm_f/srcs/exit.s"
+	@echo "... asm_f/srcs/label.o"
+	@echo "... asm_f/srcs/label.i"
+	@echo "... asm_f/srcs/label.s"
 	@echo "... asm_f/srcs/main.o"
 	@echo "... asm_f/srcs/main.i"
 	@echo "... asm_f/srcs/main.s"
 	@echo "... asm_f/srcs/other.o"
 	@echo "... asm_f/srcs/other.i"
 	@echo "... asm_f/srcs/other.s"
+	@echo "... asm_f/srcs/parse_arg.o"
+	@echo "... asm_f/srcs/parse_arg.i"
+	@echo "... asm_f/srcs/parse_arg.s"
+	@echo "... asm_f/srcs/parse_args.o"
+	@echo "... asm_f/srcs/parse_args.i"
+	@echo "... asm_f/srcs/parse_args.s"
 	@echo "... asm_f/srcs/parse_code.o"
 	@echo "... asm_f/srcs/parse_code.i"
 	@echo "... asm_f/srcs/parse_code.s"
+	@echo "... asm_f/srcs/parser_checks.o"
+	@echo "... asm_f/srcs/parser_checks.i"
+	@echo "... asm_f/srcs/parser_checks.s"
+	@echo "... asm_f/srcs/parser_error.o"
+	@echo "... asm_f/srcs/parser_error.i"
+	@echo "... asm_f/srcs/parser_error.s"
+	@echo "... asm_f/srcs/parser_other.o"
+	@echo "... asm_f/srcs/parser_other.i"
+	@echo "... asm_f/srcs/parser_other.s"
 	@echo "... asm_f/srcs/parsing_name_and_comment.o"
 	@echo "... asm_f/srcs/parsing_name_and_comment.i"
 	@echo "... asm_f/srcs/parsing_name_and_comment.s"

@@ -68,7 +68,15 @@ stdlib.h
 asm.h
 /Users/byermak/COREWAR/asm_f/srcs/asm.h
 
+/Users/byermak/COREWAR/asm_f/srcs/del.c
+asm.h
+/Users/byermak/COREWAR/asm_f/srcs/asm.h
+
 /Users/byermak/COREWAR/asm_f/srcs/exit.c
+asm.h
+/Users/byermak/COREWAR/asm_f/srcs/asm.h
+
+/Users/byermak/COREWAR/asm_f/srcs/label.c
 asm.h
 /Users/byermak/COREWAR/asm_f/srcs/asm.h
 
@@ -80,7 +88,27 @@ asm.h
 asm.h
 /Users/byermak/COREWAR/asm_f/srcs/asm.h
 
+/Users/byermak/COREWAR/asm_f/srcs/parse_arg.c
+asm.h
+/Users/byermak/COREWAR/asm_f/srcs/asm.h
+
+/Users/byermak/COREWAR/asm_f/srcs/parse_args.c
+asm.h
+/Users/byermak/COREWAR/asm_f/srcs/asm.h
+
 /Users/byermak/COREWAR/asm_f/srcs/parse_code.c
+asm.h
+/Users/byermak/COREWAR/asm_f/srcs/asm.h
+
+/Users/byermak/COREWAR/asm_f/srcs/parser_checks.c
+asm.h
+/Users/byermak/COREWAR/asm_f/srcs/asm.h
+
+/Users/byermak/COREWAR/asm_f/srcs/parser_error.c
+asm.h
+/Users/byermak/COREWAR/asm_f/srcs/asm.h
+
+/Users/byermak/COREWAR/asm_f/srcs/parser_other.c
 asm.h
 /Users/byermak/COREWAR/asm_f/srcs/asm.h
 

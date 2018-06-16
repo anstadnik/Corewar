@@ -249,6 +249,174 @@ CMakeFiles/asm_dev.dir/asm_f/srcs/things_to_bytecode.c.o.provides: CMakeFiles/as
 CMakeFiles/asm_dev.dir/asm_f/srcs/things_to_bytecode.c.o.provides.build: CMakeFiles/asm_dev.dir/asm_f/srcs/things_to_bytecode.c.o
 
 
+CMakeFiles/asm_dev.dir/asm_f/srcs/del.c.o: CMakeFiles/asm_dev.dir/flags.make
+CMakeFiles/asm_dev.dir/asm_f/srcs/del.c.o: ../asm_f/srcs/del.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/byermak/COREWAR/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building C object CMakeFiles/asm_dev.dir/asm_f/srcs/del.c.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/asm_dev.dir/asm_f/srcs/del.c.o   -c /Users/byermak/COREWAR/asm_f/srcs/del.c
+
+CMakeFiles/asm_dev.dir/asm_f/srcs/del.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/asm_dev.dir/asm_f/srcs/del.c.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/byermak/COREWAR/asm_f/srcs/del.c > CMakeFiles/asm_dev.dir/asm_f/srcs/del.c.i
+
+CMakeFiles/asm_dev.dir/asm_f/srcs/del.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/asm_dev.dir/asm_f/srcs/del.c.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/byermak/COREWAR/asm_f/srcs/del.c -o CMakeFiles/asm_dev.dir/asm_f/srcs/del.c.s
+
+CMakeFiles/asm_dev.dir/asm_f/srcs/del.c.o.requires:
+
+.PHONY : CMakeFiles/asm_dev.dir/asm_f/srcs/del.c.o.requires
+
+CMakeFiles/asm_dev.dir/asm_f/srcs/del.c.o.provides: CMakeFiles/asm_dev.dir/asm_f/srcs/del.c.o.requires
+	$(MAKE) -f CMakeFiles/asm_dev.dir/build.make CMakeFiles/asm_dev.dir/asm_f/srcs/del.c.o.provides.build
+.PHONY : CMakeFiles/asm_dev.dir/asm_f/srcs/del.c.o.provides
+
+CMakeFiles/asm_dev.dir/asm_f/srcs/del.c.o.provides.build: CMakeFiles/asm_dev.dir/asm_f/srcs/del.c.o
+
+
+CMakeFiles/asm_dev.dir/asm_f/srcs/label.c.o: CMakeFiles/asm_dev.dir/flags.make
+CMakeFiles/asm_dev.dir/asm_f/srcs/label.c.o: ../asm_f/srcs/label.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/byermak/COREWAR/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building C object CMakeFiles/asm_dev.dir/asm_f/srcs/label.c.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/asm_dev.dir/asm_f/srcs/label.c.o   -c /Users/byermak/COREWAR/asm_f/srcs/label.c
+
+CMakeFiles/asm_dev.dir/asm_f/srcs/label.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/asm_dev.dir/asm_f/srcs/label.c.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/byermak/COREWAR/asm_f/srcs/label.c > CMakeFiles/asm_dev.dir/asm_f/srcs/label.c.i
+
+CMakeFiles/asm_dev.dir/asm_f/srcs/label.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/asm_dev.dir/asm_f/srcs/label.c.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/byermak/COREWAR/asm_f/srcs/label.c -o CMakeFiles/asm_dev.dir/asm_f/srcs/label.c.s
+
+CMakeFiles/asm_dev.dir/asm_f/srcs/label.c.o.requires:
+
+.PHONY : CMakeFiles/asm_dev.dir/asm_f/srcs/label.c.o.requires
+
+CMakeFiles/asm_dev.dir/asm_f/srcs/label.c.o.provides: CMakeFiles/asm_dev.dir/asm_f/srcs/label.c.o.requires
+	$(MAKE) -f CMakeFiles/asm_dev.dir/build.make CMakeFiles/asm_dev.dir/asm_f/srcs/label.c.o.provides.build
+.PHONY : CMakeFiles/asm_dev.dir/asm_f/srcs/label.c.o.provides
+
+CMakeFiles/asm_dev.dir/asm_f/srcs/label.c.o.provides.build: CMakeFiles/asm_dev.dir/asm_f/srcs/label.c.o
+
+
+CMakeFiles/asm_dev.dir/asm_f/srcs/parser_error.c.o: CMakeFiles/asm_dev.dir/flags.make
+CMakeFiles/asm_dev.dir/asm_f/srcs/parser_error.c.o: ../asm_f/srcs/parser_error.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/byermak/COREWAR/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building C object CMakeFiles/asm_dev.dir/asm_f/srcs/parser_error.c.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/asm_dev.dir/asm_f/srcs/parser_error.c.o   -c /Users/byermak/COREWAR/asm_f/srcs/parser_error.c
+
+CMakeFiles/asm_dev.dir/asm_f/srcs/parser_error.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/asm_dev.dir/asm_f/srcs/parser_error.c.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/byermak/COREWAR/asm_f/srcs/parser_error.c > CMakeFiles/asm_dev.dir/asm_f/srcs/parser_error.c.i
+
+CMakeFiles/asm_dev.dir/asm_f/srcs/parser_error.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/asm_dev.dir/asm_f/srcs/parser_error.c.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/byermak/COREWAR/asm_f/srcs/parser_error.c -o CMakeFiles/asm_dev.dir/asm_f/srcs/parser_error.c.s
+
+CMakeFiles/asm_dev.dir/asm_f/srcs/parser_error.c.o.requires:
+
+.PHONY : CMakeFiles/asm_dev.dir/asm_f/srcs/parser_error.c.o.requires
+
+CMakeFiles/asm_dev.dir/asm_f/srcs/parser_error.c.o.provides: CMakeFiles/asm_dev.dir/asm_f/srcs/parser_error.c.o.requires
+	$(MAKE) -f CMakeFiles/asm_dev.dir/build.make CMakeFiles/asm_dev.dir/asm_f/srcs/parser_error.c.o.provides.build
+.PHONY : CMakeFiles/asm_dev.dir/asm_f/srcs/parser_error.c.o.provides
+
+CMakeFiles/asm_dev.dir/asm_f/srcs/parser_error.c.o.provides.build: CMakeFiles/asm_dev.dir/asm_f/srcs/parser_error.c.o
+
+
+CMakeFiles/asm_dev.dir/asm_f/srcs/parser_other.c.o: CMakeFiles/asm_dev.dir/flags.make
+CMakeFiles/asm_dev.dir/asm_f/srcs/parser_other.c.o: ../asm_f/srcs/parser_other.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/byermak/COREWAR/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building C object CMakeFiles/asm_dev.dir/asm_f/srcs/parser_other.c.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/asm_dev.dir/asm_f/srcs/parser_other.c.o   -c /Users/byermak/COREWAR/asm_f/srcs/parser_other.c
+
+CMakeFiles/asm_dev.dir/asm_f/srcs/parser_other.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/asm_dev.dir/asm_f/srcs/parser_other.c.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/byermak/COREWAR/asm_f/srcs/parser_other.c > CMakeFiles/asm_dev.dir/asm_f/srcs/parser_other.c.i
+
+CMakeFiles/asm_dev.dir/asm_f/srcs/parser_other.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/asm_dev.dir/asm_f/srcs/parser_other.c.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/byermak/COREWAR/asm_f/srcs/parser_other.c -o CMakeFiles/asm_dev.dir/asm_f/srcs/parser_other.c.s
+
+CMakeFiles/asm_dev.dir/asm_f/srcs/parser_other.c.o.requires:
+
+.PHONY : CMakeFiles/asm_dev.dir/asm_f/srcs/parser_other.c.o.requires
+
+CMakeFiles/asm_dev.dir/asm_f/srcs/parser_other.c.o.provides: CMakeFiles/asm_dev.dir/asm_f/srcs/parser_other.c.o.requires
+	$(MAKE) -f CMakeFiles/asm_dev.dir/build.make CMakeFiles/asm_dev.dir/asm_f/srcs/parser_other.c.o.provides.build
+.PHONY : CMakeFiles/asm_dev.dir/asm_f/srcs/parser_other.c.o.provides
+
+CMakeFiles/asm_dev.dir/asm_f/srcs/parser_other.c.o.provides.build: CMakeFiles/asm_dev.dir/asm_f/srcs/parser_other.c.o
+
+
+CMakeFiles/asm_dev.dir/asm_f/srcs/parse_arg.c.o: CMakeFiles/asm_dev.dir/flags.make
+CMakeFiles/asm_dev.dir/asm_f/srcs/parse_arg.c.o: ../asm_f/srcs/parse_arg.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/byermak/COREWAR/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building C object CMakeFiles/asm_dev.dir/asm_f/srcs/parse_arg.c.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/asm_dev.dir/asm_f/srcs/parse_arg.c.o   -c /Users/byermak/COREWAR/asm_f/srcs/parse_arg.c
+
+CMakeFiles/asm_dev.dir/asm_f/srcs/parse_arg.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/asm_dev.dir/asm_f/srcs/parse_arg.c.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/byermak/COREWAR/asm_f/srcs/parse_arg.c > CMakeFiles/asm_dev.dir/asm_f/srcs/parse_arg.c.i
+
+CMakeFiles/asm_dev.dir/asm_f/srcs/parse_arg.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/asm_dev.dir/asm_f/srcs/parse_arg.c.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/byermak/COREWAR/asm_f/srcs/parse_arg.c -o CMakeFiles/asm_dev.dir/asm_f/srcs/parse_arg.c.s
+
+CMakeFiles/asm_dev.dir/asm_f/srcs/parse_arg.c.o.requires:
+
+.PHONY : CMakeFiles/asm_dev.dir/asm_f/srcs/parse_arg.c.o.requires
+
+CMakeFiles/asm_dev.dir/asm_f/srcs/parse_arg.c.o.provides: CMakeFiles/asm_dev.dir/asm_f/srcs/parse_arg.c.o.requires
+	$(MAKE) -f CMakeFiles/asm_dev.dir/build.make CMakeFiles/asm_dev.dir/asm_f/srcs/parse_arg.c.o.provides.build
+.PHONY : CMakeFiles/asm_dev.dir/asm_f/srcs/parse_arg.c.o.provides
+
+CMakeFiles/asm_dev.dir/asm_f/srcs/parse_arg.c.o.provides.build: CMakeFiles/asm_dev.dir/asm_f/srcs/parse_arg.c.o
+
+
+CMakeFiles/asm_dev.dir/asm_f/srcs/parse_args.c.o: CMakeFiles/asm_dev.dir/flags.make
+CMakeFiles/asm_dev.dir/asm_f/srcs/parse_args.c.o: ../asm_f/srcs/parse_args.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/byermak/COREWAR/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building C object CMakeFiles/asm_dev.dir/asm_f/srcs/parse_args.c.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/asm_dev.dir/asm_f/srcs/parse_args.c.o   -c /Users/byermak/COREWAR/asm_f/srcs/parse_args.c
+
+CMakeFiles/asm_dev.dir/asm_f/srcs/parse_args.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/asm_dev.dir/asm_f/srcs/parse_args.c.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/byermak/COREWAR/asm_f/srcs/parse_args.c > CMakeFiles/asm_dev.dir/asm_f/srcs/parse_args.c.i
+
+CMakeFiles/asm_dev.dir/asm_f/srcs/parse_args.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/asm_dev.dir/asm_f/srcs/parse_args.c.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/byermak/COREWAR/asm_f/srcs/parse_args.c -o CMakeFiles/asm_dev.dir/asm_f/srcs/parse_args.c.s
+
+CMakeFiles/asm_dev.dir/asm_f/srcs/parse_args.c.o.requires:
+
+.PHONY : CMakeFiles/asm_dev.dir/asm_f/srcs/parse_args.c.o.requires
+
+CMakeFiles/asm_dev.dir/asm_f/srcs/parse_args.c.o.provides: CMakeFiles/asm_dev.dir/asm_f/srcs/parse_args.c.o.requires
+	$(MAKE) -f CMakeFiles/asm_dev.dir/build.make CMakeFiles/asm_dev.dir/asm_f/srcs/parse_args.c.o.provides.build
+.PHONY : CMakeFiles/asm_dev.dir/asm_f/srcs/parse_args.c.o.provides
+
+CMakeFiles/asm_dev.dir/asm_f/srcs/parse_args.c.o.provides.build: CMakeFiles/asm_dev.dir/asm_f/srcs/parse_args.c.o
+
+
+CMakeFiles/asm_dev.dir/asm_f/srcs/parser_checks.c.o: CMakeFiles/asm_dev.dir/flags.make
+CMakeFiles/asm_dev.dir/asm_f/srcs/parser_checks.c.o: ../asm_f/srcs/parser_checks.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/byermak/COREWAR/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building C object CMakeFiles/asm_dev.dir/asm_f/srcs/parser_checks.c.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/asm_dev.dir/asm_f/srcs/parser_checks.c.o   -c /Users/byermak/COREWAR/asm_f/srcs/parser_checks.c
+
+CMakeFiles/asm_dev.dir/asm_f/srcs/parser_checks.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/asm_dev.dir/asm_f/srcs/parser_checks.c.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/byermak/COREWAR/asm_f/srcs/parser_checks.c > CMakeFiles/asm_dev.dir/asm_f/srcs/parser_checks.c.i
+
+CMakeFiles/asm_dev.dir/asm_f/srcs/parser_checks.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/asm_dev.dir/asm_f/srcs/parser_checks.c.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/byermak/COREWAR/asm_f/srcs/parser_checks.c -o CMakeFiles/asm_dev.dir/asm_f/srcs/parser_checks.c.s
+
+CMakeFiles/asm_dev.dir/asm_f/srcs/parser_checks.c.o.requires:
+
+.PHONY : CMakeFiles/asm_dev.dir/asm_f/srcs/parser_checks.c.o.requires
+
+CMakeFiles/asm_dev.dir/asm_f/srcs/parser_checks.c.o.provides: CMakeFiles/asm_dev.dir/asm_f/srcs/parser_checks.c.o.requires
+	$(MAKE) -f CMakeFiles/asm_dev.dir/build.make CMakeFiles/asm_dev.dir/asm_f/srcs/parser_checks.c.o.provides.build
+.PHONY : CMakeFiles/asm_dev.dir/asm_f/srcs/parser_checks.c.o.provides
+
+CMakeFiles/asm_dev.dir/asm_f/srcs/parser_checks.c.o.provides.build: CMakeFiles/asm_dev.dir/asm_f/srcs/parser_checks.c.o
+
+
 # Object files for target asm_dev
 asm_dev_OBJECTS = \
 "CMakeFiles/asm_dev.dir/asm_f/srcs/main.c.o" \
@@ -258,7 +426,14 @@ asm_dev_OBJECTS = \
 "CMakeFiles/asm_dev.dir/asm_f/srcs/parsing_name_and_comment2.c.o" \
 "CMakeFiles/asm_dev.dir/asm_f/srcs/other.c.o" \
 "CMakeFiles/asm_dev.dir/asm_f/srcs/bytecode.c.o" \
-"CMakeFiles/asm_dev.dir/asm_f/srcs/things_to_bytecode.c.o"
+"CMakeFiles/asm_dev.dir/asm_f/srcs/things_to_bytecode.c.o" \
+"CMakeFiles/asm_dev.dir/asm_f/srcs/del.c.o" \
+"CMakeFiles/asm_dev.dir/asm_f/srcs/label.c.o" \
+"CMakeFiles/asm_dev.dir/asm_f/srcs/parser_error.c.o" \
+"CMakeFiles/asm_dev.dir/asm_f/srcs/parser_other.c.o" \
+"CMakeFiles/asm_dev.dir/asm_f/srcs/parse_arg.c.o" \
+"CMakeFiles/asm_dev.dir/asm_f/srcs/parse_args.c.o" \
+"CMakeFiles/asm_dev.dir/asm_f/srcs/parser_checks.c.o"
 
 # External object files for target asm_dev
 asm_dev_EXTERNAL_OBJECTS =
@@ -271,10 +446,17 @@ asm_dev: CMakeFiles/asm_dev.dir/asm_f/srcs/parsing_name_and_comment2.c.o
 asm_dev: CMakeFiles/asm_dev.dir/asm_f/srcs/other.c.o
 asm_dev: CMakeFiles/asm_dev.dir/asm_f/srcs/bytecode.c.o
 asm_dev: CMakeFiles/asm_dev.dir/asm_f/srcs/things_to_bytecode.c.o
+asm_dev: CMakeFiles/asm_dev.dir/asm_f/srcs/del.c.o
+asm_dev: CMakeFiles/asm_dev.dir/asm_f/srcs/label.c.o
+asm_dev: CMakeFiles/asm_dev.dir/asm_f/srcs/parser_error.c.o
+asm_dev: CMakeFiles/asm_dev.dir/asm_f/srcs/parser_other.c.o
+asm_dev: CMakeFiles/asm_dev.dir/asm_f/srcs/parse_arg.c.o
+asm_dev: CMakeFiles/asm_dev.dir/asm_f/srcs/parse_args.c.o
+asm_dev: CMakeFiles/asm_dev.dir/asm_f/srcs/parser_checks.c.o
 asm_dev: CMakeFiles/asm_dev.dir/build.make
 asm_dev: liblibft.a
 asm_dev: CMakeFiles/asm_dev.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/byermak/COREWAR/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Linking C executable asm_dev"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/byermak/COREWAR/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Linking C executable asm_dev"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/asm_dev.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -290,6 +472,13 @@ CMakeFiles/asm_dev.dir/requires: CMakeFiles/asm_dev.dir/asm_f/srcs/parsing_name_
 CMakeFiles/asm_dev.dir/requires: CMakeFiles/asm_dev.dir/asm_f/srcs/other.c.o.requires
 CMakeFiles/asm_dev.dir/requires: CMakeFiles/asm_dev.dir/asm_f/srcs/bytecode.c.o.requires
 CMakeFiles/asm_dev.dir/requires: CMakeFiles/asm_dev.dir/asm_f/srcs/things_to_bytecode.c.o.requires
+CMakeFiles/asm_dev.dir/requires: CMakeFiles/asm_dev.dir/asm_f/srcs/del.c.o.requires
+CMakeFiles/asm_dev.dir/requires: CMakeFiles/asm_dev.dir/asm_f/srcs/label.c.o.requires
+CMakeFiles/asm_dev.dir/requires: CMakeFiles/asm_dev.dir/asm_f/srcs/parser_error.c.o.requires
+CMakeFiles/asm_dev.dir/requires: CMakeFiles/asm_dev.dir/asm_f/srcs/parser_other.c.o.requires
+CMakeFiles/asm_dev.dir/requires: CMakeFiles/asm_dev.dir/asm_f/srcs/parse_arg.c.o.requires
+CMakeFiles/asm_dev.dir/requires: CMakeFiles/asm_dev.dir/asm_f/srcs/parse_args.c.o.requires
+CMakeFiles/asm_dev.dir/requires: CMakeFiles/asm_dev.dir/asm_f/srcs/parser_checks.c.o.requires
 
 .PHONY : CMakeFiles/asm_dev.dir/requires
 

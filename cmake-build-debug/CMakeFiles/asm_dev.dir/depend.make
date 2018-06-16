@@ -14,6 +14,19 @@ CMakeFiles/asm_dev.dir/asm_f/srcs/bytecode.c.o: ../libft/put/includes/ft_put.h
 CMakeFiles/asm_dev.dir/asm_f/srcs/bytecode.c.o: ../libft/str/includes/ft_str.h
 CMakeFiles/asm_dev.dir/asm_f/srcs/bytecode.c.o: ../asm_f/srcs/bytecode.c
 
+CMakeFiles/asm_dev.dir/asm_f/srcs/del.c.o: ../asm_f/includes/asm.h
+CMakeFiles/asm_dev.dir/asm_f/srcs/del.c.o: ../asm_f/includes/op.h
+CMakeFiles/asm_dev.dir/asm_f/srcs/del.c.o: ../libft/gnl/includes/ft_gnl.h
+CMakeFiles/asm_dev.dir/asm_f/srcs/del.c.o: ../libft/includes/libft.h
+CMakeFiles/asm_dev.dir/asm_f/srcs/del.c.o: ../libft/is/includes/ft_is.h
+CMakeFiles/asm_dev.dir/asm_f/srcs/del.c.o: ../libft/lst/includes/ft_lst.h
+CMakeFiles/asm_dev.dir/asm_f/srcs/del.c.o: ../libft/math/includes/ft_math.h
+CMakeFiles/asm_dev.dir/asm_f/srcs/del.c.o: ../libft/mem/includes/ft_mem.h
+CMakeFiles/asm_dev.dir/asm_f/srcs/del.c.o: ../libft/printf/includes/ft_printf.h
+CMakeFiles/asm_dev.dir/asm_f/srcs/del.c.o: ../libft/put/includes/ft_put.h
+CMakeFiles/asm_dev.dir/asm_f/srcs/del.c.o: ../libft/str/includes/ft_str.h
+CMakeFiles/asm_dev.dir/asm_f/srcs/del.c.o: ../asm_f/srcs/del.c
+
 CMakeFiles/asm_dev.dir/asm_f/srcs/exit.c.o: ../asm_f/includes/asm.h
 CMakeFiles/asm_dev.dir/asm_f/srcs/exit.c.o: ../asm_f/includes/op.h
 CMakeFiles/asm_dev.dir/asm_f/srcs/exit.c.o: ../libft/gnl/includes/ft_gnl.h
@@ -26,6 +39,19 @@ CMakeFiles/asm_dev.dir/asm_f/srcs/exit.c.o: ../libft/printf/includes/ft_printf.h
 CMakeFiles/asm_dev.dir/asm_f/srcs/exit.c.o: ../libft/put/includes/ft_put.h
 CMakeFiles/asm_dev.dir/asm_f/srcs/exit.c.o: ../libft/str/includes/ft_str.h
 CMakeFiles/asm_dev.dir/asm_f/srcs/exit.c.o: ../asm_f/srcs/exit.c
+
+CMakeFiles/asm_dev.dir/asm_f/srcs/label.c.o: ../asm_f/includes/asm.h
+CMakeFiles/asm_dev.dir/asm_f/srcs/label.c.o: ../asm_f/includes/op.h
+CMakeFiles/asm_dev.dir/asm_f/srcs/label.c.o: ../libft/gnl/includes/ft_gnl.h
+CMakeFiles/asm_dev.dir/asm_f/srcs/label.c.o: ../libft/includes/libft.h
+CMakeFiles/asm_dev.dir/asm_f/srcs/label.c.o: ../libft/is/includes/ft_is.h
+CMakeFiles/asm_dev.dir/asm_f/srcs/label.c.o: ../libft/lst/includes/ft_lst.h
+CMakeFiles/asm_dev.dir/asm_f/srcs/label.c.o: ../libft/math/includes/ft_math.h
+CMakeFiles/asm_dev.dir/asm_f/srcs/label.c.o: ../libft/mem/includes/ft_mem.h
+CMakeFiles/asm_dev.dir/asm_f/srcs/label.c.o: ../libft/printf/includes/ft_printf.h
+CMakeFiles/asm_dev.dir/asm_f/srcs/label.c.o: ../libft/put/includes/ft_put.h
+CMakeFiles/asm_dev.dir/asm_f/srcs/label.c.o: ../libft/str/includes/ft_str.h
+CMakeFiles/asm_dev.dir/asm_f/srcs/label.c.o: ../asm_f/srcs/label.c
 
 CMakeFiles/asm_dev.dir/asm_f/srcs/main.c.o: ../asm_f/includes/asm.h
 CMakeFiles/asm_dev.dir/asm_f/srcs/main.c.o: ../asm_f/includes/op.h
@@ -53,6 +79,32 @@ CMakeFiles/asm_dev.dir/asm_f/srcs/other.c.o: ../libft/put/includes/ft_put.h
 CMakeFiles/asm_dev.dir/asm_f/srcs/other.c.o: ../libft/str/includes/ft_str.h
 CMakeFiles/asm_dev.dir/asm_f/srcs/other.c.o: ../asm_f/srcs/other.c
 
+CMakeFiles/asm_dev.dir/asm_f/srcs/parse_arg.c.o: ../asm_f/includes/asm.h
+CMakeFiles/asm_dev.dir/asm_f/srcs/parse_arg.c.o: ../asm_f/includes/op.h
+CMakeFiles/asm_dev.dir/asm_f/srcs/parse_arg.c.o: ../libft/gnl/includes/ft_gnl.h
+CMakeFiles/asm_dev.dir/asm_f/srcs/parse_arg.c.o: ../libft/includes/libft.h
+CMakeFiles/asm_dev.dir/asm_f/srcs/parse_arg.c.o: ../libft/is/includes/ft_is.h
+CMakeFiles/asm_dev.dir/asm_f/srcs/parse_arg.c.o: ../libft/lst/includes/ft_lst.h
+CMakeFiles/asm_dev.dir/asm_f/srcs/parse_arg.c.o: ../libft/math/includes/ft_math.h
+CMakeFiles/asm_dev.dir/asm_f/srcs/parse_arg.c.o: ../libft/mem/includes/ft_mem.h
+CMakeFiles/asm_dev.dir/asm_f/srcs/parse_arg.c.o: ../libft/printf/includes/ft_printf.h
+CMakeFiles/asm_dev.dir/asm_f/srcs/parse_arg.c.o: ../libft/put/includes/ft_put.h
+CMakeFiles/asm_dev.dir/asm_f/srcs/parse_arg.c.o: ../libft/str/includes/ft_str.h
+CMakeFiles/asm_dev.dir/asm_f/srcs/parse_arg.c.o: ../asm_f/srcs/parse_arg.c
+
+CMakeFiles/asm_dev.dir/asm_f/srcs/parse_args.c.o: ../asm_f/includes/asm.h
+CMakeFiles/asm_dev.dir/asm_f/srcs/parse_args.c.o: ../asm_f/includes/op.h
+CMakeFiles/asm_dev.dir/asm_f/srcs/parse_args.c.o: ../libft/gnl/includes/ft_gnl.h
+CMakeFiles/asm_dev.dir/asm_f/srcs/parse_args.c.o: ../libft/includes/libft.h
+CMakeFiles/asm_dev.dir/asm_f/srcs/parse_args.c.o: ../libft/is/includes/ft_is.h
+CMakeFiles/asm_dev.dir/asm_f/srcs/parse_args.c.o: ../libft/lst/includes/ft_lst.h
+CMakeFiles/asm_dev.dir/asm_f/srcs/parse_args.c.o: ../libft/math/includes/ft_math.h
+CMakeFiles/asm_dev.dir/asm_f/srcs/parse_args.c.o: ../libft/mem/includes/ft_mem.h
+CMakeFiles/asm_dev.dir/asm_f/srcs/parse_args.c.o: ../libft/printf/includes/ft_printf.h
+CMakeFiles/asm_dev.dir/asm_f/srcs/parse_args.c.o: ../libft/put/includes/ft_put.h
+CMakeFiles/asm_dev.dir/asm_f/srcs/parse_args.c.o: ../libft/str/includes/ft_str.h
+CMakeFiles/asm_dev.dir/asm_f/srcs/parse_args.c.o: ../asm_f/srcs/parse_args.c
+
 CMakeFiles/asm_dev.dir/asm_f/srcs/parse_code.c.o: ../asm_f/includes/asm.h
 CMakeFiles/asm_dev.dir/asm_f/srcs/parse_code.c.o: ../asm_f/includes/op.h
 CMakeFiles/asm_dev.dir/asm_f/srcs/parse_code.c.o: ../libft/gnl/includes/ft_gnl.h
@@ -65,6 +117,45 @@ CMakeFiles/asm_dev.dir/asm_f/srcs/parse_code.c.o: ../libft/printf/includes/ft_pr
 CMakeFiles/asm_dev.dir/asm_f/srcs/parse_code.c.o: ../libft/put/includes/ft_put.h
 CMakeFiles/asm_dev.dir/asm_f/srcs/parse_code.c.o: ../libft/str/includes/ft_str.h
 CMakeFiles/asm_dev.dir/asm_f/srcs/parse_code.c.o: ../asm_f/srcs/parse_code.c
+
+CMakeFiles/asm_dev.dir/asm_f/srcs/parser_checks.c.o: ../asm_f/includes/asm.h
+CMakeFiles/asm_dev.dir/asm_f/srcs/parser_checks.c.o: ../asm_f/includes/op.h
+CMakeFiles/asm_dev.dir/asm_f/srcs/parser_checks.c.o: ../libft/gnl/includes/ft_gnl.h
+CMakeFiles/asm_dev.dir/asm_f/srcs/parser_checks.c.o: ../libft/includes/libft.h
+CMakeFiles/asm_dev.dir/asm_f/srcs/parser_checks.c.o: ../libft/is/includes/ft_is.h
+CMakeFiles/asm_dev.dir/asm_f/srcs/parser_checks.c.o: ../libft/lst/includes/ft_lst.h
+CMakeFiles/asm_dev.dir/asm_f/srcs/parser_checks.c.o: ../libft/math/includes/ft_math.h
+CMakeFiles/asm_dev.dir/asm_f/srcs/parser_checks.c.o: ../libft/mem/includes/ft_mem.h
+CMakeFiles/asm_dev.dir/asm_f/srcs/parser_checks.c.o: ../libft/printf/includes/ft_printf.h
+CMakeFiles/asm_dev.dir/asm_f/srcs/parser_checks.c.o: ../libft/put/includes/ft_put.h
+CMakeFiles/asm_dev.dir/asm_f/srcs/parser_checks.c.o: ../libft/str/includes/ft_str.h
+CMakeFiles/asm_dev.dir/asm_f/srcs/parser_checks.c.o: ../asm_f/srcs/parser_checks.c
+
+CMakeFiles/asm_dev.dir/asm_f/srcs/parser_error.c.o: ../asm_f/includes/asm.h
+CMakeFiles/asm_dev.dir/asm_f/srcs/parser_error.c.o: ../asm_f/includes/op.h
+CMakeFiles/asm_dev.dir/asm_f/srcs/parser_error.c.o: ../libft/gnl/includes/ft_gnl.h
+CMakeFiles/asm_dev.dir/asm_f/srcs/parser_error.c.o: ../libft/includes/libft.h
+CMakeFiles/asm_dev.dir/asm_f/srcs/parser_error.c.o: ../libft/is/includes/ft_is.h
+CMakeFiles/asm_dev.dir/asm_f/srcs/parser_error.c.o: ../libft/lst/includes/ft_lst.h
+CMakeFiles/asm_dev.dir/asm_f/srcs/parser_error.c.o: ../libft/math/includes/ft_math.h
+CMakeFiles/asm_dev.dir/asm_f/srcs/parser_error.c.o: ../libft/mem/includes/ft_mem.h
+CMakeFiles/asm_dev.dir/asm_f/srcs/parser_error.c.o: ../libft/printf/includes/ft_printf.h
+CMakeFiles/asm_dev.dir/asm_f/srcs/parser_error.c.o: ../libft/put/includes/ft_put.h
+CMakeFiles/asm_dev.dir/asm_f/srcs/parser_error.c.o: ../libft/str/includes/ft_str.h
+CMakeFiles/asm_dev.dir/asm_f/srcs/parser_error.c.o: ../asm_f/srcs/parser_error.c
+
+CMakeFiles/asm_dev.dir/asm_f/srcs/parser_other.c.o: ../asm_f/includes/asm.h
+CMakeFiles/asm_dev.dir/asm_f/srcs/parser_other.c.o: ../asm_f/includes/op.h
+CMakeFiles/asm_dev.dir/asm_f/srcs/parser_other.c.o: ../libft/gnl/includes/ft_gnl.h
+CMakeFiles/asm_dev.dir/asm_f/srcs/parser_other.c.o: ../libft/includes/libft.h
+CMakeFiles/asm_dev.dir/asm_f/srcs/parser_other.c.o: ../libft/is/includes/ft_is.h
+CMakeFiles/asm_dev.dir/asm_f/srcs/parser_other.c.o: ../libft/lst/includes/ft_lst.h
+CMakeFiles/asm_dev.dir/asm_f/srcs/parser_other.c.o: ../libft/math/includes/ft_math.h
+CMakeFiles/asm_dev.dir/asm_f/srcs/parser_other.c.o: ../libft/mem/includes/ft_mem.h
+CMakeFiles/asm_dev.dir/asm_f/srcs/parser_other.c.o: ../libft/printf/includes/ft_printf.h
+CMakeFiles/asm_dev.dir/asm_f/srcs/parser_other.c.o: ../libft/put/includes/ft_put.h
+CMakeFiles/asm_dev.dir/asm_f/srcs/parser_other.c.o: ../libft/str/includes/ft_str.h
+CMakeFiles/asm_dev.dir/asm_f/srcs/parser_other.c.o: ../asm_f/srcs/parser_other.c
 
 CMakeFiles/asm_dev.dir/asm_f/srcs/parsing_name_and_comment.c.o: ../asm_f/includes/asm.h
 CMakeFiles/asm_dev.dir/asm_f/srcs/parsing_name_and_comment.c.o: ../asm_f/includes/op.h
