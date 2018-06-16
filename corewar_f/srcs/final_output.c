@@ -6,7 +6,7 @@
 /*   By: bcherkas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/13 15:57:01 by bcherkas          #+#    #+#             */
-/*   Updated: 2018/06/15 17:40:17 by bcherkas         ###   ########.fr       */
+/*   Updated: 2018/06/16 18:38:13 by bcherkas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,10 @@ void	winner(t_info *inf)
 	int		i;
 
 	i = 0;
-	while (i < inf->players_amount)
-	{
-		if (inf->last_dead == &(inf->head[i]))
-			break ;
-		i++;
-	}
-	ft_printf("Contestant %d, \"%s\", has won !\n", i + 1,
-			inf->last_dead->prog_name);
+	if (!inf->last_dead)
+		inf->last_dead = &(inf->head[0]);
+	ft_printf("Contestant %d, \"%s\", has won !\n",
+			inf->last_dead->player_number, inf->last_dead->prog_name);
 	exit(0);
 }
 

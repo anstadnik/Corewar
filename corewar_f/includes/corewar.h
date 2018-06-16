@@ -6,7 +6,7 @@
 /*   By: bcherkas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 13:51:01 by bcherkas          #+#    #+#             */
-/*   Updated: 2018/06/15 17:35:31 by bcherkas         ###   ########.fr       */
+/*   Updated: 2018/06/16 18:35:47 by bcherkas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ typedef struct		s_header
 	unsigned int		prog_size;
 	char				prog_name[NAME_LEN + 1];
 	char				comment[COMMENT_LEN + 1];
+	int					player_number;
 }					t_header;
 
 typedef struct		s_info
@@ -95,7 +96,6 @@ typedef struct		s_info
 	int					output_mode;
 	int					players[MAX_PLAYERS];
 	int					players_amount;
-	int					carriage_number;
 	unsigned char		map[MEM_SIZE];
 }					t_info;
 
@@ -132,7 +132,6 @@ int					get_ind(unsigned char *map, int pc);
 int					*get_args(unsigned char *map, int st, int *args,
 						int label_s);
 int					*get_codage(unsigned char code);
-//
 
 void				cor_add(unsigned char *map, t_carriage *carry,
 						int *codage, int *args);

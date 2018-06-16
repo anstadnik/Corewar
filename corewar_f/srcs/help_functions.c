@@ -6,7 +6,7 @@
 /*   By: bcherkas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/08 18:26:29 by bcherkas          #+#    #+#             */
-/*   Updated: 2018/06/15 17:07:26 by bcherkas         ###   ########.fr       */
+/*   Updated: 2018/06/16 19:15:13 by bcherkas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ void		new_carriage(t_list **add_pointer, t_list *lst)
 		start = add_pointer;
 		return ;
 	}
+	if (add_pointer == NULL && lst == NULL)
+		ft_lstdel(start, free);
 }
 
 int			get_args_flag(int *args, int flag)

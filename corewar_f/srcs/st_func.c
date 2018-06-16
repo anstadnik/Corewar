@@ -6,14 +6,16 @@
 /*   By: astadnik <astadnik@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/09 17:16:57 by astadnik          #+#    #+#             */
-/*   Updated: 2018/06/15 18:16:05 by bcherkas         ###   ########.fr       */
+/*   Updated: 2018/06/16 18:55:05 by bcherkas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-void	cor_st(unsigned char *map, t_carriage *carry, int *codage, int *args)
+void		cor_st(unsigned char *map,
+			t_carriage *carry, int *codage, int *args)
 {
+	const int	flag = get_args_flag(NULL, FLAG_V);
 	t_magic	mgc;
 	size_t	start;
 
@@ -30,14 +32,33 @@ void	cor_st(unsigned char *map, t_carriage *carry, int *codage, int *args)
 					% MEM_SIZE);
 			ft_memcpy_cor(map, start, mgc.arr, 4);
 		}
+		if (flag > 0 && (flag & 4) == 4)
+			ft_printf("P%5d | st r%d %d\n", carry->number,
+					args[0] + 1, args[1]);
 	}
 	carry->pc = (carry->pc + 2 + codage[0] + codage[1]) % MEM_SIZE;
 }
 
-void	cor_sti(unsigned char *map, t_carriage *carry, int *codage, int *args)
+static void	print_v4(int *args, t_carriage *carry, int pc)
 {
-	t_magic	mgc;
-	size_t	start;
+	const int	flag = get_args_flag(NULL, FLAG_V);
+	int			sum;
+
+	if (flag > 0 && (flag & 4) == 4)
+	{
+		sum = args[1] + args[2];
+		ft_printf("P%5d | sti r%d %d\n",
+				carry->number, args[0] + 1, args[1], args[2]);
+		ft_printf("       | store to %d + %d = %d (with pc and mod %d)\n",
+			args[1], args[2], sum, (pc + sum) % IDX_MOD);
+	}
+}
+
+void		cor_sti(unsigned char *map,
+			t_carriage *carry, int *codage, int *args)
+{
+	t_magic		mgc;
+	size_t		start;
 
 	if (args)
 	{
@@ -52,8 +73,7 @@ void	cor_sti(unsigned char *map, t_carriage *carry, int *codage, int *args)
 		start = (size_t)((MEM_SIZE + (carry->pc + (args[1] + args[2]) % IDX_MOD))
 			% MEM_SIZE);
 		ft_memcpy_cor(map, start, mgc.arr, 4);
+		print_v4(args, carry, carry->pc);
 	}
-	else
-		codage[0] = 1;
 	carry->pc = (carry->pc + 2 + codage[0] + codage[1] + codage[2]) % MEM_SIZE;
 }

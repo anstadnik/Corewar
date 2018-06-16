@@ -6,7 +6,7 @@
 /*   By: bcherkas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/08 15:11:22 by bcherkas          #+#    #+#             */
-/*   Updated: 2018/06/15 20:26:03 by bcherkas         ###   ########.fr       */
+/*   Updated: 2018/06/16 16:10:25 by bcherkas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,11 @@ void	cor_zjmp(unsigned char *map, t_carriage *carry)
 	const int	flag = get_args_flag(NULL, FLAG_V);
 	int			i;
 
-	if (carry->carry == 0)
-		return ;
-	i = get_dir(map, carry->pc + 1, 2) % IDX_MOD;
-	carry->pc = (MEM_SIZE + carry->pc + i) % MEM_SIZE;	
+	if (carry->carry == 1)
+	{
+		i = get_dir(map, carry->pc + 1, 2) % IDX_MOD;
+		carry->pc = (MEM_SIZE + carry->pc + i) % MEM_SIZE;	
+	}
 	if (flag > 0 && (flag & 4) == 4)
 		ft_printf("P%5d | zjmp %d %s\n", carry->number, i, 
 				i == 0 ? "FAILED" : "OK");
@@ -46,7 +47,7 @@ void	cor_live(unsigned char *map, t_carriage *carry)
 	int			save;
 	t_header	*player;
 	int			player_number;
-	const int	flag = get_args_flag(NULL, FLAG_V);;
+	const int	flag = get_args_flag(NULL, FLAG_V);
 
 	player = NULL;
 	carry->lives++;

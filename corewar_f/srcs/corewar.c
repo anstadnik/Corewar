@@ -6,7 +6,7 @@
 /*   By: bcherkas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 13:59:51 by bcherkas          #+#    #+#             */
-/*   Updated: 2018/06/14 19:28:46 by bcherkas         ###   ########.fr       */
+/*   Updated: 2018/06/16 18:41:13 by bcherkas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void	initialize(t_info *inf)
 		inf->args[i] = -1;
 		i++;
 	}
+	inf->last_dead = NULL;
 }
 
 t_carriage	init_carriage(int player, int max)
@@ -64,20 +65,25 @@ void	init_map(t_info *inf)
 	int			i;
 
 	i = 0;
-	inf->carriage_number = inf->players_amount;
 	while (i < inf->players_amount)
 	{
+		inf->players[i] = 0;
 		tmp = init_carriage(i, inf->players_amount);
 		tmp.players = inf->players;
 		tmp.players_amount = inf->players_amount;
 		head = ft_lstnew(&tmp, sizeof(tmp));
 		ft_lstadd(&inf->stack, head);
+		inf->head[i].player_number = i + 1;
+		i++;
+	}
+	while (i < 4)
+	{
+		inf->players[i] = -1;
 		i++;
 	}
 	new_carriage(&(inf->stack), NULL);
 	get_args_flag(inf->args, 0);
 	get_player_info(inf->head, 0);
-	ft_bzero(inf->players, sizeof(inf->players));
 }
 
 int		main(int argc, char **argv)
