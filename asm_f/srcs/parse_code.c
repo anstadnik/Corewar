@@ -6,7 +6,7 @@
 /*   By: byermak <byermak@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 17:06:00 by byermak           #+#    #+#             */
-/*   Updated: 2018/06/16 15:20:49 by byermak          ###   ########.fr       */
+/*   Updated: 2018/06/16 15:34:29 by byermak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,8 @@ static void	parse_command(char **str, char **label, int fd)
 	if ((i = new_command(&command, label, &new, *str)) != 1)
 	{
 		ft_strdel(str);
+		ft_printf("[%i]\n", i);
+		exit(1);////////
 ////	free code and close fd
 ////	error(i);
 	}
