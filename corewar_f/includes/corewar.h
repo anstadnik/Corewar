@@ -6,7 +6,7 @@
 /*   By: bcherkas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 13:51:01 by bcherkas          #+#    #+#             */
-/*   Updated: 2018/06/16 18:35:47 by bcherkas         ###   ########.fr       */
+/*   Updated: 2018/06/29 20:01:08 by bcherkas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "libft.h"
 # include <stdio.h>
 # include <fcntl.h>
+# include <ncurses.h>
 
 # define IND_SIZE				2
 # define REG_SIZE				4
@@ -33,7 +34,7 @@
 
 # define REG_NUMBER				16
 
-# define CYCLE_TO_DIE			1536// Hm, shouldn't we change this time to time?
+# define CYCLE_TO_DIE			1536
 # define CYCLE_DELTA			50
 # define NBR_LIVE				21
 # define MAX_CHECKS				10
@@ -78,18 +79,25 @@ typedef union		u_magic
 	int				magic;
 }					t_magic;
 
+typedef struct		s_win
+{
+	WINDOW			*main;
+	WINDOW			*info;
+}					t_win;
+
 typedef struct		s_header
 {
 	unsigned int		prog_size;
+	int					player_number;
 	char				prog_name[NAME_LEN + 1];
 	char				comment[COMMENT_LEN + 1];
-	int					player_number;
 }					t_header;
 
 typedef struct		s_info
 {
-	t_list				*stack;
 	t_header			head[MAX_PLAYERS];
+	t_win				win;
+	t_list				*stack;
 	t_header			*last_dead;
 	int					args[7];
 	int					cycles_to_die;
@@ -101,8 +109,8 @@ typedef struct		s_info
 
 typedef struct		s_carriage
 {
-	int				reg[REG_NUMBER];
 	void			(*func)();
+	int				reg[REG_NUMBER];
 	int				carry;
 	int				pc;
 	int				cycles_left;
@@ -112,6 +120,7 @@ typedef struct		s_carriage
 	int				lives;
 	int				number;
 	int				cycles_without_live;
+	int				player_num;
 }					t_carriage;
 
 typedef struct		s_op
@@ -185,6 +194,12 @@ void				swap_union_mgc(t_magic *mgc);
 int					errmsg(char *str);
 void				*ft_memcpy_cor(void *str1, size_t start, const void *str2,
 						size_t n);
+
+void				ncur_init_window(t_info *inf);
+void				color_output(int player, unsigned char *str, int start,
+						size_t len);
+WINDOW				*get_active_window(int num, WINDOW *main, WINDOW *info);
+void				stop_ncurses(t_info *inf);
 
 void				output_text(t_info *inf, int iterations);
 void				introduce(t_info *inf);

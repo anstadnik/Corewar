@@ -7,7 +7,7 @@ LDIR = ../libft/
 NAME = corewar
 LIB = $(LDIR)libft.a
 FUNCS = fork_func.c cor_func.c math_func.c bit_funcs.c st_func.c ld_func.c
-HELP = get_int.c final_output.c help_functions.c live_functions.c get_args.c
+HELP = get_int.c final_output.c help_functions.c live_functions.c get_args.c ncurses.c ncurses_help.c
 FILES = check_cor.c corewar.c get_parameters.c main_cycle.c output_text.c $(FUNCS) $(HELP)
 OBJS = $(FILES:.c=.o)
 
@@ -25,7 +25,7 @@ all: $(NAME)
 # Change that shit! (If u can)
 $(NAME): $(addprefix $(ODIR), $(OBJS)) $(LIB)
 	@echo "$(ESCAPE)[34m\nCompiling $@$(ESCAPE)[0m"
-	@$(CC) $(CFLAGS) -I $(IDIR) -I $(LDIR)includes -o $@ $^
+	@$(CC) $(CFLAGS) -I $(IDIR) -I $(LDIR)includes -o $@ $^ -lncurses
 
 g:
 	@echo "$(ESCAPE)[34m\nCompiling debug $(NAME)$(ESCAPE)[0m"

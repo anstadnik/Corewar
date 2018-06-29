@@ -6,7 +6,7 @@
 /*   By: bcherkas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/12 17:10:29 by bcherkas          #+#    #+#             */
-/*   Updated: 2018/06/16 18:31:32 by bcherkas         ###   ########.fr       */
+/*   Updated: 2018/06/29 20:00:35 by bcherkas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void	dead_end(t_info *inf, int iterations)
 		free(tmp);
 	}
 	inf->stack = NULL;
+	stop_ncurses(inf);
 	winner(inf);
 	exit(0);
 }

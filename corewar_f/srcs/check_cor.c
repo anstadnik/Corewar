@@ -6,7 +6,7 @@
 /*   By: bcherkas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 18:11:13 by bcherkas          #+#    #+#             */
-/*   Updated: 2018/06/13 17:26:32 by bcherkas         ###   ########.fr       */
+/*   Updated: 2018/06/29 19:50:24 by bcherkas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,18 +41,24 @@ void	print_info(int start, char *str, int size)
 	printf("\n");
 }
 
-void	cpy_to_map(t_info *inf, size_t size, char *str, int player)
+void	cpy_to_map(t_info *inf, size_t size, unsigned char *str, int player)
 {
 	int		cpy_start;
+	int		i;
+	int		save;
 
+	i = 0;
+	save = 0;
 	cpy_start = (MEM_SIZE / inf->players_amount) * player;
 	ft_memcpy(inf->map + cpy_start, str, size);
+	if (inf->args[FLAG_N] == 1)
+		color_output(player, str, cpy_start, size);
 }
 
 void	check_file(int fd, t_header *head, t_info *inf, int player)
 {
-	char	buff[4];
-	char	str[CHAMP_MAX_SIZE];
+	char			buff[4];
+	unsigned char	str[CHAMP_MAX_SIZE];
 
 	if (read(fd, buff, 0) < 0)
 		errmsg("Cannot open file");

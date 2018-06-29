@@ -6,7 +6,7 @@
 /*   By: bcherkas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 13:59:51 by bcherkas          #+#    #+#             */
-/*   Updated: 2018/06/16 18:41:13 by bcherkas         ###   ########.fr       */
+/*   Updated: 2018/06/29 20:26:40 by bcherkas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ t_carriage	init_carriage(int player, int max)
 	tmp.reg[0] = (PLAYER_CODE - player);
 	tmp.number = player + 1;
 	tmp.cycles_without_live = 0;
+	tmp.player_num = player;
 	return (tmp);
 }
 
@@ -94,9 +95,18 @@ int		main(int argc, char **argv)
 		return (errmsg("Too many or too few arguments"));
 	initialize(&inf);
 	get_parameters(argc - 1, argv + 1, &inf);
+	if (inf.args[FLAG_N] == 1)
+		ncur_init_window(&inf);
 	read_players(&inf);
 	init_map(&inf);
-	introduce(&inf);
+	if (inf.args[FLAG_N] == 1)
+	{
+		wrefresh(inf.win.main);
+		wrefresh(inf.win.info);
+		wgetch(inf.win.main);
+	}
+	else
+		introduce(&inf);
 	if (inf.args[FLAG_D] == 0)
 		output_text(&inf, 0);
 	main_cycle(&inf);
