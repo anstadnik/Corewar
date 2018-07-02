@@ -6,16 +6,16 @@
 /*   By: byermak <byermak@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/13 15:27:00 by byermak           #+#    #+#             */
-/*   Updated: 2018/06/13 19:10:19 by byermak          ###   ########.fr       */
+/*   Updated: 2018/07/02 16:04:40 by byermak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-static unsigned int	get_prog_size(void)
+static int	get_prog_size(void)
 {
-	t_code			*tmp;
-	unsigned int	size;
+	t_code	*tmp;
+	int		size;
 
 	tmp = g_code;
 	while (tmp->next)
@@ -38,9 +38,9 @@ static void			arg_to_bytecode(char *buff, t_arg *arg)
 
 static void			command_to_bytecode(char *buff, t_code *command)
 {
-	to_buff(buff, (char)command->opcode);
+	to_buff(buff, (unsigned char)command->opcode);
 	if (command->codage)
-		to_buff(buff, command->codage);
+		to_buff(buff, (unsigned char)command->codage);
 	arg_to_bytecode(buff, command->arg1);
 	if (command->arg2)
 		arg_to_bytecode(buff, command->arg2);
@@ -56,7 +56,7 @@ void				to_bytecode(t_header *magic, int fd)
 
 	ft_bzero(str, (size_t)len);
 	magic->magic = COREWAR_EXEC_MAGIC;
-	magic->prog_size = get_prog_size();
+	magic->prog_size = (unsigned int)get_prog_size();
 	int_to_bytecode(str, magic->magic);
 	str_to_bytecode(str, magic->prog_name, PROG_NAME_LENGTH);
 	int_to_bytecode(str, 0);
@@ -69,6 +69,6 @@ void				to_bytecode(t_header *magic, int fd)
 		command_to_bytecode(str, tmp);
 		tmp = tmp->next;
 	}
-	write(fd, &str, len);
+	write(fd, &str, (size_t)len);
 	del_code();
 }

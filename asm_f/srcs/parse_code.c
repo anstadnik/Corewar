@@ -6,7 +6,7 @@
 /*   By: byermak <byermak@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 17:06:00 by byermak           #+#    #+#             */
-/*   Updated: 2018/06/16 15:34:29 by byermak          ###   ########.fr       */
+/*   Updated: 2018/07/02 16:27:24 by byermak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,9 +64,9 @@ static char	count_codage(t_code *new)
 
 	codage = 0;
 	if (g_op_tab[new->opcode - 1].codage_flag)
-		codage = (new->arg1->arg_type << 6) |
+		codage = (char)((new->arg1->arg_type << 6) |
 			((new->arg2) ? new->arg2->arg_code : 0) << 4 |
-			((new->arg3) ? new->arg3->arg_code : 0) << 2;
+			((new->arg3) ? new->arg3->arg_code : 0) << 2);
 	return (codage);
 }
 
@@ -107,7 +107,7 @@ static void	parse_command(char **str, char **label, int fd)
 	i = (int)g_x;
 	while ((*str)[i] && (*str)[i] != ' ' && (*str)[i] != '\t')
 		++i;
-	command = ft_strsub(*str, (int)g_x, i - g_x);
+	command = ft_strsub(*str, (unsigned int)g_x, (size_t)(i - (int)g_x));
 	if ((i = new_command(&command, label, &new, *str)) != 1)
 	{
 		ft_strdel(str);
@@ -135,6 +135,8 @@ void		parse_code(int fd)
 		ft_strdel(&str);
 		skip_empty(fd, &str);
 	}
+	tmp = NULL;
+	ret = 0;
 	if ((ret = check_labels(tmp, ret)) != 1)
 		;//error(ret)
 }

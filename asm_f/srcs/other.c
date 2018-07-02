@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   str_from_lsts.c                                    :+:      :+:    :+:   */
+/*   other.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lburlach <lburlach@student.unit.ua>        +#+  +:+       +#+        */
+/*   By: byermak <byermak@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/14 13:58:07 by lburlach          #+#    #+#             */
-/*   Updated: 2018/03/14 14:00:25 by lburlach         ###   ########.fr       */
+/*   Updated: 2018/07/02 16:10:48 by byermak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 ssize_t	str_from_lsts(t_list *tmp, char **line)
 {
 	t_list			*beg;
-	size_t			i;
-	size_t			c;
+	ssize_t			i;
+	ssize_t			c;
 
 	c = 0;
 	beg = tmp;
@@ -25,7 +25,7 @@ ssize_t	str_from_lsts(t_list *tmp, char **line)
 		c += beg->content_size;
 		beg = beg->next;
 	}
-	(*line) = ft_memalloc(c + 1);
+	(*line) = ft_memalloc((size_t)c + 1);
 	if (*line == NULL)
 		return (-1);
 	i = 0;

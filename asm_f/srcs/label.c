@@ -6,7 +6,7 @@
 /*   By: byermak <byermak@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/16 14:16:00 by byermak           #+#    #+#             */
-/*   Updated: 2018/06/16 14:20:54 by byermak          ###   ########.fr       */
+/*   Updated: 2018/07/02 16:08:20 by byermak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,8 @@ char		*parse_label(char *str)
 	while ((str + i) != tmp)
 		if (!check_label_words(str[i++]))
 			return (NULL);
-	label = check_label(ft_strsub(str, (int)g_x, tmp - (str + g_x)));
+	label = check_label(ft_strsub(str,
+			(unsigned int)g_x, (size_t)(tmp - (str + g_x))));
 	g_x += ft_strlen(label) + 1;
 	return (label);
 }
