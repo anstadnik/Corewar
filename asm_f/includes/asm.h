@@ -123,7 +123,7 @@ void	parse_code(int fd);
 void	del_command(t_code **new);
 void	del_code(void);
 void	to_bytecode(t_header *magic, int fd);
-void	to_buff(char *buff, char c);
+void	to_buff(char *buff, unsigned char c);
 void	int_to_bytecode(char *buff, unsigned int num);
 void	short_to_bytecode(char *buff, unsigned short int num);
 void	str_to_bytecode(char *buff, char *str, int len);

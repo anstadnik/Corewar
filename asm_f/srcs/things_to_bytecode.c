@@ -6,17 +6,17 @@
 /*   By: byermak <byermak@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/13 19:09:00 by byermak           #+#    #+#             */
-/*   Updated: 2018/06/13 19:09:00 by byermak          ###   ########.fr       */
+/*   Updated: 2018/07/02 16:30:07 by byermak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-void	to_buff(char *buff, char c)
+void	to_buff(char *buff, unsigned char c)
 {
 	static size_t i;
 
-	buff[i++] = c;
+	buff[i++] = (char)c;
 }
 
 void	int_to_bytecode(char *buff, unsigned int num)
@@ -29,8 +29,8 @@ void	int_to_bytecode(char *buff, unsigned int num)
 
 void	short_to_bytecode(char *buff, unsigned short int num)
 {
-	to_buff(buff, (num >> 8));
-	to_buff(buff, (num << 8) >> 8);
+	to_buff(buff, (unsigned char)(num >> 8));
+	to_buff(buff, (unsigned char)((num << 8) >> 8));
 }
 
 void	str_to_bytecode(char *buff, char *str, int len)
@@ -39,7 +39,7 @@ void	str_to_bytecode(char *buff, char *str, int len)
 
 	i = 0;
 	while (str[i])
-		to_buff(buff, str[i++]);
+		to_buff(buff, (unsigned char)str[i++]);
 	while (i++ < len)
 		to_buff(buff, 0);
 }
