@@ -6,11 +6,11 @@
 /*   By: bcherkas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/08 12:57:08 by bcherkas          #+#    #+#             */
-/*   Updated: 2018/06/14 19:36:52 by bcherkas         ###   ########.fr       */
+/*   Updated: 2018/07/02 19:18:27 by bcherkas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "corewar.h"
+#include "corewar.h"
 
 static void	printline(unsigned char *map, int line)
 {

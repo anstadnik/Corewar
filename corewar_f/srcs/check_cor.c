@@ -6,7 +6,7 @@
 /*   By: bcherkas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 18:11:13 by bcherkas          #+#    #+#             */
-/*   Updated: 2018/06/29 19:50:24 by bcherkas         ###   ########.fr       */
+/*   Updated: 2018/07/02 19:20:12 by bcherkas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	cpy_to_map(t_info *inf, size_t size, unsigned char *str, int player)
 	cpy_start = (MEM_SIZE / inf->players_amount) * player;
 	ft_memcpy(inf->map + cpy_start, str, size);
 	if (inf->args[FLAG_N] == 1)
-		color_output(player, str, cpy_start, size);
+		color_output(player + 1, str, cpy_start, size);
 }
 
 void	check_file(int fd, t_header *head, t_info *inf, int player)
@@ -74,11 +74,11 @@ void	check_file(int fd, t_header *head, t_info *inf, int player)
 	if (read(fd, head->comment, COMMENT_LEN) < COMMENT_LEN)
 		errmsg("Wrong file");
 	if (read(fd, buff, 4) < 4 || ft_memcmp(buff, "\0\0\0\0", 4))
-		errmsg("Wrong file");	
+		errmsg("Wrong file");
 	if (read(fd, str, head->prog_size) < head->prog_size)
 		errmsg("Wrong file");
 	if ((head->prog_size % 2 == 0 && read(fd, buff, 4) > 0) ||
-		(head->prog_size % 2 != 0 && read(fd, buff, 4) > 1))// Check this
+		(head->prog_size % 2 != 0 && read(fd, buff, 4) > 1))
 		errmsg("Wrong file");
 	cpy_to_map(inf, head->prog_size, str, player);
 	close(fd);

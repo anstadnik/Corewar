@@ -6,16 +6,16 @@
 /*   By: bcherkas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/08 15:11:22 by bcherkas          #+#    #+#             */
-/*   Updated: 2018/06/16 16:10:25 by bcherkas         ###   ########.fr       */
+/*   Updated: 2018/07/02 19:22:50 by bcherkas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "corewar.h"
+#include "corewar.h"
 
 void	cor_aff(unsigned char *map, t_carriage *carry, int *codage, int *args)
 {
 	int		flag;
-	
+
 	if (map && codage && args)
 	{
 		flag = get_args_flag(NULL, FLAG_A);
@@ -35,10 +35,10 @@ void	cor_zjmp(unsigned char *map, t_carriage *carry)
 	if (carry->carry == 1)
 	{
 		i = get_dir(map, carry->pc + 1, 2) % IDX_MOD;
-		carry->pc = (MEM_SIZE + carry->pc + i) % MEM_SIZE;	
+		carry->pc = (MEM_SIZE + carry->pc + i) % MEM_SIZE;
 	}
 	if (flag > 0 && (flag & 4) == 4)
-		ft_printf("P%5d | zjmp %d %s\n", carry->number, i, 
+		ft_printf("P%5d | zjmp %d %s\n", carry->number, i,
 				i == 0 ? "FAILED" : "OK");
 }
 
@@ -57,7 +57,7 @@ void	cor_live(unsigned char *map, t_carriage *carry)
 	{
 		player = get_player_info(NULL, player_number);
 		carry->players[player_number]++;
-		if ((flag & 1) == 1)
+		if (flag > 0 && (flag & 1) == 1)
 			ft_printf("Player %d (%s) is said to be alive\n",
 					player_number + 1, player->prog_name);
 	}

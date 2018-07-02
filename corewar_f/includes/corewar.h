@@ -6,7 +6,7 @@
 /*   By: bcherkas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 13:51:01 by bcherkas          #+#    #+#             */
-/*   Updated: 2018/06/29 20:01:08 by bcherkas         ###   ########.fr       */
+/*   Updated: 2018/07/02 19:55:02 by bcherkas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,6 @@
 # define MAX_CHECKS				10
 
 # define ABS(x) ((x) < 0 ? -(x) : (x))
-
-typedef	char		t_arg_type;
 
 # define T_REG					1
 # define T_IND					2
@@ -83,6 +81,9 @@ typedef struct		s_win
 {
 	WINDOW			*main;
 	WINDOW			*info;
+	int				pause;
+	int				iter_per_sec;
+	unsigned		speed;
 }					t_win;
 
 typedef struct		s_header
@@ -104,6 +105,7 @@ typedef struct		s_info
 	int					output_mode;
 	int					players[MAX_PLAYERS];
 	int					players_amount;
+	int					carriages;
 	unsigned char		map[MEM_SIZE];
 }					t_info;
 
@@ -152,17 +154,12 @@ void				cor_or(unsigned char *map, t_carriage *carry,
 						int *codage, int *args);
 void				cor_xor(unsigned char *map, t_carriage *carry,
 						int *codage, int *args);
-//
 void				cor_zjmp(unsigned char *map, t_carriage *carry);
-//
 void				cor_fork(unsigned char *map, t_carriage *carry);
-//
 void				cor_lfork(unsigned char *map, t_carriage *carry);
 void				cor_aff(unsigned char *map, t_carriage *carry,
 						int *codage, int *args);
-//
 void				cor_live(unsigned char *map, t_carriage *carry);
-//
 void				cor_st(unsigned char *map, t_carriage *carry,
 						int *codage, int *args);
 void				cor_sti(unsigned char *map, t_carriage *carry,
@@ -201,8 +198,13 @@ void				color_output(int player, unsigned char *str, int start,
 WINDOW				*get_active_window(int num, WINDOW *main, WINDOW *info);
 void				stop_ncurses(t_info *inf);
 
+void				ncurses_trigger(t_info *inf, int iterations);
+void				ncur_print_carry(t_carriage *carry, t_win *win,
+						int symbol, int mode);
+
 void				output_text(t_info *inf, int iterations);
 void				introduce(t_info *inf);
 void				winner(t_info *inf);
+void				dead_end(t_info *inf, int iterations);
 
 #endif

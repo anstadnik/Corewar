@@ -6,7 +6,7 @@
 /*   By: bcherkas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/12 17:10:29 by bcherkas          #+#    #+#             */
-/*   Updated: 2018/06/29 20:00:35 by bcherkas         ###   ########.fr       */
+/*   Updated: 2018/07/02 19:19:09 by bcherkas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	dead_end(t_info *inf, int iterations)
 
 	lst = inf->stack;
 	if (flag_v > 0 && (flag_v & 2) == 2)
-		ft_printf("It is now cycle %d\n", iterations + 1);	
+		ft_printf("It is now cycle %d\n", iterations + 1);
 	while (lst)
 	{
 		tmp = lst;
@@ -55,6 +55,8 @@ void	check_carriage_lives(t_info *inf)
 		ptr = ptr->next;
 		if (car->lives == -1)
 		{
+			ncur_print_carry(tmp->content, &(inf->win),
+					inf->map[((t_carriage *)tmp->content)->pc], 0);
 			ft_lstdelnode(&inf->stack, tmp);
 			if (flag_v > 0 && (flag_v & 8) == 8)
 				ft_printf("Process %d hasn't lived for %d cycles (CTD %d)\n",

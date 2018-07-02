@@ -6,7 +6,7 @@
 /*   By: astadnik <astadnik@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/09 11:54:36 by astadnik          #+#    #+#             */
-/*   Updated: 2018/06/16 18:54:34 by bcherkas         ###   ########.fr       */
+/*   Updated: 2018/07/02 19:18:52 by bcherkas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ void		cor_lldi(unsigned char *map,
 			t_carriage *carry, int *codage, int *args)
 {
 	const int	codage_help = map[carry->pc + 1] >> 6;
-	int		pc2;
+	int			pc2;
 
 	pc2 = 0;
 	if (args)

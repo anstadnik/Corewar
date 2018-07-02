@@ -6,7 +6,7 @@
 /*   By: bcherkas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 18:11:13 by bcherkas          #+#    #+#             */
-/*   Updated: 2018/06/16 18:41:32 by bcherkas         ###   ########.fr       */
+/*   Updated: 2018/07/02 19:19:25 by bcherkas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,8 @@ void	excludes(t_info *inf, int *args)
 	int		bin_out;
 	int		ncur_out;
 
-	text_out = (args[FLAG_V] > -1 || args[FLAG_D] > -1 || args[FLAG_S] > -1) ? 1 : 0;
+	text_out = (args[FLAG_V] > -1 || args[FLAG_D] > -1 || args[FLAG_S] > -1)
+		? 1 : 0;
 	bin_out = args[FLAG_B] > -1 ? 2 : 0;
 	ncur_out = args[FLAG_N] > -1 ? 3 : 0;
 	if ((text_out && bin_out) || (bin_out && ncur_out) ||

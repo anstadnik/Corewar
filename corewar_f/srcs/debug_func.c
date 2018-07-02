@@ -6,7 +6,7 @@
 /*   By: bcherkas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 18:48:09 by bcherkas          #+#    #+#             */
-/*   Updated: 2018/06/08 19:37:57 by bcherkas         ###   ########.fr       */
+/*   Updated: 2018/07/02 19:21:02 by bcherkas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	printmap(unsigned char *map)
 		if (map[i - 1])
 			printf("\x1b[32m");
 		printf("%3.2hhx", map[i - 1]);
-			printf("\x1b[0m");
+		printf("\x1b[0m");
 		if (i % 64 == 0)
 			printf("\n");
 		i++;

@@ -6,11 +6,11 @@
 /*   By: bcherkas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/08 12:08:16 by bcherkas          #+#    #+#             */
-/*   Updated: 2018/06/15 17:50:10 by bcherkas         ###   ########.fr       */
+/*   Updated: 2018/07/02 19:19:38 by bcherkas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "corewar.h"
+#include "corewar.h"
 
 int			get_int(unsigned char *map, int pc)
 {

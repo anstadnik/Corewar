@@ -6,20 +6,20 @@
 /*   By: bcherkas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 13:59:51 by bcherkas          #+#    #+#             */
-/*   Updated: 2018/06/29 20:26:40 by bcherkas         ###   ########.fr       */
+/*   Updated: 2018/07/02 18:55:05 by bcherkas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-int		errmsg(char *str)
+int			errmsg(char *str)
 {
 	write(1, str, ft_strlen(str));
 	write(1, "\n", 1);
-	exit (0);
+	exit(0);
 }
 
-void	initialize(t_info *inf)
+void		initialize(t_info *inf)
 {
 	int		i;
 
@@ -34,12 +34,12 @@ void	initialize(t_info *inf)
 		i++;
 	}
 	inf->last_dead = NULL;
+	get_args_flag(inf->args, 0);
 }
 
 t_carriage	init_carriage(int player, int max)
 {
 	t_carriage	tmp;
-
 	int			j;
 
 	j = 1;
@@ -55,11 +55,11 @@ t_carriage	init_carriage(int player, int max)
 	tmp.reg[0] = (PLAYER_CODE - player);
 	tmp.number = player + 1;
 	tmp.cycles_without_live = 0;
-	tmp.player_num = player;
+	tmp.player_num = player + 1;
 	return (tmp);
 }
 
-void	init_map(t_info *inf)
+void		init_map(t_info *inf)
 {
 	t_carriage	tmp;
 	t_list		*head;
@@ -82,12 +82,12 @@ void	init_map(t_info *inf)
 		inf->players[i] = -1;
 		i++;
 	}
+	inf->carriages = inf->players_amount;
 	new_carriage(&(inf->stack), NULL);
-	get_args_flag(inf->args, 0);
 	get_player_info(inf->head, 0);
 }
 
-int		main(int argc, char **argv)
+int			main(int argc, char **argv)
 {
 	t_info	inf;
 
@@ -99,13 +99,7 @@ int		main(int argc, char **argv)
 		ncur_init_window(&inf);
 	read_players(&inf);
 	init_map(&inf);
-	if (inf.args[FLAG_N] == 1)
-	{
-		wrefresh(inf.win.main);
-		wrefresh(inf.win.info);
-		wgetch(inf.win.main);
-	}
-	else
+	if (inf.args[FLAG_N] != 1)
 		introduce(&inf);
 	if (inf.args[FLAG_D] == 0)
 		output_text(&inf, 0);

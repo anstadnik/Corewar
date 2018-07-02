@@ -6,7 +6,7 @@
 /*   By: bcherkas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 18:51:41 by bcherkas          #+#    #+#             */
-/*   Updated: 2018/06/16 16:20:46 by bcherkas         ###   ########.fr       */
+/*   Updated: 2018/07/02 19:48:07 by bcherkas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int		check_args(int **cod, int **args, unsigned char *map, t_carriage *car)
 {
 	int			i;
 	int			*codage;
-	const int	func_num = map[car->pc] -1;
+	const int	func_num = map[car->pc] - 1;
 
 	i = 0;
 	if (!(codage = get_codage(map[car->pc + 1])))
@@ -85,11 +85,12 @@ void	function_trigger(t_carriage *carry, unsigned char *map, int func_num)
 		print_v_16(map, old_pc, carry->pc);
 }
 
-void	wrapper(unsigned char *map, t_carriage *carry)
+void	wrapper(t_win *win, unsigned char *map, t_carriage *carry)
 {
 	int		func_num;
 
 	func_num = map[carry->pc];
+	ncur_print_carry(carry, win, func_num, 1);
 	if (carry->cycles_left > 1)
 		carry->cycles_left--;
 	else if (carry->cycles_left == 0 && (func_num > MAX_FUNC || func_num < 1))
@@ -100,7 +101,10 @@ void	wrapper(unsigned char *map, t_carriage *carry)
 		carry->cycles_left = g_op_tab[func_num - 1].cycles - 1;
 	}
 	else if (carry->cycles_left == 1 && func_num <= MAX_FUNC && func_num > 0)
+	{
+		ncur_print_carry(carry, win, func_num, 0);
 		function_trigger(carry, map, func_num - 1);
+	}
 	carry->cycles_without_live++;
 }
 
@@ -125,18 +129,22 @@ void	main_cycle(t_info *inf)
 
 	save = inf->args[FLAG_V] > 0 && (inf->args[FLAG_V] & 2) == 2 ? 1 : 0;
 	cycles = 1;
-	iterations = 1;
+	iterations = 0;
 	while (42)
 	{
+		if (inf->args[FLAG_N] == 1)
+			ncurses_trigger(inf, iterations);
+		inf->carriages = 0;
+		iterations++;
 		lst = inf->stack;
 		if (save > 0)
 			ft_printf("It is now cycle %d\n", iterations);
 		while (lst)
 		{
-			wrapper(inf->map, (t_carriage *)lst->content);
+			wrapper(&(inf->win), inf->map, (t_carriage *)lst->content);
 			lst = lst->next;
+			(inf->carriages)++;
 		}
 		help_me(inf, iterations, &cycles);
-		iterations++;
 	}
 }
