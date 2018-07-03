@@ -1,4 +1,0 @@
-/Users/byermak/COREWAR/cmake-build-debug/CMakeFiles/asm_dev.dir
-/Users/byermak/COREWAR/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/Users/byermak/COREWAR/cmake-build-debug/CMakeFiles/edit_cache.dir
-/Users/byermak/COREWAR/cmake-build-debug/CMakeFiles/libft.dir
