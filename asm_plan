@@ -51,7 +51,12 @@ push_back_to_big_list_of_commands(**head, new_link)
 
 tochno ne hex (c) Andrew.
 
+problem with labels: передать в функцию имя несуществуещего лейбла и вернуть номер строки
+
 Possible bonuses:
 1) colors
 2) outputing exact rows where error has occurred.
 3) more fancy compiling of a champion. Some catchy phrases full of pathos.
+
+
+label_index - command_index

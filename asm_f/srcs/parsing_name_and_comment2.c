@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_name_and_comment2.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lburlach <lburlach@student.unit.ua>        +#+  +:+       +#+        */
+/*   By: byermak <byermak@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/09 16:54:00 by lburlach          #+#    #+#             */
-/*   Updated: 2018/06/09 20:16:02 by lburlach         ###   ########.fr       */
+/*   Updated: 2018/06/13 19:57:17 by byermak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,6 +138,6 @@ char 	*retrieve_comment(int fd)
 	if (ft_strlen(out) > COMMENT_LENGTH)
 		error_asm(LONG_CHAMP_NAME, 0, NULL);
 	printf("out = %s\n", out);
+	ft_lstdel(&head, free);
 	return (out);
-
 }

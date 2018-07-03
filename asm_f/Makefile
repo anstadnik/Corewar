@@ -7,7 +7,11 @@ IDIR = includes/
 LDIR = ../libft/
 NAME = asm
 LIB = $(LDIR)libft.a
-FILES = main.c
+FILES = bytecode.c del.c exit.c label.c main.c other.c parse_arg.c parse_args.c\
+        parse_code.c parser_checks.c parser_error.c parser_other.c\
+        parsing_name_and_comment.c parsing_name_and_comment2.c\
+        things_to_bytecode.c
+
 OBJS = $(FILES:.c=.o)
 
 all: $(NAME)
