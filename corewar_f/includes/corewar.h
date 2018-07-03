@@ -6,7 +6,7 @@
 /*   By: bcherkas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 13:51:01 by bcherkas          #+#    #+#             */
-/*   Updated: 2018/07/02 19:55:02 by bcherkas         ###   ########.fr       */
+/*   Updated: 2018/07/03 20:21:20 by bcherkas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,7 +142,7 @@ int					get_ind(unsigned char *map, int pc);
 
 int					*get_args(unsigned char *map, int st, int *args,
 						int label_s);
-int					*get_codage(unsigned char code);
+int					*get_codage(unsigned char code, const int *func_code);
 
 void				cor_add(unsigned char *map, t_carriage *carry,
 						int *codage, int *args);
@@ -199,8 +199,7 @@ WINDOW				*get_active_window(int num, WINDOW *main, WINDOW *info);
 void				stop_ncurses(t_info *inf);
 
 void				ncurses_trigger(t_info *inf, int iterations);
-void				ncur_print_carry(t_carriage *carry, t_win *win,
-						int symbol, int mode);
+void				ncur_print_carry(t_carriage *carry, int symbol, int mode);
 
 void				output_text(t_info *inf, int iterations);
 void				introduce(t_info *inf);

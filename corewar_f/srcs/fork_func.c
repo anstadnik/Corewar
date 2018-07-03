@@ -6,7 +6,7 @@
 /*   By: bcherkas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/07 16:55:34 by bcherkas          #+#    #+#             */
-/*   Updated: 2018/06/16 15:22:27 by bcherkas         ###   ########.fr       */
+/*   Updated: 2018/07/03 17:16:46 by bcherkas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ void	cor_fork(unsigned char *map, t_carriage *carry)
 	new->pc = (MEM_SIZE + new->pc) % MEM_SIZE;
 	new_carriage(NULL, lst);
 	carry->pc = (carry->pc + 3) % MEM_SIZE;
+	if (get_args_flag(NULL, FLAG_N) == 1)
+		ncur_print_carry(new, map[new->pc], 1);
 }
 
 void	cor_lfork(unsigned char *map, t_carriage *carry)
@@ -46,4 +48,6 @@ void	cor_lfork(unsigned char *map, t_carriage *carry)
 	new->pc = (MEM_SIZE + new->pc) % MEM_SIZE;
 	new_carriage(NULL, lst);
 	carry->pc = (carry->pc + 3) % MEM_SIZE;
+	if (get_args_flag(NULL, FLAG_N) == 1)
+		ncur_print_carry(new, map[new->pc], 1);
 }

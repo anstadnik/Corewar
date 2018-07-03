@@ -31,7 +31,7 @@ $(NAME): $(addprefix $(ODIR), $(OBJS)) $(LIB)
 g:
 	@echo "$(ESCAPE)[34m\nCompiling debug $(NAME)$(ESCAPE)[0m"
 	@$(MAKE) --no-print-directory -C $(LDIR) g
-	@$(CC) $(CFLAGS) -g -I $(IDIR) -I $(LDIR)includes -o $(NAME) $(addprefix $(SDIR), $(FILES)) $(LDIR)dlibft.a
+	@$(CC) $(CFLAGS) -g -I $(IDIR) -I $(LDIR)includes -o $(NAME) $(addprefix $(SDIR), $(FILES)) $(LDIR)dlibft.a -lncurses
 
 $(LIB):
 	@echo "$(ESCAPE)[35m\nCompiling $(notdir $@)$(ESCAPE)[0m"

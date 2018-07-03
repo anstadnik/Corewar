@@ -6,7 +6,7 @@
 /*   By: bcherkas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/02 15:41:58 by bcherkas          #+#    #+#             */
-/*   Updated: 2018/07/02 19:42:47 by bcherkas         ###   ########.fr       */
+/*   Updated: 2018/07/03 21:24:00 by bcherkas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,11 @@ static void	write_stats(t_info *inf, t_win *win, int iters)
 	i = 0;
 	wattron(win->info, A_BOLD);
 	mvwprintw(win->info, 2, 2, "%s", str);
-	mvwprintw(win->info, 5, 2, "Cycles/second limit : %d", win->iter_per_sec);
-	mvwprintw(win->info, 7, 2, "Cycle: %d", iters);
-	mvwprintw(win->info, 9, 2, "Processes: %d", inf->carriages);
-	mvwprintw(win->info, 13, 2, "CYCLE TO DIE: %d", inf->cycles_to_die);
+	mvwprintw(win->info, 5, 2, "Cycles/second limit : %d   ",
+			win->iter_per_sec);
+	mvwprintw(win->info, 7, 2, "Cycle: %d    ", iters);
+	mvwprintw(win->info, 9, 2, "Processes: %d    ", inf->carriages);
+	mvwprintw(win->info, 13, 2, "CYCLE TO DIE: %d    ", inf->cycles_to_die);
 	mvwprintw(win->info, 15, 2, "CYCLE DELTA: %d", CYCLE_DELTA);
 	mvwprintw(win->info, 17, 2, "NBR LIVE: %d", NBR_LIVE);
 	mvwprintw(win->info, 19, 2, "MAX CHECKS: %d", MAX_CHECKS);

@@ -6,7 +6,7 @@
 /*   By: bcherkas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 18:51:41 by bcherkas          #+#    #+#             */
-/*   Updated: 2018/07/02 19:48:07 by bcherkas         ###   ########.fr       */
+/*   Updated: 2018/07/03 20:56:23 by bcherkas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 /*
 ** g_op_tab:
 ** 1. function pointer, 2.number of cycles it need, 3. arguments it can have
-** 4. can have codage  5. label size
+** 5. can have codage  6. label size
 */
 
 static const t_op	g_op_tab[MAX_FUNC] =
@@ -43,18 +43,25 @@ int		check_args(int **cod, int **args, unsigned char *map, t_carriage *car)
 	int			i;
 	int			*codage;
 	const int	func_num = map[car->pc] - 1;
+	int			ret;
 
+	ret = 0;
 	i = 0;
-	if (!(codage = get_codage(map[car->pc + 1])))
-		return (1);
+	codage = get_codage(map[car->pc + 1], g_op_tab[func_num].codage);
 	while (i < 3)
 	{
 		if ((codage[i] & g_op_tab[func_num].codage[i]) != codage[i])
-			return (1);
+			ret = 1;
+		else if (codage[i] == 0 && g_op_tab[func_num].codage[i] != 0)
+			ret = 1;
 		i++;
 	}
-	*args = get_args(map, car->pc + 2, codage, g_op_tab[func_num].lab);
 	*cod = codage;
+	if (ret == 1)
+		return (1);
+	*args = get_args(map, car->pc + 2, codage, g_op_tab[func_num].lab);
+	if (args == NULL)
+		return (1);
 	return (0);
 }
 
@@ -72,7 +79,8 @@ void	function_trigger(t_carriage *carry, unsigned char *map, int func_num)
 	{
 		if (check_args(&codage, &args, map, carry))
 		{
-			carry->pc = (carry->pc + 2) % MEM_SIZE;
+			carry->pc = (carry->pc + 2 + codage[0] + codage[1] + codage[2])
+				% MEM_SIZE;
 			if (save > -1 && (save & 16) == 16)
 				print_v_16(map, old_pc, carry->pc);
 			return ;
@@ -85,16 +93,19 @@ void	function_trigger(t_carriage *carry, unsigned char *map, int func_num)
 		print_v_16(map, old_pc, carry->pc);
 }
 
-void	wrapper(t_win *win, unsigned char *map, t_carriage *carry)
+void	wrapper(unsigned char *map, t_carriage *carry)
 {
 	int		func_num;
 
 	func_num = map[carry->pc];
-	ncur_print_carry(carry, win, func_num, 1);
+	ncur_print_carry(carry, func_num, 1);
 	if (carry->cycles_left > 1)
 		carry->cycles_left--;
 	else if (carry->cycles_left == 0 && (func_num > MAX_FUNC || func_num < 1))
+	{
+		ncur_print_carry(carry, func_num, 0);
 		carry->pc = (carry->pc + 1) % MEM_SIZE;
+	}
 	else if (carry->cycles_left == 0 && func_num <= MAX_FUNC && func_num > 0)
 	{
 		carry->func = g_op_tab[func_num - 1].func;
@@ -102,8 +113,9 @@ void	wrapper(t_win *win, unsigned char *map, t_carriage *carry)
 	}
 	else if (carry->cycles_left == 1 && func_num <= MAX_FUNC && func_num > 0)
 	{
-		ncur_print_carry(carry, win, func_num, 0);
+		ncur_print_carry(carry, func_num, 0);
 		function_trigger(carry, map, func_num - 1);
+		ncur_print_carry(carry, map[carry->pc], 1);
 	}
 	carry->cycles_without_live++;
 }
@@ -141,7 +153,7 @@ void	main_cycle(t_info *inf)
 			ft_printf("It is now cycle %d\n", iterations);
 		while (lst)
 		{
-			wrapper(&(inf->win), inf->map, (t_carriage *)lst->content);
+			wrapper(inf->map, (t_carriage *)lst->content);
 			lst = lst->next;
 			(inf->carriages)++;
 		}

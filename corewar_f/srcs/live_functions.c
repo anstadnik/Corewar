@@ -6,7 +6,7 @@
 /*   By: bcherkas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/12 17:10:29 by bcherkas          #+#    #+#             */
-/*   Updated: 2018/07/02 19:19:09 by bcherkas         ###   ########.fr       */
+/*   Updated: 2018/07/03 21:22:13 by bcherkas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	check_carriage_lives(t_info *inf)
 		ptr = ptr->next;
 		if (car->lives == -1)
 		{
-			ncur_print_carry(tmp->content, &(inf->win),
+			ncur_print_carry(tmp->content,
 					inf->map[((t_carriage *)tmp->content)->pc], 0);
 			ft_lstdelnode(&inf->stack, tmp);
 			if (flag_v > 0 && (flag_v & 8) == 8)
@@ -67,13 +67,15 @@ void	check_carriage_lives(t_info *inf)
 		winner(inf);
 }
 
-void	check_players_lives(t_info *inf)
+void	check_players_lives(t_info *inf, int *check_lives)
 {
 	int			i;
 
-	i = inf->players_amount;
+	i = inf->players_amount - 1;
 	while (i >= 0)
 	{
+		*check_lives = *check_lives > inf->players[i] ?
+			*check_lives : inf->players[i];
 		if (inf->players[i] > 0)
 			inf->players[i] = 0;
 		else if (inf->players[i] == 0)
@@ -113,7 +115,7 @@ void	cycle_to_die_func(t_info *inf, int iterations)
 	save = inf->cycles_to_die;
 	check_lives = get_max_lives(inf);
 	check_carriage_lives(inf);
-	check_players_lives(inf);
+	check_players_lives(inf, &check_lives);
 	cycle_to_die_check(inf, check_lives);
 	i = inf->players_amount;
 	if (flag_v > 0 && (flag_v & 2) == 2 && save != inf->cycles_to_die)

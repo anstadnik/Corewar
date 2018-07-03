@@ -6,7 +6,7 @@
 /*   By: bcherkas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/29 20:11:26 by bcherkas          #+#    #+#             */
-/*   Updated: 2018/07/02 18:19:23 by bcherkas         ###   ########.fr       */
+/*   Updated: 2018/07/03 17:12:15 by bcherkas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,16 +62,20 @@ void	color_output(int player, unsigned char *str, int start, size_t len)
 	wrefresh(win);
 }
 
-void	ncur_print_carry(t_carriage *carry, t_win *win, int symbol, int mode)
+void	ncur_print_carry(t_carriage *carry, int symbol, int mode)
 {
+	WINDOW	*win;
+
+	win = get_active_window(1, NULL, NULL);
 	if (get_args_flag(NULL, FLAG_N) != 1)
 		return ;
 	if (mode == 1)
-		wattron(win->main, A_REVERSE);
-	wattron(win->main, COLOR_PAIR(carry->player_num));
-	mvwprintw(win->main, 1 + (carry->pc / 64), 2 + 3 * (carry->pc % 64),
+		wattron(win, A_REVERSE);
+	wattron(win, COLOR_PAIR(carry->player_num));
+	mvwprintw(win, 1 + (carry->pc / 64), 2 + 3 * (carry->pc % 64),
 			"%.2hhx", symbol);
-	wattroff(win->main, COLOR_PAIR(carry->player_num));
+	wattroff(win, COLOR_PAIR(carry->player_num));
 	if (mode == 1)
-		wattroff(win->main, A_REVERSE);
+		wattroff(win, A_REVERSE);
+	wrefresh(win);
 }

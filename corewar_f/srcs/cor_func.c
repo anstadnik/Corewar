@@ -6,7 +6,7 @@
 /*   By: bcherkas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/08 15:11:22 by bcherkas          #+#    #+#             */
-/*   Updated: 2018/07/02 19:22:50 by bcherkas         ###   ########.fr       */
+/*   Updated: 2018/07/03 18:53:33 by bcherkas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,24 @@ void	cor_zjmp(unsigned char *map, t_carriage *carry)
 	const int	flag = get_args_flag(NULL, FLAG_V);
 	int			i;
 
+	i = get_short(map, carry->pc + 1) % IDX_MOD;
 	if (carry->carry == 1)
 	{
-		i = get_dir(map, carry->pc + 1, 2) % IDX_MOD;
+		if (get_args_flag(NULL, FLAG_N) == 1)
+			ncur_print_carry(carry, map[carry->pc], 0);
 		carry->pc = (MEM_SIZE + carry->pc + i) % MEM_SIZE;
+		if (get_args_flag(NULL, FLAG_N) == 1)
+			ncur_print_carry(carry, map[carry->pc], 1);
 	}
 	if (flag > 0 && (flag & 4) == 4)
 		ft_printf("P%5d | zjmp %d %s\n", carry->number, i,
-				i == 0 ? "FAILED" : "OK");
+				carry->carry == 0 ? "FAILED" : "OK");
+	if (carry->carry == 0)
+	{
+		if (flag > 0 && (flag & 16) == 16)
+			print_v_16(map, carry->pc, (carry->pc + 3) % MEM_SIZE);
+		carry->pc = (carry->pc + 3) % MEM_SIZE;
+	}
 }
 
 void	cor_live(unsigned char *map, t_carriage *carry)
@@ -53,6 +63,8 @@ void	cor_live(unsigned char *map, t_carriage *carry)
 	carry->lives++;
 	save = get_dir(map, carry->pc + 1, 4);
 	player_number = PLAYER_CODE - save;
+	if (flag > 0 && (flag & 4) == 4)
+		ft_printf("P%5d | live %d\n", carry->number, save);
 	if (player_number >= 0 && player_number < carry->players_amount)
 	{
 		player = get_player_info(NULL, player_number);
@@ -63,6 +75,4 @@ void	cor_live(unsigned char *map, t_carriage *carry)
 	}
 	carry->cycles_without_live = 0;
 	carry->pc = (carry->pc + 5) % MEM_SIZE;
-	if (flag > 0 && (flag & 4) == 4)
-		ft_printf("P%5d | live %d\n", carry->number, save);
 }

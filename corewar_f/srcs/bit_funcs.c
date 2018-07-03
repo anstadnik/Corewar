@@ -6,7 +6,7 @@
 /*   By: bcherkas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/08 18:33:20 by bcherkas          #+#    #+#             */
-/*   Updated: 2018/06/16 19:57:42 by bcherkas         ###   ########.fr       */
+/*   Updated: 2018/07/03 17:42:23 by bcherkas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,8 @@ void	cor_xor(unsigned char *map, t_carriage *carry, int *codage, int *args)
 		carry->reg[args[2]] = args[0] ^ args[1];
 		carry->carry = carry->reg[args[2]] == 0 ? 1 : 0;
 		if (flag > 0 && (flag & 4) == 4)
-			ft_printf("P%5d | xor %d %d r%d\n", args[0], args[1], args[2] + 1);
+			ft_printf("P%5d | xor %d %d r%d\n", carry->number,
+					args[0], args[1], args[2] + 1);
 	}
 	carry->pc = (carry->pc + 2 + codage[0] + codage[1] + codage[2]) % MEM_SIZE;
 }

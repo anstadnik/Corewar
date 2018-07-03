@@ -6,13 +6,13 @@
 /*   By: bcherkas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/08 18:33:20 by bcherkas          #+#    #+#             */
-/*   Updated: 2018/06/16 17:39:14 by bcherkas         ###   ########.fr       */
+/*   Updated: 2018/07/03 20:55:27 by bcherkas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-int		*get_codage(unsigned char code)
+int		*get_codage(unsigned char code, const int *func_code)
 {
 	int			i;
 	static int	codage[3];
@@ -20,12 +20,12 @@ int		*get_codage(unsigned char code)
 	codage[0] = (int)((code >> 6) & 3);
 	codage[1] = (int)((code >> 4) & 3);
 	codage[2] = (int)((code >> 2) & 3);
-	if ((code & 3) > 0)
-		return (NULL);
 	i = 0;
 	while (i < 3)
 	{
-		if (codage[i] == REG_CODE)
+		if (func_code[i] == 0)
+			codage[i] = 0;
+		else if (codage[i] == REG_CODE)
 			codage[i] = T_REG;
 		else if (codage[i] == IND_CODE)
 			codage[i] = T_IND;
@@ -58,7 +58,7 @@ int		*get_args(unsigned char *map, int st, int *cod, int label_s)
 			args[i] = get_dir(map, st, label_s);
 			cod[i] = label_s;
 		}
-		else if (cod[i] != T_DIR && cod[i] != T_IND && cod[i] != T_REG)
+		else if (cod[i] == 0)
 			args[i] = 0;
 		st += cod[i];
 		i++;

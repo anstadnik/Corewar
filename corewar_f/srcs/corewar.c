@@ -6,7 +6,7 @@
 /*   By: bcherkas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 13:59:51 by bcherkas          #+#    #+#             */
-/*   Updated: 2018/07/02 18:55:05 by bcherkas         ###   ########.fr       */
+/*   Updated: 2018/07/03 18:49:12 by bcherkas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ t_carriage	init_carriage(int player, int max)
 	tmp.pc = (MEM_SIZE / max) * player;
 	tmp.map_start = tmp.pc;
 	tmp.cycles_left = 0;
+	tmp.lives = 0;
 	while (j < REG_NUMBER)
 	{
 		tmp.reg[j] = 0;

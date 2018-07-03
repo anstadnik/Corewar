@@ -6,7 +6,7 @@
 /*   By: bcherkas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/08 18:26:29 by bcherkas          #+#    #+#             */
-/*   Updated: 2018/06/16 19:15:13 by bcherkas         ###   ########.fr       */
+/*   Updated: 2018/07/03 19:51:43 by bcherkas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,28 +58,6 @@ t_header	*get_player_info(t_header *arr, int player)
 	if (player > 3 || player < 0)
 		return (NULL);
 	return (&(players_arr[player]));
-}
-
-void		print_v_16(unsigned char *map, int start, int end)
-{
-	if (start == end)
-		return ;
-	if (start && end)
-		ft_printf("ADV %d (%#6.4x -> %#6.4x)", ABS(end - start), start, end);
-	else if (start == 0 && end)
-		ft_printf("ADV %d (0x0000 -> %#6.4x)", ABS(end - start), end);
-	else if (end == 0 && start)
-		ft_printf("ADV %d (%#6.4x -> 0x0000)", ABS(end - start), start);
-	if (end < start)
-		end = MEM_SIZE + end;
-	if (map)
-		;
-	while (start < end)
-	{
-		ft_printf("%3.2hx", map[start % MEM_SIZE]);
-		start++;
-	}
-	write(1, " \n", 2);
 }
 
 void		swap_union_mgc(t_magic *kek)

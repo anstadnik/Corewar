@@ -6,7 +6,7 @@
 /*   By: astadnik <astadnik@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/09 11:54:36 by astadnik          #+#    #+#             */
-/*   Updated: 2018/07/02 19:18:52 by bcherkas         ###   ########.fr       */
+/*   Updated: 2018/07/03 21:28:46 by bcherkas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,13 +66,14 @@ static void	print_v4(int *args, t_carriage *carry, int mode)
 		{
 			ft_printf("P%5d | ldi %d %d r%d\n", carry->number,
 					args[0], args[1], args[2] + 1);
-			ft_printf("       | load from %d + %d = %d (with pc and mod %d)\n",
-				args[0], args[1], sum, (carry->pc + sum) % IDX_MOD);
+			ft_printf("       | -> load from ");
+			ft_printf("%d + %d = %d (with pc and mod %d)\n",
+				args[0], args[1], sum, (carry->pc + sum));
 			return ;
 		}
 		ft_printf("P%5d | ldi %d %d r%d\n", carry->number,
 				args[0], args[1], args[2] + 1);
-		ft_printf("       | load from %d + %d = %d (with pc %d)\n",
+		ft_printf("       | -> load from %d + %d = %d (with pc %d)\n",
 		args[0], args[1], sum, sum + carry->pc);
 	}
 }
@@ -96,7 +97,7 @@ void		cor_ldi(unsigned char *map,
 		if (codage[1] == T_REG)
 			args[1] = carry->reg[args[1]];
 		print_v4(args, carry, 1);
-		pc2 = get_dir(map, (carry->pc + args[0] + args[1]) % IDX_MOD, 4);
+		pc2 = get_dir(map, carry->pc + ((args[0] + args[1]) % IDX_MOD), 4);
 		carry->reg[args[2]] = pc2;
 		carry->carry = carry->reg[args[2]] ? 0 : 1;
 	}
