@@ -6,7 +6,7 @@
 /*   By: bcherkas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 18:51:41 by bcherkas          #+#    #+#             */
-/*   Updated: 2018/07/03 20:56:23 by bcherkas         ###   ########.fr       */
+/*   Updated: 2018/07/04 19:50:11 by bcherkas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,16 +105,18 @@ void	wrapper(unsigned char *map, t_carriage *carry)
 	{
 		ncur_print_carry(carry, func_num, 0);
 		carry->pc = (carry->pc + 1) % MEM_SIZE;
+		carry->func_num = -1;
 	}
 	else if (carry->cycles_left == 0 && func_num <= MAX_FUNC && func_num > 0)
 	{
 		carry->func = g_op_tab[func_num - 1].func;
+		carry->func_num = func_num - 1;
 		carry->cycles_left = g_op_tab[func_num - 1].cycles - 1;
 	}
-	else if (carry->cycles_left == 1 && func_num <= MAX_FUNC && func_num > 0)
+	else if (carry->cycles_left == 1 && carry->func_num > -1)
 	{
 		ncur_print_carry(carry, func_num, 0);
-		function_trigger(carry, map, func_num - 1);
+		function_trigger(carry, map, carry->func_num);
 		ncur_print_carry(carry, map[carry->pc], 1);
 	}
 	carry->cycles_without_live++;
@@ -148,9 +150,9 @@ void	main_cycle(t_info *inf)
 			ncurses_trigger(inf, iterations);
 		inf->carriages = 0;
 		iterations++;
-		lst = inf->stack;
 		if (save > 0)
 			ft_printf("It is now cycle %d\n", iterations);
+		lst = inf->stack;
 		while (lst)
 		{
 			wrapper(inf->map, (t_carriage *)lst->content);

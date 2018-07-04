@@ -6,7 +6,7 @@
 /*   By: bcherkas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/07 16:55:34 by bcherkas          #+#    #+#             */
-/*   Updated: 2018/07/03 17:16:46 by bcherkas         ###   ########.fr       */
+/*   Updated: 2018/07/04 15:10:35 by bcherkas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,13 @@
 void	cor_fork(unsigned char *map, t_carriage *carry)
 {
 	const int	flag = get_args_flag(NULL, FLAG_V);
-	int			pc;
+	const int	pc = get_short(map, carry->pc + 1);
 	t_list		*lst;
 	t_carriage	*new;
 
 	lst = ft_lstnew(carry, sizeof(t_carriage));
 	new = (t_carriage *)lst->content;
-	pc = get_short(map, carry->pc + 1) % IDX_MOD;
-	new->pc = new->pc + pc;
+	new->pc = new->pc + pc % IDX_MOD;
 	if (flag > 0 && (flag & 4) == 4)
 		ft_printf("P%5d | fork %d (%d)\n", carry->number, pc, new->pc);
 	new->pc = (MEM_SIZE + new->pc) % MEM_SIZE;
@@ -35,13 +34,12 @@ void	cor_fork(unsigned char *map, t_carriage *carry)
 void	cor_lfork(unsigned char *map, t_carriage *carry)
 {
 	const int	flag = get_args_flag(NULL, FLAG_V);
-	int			pc;
+	const int	pc = get_short(map, carry->pc + 1);
 	t_list		*lst;
 	t_carriage	*new;
 
 	lst = ft_lstnew(carry, sizeof(t_carriage));
 	new = (t_carriage *)lst->content;
-	pc = get_short(map, carry->pc + 1);
 	new->pc = new->pc + pc;
 	if (flag > 0 && (flag & 4) == 4)
 		ft_printf("P%5d | lfork %d (%d)\n", carry->number, pc, new->pc);

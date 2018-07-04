@@ -6,7 +6,7 @@
 /*   By: astadnik <astadnik@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/09 11:54:36 by astadnik          #+#    #+#             */
-/*   Updated: 2018/07/03 21:28:46 by bcherkas         ###   ########.fr       */
+/*   Updated: 2018/07/04 19:15:26 by bcherkas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void		cor_lld(unsigned char *map,
 		if (codage[0] == T_IND)
 		{
 			args[0] = get_short(map, carry->pc + 2) + carry->pc;
-			args[0] = get_int(map, args[0]);
+			args[0] = get_short(map, args[0]);
 		}
 		carry->reg[args[1]] = args[0];
 		carry->carry = carry->reg[args[1]] ? 0 : 1;

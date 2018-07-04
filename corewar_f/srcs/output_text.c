@@ -6,7 +6,7 @@
 /*   By: bcherkas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/08 12:57:08 by bcherkas          #+#    #+#             */
-/*   Updated: 2018/07/03 19:51:08 by bcherkas         ###   ########.fr       */
+/*   Updated: 2018/07/04 20:08:47 by bcherkas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,15 +57,10 @@ void		print_v_16(unsigned char *map, int start, int end)
 	const int	res = start < end ? end - start : end + 4096 - start;
 	int			i;
 
-	i = 0;
 	if (start == end)
 		return ;
-	if (start && end)
-		ft_printf("ADV %d (%#6.4x -> %#6.4x)", res, start, end);
-	else if (start == 0 && end)
-		ft_printf("ADV %d (0x0000 -> %#6.4x)", res, end);
-	else if (end == 0 && start)
-		ft_printf("ADV %d (%#6.4x -> 0x0000)", res, start);
+	i = 0;
+	ft_printf("ADV %d (0x%.4x -> 0x%.4x)", res, start, end);
 	while (i < res)
 	{
 		ft_printf("%3.2hx", map[(start + i) % MEM_SIZE]);

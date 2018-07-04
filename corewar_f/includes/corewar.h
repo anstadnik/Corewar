@@ -6,7 +6,7 @@
 /*   By: bcherkas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 13:51:01 by bcherkas          #+#    #+#             */
-/*   Updated: 2018/07/03 20:21:20 by bcherkas         ###   ########.fr       */
+/*   Updated: 2018/07/04 19:43:01 by bcherkas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,6 +123,7 @@ typedef struct		s_carriage
 	int				number;
 	int				cycles_without_live;
 	int				player_num;
+	int				func_num;
 }					t_carriage;
 
 typedef struct		s_op
@@ -201,6 +202,7 @@ void				stop_ncurses(t_info *inf);
 void				ncurses_trigger(t_info *inf, int iterations);
 void				ncur_print_carry(t_carriage *carry, int symbol, int mode);
 
+int					alldead(t_info *inf);
 void				output_text(t_info *inf, int iterations);
 void				introduce(t_info *inf);
 void				winner(t_info *inf);

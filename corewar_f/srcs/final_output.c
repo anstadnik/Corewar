@@ -6,7 +6,7 @@
 /*   By: bcherkas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/13 15:57:01 by bcherkas          #+#    #+#             */
-/*   Updated: 2018/06/16 18:38:13 by bcherkas         ###   ########.fr       */
+/*   Updated: 2018/07/04 19:41:53 by bcherkas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void	winner(t_info *inf)
 	int		i;
 
 	i = 0;
+	stop_ncurses(inf);
 	if (!inf->last_dead)
 		inf->last_dead = &(inf->head[0]);
 	ft_printf("Contestant %d, \"%s\", has won !\n",
@@ -69,4 +70,18 @@ void	*ft_memcpy_cor(void *str1, size_t start, const void *str2, size_t n)
 		i++;
 	}
 	return (str1);
+}
+
+int		alldead(t_info *inf)
+{
+	int		i;
+
+	i = 0;
+	while (i < 4)
+	{
+		if (inf->players[i] > -1)
+			return (0);
+		i++;
+	}
+	return (1);
 }

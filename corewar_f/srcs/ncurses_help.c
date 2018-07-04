@@ -6,7 +6,7 @@
 /*   By: bcherkas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/29 20:11:26 by bcherkas          #+#    #+#             */
-/*   Updated: 2018/07/03 17:12:15 by bcherkas         ###   ########.fr       */
+/*   Updated: 2018/07/04 17:46:20 by bcherkas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,10 +71,12 @@ void	ncur_print_carry(t_carriage *carry, int symbol, int mode)
 		return ;
 	if (mode == 1)
 		wattron(win, A_REVERSE);
-	wattron(win, COLOR_PAIR(carry->player_num));
+	if (mode > -1)
+		wattron(win, COLOR_PAIR(carry->player_num));
 	mvwprintw(win, 1 + (carry->pc / 64), 2 + 3 * (carry->pc % 64),
 			"%.2hhx", symbol);
-	wattroff(win, COLOR_PAIR(carry->player_num));
+	if (mode > -1)
+		wattroff(win, COLOR_PAIR(carry->player_num));
 	if (mode == 1)
 		wattroff(win, A_REVERSE);
 	wrefresh(win);

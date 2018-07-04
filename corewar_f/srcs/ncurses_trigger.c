@@ -6,7 +6,7 @@
 /*   By: bcherkas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/02 15:41:58 by bcherkas          #+#    #+#             */
-/*   Updated: 2018/07/03 21:24:00 by bcherkas         ###   ########.fr       */
+/*   Updated: 2018/07/04 17:49:18 by bcherkas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,10 @@ static void	write_stats(t_info *inf, t_win *win, int iters)
 	i = 0;
 	wattron(win->info, A_BOLD);
 	mvwprintw(win->info, 2, 2, "%s", str);
-	mvwprintw(win->info, 5, 2, "Cycles/second limit : %d   ",
+	if (win->speed == 0)
+		mvwprintw(win->info, 5, 2, "Without limit!             ");
+	else if (win->speed != 0)
+		mvwprintw(win->info, 5, 2, "Cycles/second limit : %d   ",
 			win->iter_per_sec);
 	mvwprintw(win->info, 7, 2, "Cycle: %d    ", iters);
 	mvwprintw(win->info, 9, 2, "Processes: %d    ", inf->carriages);
@@ -86,6 +89,8 @@ static int	get_command(t_info *inf, int iters)
 		dead_end(inf, iters);
 	else if (a == 115)
 		return (1);
+	else if (a == 97)
+		inf->win.speed = 0;
 	return (0);
 }
 
@@ -94,7 +99,8 @@ void		ncurses_trigger(t_info *inf, int iterations)
 	t_win	*win;
 
 	win = &(inf->win);
-	usleep(win->speed);
+	if (win->speed)
+		usleep(win->speed);
 	while (1)
 	{
 		write_stats(inf, win, iterations);
