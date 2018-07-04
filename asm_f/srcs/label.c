@@ -83,19 +83,19 @@ int			check_labels(t_code *tmp, int label_index)
 		if (tmp->arg1->label_flag)
 		{
 			if ((label_index = find_label(tmp->arg1->label)) == -1)
-				return (label_error(tmp->arg1->label));
+				return (label_error());
 			tmp->arg1->value = (unsigned char)label_index - tmp->index;
 		}
 		if (tmp->arg2 && tmp->arg2->label_flag)
 		{
 			if ((label_index = find_label(tmp->arg2->label)) == -1)
-				return (label_error(tmp->arg2->label));
+				return (label_error());
 			tmp->arg2->value = (unsigned char)label_index - tmp->index;
 		}
 		if (tmp->arg3 && tmp->arg3->label_flag)
 		{
 			if ((label_index = find_label(tmp->arg3->label)) == -1)
-				return (label_error(tmp->arg3->label));
+				return (label_error());
 			tmp->arg3->value = (unsigned char)label_index - tmp->index;
 		}
 		tmp = tmp->next;

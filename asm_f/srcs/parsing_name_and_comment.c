@@ -6,7 +6,7 @@
 /*   By: lburlach <lburlach@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 15:44:00 by lburlach          #+#    #+#             */
-/*   Updated: 2018/07/04 13:05:04 by lburlach         ###   ########.fr       */
+/*   Updated: 2018/07/04 13:16:47 by lburlach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 static size_t g_row;
 
-static void	detect_the_beginning(char **line)
+static void	detect_the_beginning(char **line, int fd)
 {
 	size_t len;
 	size_t i;
@@ -37,13 +37,13 @@ static void	detect_the_beginning(char **line)
 			return;
 		}
 		else
-			error_asm(NAME_INC, i, line);
+			error_asm(NAME_INC, i, line, fd);
 		i++;
 	}
-	error_asm(END_LINE_BTW_INSTR, g_row, line);
+	error_asm(END_LINE_BTW_INSTR, g_row, line, fd);
 }
 
-static void	check_the_name(char **line)
+static void	check_the_name(char **line, int fd)
 {
 	size_t i;
 	size_t len;
@@ -62,12 +62,12 @@ static void	check_the_name(char **line)
 		{
 			len = ft_strlen(NAME_CMD_STRING);
 			if ((*line)[i + len] != ' ' && (*line)[i + len] != '\t')
-				error_asm(WHIT_AF_TAB, i + len, line);
+				error_asm(WHIT_AF_TAB, i + len, line, fd);
 			g_row = i + ft_strlen(NAME_CMD_STRING);
 			return ;
 		}
 		else
-			error_asm(WRONG_INSTR, i, line);
+			error_asm(WRONG_INSTR, i, line, fd);
 	}
 }
 
@@ -84,7 +84,7 @@ void	skip_whitespaces(int fd, char **line)
 		{
 			if ((*line)[count] == ' ' || (*line)[count] == '\t')
 				count++;
-			else if ((*line)[count] == '#') {
+			else if ((*line)[count] == COMMENT_CHAR) {
 				break ;
 			}
 			else
@@ -104,13 +104,13 @@ static char	*retrieve_name(int fd)
 	head = NULL;
 	out = NULL;
 	skip_whitespaces(fd, &line);
-	check_the_name(&line);
-	detect_the_beginning(&line);
+	check_the_name(&line, fd);
+	detect_the_beginning(&line, fd);
 	fetch_the_name(&line, fd, g_row, &head);
 	str_from_lsts(head, &out);
 	printf("length = %ld\n", ft_strlen(out));
 	if (ft_strlen(out) > PROG_NAME_LENGTH)
-		error_asm(LONG_CHAMP_NAME, 0, NULL);
+		error_asm(LONG_CHAMP_NAME, 0, NULL, fd);
 	printf("out = %s\n--//--\n", out);
 	ft_lstdel(&head, free);
 	return (out);
@@ -126,7 +126,7 @@ void		parse_name_and_comment(int fd, t_header *magic_structure)
 	ft_strdel(&tmp);
 	ft_strcpy(magic_structure->comment, tmp = retrieve_comment(fd));
 	ft_strdel(&tmp);
-	printf("\n\n\n");
+	printf("\n");
 	printf("prog_name = %s\n", magic_structure->prog_name);
 	printf("comment = %s\n", magic_structure->comment);
 }

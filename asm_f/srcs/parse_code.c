@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_code.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: byermak <byermak@student.unit.ua>          +#+  +:+       +#+        */
+/*   By: lburlach <lburlach@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 17:06:00 by byermak           #+#    #+#             */
-/*   Updated: 2018/07/02 16:27:24 by byermak          ###   ########.fr       */
+/*   Updated: 2018/07/04 14:50:59 by lburlach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,13 +108,8 @@ static void	parse_command(char **str, char **label, int fd)
 	while ((*str)[i] && (*str)[i] != ' ' && (*str)[i] != '\t')
 		++i;
 	command = ft_strsub(*str, (unsigned int)g_x, (size_t)(i - (int)g_x));
-	if ((i = new_command(&command, label, &new, *str)) != 1)
-	{
-		ft_strdel(str);
-		ft_printf("[%i]\n", i);
-		exit(1);////////
-////	free code and close fd
-////	error(i);
+	if ((i = new_command(&command, label, &new, *str)) != 1) {
+		put_err(str, fd, i);
 	}
 }
 
@@ -126,8 +121,8 @@ void		parse_code(int fd)
 	int		ret;
 
 	skip_empty(fd, &str);
-//	if (!str)
-//		error(ERR_NO_CODE);
+	if (!str)
+		error_asm(NO_CODE, 0, NULL, fd);
 	while (str && *str)
 	{
 		label = parse_label(str);
@@ -138,5 +133,6 @@ void		parse_code(int fd)
 	tmp = NULL;
 	ret = 0;
 	if ((ret = check_labels(tmp, ret)) != 1)
-		;//error(ret)
+		error_asm(WRONG_LABEL, 0, NULL, fd);
+	;//error(ret)
 }

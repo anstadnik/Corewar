@@ -1,12 +1,13 @@
 /* ************************************************************************** */
+
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   asm.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: byermak <byermak@student.unit.ua>          +#+  +:+       +#+        */
+/*   By: lburlach <lburlach@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 15:30:00 by lburlach          #+#    #+#             */
-/*   Updated: 2018/06/16 15:19:00 by byermak          ###   ########.fr       */
+/*   Updated: 2018/07/04 15:35:23 by lburlach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +19,9 @@
 # include <fcntl.h>
 # include <limits.h>
 
-# define ERR_NO_CODE						(-1)//"No code in file"
-# define ERR_INVALID_COMMAND				(-2)//"Invalid command"
-# define ERR_NO_COMMAND_ARGS				(-3)//"No command arguments"
+# define ERR_NO_CODE						(-1)//"No code in file" +
+# define ERR_INVALID_COMMAND				(-2)//"Invalid command" +
+# define ERR_NO_COMMAND_ARGS				(-3)//"No command arguments" +
 # define ERR_MALLOC							(-4)//"Malloc error"
 # define ERR_INVALID_ARG					(-5)//"Invalid chars in arg"
 # define ERR_INVALID_T_REG					(-6)//"Invalid number of register(chars)"
@@ -40,7 +41,7 @@
 # define ERR_INVALID_2_PAR_T_DIR			(-20)
 # define ERR_INVALID_2_PAR_T_IND			(-21)
 # define ERR_INVALID_NUMBER_OF_ARGS			(-22)//"Too few args"
-# define ERR_WRONG_LABEL					(-23)
+# define ERR_WRONG_LABEL					(-23) // +
 
 
 typedef	struct	s_arg
@@ -107,13 +108,26 @@ enum	g_err {
 	LONG_CHAMP_NAME,
 	WHIT_AF_TAB_C,
 	END_LINE_BTW_INSTR,
-
+	NO_CODE,
+	WRONG_LABEL,
+	WRONG_COM,
+	MALLOC_ERR,
+	NO_COM_ARGS,
+	WRONG_SEP,
+	INVAL_ARG,
+	ERR_INV_T_REG,
+	INV_NUM_REG,
+	INV_T_DIR,
+	INV_T_IND,
+	UKN_CHAR_F_C,
+	UKN_CHAR_S_C,
+	NUM_OF_ARGS
 };
 
 void	parse_name_and_comment(int fd, t_header *magic_structure);
 void	usage(void);
 void	error_ac(char *s);
-void	error_asm(int err_num, size_t x, char **code);
+void	error_asm(int err_num, size_t x, char **code, int fd);
 void	fetch_the_name(char **line, int fd, size_t row, t_list **head);
 char	*retrieve_comment(int fd);
 void	skip_whitespaces(int fd, char **line);
@@ -127,11 +141,10 @@ void	to_buff(char *buff, unsigned char c);
 void	int_to_bytecode(char *buff, unsigned int num);
 void	short_to_bytecode(char *buff, unsigned short int num);
 void	str_to_bytecode(char *buff, char *str, int len);
-int		label_error(char *label);
+int		label_error(void);
 char	*parse_label(char *str);
 int		check_labels(t_code *tmp, int label_index);
 int		new_command_error(char **command, char **label, int error);
-int		label_error(char *label);
 int		skip_spaces(char *str);
 void	skip_empty(int fd, char **str);
 int		word(char *str, int i);
@@ -142,5 +155,8 @@ int		check_first_arg(t_code *new);
 int		check_second_arg(t_code *new);
 int		check_third_arg(t_code *new);
 int		check_command(char *command);
+
+
+void	put_err(char **str, int fd, int i);
 
 #endif
