@@ -6,7 +6,7 @@
 /*   By: lburlach <lburlach@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 15:44:00 by lburlach          #+#    #+#             */
-/*   Updated: 2018/07/04 13:16:47 by lburlach         ###   ########.fr       */
+/*   Updated: 2018/07/04 13:38:51 by lburlach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,10 +108,10 @@ static char	*retrieve_name(int fd)
 	detect_the_beginning(&line, fd);
 	fetch_the_name(&line, fd, g_row, &head);
 	str_from_lsts(head, &out);
-	printf("length = %ld\n", ft_strlen(out));
+/*	printf("length = %ld\n", ft_strlen(out));*/
 	if (ft_strlen(out) > PROG_NAME_LENGTH)
 		error_asm(LONG_CHAMP_NAME, 0, NULL, fd);
-	printf("out = %s\n--//--\n", out);
+//	printf("out = %s\n--//--\n", out);
 	ft_lstdel(&head, free);
 	return (out);
 }
@@ -126,7 +126,7 @@ void		parse_name_and_comment(int fd, t_header *magic_structure)
 	ft_strdel(&tmp);
 	ft_strcpy(magic_structure->comment, tmp = retrieve_comment(fd));
 	ft_strdel(&tmp);
-	printf("\n");
+/*	printf("\n");
 	printf("prog_name = %s\n", magic_structure->prog_name);
-	printf("comment = %s\n", magic_structure->comment);
+	printf("comment = %s\n", magic_structure->comment);*/
 }

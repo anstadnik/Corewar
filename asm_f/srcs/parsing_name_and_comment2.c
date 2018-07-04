@@ -6,7 +6,7 @@
 /*   By: lburlach <lburlach@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/09 16:54:00 by lburlach          #+#    #+#             */
-/*   Updated: 2018/07/04 13:38:51 by lburlach         ###   ########.fr       */
+/*   Updated: 2018/07/04 13:39:51 by lburlach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,10 +134,10 @@ char 	*retrieve_comment(int fd)
 	detect_the_beginning(&line, fd);
 	fetch_the_name(&line, fd, g_row, &head);
 	str_from_lsts(head, &out);
-	printf("length = %ld\n", ft_strlen(out));
+//	printf("length = %ld\n", ft_strlen(out));
 	if (ft_strlen(out) > COMMENT_LENGTH)
 		error_asm(LONG_CHAMP_NAME, 0, NULL, fd);
-	printf("out = %s\n", out);
+//	printf("out = %s\n", out);
 	ft_lstdel(&head, free);
 	return (out);
 }
