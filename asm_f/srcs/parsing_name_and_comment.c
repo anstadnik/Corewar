@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_name_and_comment.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: byermak <byermak@student.unit.ua>          +#+  +:+       +#+        */
+/*   By: lburlach <lburlach@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 15:44:00 by lburlach          #+#    #+#             */
-/*   Updated: 2018/06/13 19:39:10 by byermak          ###   ########.fr       */
+/*   Updated: 2018/07/04 13:05:04 by lburlach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,9 @@ void	skip_whitespaces(int fd, char **line)
 		{
 			if ((*line)[count] == ' ' || (*line)[count] == '\t')
 				count++;
+			else if ((*line)[count] == '#') {
+				break ;
+			}
 			else
 				return;
 		}
