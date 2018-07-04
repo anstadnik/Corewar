@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_args.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: byermak <byermak@student.unit.ua>          +#+  +:+       +#+        */
+/*   By: lburlach <lburlach@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/16 15:15:00 by byermak           #+#    #+#             */
-/*   Updated: 2018/07/02 16:21:09 by byermak          ###   ########.fr       */
+/*   Updated: 2018/07/04 19:31:20 by lburlach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ int			parse_args(char *str, t_code *new)
 				(ret = check_third_arg(new)) != 1)
 				return (ret);
 		if ((skip_spaces(str)) != -1)
+//			return (1);
 			return (ERR_ENDLINE);
 	}
 	return (1);
