@@ -6,7 +6,7 @@
 /*   By: bcherkas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/12 17:10:29 by bcherkas          #+#    #+#             */
-/*   Updated: 2018/07/04 20:03:49 by bcherkas         ###   ########.fr       */
+/*   Updated: 2018/07/05 16:09:00 by bcherkas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	dead_end(t_info *inf, int iterations)
 	winner(inf);
 }
 
-void	check_carriage_lives(t_info *inf)
+void	check_carriage_lives(t_info *inf, int *check_lives)
 {
 	const int	flag_v = inf->args[FLAG_V];
 	t_list		*ptr;
@@ -50,6 +50,7 @@ void	check_carriage_lives(t_info *inf)
 	{
 		tmp = ptr;
 		car = (t_carriage *)ptr->content;
+		*check_lives += car->lives;
 		car->lives = car->lives > 0 ? 0 : -1;
 		ptr = ptr->next;
 		if (car->lives == -1)
@@ -62,11 +63,9 @@ void	check_carriage_lives(t_info *inf)
 				car->number, car->cycles_without_live - 1, inf->cycles_to_die);
 		}
 	}
-	if (inf->stack == NULL)
-		winner(inf);
 }
 
-int		check_players_lives(t_info *inf, int check_lives)
+void	check_players_lives(t_info *inf)
 {
 	int			lives;
 	int			i;
@@ -75,7 +74,6 @@ int		check_players_lives(t_info *inf, int check_lives)
 	i = 0;
 	while (i < inf->players_amount)
 	{
-		lives += inf->players[i];
 		if (inf->players[i] > 0)
 			inf->players[i] = 0;
 		else if (inf->players[i] == 0)
@@ -85,8 +83,6 @@ int		check_players_lives(t_info *inf, int check_lives)
 		}
 		i++;
 	}
-	check_lives = check_lives > lives ? check_lives : lives;
-	return (check_lives);
 }
 
 void	cycle_to_die_check(t_info *inf, int check_lives)
@@ -114,10 +110,12 @@ void	cycle_to_die_func(t_info *inf, int iterations)
 	int			i;
 	int			check_lives;
 
+	check_lives = 0;
 	save = inf->cycles_to_die;
-	check_lives = get_max_lives(inf);
-	check_carriage_lives(inf);
-	check_lives = check_players_lives(inf, check_lives);
+	check_carriage_lives(inf, &check_lives);
+	if (inf->stack == NULL)
+		winner(inf);
+	check_players_lives(inf);
 	cycle_to_die_check(inf, check_lives);
 	i = inf->players_amount - 1;
 	if (flag_v > 0 && (flag_v & 2) == 2 && save != inf->cycles_to_die)

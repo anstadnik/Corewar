@@ -6,7 +6,7 @@
 /*   By: bcherkas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 13:59:51 by bcherkas          #+#    #+#             */
-/*   Updated: 2018/07/03 18:49:12 by bcherkas         ###   ########.fr       */
+/*   Updated: 2018/07/05 16:45:55 by bcherkas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ void		init_map(t_info *inf)
 		i++;
 	}
 	inf->carriages = inf->players_amount;
-	new_carriage(&(inf->stack), NULL);
+	new_carriage(inf, NULL);
 	get_player_info(inf->head, 0);
 }
 

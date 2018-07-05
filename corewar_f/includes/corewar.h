@@ -6,7 +6,7 @@
 /*   By: bcherkas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 13:51:01 by bcherkas          #+#    #+#             */
-/*   Updated: 2018/07/04 19:43:01 by bcherkas         ###   ########.fr       */
+/*   Updated: 2018/07/05 16:55:44 by bcherkas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@
 # define MAX_ARGS_NUMBER		11
 # define MAX_PLAYERS			4
 # define MEM_SIZE				4096
+# define MAX_NUMBER				21504
 # define IDX_MOD				512
 # define CHAMP_MAX_SIZE			682
 
@@ -180,9 +181,8 @@ void				read_players(t_info *inf);
 
 void				main_cycle(t_info *inf);
 void				cycle_to_die_func(t_info *inf, int iterations);
-int					get_max_lives(t_info *inf);
 
-void				new_carriage(t_list **add_pointer, t_list *lst);
+void				new_carriage(t_info *inf, t_list *lst);
 int					get_args_flag(int *args, int flag);
 t_header			*get_player_info(t_header *arr, int player);
 

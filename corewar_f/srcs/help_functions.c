@@ -6,33 +6,36 @@
 /*   By: bcherkas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/08 18:26:29 by bcherkas          #+#    #+#             */
-/*   Updated: 2018/07/03 19:51:43 by bcherkas         ###   ########.fr       */
+/*   Updated: 2018/07/05 16:45:31 by bcherkas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-void		new_carriage(t_list **add_pointer, t_list *lst)
+void		new_carriage(t_info *inf, t_list *lst)
 {
+	static int		carriages_num;
 	static t_list	**start;
 	t_carriage		*tmp;
 	t_carriage		*tmp2;
 
 	if (lst)
 	{
+		carriages_num++;
 		tmp = (t_carriage *)(*start)->content;
 		tmp2 = (t_carriage *)lst->content;
-		tmp2->number = tmp->number + 1;
+		tmp2->number = carriages_num;
 		tmp2->cycles_left = 0;
 		ft_lstadd(start, lst);
 		return ;
 	}
-	if (add_pointer)
+	if (inf)
 	{
-		start = add_pointer;
+		start = &(inf->stack);
+		carriages_num = inf->players_amount;
 		return ;
 	}
-	if (add_pointer == NULL && lst == NULL)
+	if (inf == NULL && lst == NULL)
 		ft_lstdel(start, free);
 }
 

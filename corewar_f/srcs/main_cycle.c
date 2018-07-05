@@ -6,7 +6,7 @@
 /*   By: bcherkas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 18:51:41 by bcherkas          #+#    #+#             */
-/*   Updated: 2018/07/04 19:50:11 by bcherkas         ###   ########.fr       */
+/*   Updated: 2018/07/05 16:25:25 by bcherkas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,25 +42,24 @@ int		check_args(int **cod, int **args, unsigned char *map, t_carriage *car)
 {
 	int			i;
 	int			*codage;
-	const int	func_num = map[car->pc] - 1;
 	int			ret;
 
 	ret = 0;
 	i = 0;
-	codage = get_codage(map[car->pc + 1], g_op_tab[func_num].codage);
+	codage = get_codage(map[car->pc + 1], g_op_tab[car->func_num].codage);
 	while (i < 3)
 	{
-		if ((codage[i] & g_op_tab[func_num].codage[i]) != codage[i])
+		if ((codage[i] & g_op_tab[car->func_num].codage[i]) != codage[i])
 			ret = 1;
-		else if (codage[i] == 0 && g_op_tab[func_num].codage[i] != 0)
+		else if (codage[i] == 0 && g_op_tab[car->func_num].codage[i] != 0)
 			ret = 1;
 		i++;
 	}
 	*cod = codage;
 	if (ret == 1)
 		return (1);
-	*args = get_args(map, car->pc + 2, codage, g_op_tab[func_num].lab);
-	if (args == NULL)
+	*args = get_args(map, car->pc + 2, codage, g_op_tab[car->func_num].lab);
+	if (*args == NULL)
 		return (1);
 	return (0);
 }
