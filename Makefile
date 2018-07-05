@@ -16,9 +16,9 @@ all: $(NAME1) $(NAME2) copy
 
 copy: $(NAME1) $(NAME2)
 	@echo "$(ESCAPE)[36m\nCopying $(NAME1)$(ESCAPE)[0m"
-	@cp $(NAME1) .
+	@cp -f $(NAME1) .
 	@echo "$(ESCAPE)[36m\nCopying $(NAME2)$(ESCAPE)[0m"
-	@cp $(NAME2) .
+	@cp -f $(NAME2) .
 
 $(NAME1) $(NAME2):
 	@echo "$(ESCAPE)[36m\nCompiling $@$(ESCAPE)[0m"
