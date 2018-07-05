@@ -16,7 +16,7 @@ int				skip_spaces(char *str)
 {
 	while (str[g_x] && (str[g_x] == ' ' || str[g_x] == '\t'))
 		++g_x;
-	if (!str[g_x] || str[g_x] == COMMENT_CHAR)
+	if (!str[g_x] || str[g_x] == COMMENT_CHAR || str[g_x] == ';')
 		return (-1);
 	return (int)g_x;
 }
@@ -29,7 +29,7 @@ void			skip_empty(int fd, char **str)
 	ret = get_next_line(fd, str);
 	++g_count;
 	while (ret == 1 && (ft_strlen(*str) == 0 || **str == COMMENT_CHAR ||
-						(skip_spaces(*str) == -1)))
+						(skip_spaces(*str) == -1) || **str == ';'))
 	{
 		g_x = 0;
 		ft_strdel(str);

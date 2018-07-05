@@ -102,7 +102,7 @@ int					parse_arg(char *str, t_arg **arg)
 		return (parse_t_reg(&str, arg));
 	else if (*str == DIRECT_CHAR)
 		return (parse_t_dir(&str, arg));
-	else if (ft_isdigit(*str) || *str == LABEL_CHAR)
+	else if (ft_isdigit(*str) || *str == LABEL_CHAR || *str == '-')
 		return (parse_t_ind(&str, arg));
 	else
 	{
