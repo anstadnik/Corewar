@@ -12,10 +12,10 @@
 
 #include "asm.h"
 
-int	new_command_error(char **command, char **label, int error)
+int	new_command_error(char **command, t_label **label, int error)
 {
 	ft_strdel(command);
-	ft_strdel(label);
+	del_labels(label);
 	return (error);
 }
 

@@ -6,13 +6,13 @@
 /*   By: byermak <byermak@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/16 15:13:00 by byermak           #+#    #+#             */
-/*   Updated: 2018/06/16 15:13:23 by byermak          ###   ########.fr       */
+/*   Updated: 2018/07/05 21:21:47 by byermak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-static unsigned long	count(int n)
+static unsigned long	count(unsigned int n)
 {
 	unsigned long	rez;
 
@@ -27,10 +27,10 @@ static unsigned long	count(int n)
 
 static int				parse_t_reg(char **str, t_arg **arg)
 {
-	int	value;
+	unsigned int	value;
 	int i;
 
-	value = ft_atoi(*str + 1);
+	value = ft_atol(*str + 1);
 	i = 1;
 	while ((*str)[i])
 		if (!ft_isdigit((*str)[i++]))
@@ -49,12 +49,12 @@ static int				parse_t_reg(char **str, t_arg **arg)
 
 static int				parse_t_dir(char **str, t_arg **arg)
 {
-	int		value;
-	char	label_flag;
-	char	*label;
+	unsigned  int	value;
+	char			label_flag;
+	char			*label;
 
 	label = NULL;
-	value = ft_atoi(*str + 1);
+	value = ft_atol(*str + 1);
 	label_flag = (*(*str + 1) == LABEL_CHAR) ? (char)1 : (char)0;
 	if (!label_flag && count(value) < ft_strlen(*str + 1))
 	{
@@ -73,14 +73,14 @@ static int				parse_t_dir(char **str, t_arg **arg)
 
 static int				parse_t_ind(char **str, t_arg **arg)
 {
-	int		value;
-	char	label_flag;
-	char	*label;
+	unsigned  int	value;
+	char			label_flag;
+	char			*label;
 
-	value = ft_atoi(*str);
+	value = ft_atol(*str);
 	label = NULL;
 	label_flag = (**str == LABEL_CHAR) ? (char)1 : (char)0;
-	if ((!label_flag && count(value) < ft_strlen(*str)) || value > USHRT_MAX)
+	if ((!label_flag && count((int)value) < ft_strlen(*str)) || (int)value > USHRT_MAX)
 	{
 		ft_strdel(str);
 		return (ERR_INVALID_T_IND);

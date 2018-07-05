@@ -6,7 +6,7 @@
 /*   By: byermak <byermak@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/16 14:14:00 by byermak           #+#    #+#             */
-/*   Updated: 2018/06/16 14:14:22 by byermak          ###   ########.fr       */
+/*   Updated: 2018/07/05 16:58:38 by byermak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 void	del_command(t_code **new)
 {
-	if ((*new)->label)
-		ft_strdel(&(*new)->label);
 	ft_strdel(&(*new)->command);
 	if ((*new)->arg1)
 	{
@@ -35,6 +33,7 @@ void	del_command(t_code **new)
 			ft_strdel(&(*new)->arg3->label);
 		free((*new)->arg3);
 	}
+	del_labels(&(*new)->label);
 	free(*new);
 	*new = NULL;
 }
@@ -48,5 +47,19 @@ void	del_code(void)
 		tmp = g_code->next;
 		del_command(&g_code);
 		g_code = tmp;
+	}
+}
+
+void	del_labels(t_label **label)
+{
+	t_label	*tmp;
+
+	while (*label)
+	{
+		tmp = (*label)->next;
+		if ((*label)->label)
+			ft_strdel(&(*label)->label);
+		free(*label);
+		*label = tmp;
 	}
 }

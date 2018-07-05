@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lburlach <lburlach@student.unit.ua>        +#+  +:+       +#+        */
+/*   By: byermak <byermak@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 15:41:35 by lburlach          #+#    #+#             */
-/*   Updated: 2018/07/04 13:16:04 by lburlach         ###   ########.fr       */
+/*   Updated: 2018/07/05 19:23:21 by byermak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,12 @@ int		main(int ac, char **av)
 	if (!(cor = check_filename(av[1])))
 		ft_printf("test");///error (file not .s);
 	fd = open(av[ac - 1], O_RDONLY);
-	if (fd == -1) {
+	if (fd == -1)
+	{
 		ft_printf("Cant read source file %s\n", av[1]);
 		exit(1);
 	}
 	parse_name_and_comment(fd, &magic_structure);
-//	ft_printf("%i\n", g_count);
 	g_code = NULL;
 	parse_code(fd);
 	out_fd = open(cor, O_WRONLY | O_CREAT | O_TRUNC, S_IREAD | S_IWRITE);

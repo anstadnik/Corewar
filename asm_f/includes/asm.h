@@ -19,7 +19,6 @@
 # include <fcntl.h>
 # include <limits.h>
 
-# define ERR_NO_CODE						(-1)//"No code in file" +
 # define ERR_INVALID_COMMAND				(-2)//"Invalid command" +
 # define ERR_NO_COMMAND_ARGS				(-3)//"No command arguments" +
 # define ERR_MALLOC							(-4)//"Malloc error"
@@ -41,8 +40,12 @@
 # define ERR_INVALID_2_PAR_T_DIR			(-20)
 # define ERR_INVALID_2_PAR_T_IND			(-21)
 # define ERR_INVALID_NUMBER_OF_ARGS			(-22)//"Too few args"
-# define ERR_WRONG_LABEL					(-23) // +
 
+typedef struct	s_label
+{
+	char			*label;
+	struct s_label	*next;
+}				t_label;
 
 typedef	struct	s_arg
 {
@@ -51,7 +54,7 @@ typedef	struct	s_arg
 	char			label_flag;
 	char			*label;
 	unsigned char	length;
-	int				value;
+	unsigned int	value;
 }				t_arg;
 
 typedef struct	s_code
@@ -59,7 +62,7 @@ typedef struct	s_code
 	char			*command;
 	int				opcode;
 	char			codage;
-	char			*label;
+	t_label			*label;
 	t_arg			*arg1;
 	t_arg			*arg2;
 	t_arg			*arg3;
@@ -136,15 +139,16 @@ ssize_t	str_from_lsts(t_list *tmp, char **line);
 void	parse_code(int fd);
 void	del_command(t_code **new);
 void	del_code(void);
+void	del_labels(t_label **label);
 void	to_bytecode(t_header *magic, int fd);
 void	to_buff(char *buff, unsigned char c);
 void	int_to_bytecode(char *buff, unsigned int num);
 void	short_to_bytecode(char *buff, unsigned short int num);
 void	str_to_bytecode(char *buff, char *str, int len);
 int		label_error(void);
-char	*parse_label(char *str);
-int		check_labels(t_code *tmp, int label_index);
-int		new_command_error(char **command, char **label, int error);
+int		parse_label(char *str, t_label **label);
+int		check_labels(t_code *tmp, int label_index, t_label **last);
+int		new_command_error(char **command, t_label **label, int error);
 int		skip_spaces(char *str);
 void	skip_empty(int fd, char **str);
 int		word(char *str, int i);
@@ -156,7 +160,11 @@ int		check_second_arg(t_code *new);
 int		check_third_arg(t_code *new);
 int		check_command(char *command);
 
+int		get_prog_size(void);
 
 void	put_err(char **str, int fd, int i);
 
+
+
+long long	ft_atol(const char *s);
 #endif

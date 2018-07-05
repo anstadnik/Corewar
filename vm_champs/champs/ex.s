@@ -6,11 +6,8 @@
 
 			#dfmg,dfmg,fdmg
 
-			sti	r1			,				%:live,%1
+			sti	r1			,				%:live,%-111
 	  	and	r1            ,         %0,r1   #dfgldfdfkg
-    	 live:
-
-
-         live2:
-    	 live	%1
-	zjmp 	%:live2
+    	  live2: live	%1
+	zjmp 	%:live
+live:

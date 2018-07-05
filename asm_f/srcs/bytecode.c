@@ -6,13 +6,13 @@
 /*   By: byermak <byermak@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/13 15:27:00 by byermak           #+#    #+#             */
-/*   Updated: 2018/07/05 13:20:15 by byermak          ###   ########.fr       */
+/*   Updated: 2018/07/05 13:36:32 by byermak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-static int	get_prog_size(void)
+int				get_prog_size(void)
 {
 	t_code	*tmp;
 	int		size;
