@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_name_and_comment2.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: byermak <byermak@student.unit.ua>          +#+  +:+       +#+        */
+/*   By: lburlach <lburlach@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/09 16:54:00 by lburlach          #+#    #+#             */
-/*   Updated: 2018/06/13 19:57:17 by byermak          ###   ########.fr       */
+/*   Updated: 2018/07/04 13:39:51 by lburlach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,20 +54,20 @@ void	fetch_the_name(char **line, int fd, size_t row, t_list **head)
 		ft_strdel(line);
 		ret = get_next_line(fd, line);
 		if (ret == 0)
-			error_asm(UNSUF_INFO, row, line);
+			error_asm(UNSUF_INFO, row, line, fd);
 		g_count++;
 	}
 	count = row;
 	while (count < len)
 	{
 		if ((*line)[count] != ' ' && (*line)[count] != '\t')
-			error_asm(WRONG_INSTR, count, line);
+			error_asm(WRONG_INSTR, count, line, fd);
 		count++;
 	}
 	ft_strdel(line);
 }
 
-static void	detect_the_beginning(char **line)
+static void	detect_the_beginning(char **line, int fd)
 {
 	size_t len;
 	size_t i;
@@ -87,13 +87,13 @@ static void	detect_the_beginning(char **line)
 			return;
 		}
 		else
-			error_asm(NAME_INC, i, line);
+			error_asm(NAME_INC, i, line, fd);
 		i++;
 	}
-	error_asm(END_LINE_BTW_INSTR, g_row, line);
+	error_asm(END_LINE_BTW_INSTR, g_row, line, fd);
 }
 
-static void	check_the_name(char **line)
+static void	check_the_name(char **line, int fd)
 {
 	size_t i;
 	size_t len;
@@ -112,12 +112,12 @@ static void	check_the_name(char **line)
 		{
 			len = ft_strlen(COMMENT_CMD_STRING);
 			if ((*line)[i + len] != ' ' && (*line)[i + len] != '\t')
-				error_asm(WHIT_AF_TAB_C, i + len, line);
+				error_asm(WHIT_AF_TAB_C, i + len, line, fd);
 			g_row = i + ft_strlen(COMMENT_CMD_STRING);
 			return ;
 		}
 		else
-			error_asm(WRONG_INSTR, i, line);
+			error_asm(WRONG_INSTR, i, line, fd);
 	}
 }
 
@@ -130,14 +130,14 @@ char 	*retrieve_comment(int fd)
 	head = NULL;
 	out = NULL;
 	skip_whitespaces(fd, &line);
-	check_the_name(&line);
-	detect_the_beginning(&line);
+	check_the_name(&line, fd);
+	detect_the_beginning(&line, fd);
 	fetch_the_name(&line, fd, g_row, &head);
 	str_from_lsts(head, &out);
-	printf("length = %ld\n", ft_strlen(out));
+//	printf("length = %ld\n", ft_strlen(out));
 	if (ft_strlen(out) > COMMENT_LENGTH)
-		error_asm(LONG_CHAMP_NAME, 0, NULL);
-	printf("out = %s\n", out);
+		error_asm(LONG_CHAMP_NAME, 0, NULL, fd);
+//	printf("out = %s\n", out);
 	ft_lstdel(&head, free);
 	return (out);
 }

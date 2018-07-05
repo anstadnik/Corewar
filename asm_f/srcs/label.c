@@ -6,7 +6,7 @@
 /*   By: byermak <byermak@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/16 14:16:00 by byermak           #+#    #+#             */
-/*   Updated: 2018/07/05 13:40:13 by byermak          ###   ########.fr       */
+/*   Updated: 2018/07/02 16:08:20 by byermak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,20 +83,20 @@ int			check_labels(t_code *tmp, int label_index)
 		if (tmp->arg1->label_flag)
 		{
 			if ((label_index = find_label(tmp->arg1->label)) == -1)
-				return (label_error(tmp->arg1->label));
-			tmp->arg1->value = (unsigned short)label_index - tmp->index;
+				return (label_error());
+			tmp->arg1->value = (unsigned char)label_index - tmp->index;
 		}
 		if (tmp->arg2 && tmp->arg2->label_flag)
 		{
 			if ((label_index = find_label(tmp->arg2->label)) == -1)
-				return (label_error(tmp->arg2->label));
-			tmp->arg2->value = (unsigned short)label_index - tmp->index;
+				return (label_error());
+			tmp->arg2->value = (unsigned char)label_index - tmp->index;
 		}
 		if (tmp->arg3 && tmp->arg3->label_flag)
 		{
 			if ((label_index = find_label(tmp->arg3->label)) == -1)
-				return (label_error(tmp->arg3->label));
-			tmp->arg3->value = (unsigned short)label_index - tmp->index;
+				return (label_error());
+			tmp->arg3->value = (unsigned char)label_index - tmp->index;
 		}
 		tmp = tmp->next;
 	}
