@@ -6,7 +6,7 @@
 /*   By: byermak <byermak@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/13 19:09:00 by byermak           #+#    #+#             */
-/*   Updated: 2018/07/02 16:30:07 by byermak          ###   ########.fr       */
+/*   Updated: 2018/07/05 12:57:24 by byermak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,10 @@
 
 void	to_buff(char *buff, unsigned char c)
 {
-	static size_t i;
+	static size_t i = 0;
 
-	buff[i++] = (char)c;
+	buff[i] = (char)c;
+	++i;
 }
 
 void	int_to_bytecode(char *buff, unsigned int num)

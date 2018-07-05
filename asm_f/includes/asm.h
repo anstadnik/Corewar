@@ -62,7 +62,7 @@ typedef struct	s_code
 	t_arg			*arg1;
 	t_arg			*arg2;
 	t_arg			*arg3;
-	unsigned char	index;
+	int				index;
 	struct s_code	*next;
 
 }				t_code;

@@ -12,32 +12,32 @@
 
 #include "asm.h"
 
-//static void				print_args(t_code *new)
-//{
-//	ft_printf("t:[%i] f:[%i] l:[%s] v:[%i] length:[%i]\n", new->arg1->arg_type, new->arg1->label_flag, new->arg1->label, new->arg1->value, new->arg1->length);
-//	if (new->arg2)
-//		ft_printf("t:[%i] f:[%i] l:[%s] v:[%i] length:[%i]\n", new->arg2->arg_type, new->arg2->label_flag, new->arg2->label, new->arg2->value, new->arg2->length);
-//	if (new->arg3)
-//		ft_printf("t:[%i] f:[%i] l:[%s] v:[%i] length:[%i]\n", new->arg3->arg_type, new->arg3->label_flag, new->arg3->label, new->arg3->value, new->arg3->length);
-//	ft_printf("////////////////////////////////////\n\n");
-//}
-//
-//static void				print_comands()
-//{
-//	t_code	*tmp;
-//
-//	tmp = g_code;
-//	while (tmp)
-//	{
-//		ft_printf("____________________________________\n");
-//		ft_printf("name: %s[%i]\n", tmp->command, tmp->opcode);
-//		ft_printf("index: %i\n", tmp->index);
-//		ft_printf("label: %s\n", tmp->label);
-//		ft_printf("codage: %x\n\n", tmp->codage);
-//		print_args(tmp);
-//		tmp = tmp->next;
-//	}
-//}
+static void				print_args(t_code *new)
+{
+	ft_printf("t:[%i] f:[%i] l:[%s] v:[%i] length:[%i]\n", new->arg1->arg_type, new->arg1->label_flag, new->arg1->label, new->arg1->value, new->arg1->length);
+	if (new->arg2)
+		ft_printf("t:[%i] f:[%i] l:[%s] v:[%i] length:[%i]\n", new->arg2->arg_type, new->arg2->label_flag, new->arg2->label, new->arg2->value, new->arg2->length);
+	if (new->arg3)
+		ft_printf("t:[%i] f:[%i] l:[%s] v:[%i] length:[%i]\n", new->arg3->arg_type, new->arg3->label_flag, new->arg3->label, new->arg3->value, new->arg3->length);
+	ft_printf("////////////////////////////////////\n\n");
+}
+
+static void				print_comands()
+{
+	t_code	*tmp;
+
+	tmp = g_code;
+	while (tmp)
+	{
+		ft_printf("____________________________________\n");
+		ft_printf("name: %s[%i]\n", tmp->command, tmp->opcode);
+		ft_printf("index: %i\n", tmp->index);
+		ft_printf("label: %s\n", tmp->label);
+		ft_printf("codage: %x\n\n", tmp->codage);
+		print_args(tmp);
+		tmp = tmp->next;
+	}
+}
 
 static void	push_back(t_code *new)
 {
@@ -139,4 +139,5 @@ void		parse_code(int fd)
 	ret = 0;
 	if ((ret = check_labels(tmp, ret)) != 1)
 		;//error(ret)
+	print_comands();
 }

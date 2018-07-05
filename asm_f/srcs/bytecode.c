@@ -6,7 +6,7 @@
 /*   By: byermak <byermak@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/13 15:27:00 by byermak           #+#    #+#             */
-/*   Updated: 2018/07/02 16:04:40 by byermak          ###   ########.fr       */
+/*   Updated: 2018/07/05 13:20:15 by byermak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,14 @@ static int	get_prog_size(void)
 	int		size;
 
 	tmp = g_code;
-	while (tmp->next)
+	size = 0;
+	while (tmp)
+	{
+		size += 1 + ((tmp->codage) ? 1 : 0) + tmp->arg1->length;
+		size += (tmp->arg2) ? tmp->arg2->length : 0;
+		size += (tmp->arg3) ? tmp->arg3->length : 0;
 		tmp = tmp->next;
-	size = tmp->index + 1 + ((tmp->codage) ? 1 : 0) + tmp->arg1->length;
-	size += (tmp->arg2) ? tmp->arg2->length : 0;
-	size += (tmp->arg3) ? tmp->arg3->length : 0;
+	}
 	return (size);
 }
 
@@ -51,24 +54,24 @@ static void			command_to_bytecode(char *buff, t_code *command)
 void				to_bytecode(t_header *magic, int fd)
 {
 	const int	len = get_prog_size() + PROG_NAME_LENGTH + COMMENT_LENGTH + 16;
-	char		str[len];
+	char		buff[len];
 	t_code		*tmp;
 
-	ft_bzero(str, (size_t)len);
+	ft_bzero(buff, (size_t)len);
 	magic->magic = COREWAR_EXEC_MAGIC;
 	magic->prog_size = (unsigned int)get_prog_size();
-	int_to_bytecode(str, magic->magic);
-	str_to_bytecode(str, magic->prog_name, PROG_NAME_LENGTH);
-	int_to_bytecode(str, 0);
-	int_to_bytecode(str, magic->prog_size);
-	str_to_bytecode(str, magic->comment, COMMENT_LENGTH);
-	int_to_bytecode(str, 0);
+	int_to_bytecode(buff, magic->magic);
+	str_to_bytecode(buff, magic->prog_name, PROG_NAME_LENGTH);
+	int_to_bytecode(buff, 0);
+	int_to_bytecode(buff, magic->prog_size);
+	str_to_bytecode(buff, magic->comment, COMMENT_LENGTH);
+	int_to_bytecode(buff, 0);
 	tmp = g_code;
 	while (tmp)
 	{
-		command_to_bytecode(str, tmp);
+		command_to_bytecode(buff, tmp);
 		tmp = tmp->next;
 	}
-	write(fd, &str, (size_t)len);
+	write(fd, &buff, (size_t)len);
 	del_code();
 }
