@@ -5,4 +5,8 @@ do
 	echo "\n"
 	echo "asm: "
 	./asm $file
+	echo "diff :"
+	tmp=`echo $file | sed 's/\.s$//'`
+	echo $tmp
+	diff $tmp.co $tmp.cor
 done
