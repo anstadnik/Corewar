@@ -6,7 +6,7 @@
 /*   By: byermak <byermak@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 15:41:35 by lburlach          #+#    #+#             */
-/*   Updated: 2018/07/06 14:00:29 by byermak          ###   ########.fr       */
+/*   Updated: 2018/07/06 14:01:36 by byermak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,6 @@ int		main(int ac, char **av)
 	parse_code(fd);
 	to_bytecode(&magic_structure, &cor);
 	close(fd);
-//	system("leaks asm_dev");
+	system("leaks asm_dev");
 	return (0);
 }

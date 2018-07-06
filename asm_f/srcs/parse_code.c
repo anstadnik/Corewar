@@ -6,7 +6,7 @@
 /*   By: byermak <byermak@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 17:06:00 by byermak           #+#    #+#             */
-/*   Updated: 2018/07/06 13:38:06 by byermak          ###   ########.fr       */
+/*   Updated: 2018/07/06 15:13:48 by byermak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,6 +128,7 @@ int			parse_labels(char **str, t_label **label, int fd)
 		return (ret);
 	while (skip_spaces(*str) == -1 && ret != 0 && *str)
 	{
+		ft_strdel(str);
 		skip_empty(fd, str);
 		if (!*str)
 			return (1);
