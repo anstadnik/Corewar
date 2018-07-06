@@ -6,7 +6,7 @@
 /*   By: lburlach <lburlach@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 15:41:35 by lburlach          #+#    #+#             */
-/*   Updated: 2018/07/06 19:49:13 by lburlach         ###   ########.fr       */
+/*   Updated: 2018/07/06 20:08:43 by lburlach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static char	*check_filename(char *input_name)
 	if (!(ptr = ft_strrchr(input_name, '.')) || !(ft_strequ(ptr, ".s")))
 		return (NULL);
 	ptr = ft_strsub(input_name, 0, (size_t)(ptr - input_name));
-	cor_name = ft_strjoin(ptr, ".co");
+	cor_name = ft_strjoin(ptr, ".cor");
 	ft_strdel(&ptr);
 	return (cor_name);
 }
