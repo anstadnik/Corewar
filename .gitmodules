@@ -1,4 +1,3 @@
 [submodule "libft"]
 	path = libft
 	url = https://gitlab.com/astadnik/libft.git
-	branch = beauty
