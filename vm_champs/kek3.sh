@@ -1,3 +1,4 @@
+cp ~/COREWAR/cmake-build-debug/asm_dev ~/COREWAR/vm_champs/
 for file in `find ./champs/championships -type f -name "*.s"`
 do
 	echo "our asm: "
