@@ -6,7 +6,7 @@
 /*   By: lburlach <lburlach@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/16 15:15:00 by byermak           #+#    #+#             */
-/*   Updated: 2018/07/04 19:31:20 by lburlach         ###   ########.fr       */
+/*   Updated: 2018/07/06 18:34:03 by lburlach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,4 +95,5 @@ int			parse_args(char *str, t_code *new)
 			return (ERR_ENDLINE);
 	}
 	return (1);
+
 }

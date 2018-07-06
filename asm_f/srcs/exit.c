@@ -6,7 +6,7 @@
 /*   By: lburlach <lburlach@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 15:56:00 by lburlach          #+#    #+#             */
-/*   Updated: 2018/07/04 15:35:23 by lburlach         ###   ########.fr       */
+/*   Updated: 2018/07/06 18:30:41 by lburlach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,10 @@ void	error_asm(int err_num, size_t x, char **code, int fd)
 {
 	if (!code || !(*code))
 		ft_printf("{red}%s at [%.3d, %.3d]{eoc}\n",
-				  g_str[err_num - 1], g_count + 1, x + 1);
+				  g_str[err_num - 1], g_count, x + 1);
 	else
 		ft_printf("{red}%s at [%.3d, %.3d]:{eoc}\n{light red}%s{eoc}\n",
-				  g_str[err_num - 1], g_count + 1, x + 1, *code);
+				  g_str[err_num - 1], g_count, x + 1, *code);
 
 	ft_strdel(code);
 	close(fd);
