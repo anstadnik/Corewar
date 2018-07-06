@@ -6,7 +6,7 @@
 /*   By: bcherkas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 18:11:13 by bcherkas          #+#    #+#             */
-/*   Updated: 2018/07/02 19:20:12 by bcherkas         ###   ########.fr       */
+/*   Updated: 2018/07/05 19:06:23 by astadnik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,23 +63,23 @@ void	check_file(int fd, t_header *head, t_info *inf, int player)
 	if (read(fd, buff, 0) < 0)
 		errmsg("Cannot open file");
 	if (get_num(fd) != COREWAR_EXEC_MAGIC)
-		errmsg("Wrong file");
+		errmsg("No codage");
 	head->prog_name[NAME_LEN] = 0;
 	if (read(fd, head->prog_name, NAME_LEN) < NAME_LEN)
-		errmsg("Wrong file");
+		errmsg("Wrong length");
 	if (read(fd, buff, 4) < 4 || ft_memcmp(buff, "\0\0\0\0", 4))
-		errmsg("Wrong file");
+		errmsg("No NULL group after name");
 	head->prog_size = (unsigned)get_num(fd);
 	head->comment[COMMENT_LEN] = 0;
 	if (read(fd, head->comment, COMMENT_LEN) < COMMENT_LEN)
-		errmsg("Wrong file");
+		errmsg("Wrong comment length");
 	if (read(fd, buff, 4) < 4 || ft_memcmp(buff, "\0\0\0\0", 4))
-		errmsg("Wrong file");
+		errmsg("No NULL group after comment");
 	if (read(fd, str, head->prog_size) < head->prog_size)
-		errmsg("Wrong file");
+		errmsg("Wrong program size");
 	if ((head->prog_size % 2 == 0 && read(fd, buff, 4) > 0) ||
 		(head->prog_size % 2 != 0 && read(fd, buff, 4) > 1))
-		errmsg("Wrong file");
+		errmsg("Padding error");
 	cpy_to_map(inf, head->prog_size, str, player);
 	close(fd);
 }
