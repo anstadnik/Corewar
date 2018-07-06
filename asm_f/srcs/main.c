@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lburlach <lburlach@student.unit.ua>        +#+  +:+       +#+        */
+/*   By: byermak <byermak@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 15:41:35 by lburlach          #+#    #+#             */
-/*   Updated: 2018/07/06 16:20:55 by lburlach         ###   ########.fr       */
+/*   Updated: 2018/07/06 18:00:24 by byermak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-char	*check_filename(char *input_name)
+static char	*check_filename(char *input_name)
 {
 	char	*ptr;
 	char	*cor_name;
@@ -33,7 +33,7 @@ static void initialize_globals(void)
 	g_code = NULL;
 }
 
-void main_wrapper(int ac, char **av, t_header *magic_structure, char **cor)
+static void	main_wrapper(int ac, char **av, t_header *magic_structure, char **cor)
 {
 	int fd;
 	int count;
@@ -60,7 +60,7 @@ void main_wrapper(int ac, char **av, t_header *magic_structure, char **cor)
 	}
 }
 
-int		main(int ac, char **av)
+int			main(int ac, char **av)
 {
 	t_header	magic_structure;
 	char		*cor;
@@ -68,6 +68,6 @@ int		main(int ac, char **av)
 	if (ac == 1)
 		usage();
 	main_wrapper(ac, av, &magic_structure, &cor);
-//	system("leaks asm");
+	system("leaks asm_dev");
 	return (0);
 }
