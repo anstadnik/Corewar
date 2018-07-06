@@ -6,7 +6,7 @@
 /*   By: bcherkas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/08 12:57:08 by bcherkas          #+#    #+#             */
-/*   Updated: 2018/07/04 20:08:47 by bcherkas         ###   ########.fr       */
+/*   Updated: 2018/07/06 20:46:25 by bcherkas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,10 @@ static void	output_sd(t_info *inf, unsigned char *map, int mode)
 	}
 }
 
-void		print_v_16(unsigned char *map, int start, int end)
+void		print_v_16(unsigned char *map, int start, int ende)
 {
-	const int	res = start < end ? end - start : end + 4096 - start;
+	const int	end = ende > start ? ende : 4096 + ende;
+	const int	res = end - start;
 	int			i;
 
 	if (start == end)

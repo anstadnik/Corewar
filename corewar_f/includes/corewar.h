@@ -6,7 +6,7 @@
 /*   By: bcherkas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 13:51:01 by bcherkas          #+#    #+#             */
-/*   Updated: 2018/07/05 16:55:44 by bcherkas         ###   ########.fr       */
+/*   Updated: 2018/07/06 21:30:10 by bcherkas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 # define MAX_ARGS_NUMBER		11
 # define MAX_PLAYERS			4
 # define MEM_SIZE				4096
-# define MAX_NUMBER				21504
+# define MAX_NUMBER				5376
 # define IDX_MOD				512
 # define CHAMP_MAX_SIZE			682
 
@@ -180,7 +180,7 @@ void				get_parameters(int ac, char **av, t_info *inf);
 void				read_players(t_info *inf);
 
 void				main_cycle(t_info *inf);
-void				cycle_to_die_func(t_info *inf, int iterations);
+void				cycle_to_die_func(t_info *inf);
 
 void				new_carriage(t_info *inf, t_list *lst);
 int					get_args_flag(int *args, int flag);
@@ -192,6 +192,9 @@ void				swap_union_mgc(t_magic *mgc);
 int					errmsg(char *str);
 void				*ft_memcpy_cor(void *str1, size_t start, const void *str2,
 						size_t n);
+
+//void				lst_foreach(t_info *inf, void (*f)(t_list *, t_info *));
+//void				del_node(t_list *lst, t_info *inf);
 
 void				ncur_init_window(t_info *inf);
 void				color_output(int player, unsigned char *str, int start,
@@ -206,6 +209,6 @@ int					alldead(t_info *inf);
 void				output_text(t_info *inf, int iterations);
 void				introduce(t_info *inf);
 void				winner(t_info *inf);
-void				dead_end(t_info *inf, int iterations);
+void				dead_end(t_info *inf);
 
 #endif

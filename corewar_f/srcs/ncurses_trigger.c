@@ -6,7 +6,7 @@
 /*   By: bcherkas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/02 15:41:58 by bcherkas          #+#    #+#             */
-/*   Updated: 2018/07/04 17:49:18 by bcherkas         ###   ########.fr       */
+/*   Updated: 2018/07/06 22:15:26 by bcherkas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ static void	change_speed(t_win *win, int num)
 	win->speed = (unsigned)(round(1000000.0 / (double)win->iter_per_sec));
 }
 
-static int	get_command(t_info *inf, int iters)
+static int	get_command(t_info *inf)
 {
 	t_win	*win;
 	int		a;
@@ -86,7 +86,7 @@ static int	get_command(t_info *inf, int iters)
 	else if (a == 114)
 		change_speed(win, 10);
 	else if (a == 27)
-		dead_end(inf, iters);
+		dead_end(inf);
 	else if (a == 115)
 		return (1);
 	else if (a == 97)
@@ -105,7 +105,7 @@ void		ncurses_trigger(t_info *inf, int iterations)
 	{
 		write_stats(inf, win, iterations);
 		wrefresh(win->info);
-		if (get_command(inf, iterations))
+		if (get_command(inf))
 			break ;
 		if (win->pause == 0)
 			break ;

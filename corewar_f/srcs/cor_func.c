@@ -6,7 +6,7 @@
 /*   By: bcherkas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/08 15:11:22 by bcherkas          #+#    #+#             */
-/*   Updated: 2018/07/04 19:01:13 by bcherkas         ###   ########.fr       */
+/*   Updated: 2018/07/06 18:40:09 by bcherkas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	cor_zjmp(unsigned char *map, t_carriage *carry)
 			ncur_print_carry(carry, map[carry->pc], 1);
 	}
 	if (flag > 0 && (flag & 4) == 4)
-		ft_printf("P%5d | zjmp %d %s\n", carry->number, i,
+		ft_printf("P %4d | zjmp %d %s\n", carry->number, i,
 				carry->carry == 0 ? "FAILED" : "OK");
 	if (carry->carry == 0)
 	{
@@ -63,7 +63,7 @@ void	cor_live(unsigned char *map, t_carriage *carry)
 	save = get_dir(map, carry->pc + 1, 4);
 	player_number = PLAYER_CODE - save;
 	if (flag > 0 && (flag & 4) == 4)
-		ft_printf("P%5d | live %d\n", carry->number, save);
+		ft_printf("P %4d | live %d\n", carry->number, save);
 	if (player_number >= 0 && player_number < carry->players_amount)
 	{
 		player = get_player_info(NULL, player_number);

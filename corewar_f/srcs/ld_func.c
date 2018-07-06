@@ -6,7 +6,7 @@
 /*   By: astadnik <astadnik@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/09 11:54:36 by astadnik          #+#    #+#             */
-/*   Updated: 2018/07/05 16:56:09 by bcherkas         ###   ########.fr       */
+/*   Updated: 2018/07/06 16:49:34 by bcherkas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void		cor_ld(unsigned char *map,
 		carry->reg[args[1]] = args[0];
 		carry->carry = carry->reg[args[1]] ? 0 : 1;
 		if (flag > 0 && (flag & 4) == 4)
-			ft_printf("P%5d | ld %d r%d\n", carry->number,
+			ft_printf("P %4d | ld %d r%d\n", carry->number,
 					args[0], args[1] + 1);
 	}
 	carry->pc = (carry->pc + codage[0] + codage[1] + 2) % MEM_SIZE;
@@ -48,7 +48,7 @@ void		cor_lld(unsigned char *map,
 		carry->reg[args[1]] = args[0];
 		carry->carry = carry->reg[args[1]] ? 0 : 1;
 		if (flag > 0 && (flag & 4) == 4)
-			ft_printf("P%5d | lld %d r%d\n", carry->number,
+			ft_printf("P %4d | lld %d r%d\n", carry->number,
 					args[0], args[1] + 1);
 	}
 	carry->pc = (carry->pc + codage[0] + codage[1] + 2) % MEM_SIZE;
@@ -64,14 +64,14 @@ static void	print_v4(int *args, t_carriage *carry, int mode)
 		sum = args[0] + args[1];
 		if (mode)
 		{
-			ft_printf("P%5d | ldi %d %d r%d\n", carry->number,
+			ft_printf("P %4d | ldi %d %d r%d\n", carry->number,
 					args[0], args[1], args[2] + 1);
 			ft_printf("       | -> load from ");
 			ft_printf("%d + %d = %d (with pc and mod %d)\n",
 				args[0], args[1], sum, (carry->pc + sum) % MAX_NUMBER);
 			return ;
 		}
-		ft_printf("P%5d | ldi %d %d r%d\n", carry->number,
+		ft_printf("P %4d | ldi %d %d r%d\n", carry->number,
 				args[0], args[1], args[2] + 1);
 		ft_printf("       | -> load from %d + %d = %d (with pc %d)\n",
 		args[0], args[1], sum, (sum + carry->pc) % MAX_NUMBER);

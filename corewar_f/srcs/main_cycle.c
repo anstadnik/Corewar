@@ -6,7 +6,7 @@
 /*   By: bcherkas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 18:51:41 by bcherkas          #+#    #+#             */
-/*   Updated: 2018/07/05 16:25:25 by bcherkas         ###   ########.fr       */
+/*   Updated: 2018/07/06 21:29:47 by bcherkas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,12 @@ int		check_args(int **cod, int **args, unsigned char *map, t_carriage *car)
 	int			i;
 	int			*codage;
 	int			ret;
+	int			pc;
 
 	ret = 0;
 	i = 0;
-	codage = get_codage(map[car->pc + 1], g_op_tab[car->func_num].codage);
+	pc = (car->pc + 1) % MEM_SIZE;
+	codage = get_codage(map[pc], g_op_tab[car->func_num].codage);
 	while (i < 3)
 	{
 		if ((codage[i] & g_op_tab[car->func_num].codage[i]) != codage[i])
@@ -56,12 +58,11 @@ int		check_args(int **cod, int **args, unsigned char *map, t_carriage *car)
 		i++;
 	}
 	*cod = codage;
-	if (ret == 1)
-		return (1);
-	*args = get_args(map, car->pc + 2, codage, g_op_tab[car->func_num].lab);
+	pc = (pc + 1) % MEM_SIZE;
+	*args = get_args(map, pc, codage, g_op_tab[car->func_num].lab);
 	if (*args == NULL)
-		return (1);
-	return (0);
+		ret = 1;
+	return (ret);
 }
 
 void	function_trigger(t_carriage *carry, unsigned char *map, int func_num)
@@ -88,7 +89,7 @@ void	function_trigger(t_carriage *carry, unsigned char *map, int func_num)
 	}
 	else
 		carry->func(map, carry);
-	if (save > -1 && (save & 16) == 16 && map[old_pc] != 9)
+	if (save > -1 && (save & 16) == 16 && func_num != 8)
 		print_v_16(map, old_pc, carry->pc);
 }
 
@@ -98,6 +99,7 @@ void	wrapper(unsigned char *map, t_carriage *carry)
 
 	func_num = map[carry->pc];
 	ncur_print_carry(carry, func_num, 1);
+	carry->cycles_without_live++;
 	if (carry->cycles_left > 1)
 		carry->cycles_left--;
 	else if (carry->cycles_left == 0 && (func_num > MAX_FUNC || func_num < 1))
@@ -118,14 +120,15 @@ void	wrapper(unsigned char *map, t_carriage *carry)
 		function_trigger(carry, map, carry->func_num);
 		ncur_print_carry(carry, map[carry->pc], 1);
 	}
-	carry->cycles_without_live++;
 }
 
 void	help_me(t_info *inf, int iterations, int *cycles)
 {
+	if (inf->cycles_to_die <= 0)
+		dead_end(inf);
 	if (*cycles == inf->cycles_to_die)
 	{
-		cycle_to_die_func(inf, iterations);
+		cycle_to_die_func(inf);
 		*cycles = 0;
 	}
 	if (inf->output_mode == 1 || inf->output_mode == 2)

@@ -6,7 +6,7 @@
 /*   By: astadnik <astadnik@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/09 17:16:57 by astadnik          #+#    #+#             */
-/*   Updated: 2018/07/05 16:55:50 by bcherkas         ###   ########.fr       */
+/*   Updated: 2018/07/06 21:59:32 by bcherkas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void	print_v4(int *args, t_carriage *carry, int pc)
 	if (flag > 0 && (flag & 4) == 4)
 	{
 		sum = args[1] + args[2];
-		ft_printf("P%5d | sti r%d %d %d\n",
+		ft_printf("P %4d | sti r%d %d %d\n",
 				carry->number, args[0] + 1, args[1], args[2]);
 		ft_printf("       | -> store to %d + %d = %d (with pc and mod %d)\n",
 			args[1], args[2], sum, (pc + sum) % MAX_NUMBER);
@@ -49,7 +49,7 @@ void		cor_st(unsigned char *map,
 			color_output(carry->player_num, mgc.arr, (int)start, 4);
 		}
 		if (flag > 0 && (flag & 4) == 4)
-			ft_printf("P%5d | st r%d %d\n", carry->number,
+			ft_printf("P %4d | st r%d %d\n", carry->number,
 					args[0] + 1, args[1]);
 	}
 	carry->pc = (carry->pc + 2 + codage[0] + codage[1]) % MEM_SIZE;
@@ -61,21 +61,18 @@ void		cor_sti(unsigned char *map,
 	t_magic		mgc;
 	size_t		start;
 
-	if (args)
-	{
-		if (codage[1] == T_REG)
-			args[1] = carry->reg[args[1]];
-		else if (codage[1] == T_IND)
-			args[1] %= IDX_MOD;
-		if (codage[2] == T_REG)
-			args[2] = carry->reg[args[2]];
-		mgc.magic = carry->reg[args[0]];
-		swap_union_mgc(&mgc);
-		start = (size_t)((MEM_SIZE + carry->pc + ((args[1] + args[2])
-				% IDX_MOD)) % MEM_SIZE);
-		ft_memcpy_cor(map, start, mgc.arr, 4);
-		print_v4(args, carry, carry->pc);
-		color_output(carry->player_num, mgc.arr, (int)start, 4);
-	}
+	if (codage[1] == T_REG)
+		args[1] = carry->reg[args[1]];
+	else if (codage[1] == T_IND)
+		args[1] %= IDX_MOD;
+	if (codage[2] == T_REG)
+		args[2] = carry->reg[args[2]];
+	mgc.magic = carry->reg[args[0]];
+	swap_union_mgc(&mgc);
+	start = (size_t)((MEM_SIZE + carry->pc + ((args[1] + args[2])
+			% IDX_MOD)) % MEM_SIZE);
+	ft_memcpy_cor(map, start, mgc.arr, 4);
+	color_output(carry->player_num, mgc.arr, (int)start, 4);
+	print_v4(args, carry, carry->pc);
 	carry->pc = (carry->pc + 2 + codage[0] + codage[1] + codage[2]) % MEM_SIZE;
 }
