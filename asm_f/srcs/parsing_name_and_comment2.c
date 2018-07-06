@@ -6,7 +6,7 @@
 /*   By: lburlach <lburlach@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/09 16:54:00 by lburlach          #+#    #+#             */
-/*   Updated: 2018/07/04 13:39:51 by lburlach         ###   ########.fr       */
+/*   Updated: 2018/07/06 16:43:26 by lburlach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,15 @@ static	int search_the_end(char **line, size_t *row, t_list **head, size_t len)
 		if ((*line)[tmp] == '"')
 		{
 			ft_lstpushb(head, (*line + *row), tmp - *row);
+//			ft_lst_push_back(head, (*line + *row), tmp - *row);
 			*row += tmp - *row + 1;
 			return (1);
 		}
 		tmp++;
 	}
 	ft_lstpushb(head, (*line + *row), tmp - *row);
+//	ft_lst_push_back(head, (*line + *row), tmp - *row);
+//	ft_lst_push_back(head, "\n", 1);
 	ft_lstpushb(head, "\n", 1);
 	*row += tmp;
 	return (0);
@@ -49,8 +52,10 @@ void	fetch_the_name(char **line, int fd, size_t row, t_list **head)
 		if (count > 1)
 			row = 0;
 		len = ft_strlen(*line);
-		if (search_the_end(line, &row, head, len))
+		if (search_the_end(line, &row, head, len)) {
+			ft_strdel(line);
 			break;
+		}
 		ft_strdel(line);
 		ret = get_next_line(fd, line);
 		if (ret == 0)
@@ -138,6 +143,7 @@ char 	*retrieve_comment(int fd)
 	if (ft_strlen(out) > COMMENT_LENGTH)
 		error_asm(LONG_CHAMP_NAME, 0, NULL, fd);
 //	printf("out = %s\n", out);
+//	ft_lst_clear(&head);
 	ft_lstdel(&head, free);
 	return (out);
 }

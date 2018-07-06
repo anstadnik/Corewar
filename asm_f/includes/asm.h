@@ -101,6 +101,7 @@ static const t_op	g_op_tab[16] = {
 size_t	g_count;
 size_t	g_x;
 t_code	*g_code;
+size_t	g_i;
 
 enum	g_err {
 	WRONG_INSTR = 1,
@@ -164,7 +165,7 @@ int		get_prog_size(void);
 
 void	put_err(char **str, int fd, int i);
 
-
+void	ft_lst_push_back(t_list **tmp, void *data, size_t con_s);
 
 long long	ft_atol(const char *s);
 #endif

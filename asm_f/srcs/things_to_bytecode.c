@@ -14,10 +14,8 @@
 
 void	to_buff(char *buff, unsigned char c)
 {
-	static size_t i = 0;
-
-	buff[i] = (char)c;
-	++i;
+	buff[g_i] = (char)c;
+	++g_i;
 }
 
 void	int_to_bytecode(char *buff, unsigned int num)

@@ -59,7 +59,6 @@ void				to_bytecode(t_header *magic, char **filename)
 	int			out_fd;
 
 	out_fd = open(*filename, O_WRONLY | O_CREAT | O_TRUNC, S_IREAD | S_IWRITE);
-	ft_strdel(filename);
 	ft_bzero(buff, (size_t)len);
 	magic->magic = COREWAR_EXEC_MAGIC;
 	magic->prog_size = (unsigned int)get_prog_size();

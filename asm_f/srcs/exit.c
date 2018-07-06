@@ -58,8 +58,8 @@ void	usage(void)
 	exit(1);
 }
 
-void	error_ac(char *s)
+/*void	error_ac(char *s)
 {
 	ft_printf("Cant read source file %s\n", s);
 	exit(1);
-}
+}*/
