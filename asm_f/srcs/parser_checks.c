@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_checks.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lburlach <lburlach@student.unit.ua>        +#+  +:+       +#+        */
+/*   By: byermak <byermak@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/16 15:19:00 by byermak           #+#    #+#             */
-/*   Updated: 2018/07/04 19:29:01 by lburlach         ###   ########.fr       */
+/*   Updated: 2018/07/06 13:23:04 by byermak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	check_third_arg(t_code *new)
 	if (new->arg3->arg_type == T_DIR)
 		new->arg3->length = (unsigned char)g_op_tab[i].label_size;
 	if (new->arg3->arg_type == T_DIR && new->arg3->length == 2)
-		if (new->arg3->value > USHRT_MAX)
+		if ((int)new->arg3->value > USHRT_MAX)
 			return (ERR_INVALID_T_DIR);
 	return (1);
 }
@@ -66,7 +66,7 @@ int	check_second_arg(t_code *new)
 	if (new->arg2->arg_type == T_DIR)
 		new->arg2->length = (unsigned char)g_op_tab[i].label_size;
 	if (new->arg2->arg_type == T_DIR && new->arg2->length == 2)
-		if (new->arg2->value > USHRT_MAX)
+		if ((int)new->arg2->value > USHRT_MAX)
 			return (ERR_INVALID_T_DIR);
 	return (1);
 }
@@ -87,7 +87,7 @@ int	check_first_arg(t_code *new)
 	if (new->arg1->arg_type == T_DIR)
 		new->arg1->length = (unsigned char)g_op_tab[i].label_size;
 	if (new->arg1->arg_type == T_DIR && new->arg1->length == 2)
-		if (new->arg1->value > USHRT_MAX)
+		if ((int)new->arg1->value > USHRT_MAX)
 			return (ERR_INVALID_T_DIR);
 	return (1);
 }

@@ -6,15 +6,15 @@
 /*   By: byermak <byermak@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/16 15:13:00 by byermak           #+#    #+#             */
-/*   Updated: 2018/07/05 21:21:47 by byermak          ###   ########.fr       */
+/*   Updated: 2018/07/06 13:44:46 by byermak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-static unsigned long	count(unsigned int n)
+static unsigned int	count(long long n)
 {
-	unsigned long	rez;
+	long long	rez;
 
 	rez = n <= 0 ? 1 : 0;
 	while (n)
@@ -22,7 +22,7 @@ static unsigned long	count(unsigned int n)
 		rez++;
 		n /= 10;
 	}
-	return (rez);
+	return ((unsigned int)rez);
 }
 
 static int				parse_t_reg(char **str, t_arg **arg)

@@ -6,7 +6,7 @@
 /*   By: byermak <byermak@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 17:06:00 by byermak           #+#    #+#             */
-/*   Updated: 2018/07/05 21:23:27 by byermak          ###   ########.fr       */
+/*   Updated: 2018/07/06 13:36:48 by byermak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@
 //	while (tmp)
 //	{
 //		ft_printf("____________________________________\n");
-//		ft_printf("name: %s[%i]\n", tmp->command, tmp->opcode);
+//		ft_printf("name: %s[%.2x]\n", tmp->command, tmp->opcode);
 //		ft_printf("index: %i\n", tmp->index);
 //		tmp_labels = tmp->label;
 //		ft_printf("labels:\n");
@@ -40,7 +40,7 @@
 //			ft_printf("%s\n", tmp_labels->label);
 //			tmp_labels = tmp_labels->next;
 //		}
-//		ft_printf("codage: %hhx\n\n", tmp->codage);
+//		ft_printf("codage: %.2hhx\n\n", tmp->codage);
 //		print_args(tmp);
 //		tmp = tmp->next;
 //	}
@@ -71,7 +71,7 @@ static char	count_codage(t_code *new)
 
 	codage = 0;
 	if (g_op_tab[new->opcode - 1].codage_flag)
-		codage = (char)((new->arg1->arg_type << 6) |
+		codage = (char)((new->arg1->arg_code << 6) |
 			((new->arg2) ? new->arg2->arg_code : 0) << 4 |
 			((new->arg3) ? new->arg3->arg_code : 0) << 2);
 	return (codage);
