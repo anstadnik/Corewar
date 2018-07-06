@@ -41,7 +41,7 @@ void			skip_empty(int fd, char **str)
 int				word(char *str, int i)
 {
 	while (str[i] && str[i] != ' ' && str[i] != '\t' &&
-		   str[i] != SEPARATOR_CHAR)
+		str[i] != SEPARATOR_CHAR)
 		++i;
 	return (i);
 }

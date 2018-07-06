@@ -12,7 +12,7 @@
 
 #include "asm.h"
 
-int				get_prog_size(void)
+int					get_prog_size(void)
 {
 	t_code	*tmp;
 	int		size;

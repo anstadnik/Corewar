@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   parse_arg.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: byermak <byermak@student.unit.ua>          +#+  +:+       +#+        */
+/*   By: lburlach <lburlach@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/16 15:13:00 by byermak           #+#    #+#             */
-/*   Updated: 2018/07/06 14:20:48 by byermak          ###   ########.fr       */
+/*   Updated: 2018/07/06 20:03:33 by lburlach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-static unsigned int	count(long long n)
+static unsigned int		count(long long n)
 {
 	long long	rez;
 
@@ -28,7 +28,7 @@ static unsigned int	count(long long n)
 static int				parse_t_reg(char **str, t_arg **arg)
 {
 	unsigned int	value;
-	int i;
+	int				i;
 
 	value = ft_atol(*str + 1);
 	i = 1;
@@ -49,10 +49,10 @@ static int				parse_t_reg(char **str, t_arg **arg)
 
 static int				parse_t_dir(char **str, t_arg **arg)
 {
-	unsigned  int	value;
+	unsigned int	value;
 	char			label_flag;
 	char			*label;
-	int 			i;
+	int				i;
 
 	label = NULL;
 	i = 1;
@@ -77,7 +77,7 @@ static int				parse_t_dir(char **str, t_arg **arg)
 
 static int				parse_t_ind(char **str, t_arg **arg)
 {
-	unsigned  int	value;
+	unsigned int	value;
 	char			label_flag;
 	char			*label;
 
@@ -101,7 +101,7 @@ static int				parse_t_ind(char **str, t_arg **arg)
 	return (1);
 }
 
-int					parse_arg(char *str, t_arg **arg)
+int						parse_arg(char *str, t_arg **arg)
 {
 	if (*str == 'r')
 		return (parse_t_reg(&str, arg));

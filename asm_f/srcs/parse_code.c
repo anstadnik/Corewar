@@ -3,48 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   parse_code.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: byermak <byermak@student.unit.ua>          +#+  +:+       +#+        */
+/*   By: lburlach <lburlach@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 17:06:00 by byermak           #+#    #+#             */
-/*   Updated: 2018/07/06 15:13:48 by byermak          ###   ########.fr       */
+/*   Updated: 2018/07/06 20:00:06 by lburlach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
-
-//static void				print_args(t_code *new)
-//{
-//	ft_printf("t:[%i] f:[%i] l:[%s] v:[%.*x] length:[%i]\n", new->arg1->arg_type, new->arg1->label_flag, new->arg1->label, new->arg1->length * 2, new->arg1->value, new->arg1->length);
-//	if (new->arg2)
-//		ft_printf("t:[%i] f:[%i] l:[%s] v:[%.*x] length:[%i]\n", new->arg2->arg_type, new->arg2->label_flag, new->arg2->label, new->arg2->length * 2, new->arg2->value, new->arg2->length);
-//	if (new->arg3)
-//		ft_printf("t:[%i] f:[%i] l:[%s] v:[%.*x] length:[%i]\n", new->arg3->arg_type, new->arg3->label_flag, new->arg3->label, new->arg3->length * 2, new->arg3->value, new->arg3->length);
-//	ft_printf("////////////////////////////////////\n\n");
-//}
-//
-//static void				print_comands()
-//{
-//	t_code	*tmp;
-//	t_label	*tmp_labels;
-//
-//	tmp = g_code;
-//	while (tmp)
-//	{
-//		ft_printf("____________________________________\n");
-//		ft_printf("name: %s[%.2x]\n", tmp->command, tmp->opcode);
-//		ft_printf("index: %i\n", tmp->index);
-//		tmp_labels = tmp->label;
-//		ft_printf("labels:\n");
-//		while (tmp_labels)
-//		{
-//			ft_printf("%s\n", tmp_labels->label);
-//			tmp_labels = tmp_labels->next;
-//		}
-//		ft_printf("codage: %.2hhx\n\n", tmp->codage);
-//		print_args(tmp);
-//		tmp = tmp->next;
-//	}
-//}
 
 static void	push_back(t_code *new)
 {
@@ -113,29 +79,11 @@ static void	parse_command(char **str, t_label **label, int fd)
 	}
 	i = (int)g_x;
 	while ((*str)[i] && (*str)[i] != ' ' && (*str)[i] != '\t'
-		   && (*str)[i] != DIRECT_CHAR)
+		&& (*str)[i] != DIRECT_CHAR)
 		++i;
 	command = ft_strsub(*str, (unsigned int)g_x, (size_t)(i - (int)g_x));
 	if ((i = new_command(&command, label, &new, *str)) != 1)
 		put_err(str, fd, i);
-}
-
-int			parse_labels(char **str, t_label **label, int fd)
-{
-	int	ret;
-
-	if ((ret = parse_label(*str, label)) < 0)
-		return (ret);
-	while (skip_spaces(*str) == -1 && ret != 0 && *str)
-	{
-		ft_strdel(str);
-		skip_empty(fd, str);
-		if (!*str)
-			return (1);
-		if ((ret = parse_label(*str, label)) != 1 && ret != 0)
-			return (ret);
-	}
-	return (1);
 }
 
 void		parse_code(int fd)
@@ -164,5 +112,4 @@ void		parse_code(int fd)
 	ret = 0;
 	if ((ret = check_labels(tmp, ret, &label)) != 1)
 		error_asm(WRONG_LABEL, 0, NULL, fd);
-//	print_comands();
 }

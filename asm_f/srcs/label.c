@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   label.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: byermak <byermak@student.unit.ua>          +#+  +:+       +#+        */
+/*   By: lburlach <lburlach@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/16 14:16:00 by byermak           #+#    #+#             */
-/*   Updated: 2018/07/05 19:39:00 by byermak          ###   ########.fr       */
+/*   Updated: 2018/07/06 20:01:52 by lburlach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,28 +51,7 @@ static char	*check_label(char *label)
 	return (label);
 }
 
-int		push_back_label(t_label **label, char *label_str)
-{
-	t_label *new;
-	t_label	*tmp;
-
-	if (!(new = (t_label *)malloc(sizeof(t_label))))
-		return (ERR_MALLOC);
-	new->label = ft_strdup(label_str);
-	new->next = NULL;
-	if (!*label)
-	{
-		*label = new;
-		return (1);
-	}
-	tmp = *label;
-	while (tmp->next)
-		tmp = tmp->next;
-	tmp->next = new;
-	return (1);
-}
-
-int		parse_label(char *str, t_label **label)
+int			parse_label(char *str, t_label **label)
 {
 	char	*tmp;
 	char	*label_str;

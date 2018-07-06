@@ -6,14 +6,11 @@
 /*   By: lburlach <lburlach@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 15:44:00 by lburlach          #+#    #+#             */
-/*   Updated: 2018/07/06 16:39:03 by lburlach         ###   ########.fr       */
+/*   Updated: 2018/07/06 19:55:51 by lburlach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
-//TODO:
-#include <stdio.h>
-
 
 static size_t g_row;
 
@@ -34,7 +31,7 @@ static void	detect_the_beginning(char **line, int fd)
 		else if ((*line)[i] == '"')
 		{
 			g_row = i + 1;
-			return;
+			return ;
 		}
 		else
 			error_asm(NAME_INC, i, line, fd);
@@ -71,7 +68,7 @@ static void	check_the_name(char **line, int fd)
 	}
 }
 
-void	skip_whitespaces(int fd, char **line)
+void		skip_whitespaces(int fd, char **line)
 {
 	size_t len;
 	size_t count;
@@ -84,11 +81,10 @@ void	skip_whitespaces(int fd, char **line)
 		{
 			if ((*line)[count] == ' ' || (*line)[count] == '\t')
 				count++;
-			else if ((*line)[count] == COMMENT_CHAR || (*line)[count] == ';') {
+			else if ((*line)[count] == COMMENT_CHAR || (*line)[count] == ';')
 				break ;
-			}
 			else
-				return;
+				return ;
 		}
 		ft_strdel(line);
 	}

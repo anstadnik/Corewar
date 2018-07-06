@@ -21,9 +21,5 @@ int	new_command_error(char **command, t_label **label, int error)
 
 int	label_error(void)
 {
-//	ft_printf("\n\n[Invalid label: %s]\n", label);
-//	exit(1);/////
-	////Wrong label error
-//	return (ERR_WRONG_LABEL);
 	return (-1);
 }

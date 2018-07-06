@@ -6,17 +6,15 @@
 /*   By: lburlach <lburlach@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/09 16:54:00 by lburlach          #+#    #+#             */
-/*   Updated: 2018/07/06 18:30:41 by lburlach         ###   ########.fr       */
+/*   Updated: 2018/07/06 19:57:25 by lburlach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
-//TODO:
-#include <stdio.h>
 
 static size_t g_row;
 
-static	int search_the_end(char **line, size_t *row, t_list **head, size_t len)
+static	int	search_the_end(char **line, size_t *row, t_list **head, size_t len)
 {
 	size_t tmp;
 
@@ -38,11 +36,11 @@ static	int search_the_end(char **line, size_t *row, t_list **head, size_t len)
 	return (0);
 }
 
-void	fetch_the_name(char **line, int fd, size_t row, t_list **head)
+void		fetch_the_name(char **line, int fd, size_t row, t_list **head)
 {
-	size_t 	len;
-	size_t 	count;
-	int 	ret;
+	size_t	len;
+	size_t	count;
+	int		ret;
 
 	count = 0;
 	while (++count)
@@ -51,7 +49,7 @@ void	fetch_the_name(char **line, int fd, size_t row, t_list **head)
 			row = 0;
 		len = ft_strlen(*line);
 		if (search_the_end(line, &row, head, len))
-			break;
+			break ;
 		ft_strdel(line);
 		ret = get_next_line(fd, line);
 		if (ret == 0 && ++g_count)
@@ -84,7 +82,7 @@ static void	detect_the_beginning(char **line, int fd)
 		else if ((*line)[i] == '"')
 		{
 			g_row = i + 1;
-			return;
+			return ;
 		}
 		else
 			error_asm(NAME_INC, i, line, fd);
@@ -107,8 +105,9 @@ static void	check_the_name(char **line, int fd)
 			i++;
 			continue ;
 		}
-		else if ((*line)[i] == '.' && ft_strnstr((*line) + i, COMMENT_CMD_STRING,
-												 ft_strlen(COMMENT_CMD_STRING)))
+		else if ((*line)[i] == '.' && ft_strnstr((*line) + i,
+			COMMENT_CMD_STRING,
+			ft_strlen(COMMENT_CMD_STRING)))
 		{
 			len = ft_strlen(COMMENT_CMD_STRING);
 			if ((*line)[i + len] != ' ' && (*line)[i + len] != '\t')
@@ -121,7 +120,7 @@ static void	check_the_name(char **line, int fd)
 	}
 }
 
-char 	*retrieve_comment(int fd)
+char		*retrieve_comment(int fd)
 {
 	char	*line;
 	char	*out;

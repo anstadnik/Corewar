@@ -6,7 +6,7 @@
 /*   By: lburlach <lburlach@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/16 15:15:00 by byermak           #+#    #+#             */
-/*   Updated: 2018/07/06 18:34:03 by lburlach         ###   ########.fr       */
+/*   Updated: 2018/07/06 20:04:32 by lburlach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,9 +91,7 @@ int			parse_args(char *str, t_code *new)
 				(ret = check_third_arg(new)) != 1)
 				return (ret);
 		if ((skip_spaces(str)) != -1)
-//			return (1);
 			return (ERR_ENDLINE);
 	}
 	return (1);
-
 }
