@@ -6,7 +6,7 @@
 /*   By: lburlach <lburlach@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 15:41:35 by lburlach          #+#    #+#             */
-/*   Updated: 2018/07/06 19:49:02 by lburlach         ###   ########.fr       */
+/*   Updated: 2018/07/06 19:49:13 by lburlach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static char	*check_filename(char *input_name)
 	if (!(ptr = ft_strrchr(input_name, '.')) || !(ft_strequ(ptr, ".s")))
 		return (NULL);
 	ptr = ft_strsub(input_name, 0, (size_t)(ptr - input_name));
-	cor_name = ft_strjoin(ptr, ".cor");
+	cor_name = ft_strjoin(ptr, ".co");
 	ft_strdel(&ptr);
 	return (cor_name);
 }
@@ -71,6 +71,5 @@ int			main(int ac, char **av)
 	if (ac == 1)
 		usage();
 	main_wrapper(ac, av, &magic_structure, &cor);
-	system("leaks asm_dev");
 	return (0);
 }
