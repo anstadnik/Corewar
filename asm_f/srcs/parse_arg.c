@@ -6,7 +6,7 @@
 /*   By: byermak <byermak@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/16 15:13:00 by byermak           #+#    #+#             */
-/*   Updated: 2018/07/06 13:44:46 by byermak          ###   ########.fr       */
+/*   Updated: 2018/07/06 14:20:48 by byermak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,15 @@ static int				parse_t_dir(char **str, t_arg **arg)
 	unsigned  int	value;
 	char			label_flag;
 	char			*label;
+	int 			i;
 
 	label = NULL;
+	i = 1;
+	while (ft_isdigit(*(*str + i)) && (*str)[i] == '0' && (*str)[i + 1])
+		++i;
 	value = ft_atol(*str + 1);
 	label_flag = (*(*str + 1) == LABEL_CHAR) ? (char)1 : (char)0;
-	if (!label_flag && count(value) < ft_strlen(*str + 1))
+	if (!label_flag && count(value) < ft_strlen(*str + 1) - i)
 	{
 		ft_strdel(str);
 		return (ERR_INVALID_T_DIR);
@@ -80,7 +84,8 @@ static int				parse_t_ind(char **str, t_arg **arg)
 	value = ft_atol(*str);
 	label = NULL;
 	label_flag = (**str == LABEL_CHAR) ? (char)1 : (char)0;
-	if ((!label_flag && count((int)value) < ft_strlen(*str)) || (int)value > USHRT_MAX)
+	if ((!label_flag && count((int)value) < ft_strlen(*str))
+		|| (int)value > USHRT_MAX)
 	{
 		ft_strdel(str);
 		return (ERR_INVALID_T_IND);

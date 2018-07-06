@@ -6,7 +6,7 @@
 /*   By: byermak <byermak@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 17:06:00 by byermak           #+#    #+#             */
-/*   Updated: 2018/07/06 13:36:48 by byermak          ###   ########.fr       */
+/*   Updated: 2018/07/06 13:38:06 by byermak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,8 @@ static void	parse_command(char **str, t_label **label, int fd)
 		skip_empty(fd, str);
 	}
 	i = (int)g_x;
-	while ((*str)[i] && (*str)[i] != ' ' && (*str)[i] != '\t')
+	while ((*str)[i] && (*str)[i] != ' ' && (*str)[i] != '\t'
+		   && (*str)[i] != DIRECT_CHAR)
 		++i;
 	command = ft_strsub(*str, (unsigned int)g_x, (size_t)(i - (int)g_x));
 	if ((i = new_command(&command, label, &new, *str)) != 1)

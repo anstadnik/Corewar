@@ -84,7 +84,7 @@ void	skip_whitespaces(int fd, char **line)
 		{
 			if ((*line)[count] == ' ' || (*line)[count] == '\t')
 				count++;
-			else if ((*line)[count] == COMMENT_CHAR) {
+			else if ((*line)[count] == COMMENT_CHAR || (*line)[count] == ';') {
 				break ;
 			}
 			else

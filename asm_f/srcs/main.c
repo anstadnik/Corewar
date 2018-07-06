@@ -6,7 +6,7 @@
 /*   By: byermak <byermak@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 15:41:35 by lburlach          #+#    #+#             */
-/*   Updated: 2018/07/05 19:23:21 by byermak          ###   ########.fr       */
+/*   Updated: 2018/07/06 14:00:29 by byermak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ int		main(int ac, char **av)
 	t_header	magic_structure;
 	int			fd;
 	char		*cor;
-	int			out_fd;
 
 	if (ac == 1)
 		usage();
@@ -47,10 +46,7 @@ int		main(int ac, char **av)
 	parse_name_and_comment(fd, &magic_structure);
 	g_code = NULL;
 	parse_code(fd);
-	out_fd = open(cor, O_WRONLY | O_CREAT | O_TRUNC, S_IREAD | S_IWRITE);
-	ft_strdel(&cor);
-	to_bytecode(&magic_structure, out_fd);
-	close(out_fd);
+	to_bytecode(&magic_structure, &cor);
 	close(fd);
 //	system("leaks asm_dev");
 	return (0);
