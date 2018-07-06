@@ -1,6 +1,6 @@
 .PHONY: clean fclean re r
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -Wconversion#remove last one
+CFLAGS = -Wall -Wextra -Werror
 ODIR = objs/
 SDIR = srcs/
 IDIR = includes/
@@ -10,7 +10,7 @@ LIB = $(LDIR)libft.a
 FILES = bytecode.c del.c exit.c label.c main.c other.c parse_arg.c parse_args.c\
         parse_code.c parser_checks.c parser_error.c parser_other.c\
         parsing_name_and_comment.c parsing_name_and_comment2.c\
-        things_to_bytecode.c little_err_dispatcher.c
+        things_to_bytecode.c little_err_dispatcher.c ft_atol.c ft_lst_push_back.c
 
 OBJS = $(FILES:.c=.o)
 
