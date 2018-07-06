@@ -68,6 +68,6 @@ int		main(int ac, char **av)
 	if (ac == 1)
 		usage();
 	main_wrapper(ac, av, &magic_structure, &cor);
-	system("leaks asm");
+//	system("leaks asm");
 	return (0);
 }
