@@ -6,7 +6,7 @@
 /*   By: astadnik <astadnik@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/09 11:54:36 by astadnik          #+#    #+#             */
-/*   Updated: 2018/07/06 16:49:34 by bcherkas         ###   ########.fr       */
+/*   Updated: 2018/07/07 19:19:47 by bcherkas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,6 @@ void		cor_ldi(unsigned char *map,
 		print_v4(args, carry, 1);
 		pc2 = get_dir(map, carry->pc + ((args[0] + args[1]) % IDX_MOD), 4);
 		carry->reg[args[2]] = pc2;
-		carry->carry = carry->reg[args[2]] ? 0 : 1;
 	}
 	carry->pc = (carry->pc + codage[0] + codage[1] + codage[2] + 2) % MEM_SIZE;
 }

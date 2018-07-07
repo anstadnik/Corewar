@@ -6,7 +6,7 @@
 /*   By: bcherkas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 18:11:13 by bcherkas          #+#    #+#             */
-/*   Updated: 2018/07/07 13:49:06 by bcherkas         ###   ########.fr       */
+/*   Updated: 2018/07/07 17:59:37 by bcherkas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,8 @@ void	check_file(int fd, t_header *head, t_info *inf, int player)
 		errmsg("Wrong length");
 	if (read(fd, buff, 4) < 4 || ft_memcmp(buff, "\0\0\0\0", 4))
 		errmsg("No NULL group after name");
-	head->prog_size = (unsigned)get_num(fd);
+	if ((head->prog_size = (unsigned)get_num(fd)) > CHAMP_MAX_SIZE)
+		errmsg("Too large file");
 	head->comment[COMMENT_LEN] = 0;
 	if (read(fd, head->comment, COMMENT_LEN) < COMMENT_LEN)
 		errmsg("Wrong comment length");
