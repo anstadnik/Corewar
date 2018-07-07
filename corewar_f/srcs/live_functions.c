@@ -6,7 +6,7 @@
 /*   By: bcherkas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/12 17:10:29 by bcherkas          #+#    #+#             */
-/*   Updated: 2018/07/06 22:28:54 by bcherkas         ###   ########.fr       */
+/*   Updated: 2018/07/07 13:31:11 by bcherkas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,6 @@ void	dead_end(t_info *inf)
 		if (flag_v > 0 && (flag_v & 8) == 8)
 			ft_printf("Process %d hasn't lived for %d cycles (CTD %d)\n",
 				car->number, car->cycles_without_live, inf->cycles_to_die);
-		if (alldead(inf) == 0 && inf->players[car->player_num - 1] > -1)
-			inf->last_dead = &(inf->head[car->player_num - 1]);
 		free(car);
 		free(tmp);
 	}
@@ -72,15 +70,10 @@ void	check_players_lives(t_info *inf)
 	i = 0;
 	while (i < inf->players_amount)
 	{
-		if (inf->cycles_to_die < 50)
-			ft_printf("Player %d: %d\n", i + 1, inf->players[i]);
 		if (inf->players[i] > 0)
 			inf->players[i] = 0;
 		else if (inf->players[i] == 0)
-		{
 			inf->players[i] = -1;
-			inf->last_dead = &(inf->head[i]);
-		}
 		i++;
 	}
 }

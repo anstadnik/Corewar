@@ -6,7 +6,7 @@
 /*   By: bcherkas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 13:59:51 by bcherkas          #+#    #+#             */
-/*   Updated: 2018/07/05 16:45:55 by bcherkas         ###   ########.fr       */
+/*   Updated: 2018/07/07 13:29:15 by bcherkas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@ void		initialize(t_info *inf)
 		inf->args[i] = -1;
 		i++;
 	}
-	inf->last_dead = NULL;
+	inf->winner = NULL;
+	set_winner(inf, 0);
 	get_args_flag(inf->args, 0);
 }
 
