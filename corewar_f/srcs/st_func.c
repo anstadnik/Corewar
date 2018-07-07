@@ -6,7 +6,7 @@
 /*   By: astadnik <astadnik@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/09 17:16:57 by astadnik          #+#    #+#             */
-/*   Updated: 2018/07/07 20:32:50 by bcherkas         ###   ########.fr       */
+/*   Updated: 2018/07/07 21:08:10 by bcherkas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,10 @@ void		cor_st(unsigned char *map,
 	size_t		start;
 
 	if (codage[1] == T_REG)
+	{
 		carry->reg[args[1]] = carry->reg[args[0]];
+		args[1]++;
+	}
 	else
 	{
 		args[1] = get_short(map, carry->pc + 3);
