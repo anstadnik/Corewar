@@ -6,7 +6,7 @@
 /*   By: bcherkas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 18:11:13 by bcherkas          #+#    #+#             */
-/*   Updated: 2018/07/05 19:06:23 by astadnik         ###   ########.fr       */
+/*   Updated: 2018/07/07 13:49:06 by bcherkas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,7 @@ void	check_file(int fd, t_header *head, t_info *inf, int player)
 		errmsg("No NULL group after comment");
 	if (read(fd, str, head->prog_size) < head->prog_size)
 		errmsg("Wrong program size");
-	if ((head->prog_size % 2 == 0 && read(fd, buff, 4) > 0) ||
-		(head->prog_size % 2 != 0 && read(fd, buff, 4) > 1))
+	if (read(fd, buff, 1) > 0)
 		errmsg("Padding error");
 	cpy_to_map(inf, head->prog_size, str, player);
 	close(fd);
