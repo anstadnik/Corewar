@@ -6,7 +6,7 @@
 /*   By: bcherkas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/12 17:10:29 by bcherkas          #+#    #+#             */
-/*   Updated: 2018/07/07 13:31:11 by bcherkas         ###   ########.fr       */
+/*   Updated: 2018/07/07 20:16:44 by bcherkas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,10 @@ void	check_carriage_lives(t_info *inf, int *check_lives)
 		{
 			ncur_print_carry(tmp->content,
 					inf->map[((t_carriage *)tmp->content)->pc], 0);
-			ft_lstdelnode(&inf->stack, tmp);
 			if (flag_v > 0 && (flag_v & 8) == 8)
 				ft_printf("Process %d hasn't lived for %d cycles (CTD %d)\n",
 				car->number, car->cycles_without_live, inf->cycles_to_die);
+			ft_lstdelnode(&inf->stack, tmp);
 		}
 	}
 }

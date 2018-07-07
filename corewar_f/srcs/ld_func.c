@@ -6,7 +6,7 @@
 /*   By: astadnik <astadnik@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/09 11:54:36 by astadnik          #+#    #+#             */
-/*   Updated: 2018/07/07 19:19:47 by bcherkas         ###   ########.fr       */
+/*   Updated: 2018/07/07 20:11:13 by bcherkas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,13 +68,13 @@ static void	print_v4(int *args, t_carriage *carry, int mode)
 					args[0], args[1], args[2] + 1);
 			ft_printf("       | -> load from ");
 			ft_printf("%d + %d = %d (with pc and mod %d)\n",
-				args[0], args[1], sum, (carry->pc + sum) % MAX_NUMBER);
+				args[0], args[1], sum, (carry->pc + sum % IDX_MOD) % MAX_NUMBER);
 			return ;
 		}
 		ft_printf("P %4d | ldi %d %d r%d\n", carry->number,
 				args[0], args[1], args[2] + 1);
 		ft_printf("       | -> load from %d + %d = %d (with pc %d)\n",
-		args[0], args[1], sum, (sum + carry->pc) % MAX_NUMBER);
+		args[0], args[1], sum, (sum % IDX_MOD + carry->pc) % MAX_NUMBER);
 	}
 }
 
