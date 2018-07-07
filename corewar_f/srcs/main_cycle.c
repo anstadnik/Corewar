@@ -6,7 +6,7 @@
 /*   By: bcherkas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 18:51:41 by bcherkas          #+#    #+#             */
-/*   Updated: 2018/07/06 21:29:47 by bcherkas         ###   ########.fr       */
+/*   Updated: 2018/07/07 16:04:05 by bcherkas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,7 +131,8 @@ void	help_me(t_info *inf, int iterations, int *cycles)
 		cycle_to_die_func(inf);
 		*cycles = 0;
 	}
-	if (inf->output_mode == 1 || inf->output_mode == 2)
+	if (inf->args[FLAG_V] > -1 || inf->args[FLAG_S] > -1
+			|| inf->args[FLAG_D] > -1 || inf->args[FLAG_DUMP])
 		output_text(inf, iterations);
 	(*cycles)++;
 }

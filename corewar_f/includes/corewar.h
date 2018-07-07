@@ -6,7 +6,7 @@
 /*   By: bcherkas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 13:51:01 by bcherkas          #+#    #+#             */
-/*   Updated: 2018/07/07 13:43:00 by bcherkas         ###   ########.fr       */
+/*   Updated: 2018/07/07 16:54:13 by bcherkas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 # define DIR_CODE				2
 # define IND_CODE				3
 
-# define MAX_ARGS_NUMBER		11
+# define MAX_ARGS_NUMBER		19
 # define MAX_PLAYERS			4
 # define MEM_SIZE				4096
 # define MAX_NUMBER				5376
@@ -62,14 +62,19 @@
 
 # define PLAYER_CODE 			(-1)
 
+# define SET_ARR(x, y)			if (x){x[0] = y;x[1] = y;x[2] = y;x[3] = y;}
+# define USAGE(str)				(ft_printf("     %s\n", str))
+# define USAGE_VERB(str)		(ft_printf("       %s\n", str))
+
 typedef enum		e_args
 {
 	FLAG_A,
 	FLAG_D,
 	FLAG_S,
 	FLAG_V,
-	FLAG_B,
-	FLAG_N
+	FLAG_N,
+	FLAG_P,
+	FLAG_DUMP
 }					t_args;
 
 typedef union		u_magic
@@ -103,7 +108,6 @@ typedef struct		s_info
 	t_header			*winner;
 	int					args[7];
 	int					cycles_to_die;
-	int					output_mode;
 	int					players[MAX_PLAYERS];
 	int					players_amount;
 	int					carriages;
@@ -192,6 +196,7 @@ void				swap_union_mgc(t_magic *mgc);
 int					errmsg(char *str);
 void				*ft_memcpy_cor(void *str1, size_t start, const void *str2,
 						size_t n);
+void				sort_linked_arrs(int *arr, int *to_sort, int max);
 
 void				ncur_init_window(t_info *inf);
 void				color_output(int player, unsigned char *str, int start,

@@ -6,7 +6,7 @@
 /*   By: bcherkas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 18:11:13 by bcherkas          #+#    #+#             */
-/*   Updated: 2018/07/04 17:28:25 by bcherkas         ###   ########.fr       */
+/*   Updated: 2018/07/07 16:10:35 by bcherkas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,33 +20,35 @@ int		check_parameter(char *str)
 		return (FLAG_S);
 	else if (ft_strequ(str, "-v"))
 		return (FLAG_V);
-	else if (ft_strequ(str, "-b"))
-		return (FLAG_B);
-	else if (ft_strequ(str, "-n"))
+	else if (ft_strequ(str, "--ncurses"))
 		return (FLAG_N);
 	else if (ft_strequ(str, "-a"))
 		return (FLAG_A);
 	else if (ft_strequ(str, "-A"))
 		return (FLAG_A);
+	else if (ft_strequ(str, "-n"))
+		return (FLAG_P);
+	else if (ft_strequ(str, "--dump"))
+		return (FLAG_DUMP);
 	else
 		return (-1);
 }
 
-void	get_player(char *str, t_info *inf)
+void	get_player(char *str, t_info *inf, int *number)
 {
-	if (ft_strequ(str, "--stealth"))
-		errmsg("Invalid parameter");
-	inf->players_amount++;
-	if (inf->players_amount > MAX_PLAYERS)
+	if (inf->players_amount >= MAX_PLAYERS)
 		errmsg("Too many players");
-	inf->players[inf->players_amount - 1] = open(str, O_RDONLY);
-	if (inf->players[inf->players_amount - 1] < 0)
+	inf->players[inf->players_amount] = open(str, O_RDONLY);
+	if (number[inf->players_amount] == -1)
+		number[inf->players_amount] = inf->players_amount + 1;
+	if (inf->players[inf->players_amount] < 0)
 		errmsg("No such file or you dont have enough rights");
+	inf->players_amount++;
 }
 
 void	get_output(char *str, int *ind, int *ret, int mode)
 {
-	if (mode == FLAG_D || mode == FLAG_S || mode == FLAG_V)
+	if (mode == FLAG_D || mode == FLAG_S || mode == FLAG_V || mode == FLAG_DUMP)
 	{
 		(*ind)++;
 		if (!str || ft_isinteger(str))
@@ -56,46 +58,48 @@ void	get_output(char *str, int *ind, int *ret, int mode)
 		*ret = ft_atoi(str);
 		*ret = *ret < 0 ? -1 : *ret;
 	}
-	else if (mode == FLAG_B || mode == FLAG_N || mode == FLAG_A)
+	else if (mode == FLAG_N || mode == FLAG_A)
 	{
 		if (*ret > -1)
 			errmsg("Duplicated parameters");
 		*ret = 1;
-		if (ft_strequ(str, "--stealth") && mode != FLAG_A)
-		{
-			(*ind)++;
-			(*ret)++;
-		}
 	}
 }
 
-void	excludes(t_info *inf, int *args)
+void	get_player_number(t_info *inf, int *i, char **av, int *numbers)
 {
-	int		text_out;
-	int		bin_out;
-	int		ncur_out;
+	int		ret;
 
-	text_out = (args[FLAG_V] > -1 || args[FLAG_D] > -1 || args[FLAG_S] > -1)
-		? 1 : 0;
-	bin_out = args[FLAG_B] > -1 ? 2 : 0;
-	ncur_out = args[FLAG_N] > -1 ? 3 : 0;
-	if ((text_out && bin_out) || (bin_out && ncur_out) ||
-		(text_out && ncur_out))
-		errmsg("You can have only one output mode");
-	inf->output_mode = text_out + bin_out + ncur_out;
+	(*i)++;
+	if (!av[*i] || ft_isinteger(av[*i]))
+		errmsg("Invalid parameter");
+	numbers[inf->players_amount] = ft_atoi(av[*i]);
+	(*i)++;
+	if (!av[*i])
+		errmsg("Invalid parameter");
+	if ((ret = check_parameter(av[*i]) == -1))
+		get_player(av[*i], inf, numbers);
+	else if (ret == FLAG_P)
+		errmsg("Several -n in a row");
+	else
+		errmsg("Flag -n \"number\" must be before bot name");
 }
 
 void	get_parameters(int ac, char **av, t_info *inf)
 {
 	int		i;
 	int		ret;
+	int		numbers[4];
 
 	i = 0;
+	SET_ARR(numbers, -1);
 	while (i < ac)
 	{
 		ret = check_parameter(av[i]);
 		if (ret < 0)
-			get_player(av[i], inf);
+			get_player(av[i], inf, numbers);
+		else if (ret == FLAG_P)
+			get_player_number(inf, &i, av, numbers);
 		else if (ret == FLAG_A && ft_strequ(av[i], "-A"))
 			inf->args[FLAG_A] = 2;
 		else
@@ -104,6 +108,9 @@ void	get_parameters(int ac, char **av, t_info *inf)
 	}
 	if (inf->players_amount < 1)
 		errmsg("To few players");
-	excludes(inf, inf->args);
+	if (inf->args[FLAG_N] > -1 && (inf->args[FLAG_V] > -1
+			|| inf->args[FLAG_D] > -1 || inf->args[FLAG_S] > -1))
+		errmsg("You can have only one output mode");
 	inf->args[FLAG_S] = inf->args[FLAG_S] == 0 ? -1 : inf->args[FLAG_S];
+	sort_linked_arrs(inf->players, numbers, 4);
 }

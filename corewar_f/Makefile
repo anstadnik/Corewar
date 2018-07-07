@@ -7,7 +7,7 @@ LDIR = ../libft/
 NAME = corewar
 LIB = $(LDIR)libft.a
 FUNCS = fork_func.c cor_func.c math_func.c bit_funcs.c st_func.c ld_func.c
-HELP = get_int.c help_functions.c live_functions.c get_args.c 
+HELP = get_int.c help_functions.c live_functions.c get_args.c sort_players.c
 OUTPUT = output_text.c final_output.c ncurses.c ncurses_help.c ncurses_trigger.c
 FILES = check_cor.c corewar.c get_parameters.c main_cycle.c $(FUNCS) $(HELP) $(OUTPUT)
 OBJS = $(FILES:.c=.o)

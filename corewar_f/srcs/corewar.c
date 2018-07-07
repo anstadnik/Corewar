@@ -6,16 +6,32 @@
 /*   By: bcherkas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 13:59:51 by bcherkas          #+#    #+#             */
-/*   Updated: 2018/07/07 13:29:15 by bcherkas         ###   ########.fr       */
+/*   Updated: 2018/07/07 16:59:02 by bcherkas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-int			errmsg(char *str)
+void		usage(void)
 {
-	write(1, str, ft_strlen(str));
-	write(1, "\n", 1);
+	ft_printf("Usage: ./corewar [-d N -s N -v N --dump N | --ncurses] ");
+	ft_printf("[-a | -A] [-n N] <champ1.cor> <...>\n");
+	USAGE("-n     : Sets players number");
+	USAGE("-a     : Prints output from \"aff\" (prints char)");
+	USAGE("-A     : Prints output from \"aff\" (prints hexadecimal value)");
+	ft_printf("#### TEXT OUTPUT MODE ######################################\n");
+	USAGE("-d     : Dumps memory after N cycles and exits. 64 bytes per line");
+	USAGE("--dump : Dumps memory after N cycles and exits. 32 bytes per line");
+	USAGE("-s     : Dumps memory every N cycles. 64 bytes per line");
+	USAGE("-v     : Verbosity levels, can be added together to enable several");
+	USAGE_VERB("- 1  : Show lives");
+	USAGE_VERB("- 2  : Show cycles");
+	USAGE_VERB("- 4  : Show operations");
+	USAGE_VERB("- 8  : Show deaths");
+	USAGE_VERB("- 16 : Show PC movements (Except for jumps)");
+	ft_printf("#### NCURSES MODE ##########################################\n");
+	ft_printf("     --ncurses : Ncurses output mode\n");
+	ft_printf("############################################################\n");
 	exit(0);
 }
 
@@ -28,7 +44,8 @@ void		initialize(t_info *inf)
 	inf->players_amount = 0;
 	inf->cycles_to_die = CYCLE_TO_DIE;
 	ft_bzero(inf->map, MEM_SIZE);
-	while (i < 6)
+	SET_ARR(inf->players, 0);
+	while (i < 7)
 	{
 		inf->args[i] = -1;
 		i++;
@@ -93,8 +110,10 @@ int			main(int argc, char **argv)
 {
 	t_info	inf;
 
-	if (argc < 2 || argc > MAX_ARGS_NUMBER)
-		return (errmsg("Too many or too few arguments"));
+	if (argc < 2)
+		usage();
+	if (argc > MAX_ARGS_NUMBER)
+		return (errmsg("Too many arguments"));
 	initialize(&inf);
 	get_parameters(argc - 1, argv + 1, &inf);
 	if (inf.args[FLAG_N] == 1)

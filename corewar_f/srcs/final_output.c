@@ -6,7 +6,7 @@
 /*   By: bcherkas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/13 15:57:01 by bcherkas          #+#    #+#             */
-/*   Updated: 2018/07/07 13:36:14 by bcherkas         ###   ########.fr       */
+/*   Updated: 2018/07/07 16:23:05 by bcherkas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,4 +67,11 @@ int		alldead(t_info *inf)
 		i++;
 	}
 	return (1);
+}
+
+int			errmsg(char *str)
+{
+	write(1, str, ft_strlen(str));
+	write(1, "\n", 1);
+	exit(0);
 }
