@@ -6,7 +6,7 @@
 /*   By: astadnik <astadnik@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/09 17:16:57 by astadnik          #+#    #+#             */
-/*   Updated: 2018/07/07 20:11:43 by bcherkas         ###   ########.fr       */
+/*   Updated: 2018/07/07 20:32:50 by bcherkas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	print_v4(int *args, t_carriage *carry, int pc)
 		ft_printf("P %4d | sti r%d %d %d\n",
 				carry->number, args[0] + 1, args[1], args[2]);
 		ft_printf("       | -> store to %d + %d = %d (with pc and mod %d)\n",
-			args[1], args[2], sum, (pc + sum % IDX_MOD) % MAX_NUMBER);
+			args[1], args[2], sum, pc + sum % IDX_MOD);
 	}
 }
 
