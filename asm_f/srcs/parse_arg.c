@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_arg.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lburlach <lburlach@student.unit.ua>        +#+  +:+       +#+        */
+/*   By: byermak <byermak@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/16 15:13:00 by byermak           #+#    #+#             */
-/*   Updated: 2018/07/06 20:03:33 by lburlach         ###   ########.fr       */
+/*   Updated: 2018/07/08 21:18:38 by byermak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,14 +60,14 @@ static int				parse_t_dir(char **str, t_arg **arg)
 		++i;
 	value = ft_atol(*str + 1);
 	label_flag = (*(*str + 1) == LABEL_CHAR) ? (char)1 : (char)0;
-	if (!label_flag && count(value) < ft_strlen(*str + 1) - i)
+	if ((!label_flag && count(value) < ft_strlen(*str + 1) - i) ||
+		(!label_flag && !ft_isdigit((*(*str + 1))) && *(*str + 1) != '-') ||
+		(!label_flag && (!value && !ft_isdigit(*(*str + 1)))))
 	{
 		ft_strdel(str);
 		return (ERR_INVALID_T_DIR);
 	}
-	if (!label_flag)
-		ft_strdel(str);
-	else
+	if (label_flag)
 		label = ft_strdup(*str + 2);
 	ft_strdel(str);
 	if (!(*arg = new_arg(DIR_CODE, label_flag, value, label)))
@@ -80,19 +80,21 @@ static int				parse_t_ind(char **str, t_arg **arg)
 	unsigned int	value;
 	char			label_flag;
 	char			*label;
+	int 			i;
 
-	value = ft_atol(*str);
 	label = NULL;
-	label_flag = (**str == LABEL_CHAR) ? (char)1 : (char)0;
-	if ((!label_flag && count((int)value) < ft_strlen(*str))
-		|| (int)value > USHRT_MAX)
+	i = 1;
+	while (ft_isdigit(*(*str + i)) && (*str)[i] == '0' && (*str)[i + 1])
+		++i;
+	value = ft_atol(*str);
+	label_flag = (**str == LABEL_CHAR) ? 1 : 0;
+	if ((!label_flag && count((int)value) < ft_strlen(*str) - i) ||
+		(!value && !ft_isdigit(**str) && !label_flag) || (int)value > USHRT_MAX)
 	{
 		ft_strdel(str);
 		return (ERR_INVALID_T_IND);
 	}
-	if (!label_flag)
-		ft_strdel(str);
-	else
+	if (label_flag)
 		label = ft_strdup(*str + 1);
 	ft_strdel(str);
 	if (!(*arg = new_arg(IND_CODE, label_flag, value, label)))
