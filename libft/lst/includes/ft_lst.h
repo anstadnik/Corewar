@@ -6,7 +6,7 @@
 /*   By: astadnik <astadnik@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/15 13:54:28 by astadnik          #+#    #+#             */
-/*   Updated: 2018/03/15 13:54:42 by astadnik         ###   ########.fr       */
+/*   Updated: 2018/07/08 18:17:57 by lburlach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,6 @@ void				ft_lstpushf(t_list **alst, void *content,
 		size_t content_size);
 void				ft_lstdelnode(t_list **head, t_list *targ);
 char				*ft_lsttostr(t_list *head);
-ssize_t	            str_from_lsts(t_list *tmp, char **line);
+ssize_t				str_from_lsts(t_list *tmp, char **line);
 
 #endif
