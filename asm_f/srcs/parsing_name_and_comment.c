@@ -6,7 +6,7 @@
 /*   By: lburlach <lburlach@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 15:44:00 by lburlach          #+#    #+#             */
-/*   Updated: 2018/07/06 19:55:51 by lburlach         ###   ########.fr       */
+/*   Updated: 2018/07/08 19:49:39 by lburlach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,8 @@ static char	*retrieve_name(int fd)
 	head = NULL;
 	out = NULL;
 	skip_whitespaces(fd, &line);
+	if (line == NULL)
+		exit(1);
 	check_the_name(&line, fd);
 	detect_the_beginning(&line, fd);
 	fetch_the_name(&line, fd, g_row, &head);
@@ -118,5 +120,23 @@ void		parse_name_and_comment(int fd, t_header *magic_structure)
 	ft_strcpy(magic_structure->prog_name, tmp = retrieve_name(fd));
 	ft_strdel(&tmp);
 	ft_strcpy(magic_structure->comment, tmp = retrieve_comment(fd));
+	if (!tmp)
+		exit (1);
+	if (ft_strlen(tmp) == 0)
+	{
+		ft_printf("{red}Name can't be blank.\n{eoc}");
+		ft_strdel(&tmp);
+		exit(1);
+	}
+	ft_strdel(&tmp);
+	ft_strcpy(magic_structure->comment, tmp = retrieve_comment(fd));
+	if (!tmp)
+		exit (1);
+	if (ft_strlen(tmp) == 0)
+	{
+		ft_printf("{red}Comment can't be blank.\n{eoc}");
+		ft_strdel(&tmp);
+		exit(1);
+	}
 	ft_strdel(&tmp);
 }
