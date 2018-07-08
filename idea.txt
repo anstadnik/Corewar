@@ -1,0 +1,25 @@
+Original code:
+
+1.     Write code to registers.
+2.     Write code from registers to a map.
+3.     Execute code that was just written.
+4.     Repeat from point 2.
+
+What will be in registers:
+
+r1:    N of a player
+r2:    Add r15 %1 r15
+r3:    Add r16 %1 r16
+r4:    St r15 where the r6th command's 1st arg is
+r5:    St r16 where the r6th command's 2nd arg is
+r6:    st r(r15) (r16)
+r7:    xor r16 (N of commands in "code") (if equal xor == 0 and so carry == 1)
+r8:    zjmp (whenever the r10 is)
+r9:    zjmp (whenever the r2 is (loop))
+r10:   st %(N of commands in "code") r15
+r11:   st %0 r16
+r12:   live (contents of r1)
+r13:   fork somewhere
+r14:
+r15:   Offset counter (= 12)
+r16:   Current reg counter (= 0)
