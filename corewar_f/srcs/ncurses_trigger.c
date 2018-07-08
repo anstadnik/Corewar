@@ -6,7 +6,7 @@
 /*   By: bcherkas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/02 15:41:58 by bcherkas          #+#    #+#             */
-/*   Updated: 2018/07/06 22:15:26 by bcherkas         ###   ########.fr       */
+/*   Updated: 2018/07/08 16:08:08 by bcherkas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static void	player_info(t_info *inf, t_win *win, int start)
 		lives = inf->players[i];
 		mvwprintw(win->info, save, 2, "Player %d : ", i);
 		wattron(win->info, COLOR_PAIR(i + 1));
-		mvwprintw(win->info, save, 14, "%s", inf->head[i].prog_name);
+		mvwprintw(win->info, save, 14, "%.34s", inf->head[i].prog_name);
 		wattroff(win->info, COLOR_PAIR(i + 1));
 		mvwprintw(win->info, save + 1, 4, "Current lives : %d        ",
 				inf->players[i]);
