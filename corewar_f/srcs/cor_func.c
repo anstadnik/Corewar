@@ -6,7 +6,7 @@
 /*   By: bcherkas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/08 15:11:22 by bcherkas          #+#    #+#             */
-/*   Updated: 2018/07/07 19:19:55 by bcherkas         ###   ########.fr       */
+/*   Updated: 2018/07/08 13:39:59 by bcherkas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,13 +61,13 @@ void	cor_live(unsigned char *map, t_carriage *carry)
 	player = NULL;
 	carry->lives++;
 	player_number = PLAYER_CODE - save;
+	add_lives(NULL, player_number);
 	if (flag > 0 && (flag & 4) == 4)
 		ft_printf("P %4d | live %d\n", carry->number, save);
 	if (player_number >= 0 && player_number < carry->players_amount)
 	{
 		player = get_player_info(NULL, player_number);
 		carry->players[player_number]++;
-		set_winner(NULL, player_number);
 		if (flag > 0 && (flag & 1) == 1)
 			ft_printf("Player %d (%s) is said to be alive\n",
 					player_number + 1, player->prog_name);

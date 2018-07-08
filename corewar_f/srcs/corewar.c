@@ -6,7 +6,7 @@
 /*   By: bcherkas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 13:59:51 by bcherkas          #+#    #+#             */
-/*   Updated: 2018/07/07 17:52:54 by bcherkas         ###   ########.fr       */
+/*   Updated: 2018/07/08 13:48:39 by bcherkas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void		initialize(t_info *inf)
 		i++;
 	}
 	inf->winner = NULL;
-	set_winner(inf, 0);
+	add_lives(inf, 0);
 	get_args_flag(inf->args, 0);
 }
 
@@ -124,5 +124,6 @@ int			main(int argc, char **argv)
 		introduce(&inf);
 	if (inf.args[FLAG_D] == 0)
 		output_text(&inf, 0);
+	inf.lives = 0;
 	main_cycle(&inf);
 }

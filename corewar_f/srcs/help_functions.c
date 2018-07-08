@@ -6,7 +6,7 @@
 /*   By: bcherkas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/08 18:26:29 by bcherkas          #+#    #+#             */
-/*   Updated: 2018/07/08 12:43:33 by bcherkas         ###   ########.fr       */
+/*   Updated: 2018/07/08 13:50:10 by bcherkas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,14 +63,19 @@ t_header	*get_player_info(t_header *arr, int player)
 	return (&(players_arr[player]));
 }
 
-void		set_winner(t_info *infi, int player_num)
+void		add_lives(t_info *infi, int player_num)
 {
 	static t_info	*inf;
 
 	if (infi != NULL)
 		inf = infi;
 	else
-		inf->winner = &(inf->head[player_num]);
+	{
+		if (player_num >= 0 && player_num < 4)
+			inf->winner = &(inf->head[player_num]);
+		inf->lives++;
+		//ft_printf("BBBB: %d\n", inf->lives);
+	}
 }
 
 void		swap_union_mgc(t_magic *kek)
