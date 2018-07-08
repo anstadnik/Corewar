@@ -1,0 +1,23 @@
+Initial carriage:
+1. Fork a carriage, it will spam things forth
+2. Fork a carriage, it will spam things back
+3. Say live
+4. Go back to 1
+
+Forth spammer:
+1. Write smth into a item which has index r3
+2. Increment r3
+3. Go back to 1
+
+Back spammer:
+1. Write smth into a item which has index r4
+2. Decrement r4
+3. Go back to 1
+
+registers:
+	r1: Player's number
+	r2: Command is written to field
+	r3: Forth counter
+	r4: Back counter
+	r5: 1 for incrementing
+	r6: Tmp for changing carry
