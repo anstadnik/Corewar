@@ -6,7 +6,7 @@
 /*   By: lburlach <lburlach@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 15:44:00 by lburlach          #+#    #+#             */
-/*   Updated: 2018/07/08 19:49:39 by lburlach         ###   ########.fr       */
+/*   Updated: 2018/07/08 20:00:42 by lburlach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,8 +126,6 @@ void		parse_name_and_comment(int fd, t_header *magic_structure)
 		ft_strdel(&tmp);
 		exit(1);
 	}
-	ft_strdel(&tmp);
-	ft_strcpy(magic_structure->comment, tmp = retrieve_comment(fd));
 	ft_strdel(&tmp);
 	ft_strcpy(magic_structure->comment, tmp = retrieve_comment(fd));
 	if (!tmp)
