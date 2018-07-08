@@ -7,35 +7,35 @@ beg:
     ld      :hehehe,  r2
     ld      %0,       r6        # Change carry to 1
 
-:live
+live:
     live    %42
-    fork    %prep_f
-    fork    %prep_b
-    zjmp    :live
+    fork    %:prep_f
+    fork    %:prep_b
+    zjmp    %:live
 
 
-:prep_b
+prep_b:
     ld      %-8,      r4
 
-:attak_b
+attak_b:
     st      r2,       r4        # Write smth to a field
     sub     r4,       r5,    r4 # Decrement a counter
     xor     r3,       %-256, r6
-    zjmp    :prep_b
+    zjmp    %:prep_b
     ld      %0,       r6        # Change carry to 1
-    zjmp    :attak_b
+    zjmp    %:attak_b
 
 
-:prep_f
+prep_f:
     ld      %1,       r3
 
-:attak_f
+attak_f:
     st      r2,       r3        # Write smth to a field
     add     r3,       r5,    r3 # Increment a counter
     xor     r3,       %256,  r6
-    zjmp    :prep_f
+    zjmp    %:prep_f
     ld      %0,       r6        # Change carry to 1
-    zjmp    :attak_f
+    zjmp    %:attak_f
 
                                 # We will spam this
 hehehe:

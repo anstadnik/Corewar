@@ -6,13 +6,13 @@
 /*   By: lburlach <lburlach@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 15:56:00 by lburlach          #+#    #+#             */
-/*   Updated: 2018/07/06 19:50:57 by lburlach         ###   ########.fr       */
+/*   Updated: 2018/07/08 13:52:23 by astadnik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-const static char	*g_str[] = {
+static const char	*g_str[] = {
 	"Wrong instruction",
 	"Can't read the file",
 	"The whole name/comment should be encapsulated with \"\"",

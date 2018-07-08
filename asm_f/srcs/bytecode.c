@@ -6,7 +6,7 @@
 /*   By: byermak <byermak@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/13 15:27:00 by byermak           #+#    #+#             */
-/*   Updated: 2018/07/06 13:59:53 by byermak          ###   ########.fr       */
+/*   Updated: 2018/07/08 13:51:18 by astadnik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void				to_bytecode(t_header *magic, char **filename)
 	t_code		*tmp;
 	int			out_fd;
 
-	out_fd = open(*filename, O_WRONLY | O_CREAT | O_TRUNC, S_IREAD | S_IWRITE);
+	out_fd = open(*filename, O_WRONLY | O_CREAT | O_TRUNC,  S_IRUSR | S_IWUSR);
 	ft_bzero(buff, (size_t)len);
 	magic->magic = COREWAR_EXEC_MAGIC;
 	magic->prog_size = (unsigned int)get_prog_size();

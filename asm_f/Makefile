@@ -1,5 +1,5 @@
 .PHONY: clean fclean re r
-CC = gcc
+CC = clang
 CFLAGS = -Wall -Wextra -Werror
 ODIR = objs/
 SDIR = srcs/
@@ -16,7 +16,7 @@ OBJS = $(FILES:.c=.o)
 
 all: $(NAME)
 	
-$(NAME): $(LIB) $(addprefix $(ODIR), $(OBJS))
+$(NAME): $(addprefix $(ODIR), $(OBJS)) $(LIB)
 	@echo "\x1b[34m\nCompiling $@\x1b[0m"
 	@$(CC) $(CFLAGS) -I $(IDIR) -I $(LDIR)includes -o $@ $^
 
