@@ -6,7 +6,7 @@
 /*   By: bcherkas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 13:59:51 by bcherkas          #+#    #+#             */
-/*   Updated: 2018/07/08 13:48:39 by bcherkas         ###   ########.fr       */
+/*   Updated: 2018/07/08 17:18:01 by bcherkas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,8 @@ int			main(int argc, char **argv)
 		return (errmsg("Too many arguments"));
 	initialize(&inf);
 	get_parameters(argc - 1, argv + 1, &inf);
+	if (inf.players_amount < 1)
+		errmsg("Too few players");
 	if (inf.args[FLAG_N] == 1)
 		ncur_init_window(&inf);
 	read_players(&inf);

@@ -6,7 +6,7 @@
 /*   By: bcherkas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/08 18:26:29 by bcherkas          #+#    #+#             */
-/*   Updated: 2018/07/08 13:50:10 by bcherkas         ###   ########.fr       */
+/*   Updated: 2018/07/08 17:18:58 by bcherkas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,6 @@ void		add_lives(t_info *infi, int player_num)
 		if (player_num >= 0 && player_num < 4)
 			inf->winner = &(inf->head[player_num]);
 		inf->lives++;
-		//ft_printf("BBBB: %d\n", inf->lives);
 	}
 }
 

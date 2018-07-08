@@ -6,7 +6,7 @@
 /*   By: bcherkas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 18:11:13 by bcherkas          #+#    #+#             */
-/*   Updated: 2018/07/07 16:10:35 by bcherkas         ###   ########.fr       */
+/*   Updated: 2018/07/08 17:17:29 by bcherkas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,8 +106,6 @@ void	get_parameters(int ac, char **av, t_info *inf)
 			get_output(av[i + 1], &i, &(inf->args[ret]), ret);
 		i++;
 	}
-	if (inf->players_amount < 1)
-		errmsg("To few players");
 	if (inf->args[FLAG_N] > -1 && (inf->args[FLAG_V] > -1
 			|| inf->args[FLAG_D] > -1 || inf->args[FLAG_S] > -1))
 		errmsg("You can have only one output mode");

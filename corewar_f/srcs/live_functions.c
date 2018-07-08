@@ -6,7 +6,7 @@
 /*   By: bcherkas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/12 17:10:29 by bcherkas          #+#    #+#             */
-/*   Updated: 2018/07/08 13:50:34 by bcherkas         ###   ########.fr       */
+/*   Updated: 2018/07/08 17:18:22 by bcherkas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,6 @@ void	cycle_to_die_func(t_info *inf)
 		winner(inf);
 	check_players_lives(inf);
 	cycle_to_die_check(inf);
-//	ft_printf("AAAA: %d\n", inf->lives);
 	inf->lives = 0;
 	if (flag_v > 0 && (flag_v & 2) == 2 && save != inf->cycles_to_die)
 		ft_printf("Cycle to die is now %d\n", inf->cycles_to_die);
