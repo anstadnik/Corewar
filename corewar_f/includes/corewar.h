@@ -6,7 +6,7 @@
 /*   By: bcherkas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 13:51:01 by bcherkas          #+#    #+#             */
-/*   Updated: 2018/07/09 14:13:29 by bcherkas         ###   ########.fr       */
+/*   Updated: 2018/07/09 15:26:30 by lburlach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define COREWAR_H
 
 # include "libft.h"
-# include <stdio.h>
 # include <fcntl.h>
 # include <ncurses.h>
 

@@ -6,7 +6,7 @@
 /*   By: bcherkas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 18:11:13 by bcherkas          #+#    #+#             */
-/*   Updated: 2018/07/07 17:59:37 by bcherkas         ###   ########.fr       */
+/*   Updated: 2018/07/09 15:25:23 by lburlach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,13 @@ void	print_info(int start, char *str, int size)
 	int		i;
 
 	i = 0;
-	printf("%d\n", start);
+	ft_printf("%d\n", start);
 	while (i < size)
 	{
-		printf("%3.2hhx", str[i]);
+		ft_printf("%3.2hhx", str[i]);
 		i++;
 	}
-	printf("\n");
+	ft_printf("\n");
 }
 
 void	cpy_to_map(t_info *inf, size_t size, unsigned char *str, int player)

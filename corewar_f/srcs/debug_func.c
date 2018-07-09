@@ -6,7 +6,7 @@
 /*   By: bcherkas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 18:48:09 by bcherkas          #+#    #+#             */
-/*   Updated: 2018/07/02 19:21:02 by bcherkas         ###   ########.fr       */
+/*   Updated: 2018/07/09 15:25:54 by lburlach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@ void	printmap(unsigned char *map)
 	while (i <= MEM_SIZE)
 	{
 		if (map[i - 1])
-			printf("\x1b[32m");
-		printf("%3.2hhx", map[i - 1]);
-		printf("\x1b[0m");
+			ft_printf("\x1b[32m");
+		ft_printf("%3.2hhx", map[i - 1]);
+		ft_printf("\x1b[0m");
 		if (i % 64 == 0)
-			printf("\n");
+			ft_printf("\n");
 		i++;
 	}
 }
