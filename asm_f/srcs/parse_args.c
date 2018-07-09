@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_args.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lburlach <lburlach@student.unit.ua>        +#+  +:+       +#+        */
+/*   By: byermak <byermak@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/16 15:15:00 by byermak           #+#    #+#             */
-/*   Updated: 2018/07/06 20:04:32 by lburlach         ###   ########.fr       */
+/*   Updated: 2018/07/08 21:10:44 by byermak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,29 +67,36 @@ static int	parse_second_arg(char *str, t_arg **arg)
 	return (1);
 }
 
+static void init_args(t_code *new)
+{
+	new->arg1 = NULL;
+	new->arg2 = NULL;
+	new->arg3 = NULL;
+}
+
 int			parse_args(char *str, t_code *new)
 {
 	int		i;
 	int		ret;
 
-	new->arg1 = NULL;
-	new->arg2 = NULL;
-	new->arg3 = NULL;
+	init_args(new);
 	if ((i = skip_spaces(str)) == -1)
 		return (ERR_NO_COMMAND_ARGS);
 	i = word(str, i);
-	if ((ret = (parse_arg(ft_strsub(str, (unsigned int)g_x, (size_t)(i - (int)
-			g_x)), &(new->arg1)))) != 1 || (ret = check_first_arg(new)) != 1)
+	if ((ret = (parse_arg(ft_strsub(str, g_x, (i - g_x)), &(new->arg1)))) != 1
+		|| (ret = check_first_arg(new)) != 1)
 		return (ret);
-	if ((g_x = (size_t)i) && (skip_spaces(str)) != -1)
+	if (((g_x = (size_t)i) && (ret = skip_spaces(str)) != -1) ||
+			(ret == -1 && check_second_arg(new) != 1))
 	{
-		if ((ret = parse_second_arg(str, &(new->arg2))) != 1 ||
-			(ret = check_second_arg(new)) != 1)
+		if ((ret = parse_second_arg(str, &(new->arg2))) != 1)
 			return (ret);
 		if ((skip_spaces(str)) != -1)
-			if ((ret = parse_third_arg(str, &(new->arg3))) != 1 ||
-				(ret = check_third_arg(new)) != 1)
+			if ((ret = parse_third_arg(str, &(new->arg3))) != 1)
 				return (ret);
+		if ((ret = check_second_arg(new)) != 1 ||
+				(ret = check_third_arg(new)) != 1)
+			return ret;
 		if ((skip_spaces(str)) != -1)
 			return (ERR_ENDLINE);
 	}
