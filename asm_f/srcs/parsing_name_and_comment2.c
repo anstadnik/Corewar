@@ -6,7 +6,7 @@
 /*   By: lburlach <lburlach@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/09 16:54:00 by lburlach          #+#    #+#             */
-/*   Updated: 2018/07/08 20:04:04 by lburlach         ###   ########.fr       */
+/*   Updated: 2018/07/09 09:53:09 by lburlach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,7 +130,6 @@ char		*retrieve_comment(int fd)
 	skip_whitespaces(fd, &line);
 	if (line == NULL)
 		exit(1);
->>>>>>>>> Temporary merge branch 2
 	check_the_name(&line, fd);
 	detect_the_beginning(&line, fd);
 	fetch_the_name(&line, fd, g_row, &head);
