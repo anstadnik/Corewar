@@ -5,7 +5,7 @@ ODIR = objs/
 SDIR = srcs/
 IDIR = includes/
 LDIR = ../libft/
-NAME = ../asm
+NAME = asm
 LIB = $(LDIR)libft.a
 FILES = bytecode.c del.c exit.c label.c label2.c main.c other.c parse_arg.c parse_args.c\
         parse_code.c parser_checks.c parser_error.c parser_other.c\
@@ -17,7 +17,7 @@ OBJS = $(FILES:.c=.o)
 all: $(NAME)
 	
 $(NAME): $(LIB) $(addprefix $(ODIR), $(OBJS))
-	@echo "\x1b[34m\nCompiled $@\x1b[0m"
+	@echo "\x1b[34m\nCompiling $@\x1b[0m"
 	@$(CC) $(CFLAGS) -I $(IDIR) -I $(LDIR)includes -o $@ $^
 
 $(LIB):

@@ -4,7 +4,7 @@ ODIR = objs/
 SDIR = srcs/
 IDIR = includes/
 LDIR = ../libft/
-NAME = ../corewar
+NAME = corewar
 LIB = $(LDIR)libft.a
 FUNCS = fork_func.c cor_func.c math_func.c bit_funcs.c st_func.c ld_func.c
 HELP = get_int.c help_functions.c live_functions.c get_args.c sort_players.c
@@ -25,7 +25,7 @@ all: $(NAME)
 # WTF
 # Change that shit! (If u can)
 $(NAME): $(addprefix $(ODIR), $(OBJS)) $(LIB)
-	@echo "$(ESCAPE)[34m\nCompiled $@$(ESCAPE)[0m"
+	@echo "$(ESCAPE)[34m\nCompiling $@$(ESCAPE)[0m"
 	@$(CC) $(CFLAGS) -I $(IDIR) -I $(LDIR)includes -o $@ $^ -lncurses
 
 g:
