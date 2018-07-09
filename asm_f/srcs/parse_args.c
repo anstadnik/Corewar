@@ -6,7 +6,7 @@
 /*   By: byermak <byermak@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/16 15:15:00 by byermak           #+#    #+#             */
-/*   Updated: 2018/07/08 21:10:44 by byermak          ###   ########.fr       */
+/*   Updated: 2018/07/09 13:44:48 by bcherkas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ static int	parse_second_arg(char *str, t_arg **arg)
 	return (1);
 }
 
-static void init_args(t_code *new)
+static void	init_args(t_code *new)
 {
 	new->arg1 = NULL;
 	new->arg2 = NULL;
@@ -86,8 +86,8 @@ int			parse_args(char *str, t_code *new)
 	if ((ret = (parse_arg(ft_strsub(str, g_x, (i - g_x)), &(new->arg1)))) != 1
 		|| (ret = check_first_arg(new)) != 1)
 		return (ret);
-	if (((g_x = (size_t)i) && (ret = skip_spaces(str)) != -1) ||
-			(ret == -1 && check_second_arg(new) != 1))
+	if (((g_x = (size_t)i) &&
+(ret = skip_spaces(str)) != -1) || (ret == -1 && check_second_arg(new) != 1))
 	{
 		if ((ret = parse_second_arg(str, &(new->arg2))) != 1)
 			return (ret);
@@ -96,7 +96,7 @@ int			parse_args(char *str, t_code *new)
 				return (ret);
 		if ((ret = check_second_arg(new)) != 1 ||
 				(ret = check_third_arg(new)) != 1)
-			return ret;
+			return (ret);
 		if ((skip_spaces(str)) != -1)
 			return (ERR_ENDLINE);
 	}

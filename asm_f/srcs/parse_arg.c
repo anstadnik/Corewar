@@ -6,7 +6,7 @@
 /*   By: byermak <byermak@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/16 15:13:00 by byermak           #+#    #+#             */
-/*   Updated: 2018/07/08 21:18:38 by byermak          ###   ########.fr       */
+/*   Updated: 2018/07/09 13:38:18 by bcherkas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ static int				parse_t_ind(char **str, t_arg **arg)
 	unsigned int	value;
 	char			label_flag;
 	char			*label;
-	int 			i;
+	int				i;
 
 	label = NULL;
 	i = 1;
