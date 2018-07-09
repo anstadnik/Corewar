@@ -6,7 +6,7 @@
 /*   By: bcherkas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 13:59:51 by bcherkas          #+#    #+#             */
-/*   Updated: 2018/07/08 17:18:01 by bcherkas         ###   ########.fr       */
+/*   Updated: 2018/07/09 14:08:51 by bcherkas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,10 @@ int			main(int argc, char **argv)
 		usage();
 	if (argc > MAX_ARGS_NUMBER)
 		return (errmsg("Too many arguments"));
+	if (CYCLE_TO_DIE < 1 || CYCLE_DELTA < 1 || NBR_LIVE < 1 || MAX_CHECKS < 1)
+		errmsg("Invalid define in \"Changeable defines\". Check out corewar.h");
+	if (LLD_MODE != 2 && LLD_MODE != 4)
+		errmsg("LLD_MODE must be 2 or 4");
 	initialize(&inf);
 	get_parameters(argc - 1, argv + 1, &inf);
 	if (inf.players_amount < 1)

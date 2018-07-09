@@ -6,7 +6,7 @@
 /*   By: bcherkas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 18:51:41 by bcherkas          #+#    #+#             */
-/*   Updated: 2018/07/08 12:43:17 by bcherkas         ###   ########.fr       */
+/*   Updated: 2018/07/09 14:44:36 by bcherkas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,8 +104,8 @@ void	wrapper(unsigned char *map, t_carriage *carry)
 		carry->cycles_left--;
 	else if (carry->cycles_left == 0 && (func_num > MAX_FUNC || func_num < 1))
 	{
-		ncur_print_carry(carry, func_num, 0);
 		carry->pc = (carry->pc + 1) % MEM_SIZE;
+		ncur_print_carry(carry, func_num, -1);
 		carry->func_num = -1;
 	}
 	else if (carry->cycles_left == 0 && func_num <= MAX_FUNC && func_num > 0)

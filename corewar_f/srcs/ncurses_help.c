@@ -6,7 +6,7 @@
 /*   By: bcherkas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/29 20:11:26 by bcherkas          #+#    #+#             */
-/*   Updated: 2018/07/04 17:46:20 by bcherkas         ###   ########.fr       */
+/*   Updated: 2018/07/09 14:57:55 by bcherkas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,12 +64,15 @@ void	color_output(int player, unsigned char *str, int start, size_t len)
 
 void	ncur_print_carry(t_carriage *carry, int symbol, int mode)
 {
-	WINDOW	*win;
+	WINDOW		*win;
+	static int	save;
+	int			s_pc;
 
-	win = get_active_window(1, NULL, NULL);
 	if (get_args_flag(NULL, FLAG_N) != 1)
 		return ;
-	if (mode == 1)
+	win = get_active_window(1, NULL, NULL);
+	save = mode == 1 ? symbol : save;
+	if (mode != 0)
 		wattron(win, A_REVERSE);
 	if (mode > -1)
 		wattron(win, COLOR_PAIR(carry->player_num));
@@ -77,7 +80,10 @@ void	ncur_print_carry(t_carriage *carry, int symbol, int mode)
 			"%.2hhx", symbol);
 	if (mode > -1)
 		wattroff(win, COLOR_PAIR(carry->player_num));
-	if (mode == 1)
+	if (mode != 0)
 		wattroff(win, A_REVERSE);
+	s_pc = (MEM_SIZE + carry->pc - 1) % MEM_SIZE;
+	if (mode == -1)
+		mvwprintw(win, 1 + (s_pc / 64), 2 + 3 * (s_pc % 64), "%.2hhx", save);
 	wrefresh(win);
 }

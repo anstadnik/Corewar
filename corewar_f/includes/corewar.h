@@ -6,7 +6,7 @@
 /*   By: bcherkas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 13:51:01 by bcherkas          #+#    #+#             */
-/*   Updated: 2018/07/08 13:38:20 by bcherkas         ###   ########.fr       */
+/*   Updated: 2018/07/09 14:13:29 by bcherkas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,21 @@
 # include <stdio.h>
 # include <fcntl.h>
 # include <ncurses.h>
+
+/*
+** Changeable defines
+*/
+
+# define CYCLE_TO_DIE			1536
+# define CYCLE_DELTA			50
+# define NBR_LIVE				21
+# define MAX_CHECKS				10
+
+# define LLD_MODE				4
+
+/*
+** Non-changeable defines
+*/
 
 # define IND_SIZE				2
 # define REG_SIZE				4
@@ -34,11 +49,6 @@
 # define CHAMP_MAX_SIZE			682
 
 # define REG_NUMBER				16
-
-# define CYCLE_TO_DIE			1536
-# define CYCLE_DELTA			50
-# define NBR_LIVE				21
-# define MAX_CHECKS				10
 
 # define ABS(x) ((x) < 0 ? -(x) : (x))
 
@@ -209,7 +219,6 @@ void				ncurses_trigger(t_info *inf, int iterations);
 void				ncur_print_carry(t_carriage *carry, int symbol, int mode);
 
 void				add_lives(t_info *inf, int player_num);
-int					alldead(t_info *inf);
 void				output_text(t_info *inf, int iterations);
 void				introduce(t_info *inf);
 void				winner(t_info *inf);
