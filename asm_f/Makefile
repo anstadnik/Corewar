@@ -17,7 +17,7 @@ OBJS = $(FILES:.c=.o)
 all: $(NAME)
 	
 $(NAME): $(LIB) $(addprefix $(ODIR), $(OBJS))
-	@echo "\x1b[34m\nCompiling $@\x1b[0m"
+	@echo "\x1b[34m\nCompiled $@\x1b[0m"
 	@$(CC) $(CFLAGS) -I $(IDIR) -I $(LDIR)includes -o $@ $^
 
 $(LIB):
