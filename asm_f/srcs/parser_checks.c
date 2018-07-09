@@ -30,6 +30,8 @@ int	check_third_arg(t_code *new)
 	i = new->opcode - 1;
 	if (!new->arg3 && g_op_tab[i].args_num > 2)
 		return (ERR_INVALID_NUMBER_OF_ARGS);
+	if (!new->arg3)
+		return (1);
 	if ((new->arg3->arg_type & g_op_tab[i].args[2]) != new->arg3->arg_type)
 	{
 		if (new->arg3->arg_type == T_REG)
