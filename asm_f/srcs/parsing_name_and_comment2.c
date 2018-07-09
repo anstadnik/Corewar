@@ -6,7 +6,7 @@
 /*   By: lburlach <lburlach@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/09 16:54:00 by lburlach          #+#    #+#             */
-/*   Updated: 2018/07/06 19:57:25 by lburlach         ###   ########.fr       */
+/*   Updated: 2018/07/09 09:53:09 by lburlach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ static	int	search_the_end(char **line, size_t *row, t_list **head, size_t len)
 		{
 			ft_lstpushb(head, (*line + *row), tmp - *row);
 			*row += tmp - *row + 1;
-			ft_strdel(line);
 			return (1);
 		}
 		tmp++;
@@ -129,6 +128,8 @@ char		*retrieve_comment(int fd)
 	head = NULL;
 	out = NULL;
 	skip_whitespaces(fd, &line);
+	if (line == NULL)
+		exit(1);
 	check_the_name(&line, fd);
 	detect_the_beginning(&line, fd);
 	fetch_the_name(&line, fd, g_row, &head);

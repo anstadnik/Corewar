@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   label.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lburlach <lburlach@student.unit.ua>        +#+  +:+       +#+        */
+/*   By: byermak <byermak@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/16 14:16:00 by byermak           #+#    #+#             */
-/*   Updated: 2018/07/06 20:01:52 by lburlach         ###   ########.fr       */
+/*   Updated: 2018/07/08 20:15:28 by byermak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,13 +60,15 @@ int			parse_label(char *str, t_label **label)
 
 	i = g_x;
 	tmp = ft_strchr(str, LABEL_CHAR);
-	if (!tmp)
+	if (!tmp || tmp == str + i)
 		return (0);
 	while ((str + i) != tmp)
 		if (!check_label_words(str[i++]))
 			return (0);
 	label_str = check_label(ft_strsub(str,
 			(unsigned int)g_x, (size_t)(tmp - (str + g_x))));
+	if (!label_str)
+		return (0);
 	g_x += ft_strlen(label_str) + 1;
 	if ((ret = push_back_label(label, label_str)) != 1)
 	{
