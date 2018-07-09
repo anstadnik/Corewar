@@ -5,7 +5,7 @@ ODIR = objs/
 SDIR = srcs/
 IDIR = includes/
 LDIR = ../libft/
-NAME = asm
+NAME = ../asm
 LIB = $(LDIR)libft.a
 FILES = bytecode.c del.c exit.c label.c label2.c main.c other.c parse_arg.c parse_args.c\
         parse_code.c parser_checks.c parser_error.c parser_other.c\
