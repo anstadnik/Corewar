@@ -3,3 +3,5 @@ cmake-build-debug/
 .DS_Store
 *.cor
 *.co
+.ycm_extra_conf.py
+tags
